@@ -9,42 +9,60 @@
     <!-- Импорт шрифтов Google Fonts -->
     <style>
         @import url('https://googleapis.com');
-
+        /* ==========================================================================
+           ФАЙЛ КОНФИГУРАЦИИ САЙТА (ДВУХРЕЖИМНЫЙ СМАРТ-КОНФИГ)
+           ========================================================================== */
+        
+        /* ДЕФОЛТНАЯ СВЕТЛАЯ ТЕМА (МЯТНО-ЗЕЛЕНАЯ ЧИСТОТА) */
         :root {
             --site-bg: radial-gradient(circle at 80% 20%, #f8fafc 0%, #f1f5f9 100%);
             --text-main: #0f172a;
             --text-muted: #64748b;
             --text-light: #94a3b8;
+
+            /* Зелёный Вереск */
             --accent-color: #0d9488;
             --accent-hover: #0f766e;
             --accent-soft: rgba(13, 148, 136, 0.08);
             --btn-text: #ffffff;
+
+            /* Конструкция сетки */
             --border-grid: #cbd5e1;
             --border-glass: rgba(15, 23, 42, 0.08);
             --card-bg: rgba(255, 255, 255, 0.85);
             --header-bg: transparent;
             --line-color: #cbd5e1;
+
+            /* Настройки графики и радиусов */
             --radius-main: 1.5rem;
             --radius-asym: 2rem 0.5rem 2rem 2rem;
             --hero-image: url('assets/pack1/0.png');
         }
-        
+
+        /* МОДИФИКАТОР ТЕМНОЙ ТЕМЫ (ГЛУБОКИЙ ФИОЛЕТОВЫЙ ВЕРЕСК) */
         body.dark-theme {
             --site-bg: radial-gradient(circle at 80% 20%, #1a1c1e 0%, #0f1011 100%);
             --text-main: #f1f5f9;
             --text-muted: #94a3b8;
             --text-light: #64748b;
+
+            /* Фиолетовый Вереск */
             --accent-color: #a78bfa;
             --accent-hover: #7c3aed;
             --accent-soft: rgba(139, 92, 246, 0.1);   
             --btn-text: #ffffff;
+
+            /* Конструкция сетки */
             --border-grid: rgba(255, 255, 255, 0.05);     
             --border-glass: rgba(255, 255, 255, 0.08);
             --card-bg: rgba(15, 16, 17, 0.7);      
             --header-bg: transparent;
             --line-color: rgba(255, 255, 255, 0.08);
         }
-        
+
+        /* ==========================================================================
+           СИСТЕМНЫЕ АРХИТЕКТУРНЫЕ СТИЛИ
+           ========================================================================== */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
         body { font-family: 'Inter', sans-serif; background: var(--site-bg); color: var(--text-main); -webkit-font-smoothing: antialiased; min-height: 100vh; transition: background 0.4s ease, color 0.4s ease; }
