@@ -57,8 +57,7 @@
         .hero-top-row, .hero-bottom-row { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); width: 100%; }
         
         /* ЛЕВАЯ КОЛОНКА (7 колонок из 12) */
-        .hero-headline-block, .triggers-grid-container { grid-column: span 7 / span 7 !important; width: 100% !important; padding-right: 3.5rem !important; }
-        
+        .hero-headline-block, .triggers-grid-container { grid-column: span 7 / span 7 !important; width: 100% !important; padding-right: 3.7rem !important; }
         /* ПРАВАЯ КОЛОНКА (5 колонок из 12) */
         .hero-image-block, .premium-cta-box-container { grid-column: span 5 / span 5 !important; width: 100% !important; padding-left: 4.5rem !important; }
         
@@ -70,13 +69,37 @@
         .inline-team-img { width: 100%; height: 100%; background-image: var(--hero-image); background-size: cover; background-position: center; filter: contrast(1.02); }
         
         /* ПРЕИМУЩЕСТВА КРЕСТОМ */
-        .triggers-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 1px; background-color: var(--border-grid); border: 1px solid var(--border-grid); border-radius: var(--radius-main); overflow: hidden; width: 100%; }
+        .triggers-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, minmax(0, 1fr)); 
+            grid-template-rows: repeat(2, minmax(0, 1fr)); 
+            gap: 1px; 
+            background-color: var(--border-grid); 
+            border: 1px solid var(--border-grid); 
+            border-radius: var(--radius-main); 
+            overflow: hidden; 
+            width: 100%; 
+            height: 100% !important; /* Жёстко растягивает преимущества по высоте соседа */
+        }
         .trigger-box { background-color: var(--card-bg); padding: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; transition: background 0.4s; }
         .trigger-num { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-light); }
         .trigger-text { font-size: 13px; font-weight: 500; color: var(--text-muted); line-height: 1.4; }
         
         /* КАРТОЧКА АКЦИИ */
-        .premium-cta-box { background: var(--card-bg); border: 1px solid var(--border-glass); border-radius: var(--radius-main); padding: 2rem; box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.08); display: flex; flex-direction: column; justify-content: space-between; min-height: 180px; width: 100%; transition: background 0.4s, border 0.4s; }
+        .premium-cta-box { 
+            background: var(--card-bg); 
+            border: 1px solid var(--border-glass); 
+            border-radius: var(--radius-main); 
+            padding: 2rem; 
+            box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.08); 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+            min-height: 180px; 
+            width: 100%; 
+            transition: background 0.4s, border 0.4s; 
+            height: 100% !important; /* Гарантирует растяжение карточки акции */
+        }
         .cta-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
         .cta-title { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main); line-height: 1.4; }
         .cta-season { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-color); background: var(--accent-soft); border: 1px solid var(--border-glass); padding: 4px 8px; border-radius: 4px; transition: color 0.4s, background 0.4s; }
