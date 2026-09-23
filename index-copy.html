@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Служба дезинсекции ВЕРЕСК — Премиум-сервис дезинфекции в СПб и ЛО</title>
+    <!-- Подключаем иконки FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Импорт шрифтов Google Fonts -->
+    <style>
+        @import url('https://googleapis.com');
+
+        /* ==========================================================================
+           ФАЙЛ КОНФИГУРАЦИИ САЙТА (ДВУХРЕЖИМНЫЙ СМАРТ-КОНФИГ)
+           ========================================================================== */
+        
+        /* ДЕФОЛТНАЯ СВЕТЛАЯ ТЕМА (МЯТНО-ЗЕЛЕНАЯ ЧИСТОТА) */
+        :root {
+            --site-bg: radial-gradient(circle at 80% 20%, #f8fafc 0%, #f1f5f9 100%);
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --text-light: #94a3b8;
+
+            /* Зелёный Вереск */
+            --accent-color: #0d9488;     
+            --accent-hover: #0f766e;     
+            --accent-soft: rgba(13, 148, 136, 0.08);   
+            --btn-text: #ffffff;
+
+            /* Конструкция сетки */
+            --border-grid: #cbd5e1; /* Четкий контрастный цвет для линий-просветов */
+            --border-glass: rgba(15, 23, 42, 0.08);    
+            --card-bg: rgba(255, 255, 255, 0.85);      
+            --header-bg: rgba(255, 255, 255, 0.95);
+
+            /* Настройки графики и радиусов */
+            --radius-main: 1.5rem;   
+            --radius-asym: 2rem 0.5rem 2rem 2rem; 
+            --hero-image: url('assets/pack1/0.png');
+        }
+
+        /* МОДИФИКАТОР ТЕМНОЙ ТЕМЫ (ГЛУБОКИЙ ФИОЛЕТОВЫЙ ВЕРЕСК) */
+        body.dark-theme {
+            --site-bg: radial-gradient(circle at 80% 20%, #1a1c1e 0%, #0f1011 100%);
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --text-light: #475569;
+
+            /* Фиолетовый Вереск */
+            --accent-color: #a78bfa;     
+            --accent-hover: #7c3aed;     
+            --accent-soft: rgba(139, 92, 246, 0.1);   
+            --btn-text: #ffffff;
+
+            /* Конструкция сетки */
+            --border-grid: rgba(255, 255, 255, 0.05);     
+            --border-glass: rgba(255, 255, 255, 0.08);    
+            --card-bg: rgba(15, 16, 17, 0.7);      
+            --header-bg: rgba(12, 13, 14, 0.9);
+        }
+
+        /* ==========================================================================
+           СИСТЕМНЫЕ АРХИТЕКТУРНЫЕ СТИЛИ
+           ========================================================================== */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--site-bg);
+            color: var(--text-main); 
+            -webkit-font-smoothing: antialiased; 
+            min-height: 100vh;
+            transition: background 0.4s ease, color 0.4s ease;
+        }
+        h1, h2, h3, .font-mont { font-family: 'Montserrat', sans-serif; }
+        a { text-decoration: none; }
+
+        /* HEADER */
+        .premium-header { max-w: 85rem; margin: 0 auto; height: 90px; display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; border-b: 1px solid var(--border-grid); background: var(--header-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 50; transition: background 0.4s, border 0.4s; }
+        .logo-wrap { display: flex; flex-direction: column; }
+        .logo-main { font-size: 18px; font-weight: 800; color: var(--text-main); letter-spacing: 0.15em; text-transform: uppercase; }
+        .logo-sub { font-size: 9px; color: var(--text-light); font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; margin-top: 4px; }
+        
+        .premium-nav { display: flex; gap: 3rem; }
+        .nav-link { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; transition: color 0.3s; }
+        .nav-link:hover { color: var(--accent-color); }
+
+        .right-controls { display: flex; align-items: center; gap: 2rem; }
+        .header-phone { font-size: 15px; font-weight: 700; color: var(--text-main); font-family: 'Montserrat', sans-serif; letter-spacing: 0.05em; display: flex; align-items: center; gap: 0.5rem; }
+        .phone-dot { height: 6px; width: 6px; background-color: #10b981; border-radius: 50%; display: inline-block; box-shadow: 0 0 8px #10b981; }
+
+        /* Кнопка переключателя темы */
+        .theme-toggle-btn { background: var(--accent-soft); border: 1px solid var(--border-glass); color: var(--accent-color); width: 40px; height: 40px; border-radius: 0.75rem; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; transition: all 0.3s ease; }
+        .theme-toggle-btn:hover { transform: scale(1.05); background: var(--accent-color); color: #ffffff; }
+
+        /* СТРУКТУРНАЯ СЕТКА ГЛАВНОГО ЭКРАНА */
+        .hero-section { relative; overflow: hidden; }
+        /* Новая горизонтальная архитектура экрана */
+        .hero-layout { 
+            max-w: 85rem; 
+            margin: 0 auto; 
+            padding: 4rem 2rem;
+            width: 100%; /* Заставляет сетку сжиматься по ширине экрана, а не уходить за край */
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+        
+        /* ВЕРХНИЙ РЯД: Заголовок + Картинка */
+        .hero-top-row {
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            gap: 4rem;
+            align-items: flex-start;
+        }
+        .hero-headline-block { grid-column: span 7 / span 7; }
+        .hero-image-block { grid-column: span 5 / span 5; }
+        
+        .hero-title { font-size: 40px; font-weight: 300; color: var(--text-main); line-height: 1.25; tracking-tight: -0.02em; text-transform: uppercase; }
+        .hero-title tracking-bold { font-weight: 800; display: block; letter-spacing: -0.01em; color: var(--text-main); margin-top: 4px; }
+        
+        .image-container-block { width: 100%; height: 260px; border-radius: var(--radius-asym); border: 1px solid var(--border-glass); overflow: hidden; box-shadow: 0 15px 30px rgba(15, 23, 42, 0.04); background: var(--card-bg); }
+        .inline-team-img { width: 100%; height: 100%; background-image: var(--hero-image); background-size: cover; background-position: center; filter: contrast(1.02); }
+        
+        /* НИЖНИЙ РЯД: Единая горизонтальная опора для блоков */
+        .hero-bottom-row {
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            gap: 2.5rem; /* Немного уменьшили отступ между блоками для планшетов */
+            align-items: stretch;
+            width: 100%;
+        }
+        
+        /* Сетка преимуществ занимает ровно свои 7 колонок из 12 и не пикселем больше */
+        .triggers-grid { 
+            grid-column: span 7 / span 7;
+            display: grid; 
+            grid-template-columns: repeat(2, minmax(0, 1fr)); 
+            gap: 1px; 
+            background-color: var(--border-grid); 
+            border: 1px solid var(--border-grid); 
+            border-radius: var(--radius-main); 
+            overflow: hidden; 
+            width: 100%;
+            /* Добавляем ту самую тонкую вертикальную линию справа от блока преимуществ */
+            border-right: 1px solid var(--border-grid) !important;
+        }
+
+        .trigger-box { background-color: var(--card-bg); padding: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; }
+        .trigger-num { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-light); }
+        .trigger-text { font-size: 13px; font-weight: 500; color: var(--text-muted); line-height: 1.4; }
+        
+        /* Карточка акции занимает ровно свои 5 колонок из 12 и гибко сжимается */
+        .premium-cta-box { 
+            grid-column: span 5 / span 5;
+            background: var(--card-bg); 
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px); 
+            border: 1px solid var(--border-glass); 
+            border-radius: var(--radius-main); 
+            padding: 2rem; 
+            box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.08); 
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; 
+            width: 100%; /* Защита от вылетов за пределы колонки */
+        }
+        .cta-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+        .cta-title { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main); line-height: 1.4; }
+        .cta-season { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-color); background: var(--accent-soft); border: 1px solid var(--border-glass); padding: 4px 8px; border-radius: 4px; }
+        
+        /* Адаптивность для мобилок */
+        @media (max-width: 1200px) {
+            /* Отключаем 12 колонок в рядах и делаем блоки вертикальными */
+            .hero-top-row, .hero-bottom-row { 
+                grid-template-columns: 1fr !important; 
+                gap: 2rem !important; 
+            }
+            
+            /* Заставляем все элементы занимать 100% ширины твоего узкого окна */
+            .hero-headline-block, .hero-image-block, .triggers-grid, .premium-cta-box { 
+                grid-column: span 12 / span 12 !important; 
+                width: 100% !important;
+            }
+            
+            /* Скрываем разделительную линию, так как блоки теперь стоят друг под другом */
+            .triggers-grid::after {
+                display: none !important;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- НАВИГАЦИЯ (HEADER) -->
+    <header class="premium-header">
+        <div class="logo-wrap">
+            <span class="logo-main">ВЕРЕСК</span>
+            <span class="logo-sub">СЛУЖБА ДЕЗИНФЕКЦИИ</span>
+        </div>
+        
+        <nav class="premium-nav">
+            <a href="#quiz-section" class="nav-link">Стоимость</a>
+            <a href="#catalog" class="nav-link">Вредители</a>
+            <a href="#why-we" class="nav-link">Почему мы</a>
+            <a href="#b2b" class="nav-link">Для бизнеса</a>
+        </nav>
+
+        <div class="right-controls">
+            <!-- Интерактивная кнопка переключателя темы -->
+            <button class="theme-toggle-btn" id="themeToggle" title="Сменить тему">
+                <i class="fa-regular fa-moon" id="themeIcon"></i>
+            </button>
+            <a href="tel:+78129877606" class="header-phone">
+                <span class="phone-dot"></span> +7 (812) 987-76-06
+            </a>
+        </div>
+    </header>
+
+    <!-- СТРУКТУРНАЯ СЕТКА ГЛАВНОГО ЭКРАНА (ЖЕСТКИЙ ИНЛАЙН ДЛЯ СБРОСА КЭША) -->
+    <main class="hero-section">
+        <div class="hero-layout">
+            
+            <!-- РЯД 1: ВЕРХНИЙ (ОФФЕР И ФОТО) -->
+            <div class="hero-top-row">
+                <div class="hero-headline-block">
+                    <!-- Жестко возвращаем зеленый цвет тексту рейтинга -->
+                    <div class="social-badge" style="color: var(--accent-color) !important;">
+                        <i class="fa-solid fa-square" style="color: var(--accent-color) !important;"></i> Рейтинг в Яндекс — 5.0
+                    </div>
+                    <h1 class="hero-title">
+                        Профессиональное уничтожение
+                        <tracking-bold>всех видов насекомых и грызунов в Санкт-Петербурге</tracking-bold>
+                    </h1>
+                </div>
+
+                <div class="hero-image-block">
+                    <div class="image-container-block">
+                        <div class="inline-team-img"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- РЯД 2: НИЖНИЙ (ПРЕИМУЩЕСТВА И АКЦИЯ) -->
+            <div class="hero-bottom-row" style="display: flex; align-items: stretch; justify-content: space-between; gap: 4rem; width: 100%;">
+                
+                <!-- Таблица триггеров (Линии за счет gap и цвета фона контейнера var(--border-grid)) -->
+                <div class="triggers-grid" style="width: 56%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 1px !important; background-color: var(--border-grid) !important; border: 1px solid var(--border-grid); border-radius: var(--radius-main); overflow: hidden;">
+                    
+                    <!-- Ячейка 01 -->
+                    <div class="trigger-box" style="padding: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; background-color: var(--card-bg) !important;">
+                        <span class="trigger-num">01 / безопасность</span>
+                        <p class="trigger-text">Безопасные препараты премиум-класса.</p>
+                    </div>
+                    
+                    <!-- Ячейка 02 -->
+                    <div class="trigger-box" style="padding: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; background-color: var(--card-bg) !important;">
+                        <span class="trigger-num">02 / оперативность</span>
+                        <p class="trigger-text">Выезд на объект в день звонка.</p>
+                    </div>
+                    
+                    <!-- Ячейка 03 -->
+                    <div class="trigger-box" style="padding: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; background-color: var(--card-bg) !important;">
+                        <span class="trigger-num">03 / честность</span>
+                        <p class="trigger-text">Фиксированная стоимость без скрытых доплат.</p>
+                    </div>
+                    
+                    <!-- Ячейка 04 -->
+                    <div class="trigger-box" style="padding: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; background-color: var(--card-bg) !important;">
+                        <span class="trigger-num">04 / надежность</span>
+                        <p class="trigger-text">Гарантия по договору до 1 года.</p>
+                    </div>
+                </div>
+
+
+                <!-- Окно CTA формы (Ширина 40%) -->
+                <div class="premium-cta-box" style="width: 40%; background: var(--card-bg); border: 1px solid var(--border-glass); border-radius: var(--radius-main); padding: 2rem; box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.08); display: flex; flex-direction: column; justify-content: space-between; min-height: 180px;">
+                    <div class="cta-header">
+                        <h3 class="cta-title">Узнать детали акции</h3>
+                        <span class="cta-season">Сезонное предложение</span>
+                    </div>
+                    
+                    <button class="premium-btn" 
+                            style="width: 100%; height: 3.5rem !important; background: var(--accent-color) !important; color: #ffffff !important; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; border-radius: 0.75rem; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.75rem; box-shadow: 0 10px 20px var(--accent-soft); transition: all 0.2s ease !important;" 
+                            onmouseenter="this.style.setProperty('background', 'var(--text-main)', 'important')" 
+                            onmouseleave="this.style.setProperty('background', 'var(--accent-color)', 'important')"
+                            onclick="document.getElementById('quiz-section').scrollIntoView({behavior: 'smooth'})">
+                        Зафиксировать скидку <i class="fa-solid fa-arrow-right-long"></i>
+                    </button>
+                    
+                    <p class="privacy-snoska" style="font-size: 9px !important; color: var(--text-light); text-align: center; margin-top: 0.5rem; font-weight: 500;">
+                        Нажимая кнопку, вы даете согласие на обработку персональных данных.
+                    </p>
+                </div>
+            </div>
+
+                
+        </div>
+    </main>
+
+    <!-- Сюда встанет Квиз -->
+    <div id="quiz-section"></div>
+
+    <!-- Скрипт логики переключения тем -->
+    <script>
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const bodyElement = document.body;
+    
+    // Проверяем сохраненную тему при загрузке страницы
+    const savedTheme = localStorage.getItem('site-theme');
+    if (savedTheme === 'dark') {
+        bodyElement.classList.add('dark-theme');
+        themeIcon.className = 'fa-regular fa-sun'; // Ставим солнце в темной теме
+    } else {
+        themeIcon.className = 'fa-regular fa-moon'; // Ставим месяц в светлой теме
+    }
+    
+    // Слушатель клика для смены темы и иконок
+    themeToggleBtn.addEventListener('click', () => {
+        bodyElement.classList.toggle('dark-theme');
+        
+        if (bodyElement.classList.contains('dark-theme')) {
+            themeIcon.className = 'fa-regular fa-sun';
+            localStorage.setItem('site-theme', 'dark');
+        } else {
+            themeIcon.className = 'fa-regular fa-moon';
+            localStorage.setItem('site-theme', 'light');
+        }
+    });
+    </script>
+
+</body>
+</html>
