@@ -95,8 +95,15 @@
 
         /* СТРУКТУРНАЯ СЕТКА ГЛАВНОГО ЭКРАНА */
         .hero-section { relative; overflow: hidden; }
-        .hero-layout { max-w: 85rem; margin: 0 auto; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); min-height: calc(100vh - 90px); }
-        
+        .hero-layout { 
+            max-w: 85rem; 
+            margin: 0 auto; 
+            display: grid; 
+            grid-template-columns: repeat(12, minmax(0, 1fr)); 
+            min-height: calc(100vh - 90px); 
+            align-items: flex-start; /* Выравнивает левый и правый блоки по верхней линии */
+        }
+
         .hero-left { grid-column: span 7 / span 7; padding: 4rem 4rem 4rem 2rem; border-right: 1px solid var(--border-grid); display: flex; flex-direction: column; justify-content: center; transition: border 0.4s; }
         .social-badge { display: flex; align-items: center; gap: 0.5rem; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-color); margin-bottom: 2rem; }
         .social-badge i { font-size: 8px; }
