@@ -95,47 +95,110 @@
 
         /* СТРУКТУРНАЯ СЕТКА ГЛАВНОГО ЭКРАНА */
         .hero-section { relative; overflow: hidden; }
+        /* Новая горизонтальная архитектура экрана */
         .hero-layout { 
             max-w: 85rem; 
             margin: 0 auto; 
-            display: grid; 
-            grid-template-columns: repeat(12, minmax(0, 1fr)); 
-            min-height: calc(100vh - 90px); 
-            align-items: flex-start; /* Выравнивает левый и правый блоки по верхней линии */
+            padding: 4rem 2rem;
+            width: 100%; /* Заставляет сетку сжиматься по ширине экрана, а не уходить за край */
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
         }
-
-        .hero-left { grid-column: span 7 / span 7; padding: 4rem 4rem 4rem 2rem; border-right: 1px solid var(--border-grid); display: flex; flex-direction: column; justify-content: center; transition: border 0.4s; }
-        .social-badge { display: flex; align-items: center; gap: 0.5rem; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-color); margin-bottom: 2rem; }
-        .social-badge i { font-size: 8px; }
-        .hero-title { font-size: 40px; font-weight: 300; color: var(--text-main); line-height: 1.25; tracking-tight: -0.02em; margin-bottom: 2rem; text-transform: uppercase; }
+        
+        /* ВЕРХНИЙ РЯД: Заголовок + Картинка */
+        .hero-top-row {
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            gap: 4rem;
+            align-items: flex-start;
+        }
+        .hero-headline-block { grid-column: span 7 / span 7; }
+        .hero-image-block { grid-column: span 5 / span 5; }
+        
+        .hero-title { font-size: 40px; font-weight: 300; color: var(--text-main); line-height: 1.25; tracking-tight: -0.02em; text-transform: uppercase; }
         .hero-title tracking-bold { font-weight: 800; display: block; letter-spacing: -0.01em; color: var(--text-main); margin-top: 4px; }
         
-        .triggers-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background-color: var(--border-grid); margin-top: 2rem; border: 1px solid var(--border-grid); border-radius: var(--radius-main); overflow: hidden; transition: background 0.4s, border 0.4s; }
-        .trigger-box { background-color: var(--card-bg); padding: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; transition: background 0.4s; }
+        .image-container-block { width: 100%; height: 260px; border-radius: var(--radius-asym); border: 1px solid var(--border-glass); overflow: hidden; box-shadow: 0 15px 30px rgba(15, 23, 42, 0.04); background: var(--card-bg); }
+        .inline-team-img { width: 100%; height: 100%; background-image: var(--hero-image); background-size: cover; background-position: center; filter: contrast(1.02); }
+        
+        /* НИЖНИЙ РЯД: Единая горизонтальная опора для блоков */
+        .hero-bottom-row {
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            gap: 2.5rem; /* Немного уменьшили отступ между блоками для планшетов */
+            align-items: stretch;
+            width: 100%;
+        }
+        
+        /* Сетка преимуществ занимает ровно свои 7 колонок из 12 и не пикселем больше */
+        .triggers-grid { 
+            grid-column: span 7 / span 7;
+            display: grid; 
+            grid-template-columns: repeat(2, minmax(0, 1fr)); 
+            gap: 1px; 
+            background-color: var(--border-grid); 
+            border: 1px solid var(--border-grid); 
+            border-radius: var(--radius-main); 
+            overflow: hidden; 
+            width: 100%; /* Защита от вылетов за пределы колонки */
+        }
+
+        /* Навешиваем вертикальную линию справа от блока преимуществ */
+        .triggers-grid::after {
+            content: '';
+            position: absolute;
+            right: -2rem; /* Ровно по центру между блоками */
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background-color: var(--border-grid);
+        }
+        
+        .trigger-box { background-color: var(--card-bg); padding: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; }
         .trigger-num { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-light); }
         .trigger-text { font-size: 13px; font-weight: 500; color: var(--text-muted); line-height: 1.4; }
-
-        .hero-right { grid-column: span 5 / span 5; padding: 4rem 2rem 4rem 4rem; display: flex; flex-direction: column; justify-content: space-between; position: relative; }
-        .image-container-block { width: 100%; height: 260px; border-radius: var(--radius-asym); border: 1px solid var(--border-glass); overflow: hidden; position: relative; box-shadow: 0 15px 30px rgba(15, 23, 42, 0.04); margin-bottom: 2rem; background: var(--card-bg); transition: border 0.4s, background 0.4s; }
-        .inline-team-img { width: 100%; height: 100%; background-image: var(--hero-image); background-size: cover; background-position: center; filter: contrast(1.02); }
-
-        .premium-cta-box { background: var(--card-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--border-glass); border-radius: var(--radius-main); padding: 2rem; width: 100%; box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.08); transition: background 0.4s, border 0.4s; }
-        .cta-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
-        .cta-title { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main); line-height: 1.4; }
-        .cta-season { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-color); background: var(--accent-soft); border: 1px solid var(--border-glass); padding: 4px 8px; border-radius: 4px; transition: color 0.4s, background 0.4s; }
-
-        .premium-btn { width: 100%; height: 3.5rem; background: var(--accent-color); color: #ffffff; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; border-radius: 0.75rem; border: none; cursor: pointer; transition: all 0.3s; font-family: 'Montserrat', sans-serif; display: flex; align-items: center; justify-content: center; gap: 0.75rem; box-shadow: 0 10px 20px var(--accent-soft); }
-        .premium-btn:hover { background: var(--text-main); color: var(--btn-text); box-shadow: none; }
-        .privacy-snoska { font-size: 9px; color: var(--text-light); text-align: center; margin-top: 1rem; font-weight: 500; }
-
-        @media (max-width: 1024px) {
-            .premium-nav { display: none; }
-            .hero-layout { grid-template-columns: 1fr; }
-            .hero-left { grid-column: span 12 / span 12; padding: 3rem 1.5rem; border-right: none; }
-            .hero-right { grid-column: span 12 / span 12; padding: 1.5rem; }
-            .hero-title { font-size: 30px; }
-            .triggers-grid { grid-template-columns: 1fr; }
+        
+        /* Карточка акции занимает ровно свои 5 колонок из 12 и гибко сжимается */
+        .premium-cta-box { 
+            grid-column: span 5 / span 5;
+            background: var(--card-bg); 
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px); 
+            border: 1px solid var(--border-glass); 
+            border-radius: var(--radius-main); 
+            padding: 2rem; 
+            box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.08); 
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; 
+            width: 100%; /* Защита от вылетов за пределы колонки */
         }
+        .cta-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+        .cta-title { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main); line-height: 1.4; }
+        .cta-season { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-color); background: var(--accent-soft); border: 1px solid var(--border-glass); padding: 4px 8px; border-radius: 4px; }
+        
+        /* Адаптивность для мобилок */
+        @media (max-width: 1200px) {
+            /* Отключаем 12 колонок в рядах и делаем блоки вертикальными */
+            .hero-top-row, .hero-bottom-row { 
+                grid-template-columns: 1fr !important; 
+                gap: 2rem !important; 
+            }
+            
+            /* Заставляем все элементы занимать 100% ширины твоего узкого окна */
+            .hero-headline-block, .hero-image-block, .triggers-grid, .premium-cta-box { 
+                grid-column: span 12 / span 12 !important; 
+                width: 100% !important;
+            }
+            
+            /* Скрываем разделительную линию, так как блоки теперь стоят друг под другом */
+            .triggers-grid::after {
+                display: none !important;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -165,22 +228,34 @@
         </div>
     </header>
 
-    <!-- СТРУКТУРНАЯ СЕТКА ГЛАВНОГО ЭКРАНА -->
+    <!-- СТРУКТУРНАЯ СЕТКА ГЛАВНОГО ЭКРАНА (ЖЕСТКИЙ ИНЛАЙН ДЛЯ СБРОСА КЭША) -->
     <main class="hero-section">
         <div class="hero-layout">
             
-            <!-- Левая колонка (Контент) -->
-            <div class="hero-left">
-                <div class="social-badge">
-                    <i class="fa-solid fa-square"></i> Рейтинг в Яндекс — 5.0
+            <!-- РЯД 1: ВЕРХНИЙ (ОФФЕР И ФОТО) -->
+            <div class="hero-top-row">
+                <div class="hero-headline-block">
+                    <!-- Жестко возвращаем зеленый цвет тексту рейтинга -->
+                    <div class="social-badge" style="color: var(--accent-color) !important;">
+                        <i class="fa-solid fa-square" style="color: var(--accent-color) !important;"></i> Рейтинг в Яндекс — 5.0
+                    </div>
+                    <h1 class="hero-title">
+                        Профессиональное уничтожение
+                        <tracking-bold>всех видов насекомых и грызунов в Санкт-Петербурге</tracking-bold>
+                    </h1>
                 </div>
 
-                <h1 class="hero-title">
-                    Профессиональное уничтожение
-                    <tracking-bold>всех видов насекомых и грызунов в Санкт-Петербурге</tracking-bold>
-                </h1>
+                <div class="hero-image-block">
+                    <div class="image-container-block">
+                        <div class="inline-team-img"></div>
+                    </div>
+                </div>
+            </div>
 
-                <!-- Модульная таблица триггеров -->
+            <!-- РЯД 2: НИЖНИЙ (ТВОИ ТЕКСТЫ И ИСПРАВЛЕННАЯ ВЫСОТА) -->
+            <div class="hero-bottom-row" style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 4rem; align-items: stretch !important;">
+                
+                <!-- Таблица триггеров -->
                 <div class="triggers-grid">
                     <div class="trigger-box">
                         <span class="trigger-num">01 / безопасность</span>
@@ -196,30 +271,30 @@
                     </div>
                     <div class="trigger-box">
                         <span class="trigger-num">04 / надежность</span>
-                        <p class="trigger-text">Официальная гарантия по договору до 1 года.</p>
+                        <p class="trigger-text">Гарантия по договору до 1 года.</p>
                     </div>
                 </div>
-            </div>
 
-            <!-- Правая колонка с Картинкой и Формой -->
-            <div class="hero-right">
-                <!-- Блок картинки с тонкой окантовкой и асимметричным скруглением из конфига -->
-                <div class="image-container-block">
-                    <div class="inline-team-img"></div>
-                </div>
-
-                <!-- Матовое окно CTA формы -->
-                <div class="premium-cta-box">
+                <!-- Твоё окно акции (Высота управляется внутренним контентом кнопки) -->
+                <div class="premium-cta-box" style="background: var(--card-bg); border: 1px solid var(--border-glass); border-radius: var(--radius-main); padding: 2rem; box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.08); display: flex; flex-direction: column; justify-content: space-between; height: auto !important; min-height: 180px;">
                     <div class="cta-header">
                         <h3 class="cta-title">Узнать детали акции</h3>
                         <span class="cta-season">Сезонное предложение</span>
                     </div>
                     
-                    <button class="premium-btn" onclick="document.getElementById('quiz-section').scrollIntoView({behavior: 'smooth'})">
+                    <!-- Кнопка с жестко прописанным фирменным фоном, которая теперь точно будет большой и цветной -->
+                    <button class="premium-btn" 
+                            style="width: 100%; height: 3.5rem !important; background: var(--accent-color) !important; color: #ffffff !important; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; border-radius: 0.75rem; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.75rem; box-shadow: 0 10px 20px var(--accent-soft); transition: all 0.2s ease !important;" 
+                            onmouseenter="this.style.setProperty('background', 'var(--text-main)', 'important')" 
+                            onmouseleave="this.style.setProperty('background', 'var(--accent-color)', 'important')"
+                            onclick="document.getElementById('quiz-section').scrollIntoView({behavior: 'smooth'})">
                         Зафиксировать скидку <i class="fa-solid fa-arrow-right-long"></i>
                     </button>
                     
-                    <p class="privacy-snoska">Нажимая кнопку, вы даете согласие на обработку персональных данных.</p>
+                    <!-- Возвращаем тексту сноски микро-размер -->
+                    <p class="privacy-snoska" style="font-size: 9px !important; color: var(--text-light); text-align: center; margin-top: 0.5rem; font-weight: 500;">
+                        Нажимая кнопку, вы даете согласие на обработку персональных данных.
+                    </p>
                 </div>
             </div>
                 
