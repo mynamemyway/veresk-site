@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Служба дезинсекции ВЕРЕСК — Премиум-сервис дезинфекции в СПб и ЛО</title>
+    <!-- Подключаем иконки FontAwesome https://fontawesome.com/search?ic=free-collection -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Импорт шрифтов Google Fonts -->
+    <style>
+        @import url('https://googleapis.com');
+        /* ==========================================================================
+           ФАЙЛ КОНФИГУРАЦИИ САЙТА (ДВУХРЕЖИМНЫЙ СМАРТ-КОНФИГ)
+           ========================================================================== */
+
+        /* Светлая тема — Вереск зелёный */
+        :root {
+            --site-bg: radial-gradient(circle at 80% 20%, #f8fafc 0%, #f1f5f9 100%);
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --text-light: #f8fafc;
+            --sub-color: #0f172a;
+
+            /* Акценты Вереск #785B9D */
+            --accent-color: #785B9D;
+            --accent-hover: #20908C;
+            --accent-soft: rgba(13, 148, 136, 0.08);
+
+            /* Кнопки*/
+            --btn-text: #ffffff;
+            --btn-text-push: #ffffff;
+            --btn-fill: #20908C;
+            --btn-push: #0F766E;
+
+            /* Конструкция сетки */
+            --border-grid: #E3E7EA;
+            --border-glass: rgba(15, 23, 42, 0.08);
+            --card-bg: #E4F5F5; /* #9B6FD144 #E4F5F5 */
+            --header-bg: transparent;
+            --line-color: #cbd5e1;
+
+            /* Настройки графики и радиусов */
+            --radius-main: 1.5rem;
+            --radius-asym: 2rem 0.5rem 2rem 2rem;
+            --hero-image: url('assets/pack1/0-violet.png');
+
+            /* Оригинальные мягкие воздушные тени */
+            --shadow-img: 0 15px 30px rgba(15, 23, 42, 0.04);
+            --shadow-cta: 0 25px 50px -12px rgba(15, 23, 42, 0.08);
+        }
+
+        /* Тёмная тема — Вереск фиолетовый */
+        body.dark-theme {
+            --site-bg: radial-gradient(circle at 80% 20%, #1a1c1e 0%, #0f1011 100%);
+            --text-main: #f1f5f9;
+            --text-muted: #64738B;
+            --text-light: #f1f5f9;
+            --sub-color: #94a3b8;
+
+            /* Акценты Вереск #7c3aed */
+            --accent-color: #a78bfa;
+            --accent-hover: #0f766e;
+            --accent-soft: rgba(139, 92, 246, 0.1);
+
+            /* Кнопки*/
+            --btn-text: #ffffff;
+            --btn-text-push: #ffffff;
+            --btn-fill: #26AA99;
+            --btn-push: #0f766e;
+
+            /* Конструкция сетки */
+            --border-grid: rgba(255, 255, 255, 0.08);
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --card-bg: #0F1011; /* #11908687 */
+            --card-cta-bg: #141617;
+            --header-bg: transparent;
+            --line-color: rgba(255, 255, 255, 0.05);
+
+            /* Оригинальные глубокие, но мягкие тени с большим размытием */
+            --shadow-img: 0 20px 40px rgba(0, 0, 0, 0.3);
+            --shadow-cta: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+
+        /* ==========================================================================
+           СИСТЕМНЫЕ АРХИТЕКТУРНЫЕ СТИЛИ
+           ========================================================================== */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: var(--site-bg); color: var(--text-main); -webkit-font-smoothing: antialiased; min-height: 100vh; transition: background 0.4s ease, color 0.4s ease; }
+        h1, h2, h3, .font-mont { font-family: 'Montserrat', sans-serif; }
+        a { text-decoration: none; }
+
+        /* ШАПКА */
+        .premium-header { max-w: 85rem; margin: 0 auto; height: 90px; display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; border-b: 1px solid var(--border-grid); background: var(--header-bg); position: sticky; top: 0; z-index: 50; transition: background 0.4s, border 0.4s; }
+        .logo-wrap { position: relative; display: flex; flex-direction: column; }
+        .logo-main { font-size: 18px; font-weight: 800; color: var(--accent-hover); letter-spacing: 0.15em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 0.55rem; }
+        .logo-icon { display: inline-flex; color: var(--accent-color); }
+        .logo-sub { font-size: 9px; color: var(--sub-color); font-weight: 600; letter-spacing: 0.98em; text-transform: uppercase; position: absolute; top: 100%; left: 0; margin-top: 4px; white-space: nowrap; }
+        .premium-nav { display: flex; gap: 3rem; position: absolute; left: 50%; transform: translateX(-50%); }
+        .nav-link { font-size: 11px; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; transition: color 0.3s; }
+        .nav-link:hover { color: var(--accent-color); }
+        .right-controls { display: flex; align-items: center; gap: 2rem; }
+        .header-phone { font-size: 15px; font-weight: 700; color: var(--text-main); font-family: 'Montserrat', sans-serif; letter-spacing: 0.05em; display: flex; align-items: center; gap: 0.5rem; }
+        .phone-dot { height: 6px; width: 6px; background-color: #10b981; border-radius: 50%; display: inline-block; box-shadow: 0 0 8px #10b981; }
+        .theme-toggle-btn { background: var(--accent-soft); border: 1px solid var(--border-glass); color: var(--accent-color); width: 40px; height: 40px; border-radius: 0.75rem; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; transition: all 0.3s ease; }
+        .theme-toggle-btn:hover { transform: scale(1.05); background: var(--accent-color); color: #ffffff; }
+
+        /* ЧИСТАЯ МОДУЛЬНАЯ СЕТКА ЭКРАНА */
+        .hero-section { position: relative; max-w: 85rem; margin: 0 auto; overflow: hidden; padding: 4rem 2rem; }
+        .global-vertical-line { position: absolute; top: 0; bottom: 0; left: 58.3333%; width: 1px; background-color: var(--line-color); z-index: 20; transition: background 0.4s; }
+        .hero-layout { display: flex; flex-direction: column; gap: 4rem; width: 100%; position: relative; z-index: 10; }
+
+        .hero-top-row,
+        .hero-bottom-row { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); width: 100%; }
+
+        /* ЛЕВАЯ КОЛОНКА (7 колонок из 12) */
+        .hero-headline-block,
+        .triggers-grid-container { grid-column: span 7 / span 7 !important; width: 100% !important; padding-right: 3.7rem !important; }
+        /* ПРАВАЯ КОЛОНКА (5 колонок из 12) */
+        .hero-image-block,
+        .premium-cta-box-container { grid-column: span 5 / span 5 !important; width: 100% !important; padding-left: 4.5rem !important; }
+
+        .social-badge { display: flex; align-items: center; gap: 0.5rem; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-color); margin-bottom: 2rem; }
+        .social-badge i { font-size: 8px; }
+        .hero-title { font-size: 40px; font-weight: 300; color: var(--text-main); line-height: 1.4; tracking-tight: -0.02em; text-transform: uppercase; }
+        .hero-title tracking-bold { font-weight: 800; display: block; letter-spacing: -0.01em; color: var(--text-main); margin-top: 4px; }
+
+        /* Блок под картинку с рамкой-окантовкой */
+        .image-container-block {
+            width: 100%;
+            height: 260px;
+            border-radius: var(--radius-asym);
+            border: 1px solid var(--border-glass);
+            overflow: hidden;
+            background: var(--card-bg);
+            transition: border 0.4s, background 0.4s;
+            box-shadow: var(--shadow-img);
+        }
+        .inline-team-img {
+            width: 100%;
+            height: 100%;
+            background-image: var(--hero-image);
+            background-size: cover;
+            background-position: center;
+            /* Возвращаем оригинальный глубокий фильтр, который убирает пересвет */
+            filter: brightness(0.85) contrast(1.1);
+        }
+        /* ПРЕИМУЩЕСТВА КРЕСТОМ */
+        .triggers-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-rows: repeat(2, minmax(0, 1fr));
+            gap: 1px;
+            background-color: var(--border-grid);
+            border: 1px solid var(--border-grid);
+            border-radius: var(--radius-main);
+            overflow: hidden;
+            width: 100%;
+            height: 100% !important; /* Жёстко растягивает преимущества по высоте соседа */
+        }
+        .trigger-box { background-color: var(--card-bg); padding: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; transition: background 0.4s; }
+        .trigger-num { font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-main); }
+        .trigger-text { font-size: 13px; font-weight: 500; color: var(--text-muted); line-height: 1.4; }
+
+        /* Карточка формы акции */
+        .premium-cta-box {
+            background: var(--card-cta-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-main);
+            padding: 2rem;
+            box-shadow: var(--shadow-cta);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 180px;
+            width: 100%;
+            transition: background 0.4s, border 0.4s;
+            height: 100% !important;
+        }
+        .cta-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+        .cta-title { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main); line-height: 1.4; }
+        .cta-season { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-color); background: var(--accent-soft); border: 1px solid var(--border-glass); padding: 4px 8px; border-radius: 4px; transition: color 0.4s, background 0.4s; }
+        .premium-btn { width: 100%; height: 3.5rem !important; background: var(--btn-fill) !important; color: var(--btn-text-push) !important; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; border-radius: 0.75rem; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.75rem; box-shadow: 0 10px 20px var(--accent-soft); transition: all 0.2s ease !important; font-family: 'Montserrat', sans-serif; }
+        .premium-btn:hover { background: var(--btn-push) !important; }
+        .cta-form { display: flex; gap: 0.5rem; width: 100%; height: 3.5rem; }
+        .cta-phone-input { flex: 1 1 auto; min-width: 0; height: 100%; padding: 0 1rem; background: var(--accent-soft); border: 1px solid var(--border-glass); border-radius: 0.75rem; color: var(--text-main); font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.03em; outline: none; transition: border-color 0.3s, background 0.3s; }
+        .cta-phone-input.cta-phone-empty { color: var(--text-muted); }
+        .cta-phone-input:focus { color: var(--text-main); }
+        .cta-phone-input::placeholder { color: var(--text-muted); font-weight: 500; }
+        .cta-phone-input:focus { border-color: var(--accent-color); }
+        .cta-form .premium-btn { width: auto; flex: 0 0 auto; white-space: nowrap; padding: 0 1.15rem; }
+        .privacy-snoska { font-size: 9px !important; color: var(--text-muted); text-align: center; margin-top: 0.5rem; font-weight: 500; }
+
+        @media (max-width: 1200px) {
+            .premium-nav { display: none; }
+            .global-vertical-line { display: none !important; }
+            .hero-top-row,
+            .hero-bottom-row { display: flex; flex-direction: column; gap: 2rem !important; }
+            .hero-headline-block,
+            .hero-image-block,
+            .triggers-grid-container,
+            .premium-cta-box-container { width: 100% !important; padding-left: 0 !important; padding-right: 0 !important; }
+            .triggers-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 520px) {
+            .cta-form { flex-direction: column; height: auto; }
+            .cta-phone-input { height: 3.5rem; width: 100%; }
+            .cta-form .premium-btn { width: 100%; }
+        }
+
+    </style>
+</head>
+
+<body class="antialiased scroll-smooth">
+
+    <!-- НАВИГАЦИЯ САЙТА (HEADER) -->
+    <header class="premium-header">
+        <div class="logo-wrap">
+            <span class="logo-main">ДЕЗ-СЛУЖБА
+                <!-- <i class="fa-brands fa-pagelines logo-icon" aria-hidden="true"></i> ВЕРЕСК</span> -->
+                <i class="fa-solid fa-leaf logo-icon" aria-hidden="true"></i> ВЕРЕСК</span>
+            <span class="logo-sub">Работаем с 1995 года</span>
+        </div>
+
+        <nav class="premium-nav">
+            <a href="#quiz-section" class="nav-link">Стоимость</a>
+            <a href="#catalog" class="nav-link">Вредители</a>
+            <a href="#why-we" class="nav-link">Почему мы</a>
+            <a href="#b2b" class="nav-link">Для бизнеса</a>
+        </nav>
+
+        <div class="right-controls">
+            <button class="theme-toggle-btn" id="themeToggle" title="Сменить тему">
+                <i class="fa-solid fa-moon" id="themeIcon"></i>
+            </button>
+            <a href="tel:+78129877606" class="header-phone">
+                <span class="phone-dot"></span> +7 (812) 987-76-06
+            </a>
+        </div>
+    </header>
+
+    <!-- СТРУКТУРНАЯ СЕТКА ГЛАВНОГО ЭКРАНА С СКВОЗНОЙ ЛИНИЕЙ -->
+    <main class="hero-section">
+        <!-- Сквозной разделитель по сетке (58.33% / 41.66%) -->
+        <div class="global-vertical-line"></div>
+
+        <div class="hero-layout">
+
+            <!-- РЯД 1: ВЕРХНИЙ (ОФФЕР И ЛОКАЛЬНОЕ ФОТО) -->
+            <div class="hero-top-row">
+                <!-- Левая сторона оффера -->
+                <div class="hero-headline-block">
+                    <div class="social-badge" style="color: var(--accent-color) !important;">
+                        <i class="fa-solid fa-square" style="color: var(--accent-color) !important;"></i> Рейтинг в Яндекс — 5.0
+                    </div>
+                    <h1 class="hero-title">
+                        Профессиональное уничтожение
+                        <tracking-bold>всех видов <span style="color: var(--accent-color);">насекомых и грызунов</span> в Санкт-Петербурге</tracking-bold>
+                    </h1>
+                </div>
+
+                <!-- Правая сторона фото -->
+                <div class="hero-image-block">
+                    <div class="image-container-block">
+                        <div class="inline-team-img"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- РЯД 2: НИЖНИЙ (ТРИГГЕРЫ И ОКНО АКЦИИ) -->
+            <div class="hero-bottom-row">
+                <!-- Левая сторона: Сетка преимуществ -->
+                <div class="triggers-grid-container">
+                    <div class="triggers-grid">
+                        <div class="trigger-box" style="border-bottom: 1px solid var(--border-grid); border-right: 1px solid var(--border-grid);">
+                            <span class="trigger-num">01 / безопасность</span>
+                            <p class="trigger-text">Сертифицированные премиум препараты 4-класса</p>
+                        </div>
+                        <div class="trigger-box" style="border-bottom: 1px solid var(--border-grid);">
+                            <span class="trigger-num">02 / выезд за 2 часа</span>
+                            <p class="trigger-text">Срочный выезд мастера в любой район СПБ</p>
+                        </div>
+                        <div class="trigger-box" style="border-right: 1px solid var(--border-grid);">
+                            <span class="trigger-num">03 / цена без доплат</span>
+                            <p class="trigger-text">Стоимость фиксируется в договоре до обработки</p>
+                        </div>
+                        <div class="trigger-box">
+                            <span class="trigger-num">04 / надежность</span>
+                            <p class="trigger-text">Гарантия по договору до 1 года</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Правая сторона: Карточка акции -->
+                <div class="premium-cta-box-container">
+                    <div class="premium-cta-box">
+                        <div class="cta-header">
+                            <h3 class="cta-title">-20% при заказе на завтра</h3>
+                            <span class="cta-season">Сезонное предложение</span>
+                        </div>
+
+                        <form class="cta-form"
+                              onsubmit="event.preventDefault(); document.getElementById('quiz-section').scrollIntoView({behavior: 'smooth'})">
+                            <input class="cta-phone-input" type="tel" name="phone" inputmode="tel" autocomplete="tel" placeholder="+7 (900) 000-00-00" required>
+                            <button class="premium-btn" type="submit">Зафиксировать цену<i class="fa-solid fa-arrow-right-long"></i>
+                            </button>
+                        </form>
+
+                        <p class="privacy-snoska">Нажимая кнопку, вы даете согласие на обработку персональных данных.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ТОЧКА ПРИВЯЗКИ ДЛЯ СЛЕДУЮЩЕГО БЛОКА (КВИЗА) -->
+    <div id="quiz-section"></div>
+
+    <!-- СКРИПТ УПРАВЛЕНИЯ ТЕМАМИ И ИКОНКАМИ -->
+    <script>
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const bodyElement = document.body;
+
+        const savedTheme = localStorage.getItem('site-theme');
+        if (savedTheme === 'dark') {
+            bodyElement.classList.add('dark-theme');
+            themeIcon.className = 'fa-solid fa-sun';
+        } else {
+            themeIcon.className = 'fa-solid fa-moon';
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            bodyElement.classList.toggle('dark-theme');
+
+            if (bodyElement.classList.contains('dark-theme')) {
+                themeIcon.className = 'fa-solid fa-sun';
+                localStorage.setItem('site-theme', 'dark');
+            } else {
+                themeIcon.className = 'fa-solid fa-moon';
+                localStorage.setItem('site-theme', 'light');
+            }
+        });
+
+        /* МАСКА ТЕЛЕФОНА: только цифры, "+7" уже введён, пустые слоты видны шаблоном "+7 (___) ___-__-__" */
+        const phoneInput = document.querySelector('.cta-phone-input');
+        let phoneDigits = '';
+
+        function renderPhone() {
+            const slot = (phoneDigits + '__________').slice(0, 10);
+            phoneInput.value = '+7 (' + slot.slice(0, 3) + ') ' + slot.slice(3, 6) + '-' + slot.slice(6, 8) + '-' + slot.slice(8, 10);
+            const pos = phoneInput.value.indexOf('_');
+            phoneInput.setSelectionRange(pos, pos < 0 ? phoneInput.value.length : pos);
+        }
+
+        if (phoneInput) {
+            renderPhone();
+            phoneInput.classList.toggle('cta-phone-empty', phoneDigits.length === 0);
+            phoneInput.addEventListener('input', () => {
+                let d = phoneInput.value.replace(/\D/g, '');
+                if (d.startsWith('7')) d = d.slice(1);
+                phoneDigits = d.slice(0, 10);
+                phoneInput.classList.toggle('cta-phone-empty', phoneDigits.length === 0);
+                renderPhone();
+            });
+            phoneInput.addEventListener('beforeinput', (e) => {
+                if (e.inputType === 'deleteContentBackward' || e.inputType === 'deleteContentForward') {
+                    e.preventDefault();
+                    phoneDigits = phoneDigits.slice(0, -1);
+                    renderPhone();
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
