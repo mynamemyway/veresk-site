@@ -125,7 +125,7 @@
 
         .social-badge { display: flex; align-items: center; gap: 0.5rem; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-color); margin-bottom: 2rem; }
         .social-badge i { font-size: 8px; }
-        .hero-title { font-size: 40px; font-weight: 300; color: var(--text-main); line-height: 1.4; tracking-tight: -0.02em; text-transform: uppercase; }
+        .hero-title { font-size: 39px; font-weight: 300; color: var(--text-main); line-height: 1.4; tracking-tight: -0.02em; text-transform: uppercase; }
         .hero-title tracking-bold { font-weight: 800; display: block; letter-spacing: -0.01em; color: var(--text-main); margin-top: 4px; }
 
         /* Блок под картинку с рамкой-окантовкой */
@@ -186,6 +186,25 @@
         .cta-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
         .cta-title { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main); line-height: 1.4; }
         .cta-season { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-color); background: var(--accent-soft); border: 1px solid var(--border-glass); padding: 4px 8px; border-radius: 4px; transition: color 0.4s, background 0.4s; }
+        /* Плашка рейтинга Яндекс */
+        .yandex-rating-badge {
+            background-color: var(--header-bg);
+            border: 0px solid var(--border-glass);
+            display: inline-flex;
+            flex-direction: column;
+            padding: 12px 16px;
+            border-radius: 12px;
+            box-shadow: var(--header-bg);
+            font-family: inherit;
+            text-transform: none;
+            letter-spacing: normal;
+            margin-bottom: 2rem;
+        }
+        .yandex-rating-top { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+        .yandex-marker { color: #ff3347; font-size: 18px; }
+        .yandex-score { font-size: 20px; font-weight: 700; color: var(--text-main); line-height: 1; }
+        .yandex-stars { display: flex; gap: 2px; color: #ffc107; font-size: 14px; }
+        .yandex-rating-bottom { font-size: 12px; color: var(--text-muted); font-weight: 400; }
         .premium-btn { width: 100%; height: 3.5rem !important; background: var(--btn-fill) !important; color: var(--btn-text-push) !important; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; border-radius: 0.75rem; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.75rem; box-shadow: 0 10px 20px var(--accent-soft); transition: all 0.2s ease !important; font-family: 'Montserrat', sans-serif; }
         .premium-btn:hover { background: var(--btn-push) !important; }
         .cta-form { display: flex; gap: 0.5rem; width: 100%; height: 3.5rem; }
@@ -257,8 +276,19 @@
             <div class="hero-top-row">
                 <!-- Левая сторона оффера -->
                 <div class="hero-headline-block">
-                    <div class="social-badge" style="color: var(--accent-color) !important;">
-                        <i class="fa-solid fa-square" style="color: var(--accent-color) !important;"></i> Рейтинг в Яндекс — 5.0
+                    <div class="yandex-rating-badge">
+                        <div class="yandex-rating-top">
+                            <i class="fa-solid fa-location-dot yandex-marker"></i>
+                            <span class="yandex-score">5,0</span>
+                            <div class="yandex-stars">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="yandex-rating-bottom">Рейтинг организации в Яндексе</div>
                     </div>
                     <h1 class="hero-title">
                         Профессиональное уничтожение
