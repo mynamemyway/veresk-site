@@ -83,9 +83,10 @@
 
         /* ШАПКА */
         .premium-header { max-w: 85rem; margin: 0 auto; height: 90px; display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; border-b: 1px solid var(--border-grid); background: var(--header-bg); position: sticky; top: 0; z-index: 50; transition: background 0.4s, border 0.4s; }
-        .logo-wrap { display: flex; flex-direction: column; }
-        .logo-main { font-size: 18px; font-weight: 800; color: var(--accent-hover); letter-spacing: 0.15em; text-transform: uppercase; }
-        .logo-sub { font-size: 9px; color: var(--logo-sub-color); font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; margin-top: 4px; }
+        .logo-wrap { position: relative; display: flex; flex-direction: column; }
+        .logo-main { font-size: 18px; font-weight: 800; color: var(--accent-hover); letter-spacing: 0.15em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 0.55rem; }
+        .logo-icon { display: inline-flex; color: var(--accent-color); }
+        .logo-sub { font-size: 9px; color: var(--logo-sub-color); font-weight: 600; letter-spacing: 0.98em; text-transform: uppercase; position: absolute; top: 100%; left: 0; margin-top: 4px; white-space: nowrap; }
         .premium-nav { display: flex; gap: 3rem; position: absolute; left: 50%; transform: translateX(-50%); }
         .nav-link { font-size: 11px; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; transition: color 0.3s; }
         .nav-link:hover { color: var(--accent-color); }
@@ -195,7 +196,8 @@
     <!-- НАВИГАЦИЯ САЙТА (HEADER) -->
     <header class="premium-header">
         <div class="logo-wrap">
-            <span class="logo-main">СЛУЖБА ДЕЗИНФЕКЦИИ ВЕРЕСК</span>
+            <span class="logo-main">ДЕЗ-СЛУЖБА
+                <i class="fa-solid fa-leaf logo-icon" aria-hidden="true"></i> ВЕРЕСК</span>
             <span class="logo-sub">Работаем с 1995 года</span>
         </div>
 
