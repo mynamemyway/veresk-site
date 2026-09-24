@@ -19,6 +19,7 @@
             --text-main: #0f172a;
             --text-muted: #64748b;
             --text-light: #f8fafc;
+            --logo-sub-color: #94a3b8;
 
             /* Акценты Вереск*/
             --accent-color: #26AA99;
@@ -36,7 +37,7 @@
             /* Настройки графики и радиусов */
             --radius-main: 1.5rem;
             --radius-asym: 2rem 0.5rem 2rem 2rem;
-            --hero-image: url('assets/pack1/0.png');
+            --hero-image: url('assets/pack1/0-violet.png');
 
             /* Оригинальные мягкие воздушные тени */
             --shadow-img: 0 15px 30px rgba(15, 23, 42, 0.04);
@@ -49,6 +50,7 @@
             --text-main: #f1f5f9;
             --text-muted: #94a3b8;
             --text-light: #64748b;
+            --logo-sub-color: #475569;
 
             /* Акценты Вереск #7c3aed */
             --accent-color: #a78bfa;
@@ -83,7 +85,7 @@
         .premium-header { max-w: 85rem; margin: 0 auto; height: 90px; display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; border-b: 1px solid var(--border-grid); background: var(--header-bg); position: sticky; top: 0; z-index: 50; transition: background 0.4s, border 0.4s; }
         .logo-wrap { display: flex; flex-direction: column; }
         .logo-main { font-size: 18px; font-weight: 800; color: var(--accent-hover); letter-spacing: 0.15em; text-transform: uppercase; }
-        .logo-sub { font-size: 9px; color: var(--text-light); font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; margin-top: 4px; }
+        .logo-sub { font-size: 9px; color: var(--logo-sub-color); font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; margin-top: 4px; }
         .premium-nav { display: flex; gap: 3rem; position: absolute; left: 50%; transform: translateX(-50%); }
         .nav-link { font-size: 11px; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; transition: color 0.3s; }
         .nav-link:hover { color: var(--accent-color); }
@@ -110,7 +112,7 @@
 
         .social-badge { display: flex; align-items: center; gap: 0.5rem; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-color); margin-bottom: 2rem; }
         .social-badge i { font-size: 8px; }
-        .hero-title { font-size: 40px; font-weight: 300; color: var(--text-main); line-height: 1.25; tracking-tight: -0.02em; text-transform: uppercase; }
+        .hero-title { font-size: 40px; font-weight: 300; color: var(--text-main); line-height: 1.4; tracking-tight: -0.02em; text-transform: uppercase; }
         .hero-title tracking-bold { font-weight: 800; display: block; letter-spacing: -0.01em; color: var(--text-main); margin-top: 4px; }
 
         /* Блок под картинку с рамкой-окантовкой */
@@ -230,7 +232,7 @@
                     </div>
                     <h1 class="hero-title">
                         Профессиональное уничтожение
-                        <tracking-bold>всех видов насекомых и грызунов в Санкт-Петербурге</tracking-bold>
+                        <tracking-bold>всех видов <span style="color: var(--accent-color);">насекомых и грызунов</span> в Санкт-Петербурге</tracking-bold>
                     </h1>
                 </div>
 
