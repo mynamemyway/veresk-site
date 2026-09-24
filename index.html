@@ -37,12 +37,12 @@
             --radius-main: 1.5rem;
             --radius-asym: 2rem 0.5rem 2rem 2rem;
             --hero-image: url('assets/pack1/0.png');
-        
+
             /* Оригинальные мягкие воздушные тени */
             --shadow-img: 0 15px 30px rgba(15, 23, 42, 0.04);
             --shadow-cta: 0 25px 50px -12px rgba(15, 23, 42, 0.08);
         }
-        
+
         /* Тёмная тема — Вереск фиолетовый */
         body.dark-theme {
             --site-bg: radial-gradient(circle at 80% 20%, #1a1c1e 0%, #0f1011 100%);
@@ -63,7 +63,7 @@
             --card-cta-bg: #141617;
             --header-bg: transparent;
             --line-color: rgba(255, 255, 255, 0.05);
-        
+
             /* Оригинальные глубокие, но мягкие тени с большим размытием */
             --shadow-img: 0 20px 40px rgba(0, 0, 0, 0.3);
             --shadow-cta: 0 30px 60px rgba(0, 0, 0, 0.4);
@@ -114,14 +114,14 @@
         .hero-title tracking-bold { font-weight: 800; display: block; letter-spacing: -0.01em; color: var(--text-main); margin-top: 4px; }
 
         /* Блок под картинку с рамкой-окантовкой */
-        .image-container-block { 
-            width: 100%; 
-            height: 260px; 
-            border-radius: var(--radius-asym); 
-            border: 1px solid var(--border-glass); 
-            overflow: hidden; 
-            background: var(--card-bg); 
-            transition: border 0.4s, background 0.4s; 
+        .image-container-block {
+            width: 100%;
+            height: 260px;
+            border-radius: var(--radius-asym);
+            border: 1px solid var(--border-glass);
+            overflow: hidden;
+            background: var(--card-bg);
+            transition: border 0.4s, background 0.4s;
             box-shadow: var(--shadow-img);
         }
         .inline-team-img {
@@ -151,21 +151,21 @@
         .trigger-text { font-size: 13px; font-weight: 500; color: var(--text-muted); line-height: 1.4; }
 
         /* Карточка формы акции */
-        .premium-cta-box { 
+        .premium-cta-box {
             background: var(--card-cta-bg);
-            backdrop-filter: blur(20px); 
-            -webkit-backdrop-filter: blur(20px); 
-            border: 1px solid var(--border-glass); 
-            border-radius: var(--radius-main); 
-            padding: 2rem; 
-            box-shadow: var(--shadow-cta); 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: space-between; 
-            min-height: 180px; 
-            width: 100%; 
-            transition: background 0.4s, border 0.4s; 
-            height: 100% !important; 
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-main);
+            padding: 2rem;
+            box-shadow: var(--shadow-cta);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 180px;
+            width: 100%;
+            transition: background 0.4s, border 0.4s;
+            height: 100% !important;
         }
         .cta-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
         .cta-title { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main); line-height: 1.4; }
