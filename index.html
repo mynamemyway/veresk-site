@@ -19,7 +19,7 @@
             --text-main: #0f172a;
             --text-muted: #64748b;
             --text-light: #f8fafc;
-            --logo-sub-color: #94a3b8;
+            --sub-color: #94a3b8;
 
             /* Акценты Вереск*/
             --accent-color: #26AA99;
@@ -48,9 +48,9 @@
         body.dark-theme {
             --site-bg: radial-gradient(circle at 80% 20%, #1a1c1e 0%, #0f1011 100%);
             --text-main: #f1f5f9;
-            --text-muted: #94a3b8;
-            --text-light: #64748b;
-            --logo-sub-color: #475569;
+            --text-muted: #64738B;
+            --text-light: #f1f5f9;
+            --sub-color: #94a3b8;
 
             /* Акценты Вереск #7c3aed */
             --accent-color: #a78bfa;
@@ -86,7 +86,7 @@
         .logo-wrap { position: relative; display: flex; flex-direction: column; }
         .logo-main { font-size: 18px; font-weight: 800; color: var(--accent-hover); letter-spacing: 0.15em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 0.55rem; }
         .logo-icon { display: inline-flex; color: var(--accent-color); }
-        .logo-sub { font-size: 9px; color: var(--logo-sub-color); font-weight: 600; letter-spacing: 0.98em; text-transform: uppercase; position: absolute; top: 100%; left: 0; margin-top: 4px; white-space: nowrap; }
+        .logo-sub { font-size: 9px; color: var(--sub-color); font-weight: 600; letter-spacing: 0.98em; text-transform: uppercase; position: absolute; top: 100%; left: 0; margin-top: 4px; white-space: nowrap; }
         .premium-nav { display: flex; gap: 3rem; position: absolute; left: 50%; transform: translateX(-50%); }
         .nav-link { font-size: 11px; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; transition: color 0.3s; }
         .nav-link:hover { color: var(--accent-color); }
@@ -150,7 +150,7 @@
             height: 100% !important; /* Жёстко растягивает преимущества по высоте соседа */
         }
         .trigger-box { background-color: var(--card-bg); padding: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; transition: background 0.4s; }
-        .trigger-num { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-light); }
+        .trigger-num { font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-light); }
         .trigger-text { font-size: 13px; font-weight: 500; color: var(--text-muted); line-height: 1.4; }
 
         /* Карточка формы акции */
@@ -179,7 +179,7 @@
         .cta-phone-input::placeholder { color: var(--text-muted); font-weight: 500; }
         .cta-phone-input:focus { border-color: var(--accent-color); }
         .cta-form .premium-btn { width: auto; flex: 0 0 auto; white-space: nowrap; padding: 0 1.15rem; }
-        .privacy-snoska { font-size: 9px !important; color: var(--text-light); text-align: center; margin-top: 0.5rem; font-weight: 500; }
+        .privacy-snoska { font-size: 9px !important; color: var(--text-muted); text-align: center; margin-top: 0.5rem; font-weight: 500; }
 
         @media (max-width: 1200px) {
             .premium-nav { display: none; }
@@ -264,7 +264,7 @@
                     <div class="triggers-grid">
                         <div class="trigger-box" style="border-bottom: 1px solid var(--border-grid); border-right: 1px solid var(--border-grid);">
                             <span class="trigger-num">01 / безопасность</span>
-                            <p class="trigger-text">Сертифицированные препараты премиум-класса</p>
+                            <p class="trigger-text">Сертифицированные премиум препараты 4-класса</p>
                         </div>
                         <div class="trigger-box" style="border-bottom: 1px solid var(--border-grid);">
                             <span class="trigger-num">02 / выезд за 2 часа</span>
@@ -285,7 +285,7 @@
                 <div class="premium-cta-box-container">
                     <div class="premium-cta-box">
                         <div class="cta-header">
-                            <h3 class="cta-title">-20% до конца недели</h3>
+                            <h3 class="cta-title">-20% при заказе на завтра</h3>
                             <span class="cta-season">Сезонное предложение</span>
                         </div>
 
@@ -294,8 +294,8 @@
                             <input class="cta-phone-input" type="tel" name="phone" inputmode="tel" autocomplete="tel" placeholder="+7 (900) 000-00-00" required>
                             <button class="premium-btn" type="submit"
                                     onmouseenter="this.style.setProperty('background', 'var(--text-main)', 'important')"
-                                    onmouseleave="this.style.setProperty('background', 'var(--accent-color)', 'important')">
-                                Зафиксировать <i class="fa-solid fa-arrow-right-long"></i>
+                                    onmouseleave="this.style.setProperty('background', 'var(--accent-color)', 'important')"
+                                    >Зафиксировать цену<i class="fa-solid fa-arrow-right-long"></i>
                             </button>
                         </form>
 
