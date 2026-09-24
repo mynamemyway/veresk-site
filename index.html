@@ -98,12 +98,15 @@
         .global-vertical-line { position: absolute; top: 0; bottom: 0; left: 58.3333%; width: 1px; background-color: var(--line-color); z-index: 20; transition: background 0.4s; }
         .hero-layout { display: flex; flex-direction: column; gap: 4rem; width: 100%; position: relative; z-index: 10; }
 
-        .hero-top-row, .hero-bottom-row { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); width: 100%; }
+        .hero-top-row,
+        .hero-bottom-row { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); width: 100%; }
 
         /* ЛЕВАЯ КОЛОНКА (7 колонок из 12) */
-        .hero-headline-block, .triggers-grid-container { grid-column: span 7 / span 7 !important; width: 100% !important; padding-right: 3.7rem !important; }
+        .hero-headline-block,
+        .triggers-grid-container { grid-column: span 7 / span 7 !important; width: 100% !important; padding-right: 3.7rem !important; }
         /* ПРАВАЯ КОЛОНКА (5 колонок из 12) */
-        .hero-image-block, .premium-cta-box-container { grid-column: span 5 / span 5 !important; width: 100% !important; padding-left: 4.5rem !important; }
+        .hero-image-block,
+        .premium-cta-box-container { grid-column: span 5 / span 5 !important; width: 100% !important; padding-left: 4.5rem !important; }
 
         .social-badge { display: flex; align-items: center; gap: 0.5rem; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-color); margin-bottom: 2rem; }
         .social-badge i { font-size: 8px; }
