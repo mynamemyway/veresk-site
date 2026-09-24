@@ -17,7 +17,7 @@
         :root {
             --site-bg: radial-gradient(circle at 80% 20%, #D4D9DA 0%, #f1f5f9 100%);
             --text-main: #0f172a;
-            --text-muted: #64748b;
+            --text-muted: #475569;
             --text-light: #f8fafc;
             --sub-color: #0f172a;
 
@@ -125,8 +125,8 @@
 
         .social-badge { display: flex; align-items: center; gap: 0.5rem; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-color); margin-bottom: 2rem; }
         .social-badge i { font-size: 8px; }
-        .hero-title { font-size: 39px; font-weight: 300; color: var(--text-main); line-height: 1.4; tracking-tight: -0.02em; text-transform: uppercase; }
-        .hero-title tracking-bold { font-weight: 800; display: block; letter-spacing: 0.05em; color: var(--text-main); margin-top: 4px; }
+        .hero-title { font-size: 39px; font-weight: 300; color: var(--text-main); line-height: 1.5; tracking-tight: -0.02em; text-transform: uppercase; }
+        .hero-title tracking-bold { font-weight: 800; display: block; letter-spacing: 0.05em; color: var(--text-main); margin-top: 2px; }
 
         /* Блок под картинку с рамкой-окантовкой */
         .image-container-block {
@@ -214,7 +214,7 @@
         .cta-phone-input::placeholder { color: var(--text-muted); font-weight: 500; }
         .cta-phone-input:focus { border-color: var(--accent-color); }
         .cta-form .premium-btn { width: auto; flex: 0 0 auto; white-space: nowrap; padding: 0 1.15rem; }
-        .privacy-snoska { font-size: 9px !important; color: var(--text-muted); text-align: center; margin-top: 0.5rem; font-weight: 500; }
+        .privacy-snoska { font-size: 12px !important; color: var(--text-muted); text-align: center; margin-top: 0.5rem; font-weight: 500; }
 
         @media (max-width: 1200px) {
             .premium-nav { display: none; }
@@ -339,11 +339,11 @@
                         <form class="cta-form"
                               onsubmit="event.preventDefault(); document.getElementById('quiz-section').scrollIntoView({behavior: 'smooth'})">
                             <input class="cta-phone-input" type="tel" name="phone" inputmode="tel" autocomplete="tel" placeholder="+7 (900) 000-00-00" required>
-                            <button class="premium-btn" type="submit">Зафиксировать цену<i class="fa-solid fa-arrow-right-long"></i>
+                            <button class="premium-btn" type="submit">Зафиксировать цену<i class="fa-solid fa-caret-right"></i>
                             </button>
                         </form>
 
-                        <p class="privacy-snoska">Нажимая кнопку, вы даете согласие на обработку персональных данных.</p>
+                        <p class="privacy-snoska">Нажимая кнопку, вы даете согласие на обработку персональных данных</p>
                     </div>
                 </div>
             </div>
