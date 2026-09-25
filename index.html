@@ -119,6 +119,8 @@
         /* ЛЕВАЯ КОЛОНКА (7 колонок из 12) */
         .hero-headline-block,
         .triggers-grid-container { grid-column: span 7 / span 7 !important; width: 100% !important; padding-right: 3.7rem !important; }
+        .trigger-icon { display: inline-flex; color: var(--accent-hover); }
+
         /* ПРАВАЯ КОЛОНКА (5 колонок из 12) */
         .hero-image-block,
         .premium-cta-box-container { grid-column: span 5 / span 5 !important; width: 100% !important; padding-left: 4.5rem !important; }
@@ -310,19 +312,19 @@
                 <div class="triggers-grid-container">
                     <div class="triggers-grid">
                         <div class="trigger-box" style="border-bottom: 1px solid var(--border-grid); border-right: 1px solid var(--border-grid);">
-                            <span class="trigger-num">01 / безопасность</span>
+                            <span class="trigger-num"><i class="fa-solid fa-shield-heart trigger-icon"></i> безопасность</span>
                             <p class="trigger-text">Сертифицированные премиум препараты 4-класса</p>
                         </div>
                         <div class="trigger-box" style="border-bottom: 1px solid var(--border-grid);">
-                            <span class="trigger-num">02 / выезд за 2 часа</span>
+                            <span class="trigger-num"><i class="fa-solid fa-clock-rotate-left trigger-icon"></i> выезд за 2 часа</span>
                             <p class="trigger-text">Срочный выезд мастера в любой район СПБ</p>
                         </div>
                         <div class="trigger-box" style="border-right: 1px solid var(--border-grid);">
-                            <span class="trigger-num">03 / цена без доплат</span>
+                            <span class="trigger-num"><i class="fa-solid fa-ruble-sign trigger-icon"></i> цена без доплат</span>
                             <p class="trigger-text">Стоимость фиксируется в договоре до обработки</p>
                         </div>
                         <div class="trigger-box">
-                            <span class="trigger-num">04 / надежность</span>
+                            <span class="trigger-num"><i class="fa-solid fa-house-circle-check trigger-icon"></i> надежность</span>
                             <p class="trigger-text">Гарантия по договору до 1 года</p>
                         </div>
                     </div>
