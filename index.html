@@ -218,6 +218,24 @@
         .cta-form .premium-btn { width: auto; flex: 0 0 auto; white-space: nowrap; padding: 0 1.15rem; }
         .privacy-snoska { font-size: 12px !important; color: var(--text-muted); text-align: center; margin-top: 0.5rem; font-weight: 500; }
 
+        .heather-field-container {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 60px; /* Узкая, аккуратная линия поля-газона */
+          overflow: hidden;
+          pointer-events: none; /* Мышка кликает сквозь траву, формы не заблокируются */
+          z-index: 1;
+        }
+        
+        #heatherFieldCanvas {
+          display: block;
+          width: 100%;
+          height: 100%;
+          opacity: 0.35; /* Нежная прозрачность, чтобы поле не казалось "грязным" */
+        }
+        
         @media (max-width: 1200px) {
             .premium-nav { display: none; }
             .global-vertical-line { display: none !important; }
@@ -413,5 +431,12 @@
         }
     </script>
 
+    <!-- Контейнер для верескового поля -->
+    <div class="heather-field-container">
+      <canvas id="heatherFieldCanvas"></canvas>
+    </div>
+
+    <script src="veresk-anima.js"></script>
+    
 </body>
 </html>
