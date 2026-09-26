@@ -195,108 +195,155 @@
         <!-- Заголовки блока -->
         <div class="calc-header">
           <h2 class="calc-title">Стоимость обработки</h2>
-          <p class="calc-subtitle">Цена услуги фиксируется в договоре и не меняется в процессе исполнения.</p>
+          <p class="calc-subtitle">Цена услуги фиксируется в договоре и не меняется в процессе исполнения</p>
         </div>
     
         <!-- Вкладки направлений (Табы) -->
         <div class="calc-tabs-nav">
           <button class="tab-nav-btn active" data-tab="insects">Насекомые</button>
           <button class="tab-nav-btn" data-tab="rodents">Грызуны</button>
-          <button class="tab-nav-btn" data-tab="smells">Запахи и плесень</button>
         </div>
     
         <!-- Сетка тарифов (Для каждой вкладки свои данные) -->
         <!-- ВКЛАДКА: НАСЕКОМЫЕ -->
         <div class="prices-grid active" id="tab-insects">
           
-          <!-- Карточка 1: МОП и Комнаты -->
+          <!-- Карточка 1: Частичная обработка (Выборочные зоны) -->
           <div class="price-card">
             <div class="card-header">
               <h3 class="card-title">МОП и Комнаты</h3>
-              <p class="card-tag">Частичная обработка</p>
+              <p class="card-tag">повторный выезд −50%</p>
             </div>
             <ul class="price-list">
-              <li><span>1 Комната / МОП</span><span class="dots"></span><strong>5 000 ₽</strong></li>
-              <li><span>2 Комнаты</span><span class="dots"></span><strong>6 500 ₽</strong></li>
-              <li><span>3 Комнаты</span><span class="dots"></span><strong>8 000 ₽</strong></li>
-              <li><span>4 Комнаты</span><span class="dots"></span><strong>9 500 ₽</strong></li>
-              <li><span>5 Комнат</span><span class="dots"></span><strong>11 000 ₽</strong></li>
+              <li><span>1 комната / МОП</span><span class="dots"></span><strong>6 000 ₽</strong></li>
+              <li><span>2 комнаты</span><span class="dots"></span><strong>7 500 ₽</strong></li>
+              <li><span>3 комнаты</span><span class="dots"></span><strong>9 000 ₽</strong></li>
+              <li><span>4 комнаты</span><span class="dots"></span><strong>10 500 ₽</strong></li>
+              <li><span>5 комнат</span><span class="dots"></span><strong>12 000 ₽</strong></li>
             </ul>
             <button class="card-btn btn-mint">Зафиксировать цену <i class="fa-solid fa-arrow-right"></i></button>
           </div>
     
-          <!-- Карточка 2: Квартиры -->
+          <!-- Карточка 2: Полная обработка (Вся квартира) -->
           <div class="price-card">
             <div class="card-header">
               <h3 class="card-title">Квартиры</h3>
-              <p class="card-tag">Полная обработка</p>
+              <p class="card-tag">Полная обработка · гарантия 6 мес</p>
             </div>
             <ul class="price-list">
-              <li><span>1-комнатная кв.</span><span class="dots"></span><strong>6 500 ₽</strong></li>
-              <li><span>2-комнатная кв.</span><span class="dots"></span><strong>8 000 ₽</strong></li>
-              <li><span>3-комнатная кв.</span><span class="dots"></span><strong>9 500 ₽</strong></li>
-              <li><span>4-комнатная кв.</span><span class="dots"></span><strong>11 000 ₽</strong></li>
-              <li><span>5-комнатная кв.</span><span class="dots"></span><strong>12 500 ₽</strong></li>
+              <li><span>1-комнатная кв.</span><span class="dots"></span><strong>7 500 ₽</strong></li>
+              <li><span>2-комнатная кв.</span><span class="dots"></span><strong>9 000 ₽</strong></li>
+              <li><span>3-комнатная кв.</span><span class="dots"></span><strong>10 500 ₽</strong></li>
+              <li><span>4-комнатная кв.</span><span class="dots"></span><strong>12 000 ₽</strong></li>
+              <li><span>5-комнатная кв.</span><span class="dots"></span><strong>13 500 ₽</strong></li>
             </ul>
             <button class="card-btn btn-mint">Зафиксировать цену <i class="fa-solid fa-arrow-right"></i></button>
           </div>
     
-          <!-- Карточка 3: B2B и Участки (Комбинированная с мини-табами для сохранения сетки) -->
+          <!-- Карточка 3: Организации (По площади пола) -->
           <div class="price-card b2b-combined-card">
             <div class="card-header">
+              <h3 class="card-title">Организации</h3>
               <div class="mini-tabs">
-                <button class="mini-tab-btn active" data-subtab="b2b-biz">Общепит и бизнес</button>
-                <button class="mini-tab-btn" data-subtab="b2b-land">Участки</button>
+                <button class="mini-tab-btn active" data-subtab="b2b-base" data-default>Базовый</button>
+                <button class="mini-tab-btn" data-subtab="b2b-gel">Гель (+20%)</button>
               </div>
-              <p class="card-tag">Договор, закрывающие акты</p>
+              <p class="card-tag">По площади пола · мин. заказ 6 000 ₽</p>
             </div>
-            
-            <!-- Под-вкладка: Бизнес -->
-            <ul class="price-list subtab-content active" id="subtab-b2b-biz">
-              <li><span>Бытовка / Вагончик</span><span class="dots"></span><strong>от 1 500 ₽</strong></li>
-              <li><span>Площадь до 100 м²</span><span class="dots"></span><strong>от 750 ₽</strong></li>
-              <li><span>Площадь 100 – 200 м²</span><span class="dots"></span><strong>от 1 450 ₽</strong></li>
-              <li><span>Площадь 200 – 300 м²</span><span class="dots"></span><strong>от 2 200 ₽</strong></li>
-              <li><span>Площадь более 300 м²</span><span class="dots"></span><strong>от 3 700 ₽</strong></li>
+
+            <!-- Под-вкладка: Базовый тариф -->
+            <ul class="price-list subtab-content active" id="subtab-b2b-base">
+              <li><span>101 – 200 м²</span><span class="dots"></span><strong>37 ₽ / м²</strong></li>
+              <li><span>201 – 500 м²</span><span class="dots"></span><strong>34 ₽ / м²</strong></li>
+              <li><span>501 – 1000 м²</span><span class="dots"></span><strong>30 ₽ / м²</strong></li>
+              <li><span>1001 – 3000 м²</span><span class="dots"></span><strong>26 ₽ / м²</strong></li>
+              <li><span>более 3000 м²</span><span class="dots"></span><strong>от 25 ₽ / м²</strong></li>
             </ul>
-    
-            <!-- Под-вкладка: Участки -->
-            <ul class="price-list subtab-content" id="subtab-b2b-land">
-              <li><span>до 10 соток</span><span class="dots"></span><strong>от 550 ₽ / сот.</strong></li>
-              <li><span>10 – 20 соток</span><span class="dots"></span><strong>от 500 ₽ / сот.</strong></li>
-              <li><span>20 – 30 соток</span><span class="dots"></span><strong>от 450 ₽ / сот.</strong></li>
-              <li><span>30 – 50 соток</span><span class="dots"></span><strong>от 400 ₽ / сот.</strong></li>
-              <li><span>50 – 100 соток</span><span class="dots"></span><strong>от 350 ₽ / сот.</strong></li>
+
+            <!-- Под-вкладка: Гель (+20%) -->
+            <ul class="price-list subtab-content" id="subtab-b2b-gel">
+              <li><span>101 – 200 м²</span><span class="dots"></span><strong>44.4 ₽ / м²</strong></li>
+              <li><span>201 – 500 м²</span><span class="dots"></span><strong>40.8 ₽ / м²</strong></li>
+              <li><span>501 – 1000 м²</span><span class="dots"></span><strong>36.0 ₽ / м²</strong></li>
+              <li><span>1001 – 3000 м²</span><span class="dots"></span><strong>31.2 ₽ / м²</strong></li>
+              <li><span>более 3000 м²</span><span class="dots"></span><strong>от 30.0 ₽ / м²</strong></li>
             </ul>
-            
+
             <button class="card-btn btn-outline">Получить КП на email <i class="fa-solid fa-envelope"></i></button>
           </div>
     
         </div>
     
-        <!-- ВКЛАДКА: ГРЫЗУНЫ (Заглушка данных, подставь свои цены аналогично) -->
+        <!-- ВКЛАДКА: ГРЫЗУНЫ (та же структура, что у насекомых) -->
         <div class="prices-grid" id="tab-rodents">
+          
+          <!-- Карточка 1: Частичная обработка (Выборочные зоны) -->
           <div class="price-card">
-            <div class="card-header"><h3 class="card-title">Дератизация помещений</h3></div>
+            <div class="card-header">
+              <h3 class="card-title">МОП и Комнаты</h3>
+              <p class="card-tag">повторный выезд −50%</p>
+            </div>
             <ul class="price-list">
-              <li><span>Комната / Квартира</span><span class="dots"></span><strong>от 4 500 ₽</strong></li>
+              <li><span>1 комната / МОП</span><span class="dots"></span><strong>5 000 ₽</strong></li>
+              <li><span>2 комнаты</span><span class="dots"></span><strong>6 000 ₽</strong></li>
+              <li><span>3 комнаты</span><span class="dots"></span><strong>7 000 ₽</strong></li>
+              <li><span>4 комнаты</span><span class="dots"></span><strong>8 000 ₽</strong></li>
+              <li><span>5 комнат</span><span class="dots"></span><strong>9 000 ₽</strong></li>
             </ul>
             <button class="card-btn btn-mint">Зафиксировать цену <i class="fa-solid fa-arrow-right"></i></button>
           </div>
-        </div>
     
-        <!-- ВКЛАДКА: ЗАПАХИ И ПЛЕСЕНЬ (Заглушка данных) -->
-        <div class="prices-grid" id="tab-smells">
+          <!-- Карточка 2: Полная обработка (Вся квартира) -->
           <div class="price-card">
-            <div class="card-header"><h3 class="card-title">Удаление запахов и спор</h3></div>
+            <div class="card-header">
+              <h3 class="card-title">Квартиры</h3>
+              <p class="card-tag">Полная обработка · гарантия 4 мес</p>
+            </div>
             <ul class="price-list">
-              <li><span>Озонирование 1 комн.</span><span class="dots"></span><strong>от 4 000 ₽</strong></li>
+              <li><span>1-комнатная кв.</span><span class="dots"></span><strong>6 000 ₽</strong></li>
+              <li><span>2-комнатная кв.</span><span class="dots"></span><strong>7 500 ₽</strong></li>
+              <li><span>3-комнатная кв.</span><span class="dots"></span><strong>9 000 ₽</strong></li>
+              <li><span>4-комнатная кв.</span><span class="dots"></span><strong>10 500 ₽</strong></li>
+              <li><span>5-комнатная кв.</span><span class="dots"></span><strong>12 000 ₽</strong></li>
             </ul>
             <button class="card-btn btn-mint">Зафиксировать цену <i class="fa-solid fa-arrow-right"></i></button>
           </div>
+    
+          <!-- Карточка 3: Организации (По площади пола) -->
+          <div class="price-card b2b-combined-card">
+            <div class="card-header">
+              <h3 class="card-title">Организации</h3>
+              <div class="mini-tabs">
+                <button class="mini-tab-btn active" data-subtab="rod-base" data-default>Базовый</button>
+                <button class="mini-tab-btn" data-subtab="rod-hard">Сложный (+20%)</button>
+              </div>
+              <p class="card-tag">По площади пола · мин. заказ 5 000 ₽</p>
+            </div>
+
+            <!-- Под-вкладка: Базовый тариф -->
+            <ul class="price-list subtab-content active" id="subtab-rod-base">
+              <li><span>101 – 200 м²</span><span class="dots"></span><strong>37 ₽ / м²</strong></li>
+              <li><span>201 – 500 м²</span><span class="dots"></span><strong>34 ₽ / м²</strong></li>
+              <li><span>501 – 1000 м²</span><span class="dots"></span><strong>30 ₽ / м²</strong></li>
+              <li><span>1001 – 3000 м²</span><span class="dots"></span><strong>26 ₽ / м²</strong></li>
+              <li><span>более 3000 м²</span><span class="dots"></span><strong>от 25 ₽ / м²</strong></li>
+            </ul>
+
+            <!-- Под-вкладка: Сложный (+20%) -->
+            <ul class="price-list subtab-content" id="subtab-rod-hard">
+              <li><span>101 – 200 м²</span><span class="dots"></span><strong>44.4 ₽ / м²</strong></li>
+              <li><span>201 – 500 м²</span><span class="dots"></span><strong>40.8 ₽ / м²</strong></li>
+              <li><span>501 – 1000 м²</span><span class="dots"></span><strong>36.0 ₽ / м²</strong></li>
+              <li><span>1001 – 3000 м²</span><span class="dots"></span><strong>31.2 ₽ / м²</strong></li>
+              <li><span>более 3000 м²</span><span class="dots"></span><strong>от 30.0 ₽ / м²</strong></li>
+            </ul>
+
+            <button class="card-btn btn-outline">Получить КП на email <i class="fa-solid fa-envelope"></i></button>
+          </div>
+    
         </div>
     
-      </div>
+        </div>
     </section>
 
     <script src="assets/js/heather-animation.js"></script>

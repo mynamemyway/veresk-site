@@ -1,8 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
   
-  // Логика главных табов (Насекомые / Грызуны / Запахи)
+  // Логика главных табов (Насекомые / Грызуны)
   const tabButtons = document.querySelectorAll('.tab-nav-btn');
   const priceGrids = document.querySelectorAll('.prices-grid');
+
+  // Сброс мини-табов карточки «Организации» на вариант по умолчанию («Базовый»)
+  const resetMiniTabs = (grid) => {
+    const card = grid.querySelector('.b2b-combined-card');
+    if (!card) return;
+
+    card.querySelectorAll('.mini-tab-btn').forEach(btn => btn.classList.remove('active'));
+    card.querySelectorAll('.subtab-content').forEach(content => content.classList.remove('active'));
+
+    const defaultBtn = card.querySelector('.mini-tab-btn[data-default]');
+    defaultBtn.classList.add('active');
+    document.getElementById(`subtab-${defaultBtn.getAttribute('data-subtab')}`).classList.add('active');
+  };
 
   tabButtons.forEach(button => {
     button.addEventListener('click', () => {
@@ -12,23 +25,22 @@ document.addEventListener('DOMContentLoaded', () => {
       priceGrids.forEach(grid => grid.classList.remove('active'));
 
       button.classList.add('active');
-      document.getElementById(`tab-${targetTab}`).classList.add('active');
+      const grid = document.getElementById(`tab-${targetTab}`);
+      grid.classList.add('active');
+      resetMiniTabs(grid);
     });
   });
 
-  // Логика внутренних мини-табов (Бизнес / Участки в 3-й карточке)
-  const miniTabButtons = document.querySelectorAll('.mini-tab-btn');
-  const subtabContents = document.querySelectorAll('.subtab-content');
-
-  miniTabButtons.forEach(miniBtn => {
+  // Логика внутренних мини-табов (Базовый / Гель) — изолированно внутри своей карточки
+  document.querySelectorAll('.mini-tab-btn').forEach(miniBtn => {
     miniBtn.addEventListener('click', () => {
-      const targetSubtab = miniBtn.getAttribute('data-subtab');
+      const card = miniBtn.closest('.price-card');
 
-      miniTabButtons.forEach(btn => btn.classList.remove('active'));
-      subtabContents.forEach(content => content.classList.remove('active'));
+      card.querySelectorAll('.mini-tab-btn').forEach(btn => btn.classList.remove('active'));
+      card.querySelectorAll('.subtab-content').forEach(content => content.classList.remove('active'));
 
       miniBtn.classList.add('active');
-      document.getElementById(`subtab-${targetSubtab}`).classList.add('active');
+      document.getElementById(`subtab-${miniBtn.getAttribute('data-subtab')}`).classList.add('active');
     });
   });
 
