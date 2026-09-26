@@ -1000,7 +1000,7 @@ a {
 
 /* Группы «от»-цен слева */
 .v2-price-group {
-    margin-bottom: 1.75rem;
+    margin-bottom: 0.9rem;
 }
 
 .v2-price-group:last-child {
@@ -1008,7 +1008,7 @@ a {
 }
 
 .v2-group-title {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 700;
     color: var(--text-main);
     margin-bottom: 2px;
@@ -1017,7 +1017,25 @@ a {
 .v2-group-note {
     font-size: 13px;
     color: var(--text-muted);
-    margin-bottom: 10px;
+    margin-bottom: 6px;
+}
+
+/* Компактный левый блок — плотнее стандартного .price-list */
+.v2-prices {
+    padding: 1.5rem;
+}
+
+.v2-prices .price-list {
+    margin-bottom: 0.75rem;
+}
+
+.v2-prices .price-list li {
+    margin-bottom: 9px;
+    font-size: 14px;
+}
+
+.v2-prices-title {
+    margin-bottom: 1rem;
 }
 
 /* Шаги калькулятора справа */
