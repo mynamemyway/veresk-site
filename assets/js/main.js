@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
   
   // Логика главных табов (Насекомые / Грызуны / Запахи)
