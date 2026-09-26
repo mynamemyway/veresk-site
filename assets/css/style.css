@@ -17,7 +17,7 @@
    -------------------------------------------------------------------------- */
 :root {
     /* Базовые цвета */
-    --site-bg: radial-gradient(circle at 80% 20%, #D4D9DA 0%, #f1f5f9 100%);
+    --site-bg: radial-gradient(circle at 80% 20%, #E7E9EC 0%, #f1f5f9 100%);
     --text-main: #0f172a;
     --text-muted: #475569;
     --text-light: #f8fafc;
@@ -25,13 +25,13 @@
 
     /* Акценты Вереск #785B9D */
     --accent-color: #785B9D;
-    --accent-hover: #20908C;
+    --accent-hover: #24AA99;
     --accent-soft: rgba(13, 148, 136, 0.08);
 
     /* Кнопки */
     --btn-text: #ffffff;
     --btn-text-push: #ffffff;
-    --btn-fill: #20908C;
+    --btn-fill: #24AA99;
     --btn-push: #0F766E;
 
     /* Конструкция сетки */
@@ -664,7 +664,7 @@ a {
     position: relative;
     margin: 0 auto;
     overflow: hidden;
-    padding: 4rem 2rem;
+    padding: 12rem 2rem;
     font-family: inherit;
 }
 
