@@ -188,7 +188,117 @@
       <canvas id="heatherFieldCanvas"></canvas>
     </div>
 
-    <script src="assets/js/heather-animation.js"></script>
+    <section class="calc-section">
+      <div class="calc-container">
+        
+        <!-- Заголовки блока -->
+        <div class="calc-header">
+          <h2 class="calc-title">Стоимость обработки</h2>
+          <p class="calc-subtitle">Цена услуги фиксируется в договоре и не меняется в процессе исполнения.</p>
+        </div>
     
+        <!-- Вкладки направлений (Табы) -->
+        <div class="calc-tabs-nav">
+          <button class="tab-nav-btn active" data-tab="insects">Насекомые</button>
+          <button class="tab-nav-btn" data-tab="rodents">Грызуны</button>
+          <button class="tab-nav-btn" data-tab="smells">Запахи и плесень</button>
+        </div>
+    
+        <!-- Сетка тарифов (Для каждой вкладки свои данные) -->
+        <!-- ВКЛАДКА: НАСЕКОМЫЕ -->
+        <div class="prices-grid active" id="tab-insects">
+          
+          <!-- Карточка 1: МОП и Комнаты -->
+          <div class="price-card">
+            <div class="card-header">
+              <h3 class="card-title">МОП и Комнаты</h3>
+              <p class="card-tag">Частичная обработка</p>
+            </div>
+            <ul class="price-list">
+              <li><span>1 Комната / МОП</span><span class="dots"></span><strong>5 000 ₽</strong></li>
+              <li><span>2 Комнаты</span><span class="dots"></span><strong>6 500 ₽</strong></li>
+              <li><span>3 Комнаты</span><span class="dots"></span><strong>8 000 ₽</strong></li>
+              <li><span>4 Комнаты</span><span class="dots"></span><strong>9 500 ₽</strong></li>
+              <li><span>5 Комнат</span><span class="dots"></span><strong>11 000 ₽</strong></li>
+            </ul>
+            <button class="card-btn btn-mint">Зафиксировать цену <i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+    
+          <!-- Карточка 2: Квартиры -->
+          <div class="price-card">
+            <div class="card-header">
+              <h3 class="card-title">Квартиры</h3>
+              <p class="card-tag">Полная обработка</p>
+            </div>
+            <ul class="price-list">
+              <li><span>1-комнатная кв.</span><span class="dots"></span><strong>6 500 ₽</strong></li>
+              <li><span>2-комнатная кв.</span><span class="dots"></span><strong>8 000 ₽</strong></li>
+              <li><span>3-комнатная кв.</span><span class="dots"></span><strong>9 500 ₽</strong></li>
+              <li><span>4-комнатная кв.</span><span class="dots"></span><strong>11 000 ₽</strong></li>
+              <li><span>5-комнатная кв.</span><span class="dots"></span><strong>12 500 ₽</strong></li>
+            </ul>
+            <button class="card-btn btn-mint">Зафиксировать цену <i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+    
+          <!-- Карточка 3: B2B и Участки (Комбинированная с мини-табами для сохранения сетки) -->
+          <div class="price-card b2b-combined-card">
+            <div class="card-header">
+              <div class="mini-tabs">
+                <button class="mini-tab-btn active" data-subtab="b2b-biz">Общепит и бизнес</button>
+                <button class="mini-tab-btn" data-subtab="b2b-land">Участки</button>
+              </div>
+              <p class="card-tag">Договор, закрывающие акты</p>
+            </div>
+            
+            <!-- Под-вкладка: Бизнес -->
+            <ul class="price-list subtab-content active" id="subtab-b2b-biz">
+              <li><span>Бытовка / Вагончик</span><span class="dots"></span><strong>от 1 500 ₽</strong></li>
+              <li><span>Площадь до 100 м²</span><span class="dots"></span><strong>от 750 ₽</strong></li>
+              <li><span>Площадь 100 – 200 м²</span><span class="dots"></span><strong>от 1 450 ₽</strong></li>
+              <li><span>Площадь 200 – 300 м²</span><span class="dots"></span><strong>от 2 200 ₽</strong></li>
+              <li><span>Площадь более 300 м²</span><span class="dots"></span><strong>от 3 700 ₽</strong></li>
+            </ul>
+    
+            <!-- Под-вкладка: Участки -->
+            <ul class="price-list subtab-content" id="subtab-b2b-land">
+              <li><span>до 10 соток</span><span class="dots"></span><strong>от 550 ₽ / сот.</strong></li>
+              <li><span>10 – 20 соток</span><span class="dots"></span><strong>от 500 ₽ / сот.</strong></li>
+              <li><span>20 – 30 соток</span><span class="dots"></span><strong>от 450 ₽ / сот.</strong></li>
+              <li><span>30 – 50 соток</span><span class="dots"></span><strong>от 400 ₽ / сот.</strong></li>
+              <li><span>50 – 100 соток</span><span class="dots"></span><strong>от 350 ₽ / сот.</strong></li>
+            </ul>
+            
+            <button class="card-btn btn-outline">Получить КП на email <i class="fa-solid fa-envelope"></i></button>
+          </div>
+    
+        </div>
+    
+        <!-- ВКЛАДКА: ГРЫЗУНЫ (Заглушка данных, подставь свои цены аналогично) -->
+        <div class="prices-grid" id="tab-rodents">
+          <div class="price-card">
+            <div class="card-header"><h3 class="card-title">Дератизация помещений</h3></div>
+            <ul class="price-list">
+              <li><span>Комната / Квартира</span><span class="dots"></span><strong>от 4 500 ₽</strong></li>
+            </ul>
+            <button class="card-btn btn-mint">Зафиксировать цену <i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+        </div>
+    
+        <!-- ВКЛАДКА: ЗАПАХИ И ПЛЕСЕНЬ (Заглушка данных) -->
+        <div class="prices-grid" id="tab-smells">
+          <div class="price-card">
+            <div class="card-header"><h3 class="card-title">Удаление запахов и спор</h3></div>
+            <ul class="price-list">
+              <li><span>Озонирование 1 комн.</span><span class="dots"></span><strong>от 4 000 ₽</strong></li>
+            </ul>
+            <button class="card-btn btn-mint">Зафиксировать цену <i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+        </div>
+    
+      </div>
+    </section>
+
+    <script src="assets/js/heather-animation.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
