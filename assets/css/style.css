@@ -1,11 +1,22 @@
-/* Импорт шрифтов Google Fonts */
-@import url('https://googleapis.com');
-/*  ==========================================================================
-    ФАЙЛ КОНФИГУРАЦИИ САЙТА (ДВУХРЕЖИМНЫЙ СМАРТ-КОНФИГ)
-    ========================================================================== */
+/* ==========================================================================
+   ВЕРЕСК — СЛУЖБА ДЕЗИНФЕКЦИИ
+   Основная таблица стилей сайта
+   ========================================================================== */
 
-/* Светлая тема — Вереск зелёный, фон серый - #D4D9DA */
+/* --------------------------------------------------------------------------
+   1. Импорт шрифтов Google Fonts
+   -------------------------------------------------------------------------- */
+@import url('https://googleapis.com');
+
+/* ==========================================================================
+   2. ФАЙЛ КОНФИГУРАЦИИ САЙТА (ДВУХРЕЖИМНЫЙ СМАРТ-КОНФИГ)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Светлая тема — Вереск зелёный, фон серый - #D4D9DA
+   -------------------------------------------------------------------------- */
 :root {
+    /* Базовые цвета */
     --site-bg: radial-gradient(circle at 80% 20%, #D4D9DA 0%, #f1f5f9 100%);
     --text-main: #0f172a;
     --text-muted: #475569;
@@ -17,7 +28,7 @@
     --accent-hover: #20908C;
     --accent-soft: rgba(13, 148, 136, 0.08);
 
-    /* Кнопки*/
+    /* Кнопки */
     --btn-text: #ffffff;
     --btn-text-push: #ffffff;
     --btn-fill: #20908C;
@@ -41,8 +52,11 @@
     --shadow-cta: 0 25px 50px -12px rgba(15, 23, 42, 0.08);
 }
 
-/* Тёмная тема — Вереск фиолетовый */
+/* --------------------------------------------------------------------------
+   Тёмная тема — Вереск фиолетовый
+   -------------------------------------------------------------------------- */
 body.dark-theme {
+    /* Базовые цвета */
     --site-bg: radial-gradient(circle at 80% 20%, #1a1c1e 0%, #0f1011 100%);
     --text-main: #f1f5f9;
     --text-muted: #64738B;
@@ -54,7 +68,7 @@ body.dark-theme {
     --accent-hover: #0f766e;
     --accent-soft: rgba(139, 92, 246, 0.1);
 
-    /* Кнопки*/
+    /* Кнопки */
     --btn-text: #ffffff;
     --btn-text-push: #ffffff;
     --btn-fill: #26AA99;
@@ -73,55 +87,307 @@ body.dark-theme {
     --shadow-cta: 0 30px 60px rgba(0, 0, 0, 0.4);
 }
 
+/* ==========================================================================
+   3. СИСТЕМНЫЕ АРХИТЕКТУРНЫЕ СТИЛИ
+   ========================================================================== */
 
-/*  ==========================================================================
-    СИСТЕМНЫЕ АРХИТЕКТУРНЫЕ СТИЛИ
-    ========================================================================== */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { font-family: 'Inter', sans-serif; background: var(--site-bg); color: var(--text-main); -webkit-font-smoothing: antialiased; min-height: 100vh; transition: background 0.4s ease, color 0.4s ease; }
-h1, h2, h3, .font-mont { font-family: 'Montserrat', sans-serif; }
-a { text-decoration: none; }
+/* --------------------------------------------------------------------------
+   База / сброс
+   -------------------------------------------------------------------------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-/* ШАПКА */
-.premium-header { max-w: 85rem; margin: 0 auto; height: 90px; display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; border-b: 1px solid var(--border-grid); background: var(--header-bg); position: sticky; top: 0; z-index: 50; transition: background 0.4s, border 0.4s; }
-.logo-wrap { position: relative; display: flex; flex-direction: column; }
-.logo-main { font-size: 18px; font-weight: 800; color: var(--accent-hover); letter-spacing: 0.15em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 0.55rem; }
-.logo-icon { display: inline-flex; color: var(--accent-color); }
-.logo-sub { font-size: 9px; color: var(--sub-color); font-weight: 600; letter-spacing: 1.08em; text-transform: uppercase; margin-top: 4px; }
-/* .logo-sub { font-size: 9px; color: var(--sub-color); font-weight: 600; letter-spacing: 0.98em; text-transform: uppercase; position: absolute; top: 100%; left: 0; margin-top: 4px; white-space: nowrap; } */
-.premium-nav { display: flex; gap: 3rem; position: absolute; left: 50%; transform: translateX(-50%); }
-.nav-link { font-size: 11px; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; transition: color 0.3s; }
-.nav-link:hover { color: var(--accent-color); }
-.right-controls { display: flex; align-items: center; gap: 2rem; }
-.header-phone { font-size: 15px; font-weight: 700; color: var(--text-main); font-family: 'Montserrat', sans-serif; letter-spacing: 0.05em; display: flex; align-items: center; gap: 0.5rem; }
-.phone-dot { height: 6px; width: 6px; background-color: #10b981; border-radius: 50%; display: inline-block; box-shadow: 0 0 8px #10b981; }
-.theme-toggle-btn { background: var(--accent-soft); border: 1px solid var(--border-glass); color: var(--accent-color); width: 40px; height: 40px; border-radius: 0.75rem; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; transition: all 0.3s ease; }
-.theme-toggle-btn:hover { transform: scale(1.05); background: var(--accent-color); color: #ffffff; }
+html {
+    scroll-behavior: smooth;
+}
 
-/* ЧИСТАЯ МОДУЛЬНАЯ СЕТКА ЭКРАНА */
-.hero-section { position: relative; max-w: 85rem; margin: 0 auto; overflow: hidden; padding: 4rem 2rem; }
-.global-vertical-line { position: absolute; top: 0; bottom: 0; left: 58.3333%; width: 1px; background-color: var(--line-color); z-index: 20; transition: background 0.4s; }
-.hero-layout { display: flex; flex-direction: column; gap: 4rem; width: 100%; position: relative; z-index: 10; }
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--site-bg);
+    color: var(--text-main);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    transition: background 0.4s ease, color 0.4s ease;
+}
+
+h1, h2, h3, .font-mont {
+    font-family: 'Montserrat', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* --------------------------------------------------------------------------
+   Шапка (header)
+   -------------------------------------------------------------------------- */
+.premium-header {
+    margin: 0 auto;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    background: var(--header-bg);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    transition: background 0.4s, border 0.4s;
+}
+
+.logo-wrap {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-main {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--accent-hover);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+}
+
+.logo-icon {
+    display: inline-flex;
+    color: var(--accent-color);
+}
+
+.logo-sub {
+    font-size: 9px;
+    color: var(--sub-color);
+    font-weight: 600;
+    letter-spacing: 1.08em;
+    text-transform: uppercase;
+    margin-top: 4px;
+}
+
+/* Вариант подписи с позиционированием под строкой (для авто-выравнивания лого):
+   .logo-sub { font-size: 9px; color: var(--sub-color); font-weight: 600; letter-spacing: 0.98em;
+       text-transform: uppercase; position: absolute; top: 100%; left: 0; margin-top: 4px; white-space: nowrap; } */
+
+.premium-nav {
+    display: flex;
+    gap: 3rem;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.nav-link {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: var(--accent-color);
+}
+
+.right-controls {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.header-phone {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-main);
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.phone-dot {
+    height: 6px;
+    width: 6px;
+    background-color: #10b981;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 8px #10b981;
+}
+
+.theme-toggle-btn {
+    background: var(--accent-soft);
+    border: 1px solid var(--border-glass);
+    color: var(--accent-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle-btn:hover {
+    transform: scale(1.05);
+    background: var(--accent-color);
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   4. ГЛАВНЫЙ ЭКРАН (HERO-SECTION)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Чистая модульная сетка экрана
+   -------------------------------------------------------------------------- */
+.hero-section {
+    position: relative;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 4rem 2rem;
+}
+
+.global-vertical-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 58.3333%;
+    width: 1px;
+    background-color: var(--line-color);
+    z-index: 20;
+    transition: background 0.4s;
+}
+
+.hero-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+}
 
 .hero-top-row,
-.hero-bottom-row { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); width: 100%; }
+.hero-bottom-row {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    width: 100%;
+}
 
-/* ЛЕВАЯ КОЛОНКА (7 колонок из 12) */
+/* Левая колонка (7 колонок из 12) */
 .hero-headline-block,
-.triggers-grid-container { grid-column: span 7 / span 7 !important; width: 100% !important; padding-right: 3.7rem !important; }
-.trigger-icon { display: inline-flex; color: var(--accent-hover); }
+.triggers-grid-container {
+    grid-column: span 7 / span 7 !important;
+    width: 100% !important;
+    padding-right: 3.7rem !important;
+}
 
-/* ПРАВАЯ КОЛОНКА (5 колонок из 12) */
+.trigger-icon {
+    display: inline-flex;
+    color: var(--accent-hover);
+}
+
+/* Правая колонка (5 колонок из 12) */
 .hero-image-block,
-.premium-cta-box-container { grid-column: span 5 / span 5 !important; width: 100% !important; padding-left: 4.5rem !important; }
+.premium-cta-box-container {
+    grid-column: span 5 / span 5 !important;
+    width: 100% !important;
+    padding-left: 4.5rem !important;
+}
 
-.social-badge { display: flex; align-items: center; gap: 0.5rem; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-color); margin-bottom: 2rem; }
-.social-badge i { font-size: 8px; }
-.hero-title { font-size: 39px; font-weight: 300; color: var(--text-main); line-height: 1.5; tracking-tight: -0.02em; text-transform: uppercase; }
-.hero-title tracking-bold { font-weight: 800; display: block; letter-spacing: 0.05em; color: var(--text-main); margin-top: 2px; }
+/* --------------------------------------------------------------------------
+   Оффер: заголовок и соцбейдж
+   -------------------------------------------------------------------------- */
+.social-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent-color);
+    margin-bottom: 2rem;
+}
 
-/* Блок под картинку с рамкой-окантовкой */
+.social-badge i {
+    font-size: 8px;
+}
+
+.hero-title {
+    font-size: 39px;
+    font-weight: 300;
+    color: var(--text-main);
+    line-height: 1.5;
+    text-transform: uppercase;
+}
+
+.hero-title tracking-bold {
+    font-weight: 800;
+    display: block;
+    letter-spacing: 0.05em;
+    color: var(--text-main);
+    margin-top: 2px;
+}
+
+/* Плашка рейтинга Яндекс */
+.yandex-rating-badge {
+    background-color: var(--header-bg);
+    border: 0px solid var(--border-glass);
+    display: inline-flex;
+    flex-direction: column;
+    padding: 12px 2px;
+    border-radius: 12px;
+    box-shadow: var(--header-bg);
+    font-family: inherit;
+    text-transform: none;
+    letter-spacing: normal;
+    margin-bottom: 1rem;
+}
+
+.yandex-rating-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.yandex-marker {
+    color: #ff3347;
+    font-size: 18px;
+}
+
+.yandex-score {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-main);
+    line-height: 1;
+}
+
+.yandex-stars {
+    display: flex;
+    gap: 2px;
+    color: #ffc107;
+    font-size: 14px;
+}
+
+.yandex-rating-bottom {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+/* --------------------------------------------------------------------------
+   Блок под картинку с рамкой-окантовкой
+   -------------------------------------------------------------------------- */
 .image-container-block {
     width: 100%;
     height: 260px;
@@ -132,6 +398,7 @@ a { text-decoration: none; }
     transition: border 0.4s, background 0.4s;
     box-shadow: var(--shadow-img);
 }
+
 .inline-team-img {
     width: 100%;
     height: 100%;
@@ -141,7 +408,10 @@ a { text-decoration: none; }
     /* Возвращаем оригинальный глубокий фильтр, который убирает пересвет */
     filter: brightness(0.85) contrast(1.1);
 }
-/* ПРЕИМУЩЕСТВА КРЕСТОМ */
+
+/* ==========================================================================
+   5. ПРЕИМУЩЕСТВА КРЕСТОМ (триггеры)
+   ========================================================================== */
 .triggers-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -155,11 +425,34 @@ a { text-decoration: none; }
     height: 100% !important; /* Жёстко растягивает преимущества по высоте соседа */
     box-shadow: var(--shadow-cta);
 }
-.trigger-box { background-color: var(--card-bg); padding: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; transition: background 0.4s; }
-.trigger-num { font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-main); }
-.trigger-text { font-size: 13px; font-weight: 500; color: var(--text-muted); line-height: 1.4; }
 
-/* Карточка формы акции */
+.trigger-box {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: background 0.4s;
+}
+
+.trigger-num {
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-main);
+}
+
+.trigger-text {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+/* ==========================================================================
+   6. КАРТОЧКА ФОРМЫ АКЦИИ (CTA)
+   ========================================================================== */
 .premium-cta-box {
     background: var(--card-cta-bg);
     backdrop-filter: blur(20px);
@@ -176,39 +469,119 @@ a { text-decoration: none; }
     transition: background 0.4s, border 0.4s;
     height: 100% !important;
 }
-.cta-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
-.cta-title { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main); line-height: 1.4; }
-.cta-season { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-color); background: var(--accent-soft); border: 1px solid var(--border-glass); padding: 4px 8px; border-radius: 4px; transition: color 0.4s, background 0.4s; }
-/* Плашка рейтинга Яндекс */
-.yandex-rating-badge {
-    background-color: var(--header-bg);
-    border: 0px solid var(--border-glass);
-    display: inline-flex;
-    flex-direction: column;
-    padding: 12px 2px;
-    border-radius: 12px;
-    box-shadow: var(--header-bg);
-    font-family: inherit;
-    text-transform: none;
-    letter-spacing: normal;
-    margin-bottom: 1rem;
-}
-.yandex-rating-top { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
-.yandex-marker { color: #ff3347; font-size: 18px; }
-.yandex-score { font-size: 20px; font-weight: 700; color: var(--text-main); line-height: 1; }
-.yandex-stars { display: flex; gap: 2px; color: #ffc107; font-size: 14px; }
-.yandex-rating-bottom { font-size: 12px; color: var(--text-muted); font-weight: 400; }
-.premium-btn { width: 100%; height: 3.5rem !important; background: var(--btn-fill) !important; color: var(--btn-text-push) !important; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; border-radius: 0.75rem; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.75rem; box-shadow: 0 10px 20px var(--accent-soft); transition: all 0.2s ease !important; font-family: 'Montserrat', sans-serif; }
-.premium-btn:hover { background: var(--btn-push) !important; }
-.cta-form { display: flex; gap: 0.5rem; width: 100%; height: 3.5rem; }
-.cta-phone-input { flex: 1 1 auto; min-width: 0; height: 100%; padding: 0 1rem; background: var(--accent-soft); border: 1px solid var(--border-glass); border-radius: 0.75rem; color: var(--text-main); font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.03em; outline: none; transition: border-color 0.3s, background 0.3s; }
-.cta-phone-input.cta-phone-empty { color: var(--text-muted); }
-.cta-phone-input:focus { color: var(--text-main); }
-.cta-phone-input::placeholder { color: var(--text-muted); font-weight: 500; }
-.cta-phone-input:focus { border-color: var(--accent-color); }
-.cta-form .premium-btn { width: auto; flex: 0 0 auto; white-space: nowrap; padding: 0 1.15rem; }
-.privacy-snoska { font-size: 12px !important; color: var(--text-muted); text-align: center; margin-top: 0.5rem; font-weight: 500; }
 
+.cta-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.cta-title {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-main);
+    line-height: 1.4;
+}
+
+.cta-season {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent-color);
+    background: var(--accent-soft);
+    border: 1px solid var(--border-glass);
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: color 0.4s, background 0.4s;
+}
+
+/* Кнопка акции */
+.premium-btn {
+    width: 100%;
+    height: 3.5rem !important;
+    background: var(--btn-fill) !important;
+    color: var(--btn-text-push) !important;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: 0.75rem;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    box-shadow: 0 10px 20px var(--accent-soft);
+    transition: all 0.2s ease !important;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.premium-btn:hover {
+    background: var(--btn-push) !important;
+}
+
+/* Форма телефона */
+.cta-form {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+    height: 3.5rem;
+}
+
+.cta-phone-input {
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 100%;
+    padding: 0 1rem;
+    background: var(--accent-soft);
+    border: 1px solid var(--border-glass);
+    border-radius: 0.75rem;
+    color: var(--text-main);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    outline: none;
+    transition: border-color 0.3s, background 0.3s;
+}
+
+.cta-phone-input.cta-phone-empty {
+    color: var(--text-muted);
+}
+
+.cta-phone-input::placeholder {
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.cta-phone-input:focus {
+    color: var(--text-main);
+    border-color: var(--accent-color);
+}
+
+.cta-form .premium-btn {
+    width: auto;
+    flex: 0 0 auto;
+    white-space: nowrap;
+    padding: 0 1.15rem;
+}
+
+.privacy-snoska {
+    font-size: 12px !important;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 0.5rem;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   7. ДЕКОР: ПОЛЕ ВЕРЕСКА (CANVAS-АНИМАЦИЯ)
+   ========================================================================== */
 .heather-field-container {
     position: absolute;
     bottom: 0;
@@ -227,20 +600,54 @@ a { text-decoration: none; }
     opacity: 0.7; /* Прозрачность */
 }
 
+/* ==========================================================================
+   8. АДАПТИВНОСТЬ
+   ========================================================================== */
+
+/* Планшеты и нетбуки */
 @media (max-width: 1200px) {
-    .premium-nav { display: none; }
-    .global-vertical-line { display: none !important; }
+    .premium-nav {
+        display: none;
+    }
+
+    .global-vertical-line {
+        display: none !important;
+    }
+
     .hero-top-row,
-    .hero-bottom-row { display: flex; flex-direction: column; gap: 2rem !important; }
+    .hero-bottom-row {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem !important;
+    }
+
     .hero-headline-block,
     .hero-image-block,
     .triggers-grid-container,
-    .premium-cta-box-container { width: 100% !important; padding-left: 0 !important; padding-right: 0 !important; }
-    .triggers-grid { grid-template-columns: 1fr; }
+    .premium-cta-box-container {
+        width: 100% !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .triggers-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
+/* Телефоны */
 @media (max-width: 520px) {
-    .cta-form { flex-direction: column; height: auto; }
-    .cta-phone-input { height: 3.5rem; width: 100%; }
-    .cta-form .premium-btn { width: 100%; }
+    .cta-form {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .cta-phone-input {
+        height: 3.5rem;
+        width: 100%;
+    }
+
+    .cta-form .premium-btn {
+        width: 100%;
+    }
 }
