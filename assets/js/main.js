@@ -67,37 +67,31 @@ document.addEventListener('DOMContentLoaded', () => {
                  full:    { 1: 6000, 2: 7500, 3: 9000, 4: 10500, 5: 12000 } }
   };
 
-  // Метраж → количество комнат (эвристика для оценки квартиры).
-  const areaToRooms = (area) => {
-      if (area < 40) return 1;
-      if (area < 55) return 2;
-      if (area < 70) return 3;
-      if (area < 85) return 4;
-      return 5;
-  };
-
   const formatRub = (n) => Math.round(n).toLocaleString('ru-RU') + ' ₽';
 
+  // Выбор кнопки внутри своего сегмента
+  const activateSeg = (btn) => {
+      const group = btn.closest('.v2-seg');
+      group.querySelectorAll('.v2-seg-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+  };
+
+  document.querySelectorAll('.v2-seg-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+          activateSeg(btn);
+          calcV2Phys();
+      });
+  });
+
   const calcV2Phys = () => {
-      const pest = document.querySelector('input[name="v2-pest"]:checked').value;
-      const type = document.querySelector('input[name="v2-type"]:checked').value;
-      const areaEl = document.getElementById('v2-area').value.trim();
-      const roomsEl = parseInt(document.getElementById('v2-rooms').value, 10);
+      const pest = document.querySelector('.v2-seg-btn[data-pest].active').getAttribute('data-pest');
+      const type = document.querySelector('.v2-seg-btn[data-type].active').getAttribute('data-type');
+      const rooms = parseInt(document.querySelector('.v2-seg-btn[data-rooms].active').getAttribute('data-rooms'), 10);
 
-      // Метраж приоритетнее выпадающего списка комнат.
-      const rooms = areaEl ? areaToRooms(parseFloat(areaEl)) : roomsEl;
-
-      // Для плесени/запахов точной таблицы нет — фиксированная оценка.
-      let base;
-      if (pest === 'insects' || pest === 'rodents') {
-          base = v2Prices[pest][type][rooms];
-      } else {
-          base = 10000;
-      }
-
+      const base = v2Prices[pest][type][rooms];
       let total = base;
 
-      document.querySelectorAll('.v2-calc input[type="checkbox"]').forEach(cb => {
+      document.querySelectorAll('#v2-phys .v2-check input[type="checkbox"]').forEach(cb => {
           if (!cb.checked) return;
           if (cb.dataset.gel) {
               total *= 1.2;
@@ -121,9 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
           'от ' + (finalRate % 1 === 0 ? finalRate : finalRate.toFixed(1)) + ' ₽ / м²';
   };
 
-  const v2PhysEls = document.querySelectorAll('#v2-phys input, #v2-phys select');
-  v2PhysEls.forEach(el => el.addEventListener('change', calcV2Phys));
-  document.getElementById('v2-area').addEventListener('input', calcV2Phys);
+  document.querySelectorAll('#v2-phys .v2-check input').forEach(el => el.addEventListener('change', calcV2Phys));
 
   const v2BizEls = document.querySelectorAll('#v2-biz input, #v2-biz select');
   v2BizEls.forEach(el => el.addEventListener('change', calcV2Biz));

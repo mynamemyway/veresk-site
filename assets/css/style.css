@@ -1032,43 +1032,80 @@ a {
     margin-top: 1.75rem;
 }
 
-/* Радио и чекбоксы */
-.v2-radio,
-.v2-check {
+/* Сегментные кнопки выбора (вредитель / тип / комнаты) */
+.v2-seg {
     display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 6px 0;
-    font-size: 15px;
-    color: var(--text-muted);
-    cursor: pointer;
-    transition: color 0.2s ease;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
 }
 
-.v2-radio:hover,
-.v2-check:hover {
+.v2-seg-btn {
+    flex: 1;
+    background: var(--card-cta-bg);
+    border: 1px solid var(--border-grid);
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.v2-seg-btn:hover {
+    border-color: var(--accent-color);
     color: var(--text-main);
 }
 
-.v2-radio input,
+.v2-seg-btn.active {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: var(--btn-text);
+}
+
+.v2-rooms-seg .v2-seg-btn {
+    flex: 1;
+    max-width: none;
+}
+
+/* Доп. параметры — компактные чипы */
+.v2-extra {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.v2-check {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 6px 10px;
+    font-size: 13px;
+    color: var(--text-muted);
+    background: var(--accent-soft);
+    border: 1px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.v2-check:hover {
+    color: var(--text-main);
+    border-color: var(--accent-color);
+}
+
 .v2-check input {
     accent-color: var(--btn-fill);
-    width: 16px;
-    height: 16px;
+    width: 15px;
+    height: 15px;
     flex-shrink: 0;
     cursor: pointer;
 }
 
-/* Строка «Количество комнат / Метраж» */
-.v2-rooms {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-}
-
-.v2-select,
-.v2-area {
+/* Поле выбора диапазона для юрлиц */
+.v2-select {
     background: var(--card-cta-bg);
     border: 1px solid var(--border-grid);
     border-radius: 10px;
@@ -1077,32 +1114,19 @@ a {
     font-family: 'Inter', sans-serif;
     color: var(--text-main);
     outline: none;
+    width: 100%;
+    margin-bottom: 0.75rem;
     transition: border-color 0.2s ease;
 }
 
-.v2-select {
-    flex-grow: 1;
-    min-width: 180px;
-}
-
-.v2-area {
-    width: 110px;
-}
-
-.v2-select:focus,
-.v2-area:focus {
+.v2-select:focus {
     border-color: var(--accent-color);
-}
-
-.v2-or {
-    font-size: 13px;
-    color: var(--text-muted);
 }
 
 /* Итоговый блок */
 .v2-total {
-    margin: 1.75rem 0 1rem;
-    padding: 1.25rem 1.5rem;
+    margin: 0.75rem 0 1rem;
+    padding: 1rem 1.25rem;
     border-radius: 1rem;
     background: var(--accent-soft);
     border: 1px solid var(--border-glass);

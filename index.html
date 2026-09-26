@@ -351,8 +351,7 @@
 
         <!-- Заголовки блока -->
         <div class="calc-header">
-          <h2 class="calc-title">Универсальный модуль расчёта</h2>
-          <p class="calc-subtitle">Сравнительный вариант — цены «от» рядом с точным калькулятором (Часть 1)</p>
+          <h2 class="calc-title">Расчитать стоимость</h2>
         </div>
 
         <!-- Вкладки аудитории -->
@@ -407,68 +406,46 @@
 
             <!-- ПРАВАЯ СТОРОНА: ТОЧНЫЙ КАЛЬКУЛЯТОР -->
             <div class="price-card v2-calc">
-              <h4 class="v2-step-title">1. Выберите вредителя:</h4>
-              <label class="v2-radio">
-                <input type="radio" name="v2-pest" value="insects" checked>
-                <span>Тараканы, клопы, насекомые</span>
-              </label>
-              <label class="v2-radio">
-                <input type="radio" name="v2-pest" value="rodents">
-                <span>Мыши, крысы, грызуны</span>
-              </label>
-              <label class="v2-radio">
-                <input type="radio" name="v2-pest" value="mold">
-                <span>Плесень, грибок</span>
-              </label>
-              <label class="v2-radio">
-                <input type="radio" name="v2-pest" value="smell">
-                <span>Неприятные запахи</span>
-              </label>
-
-              <h4 class="v2-step-title">2. Тип обработки:</h4>
-              <label class="v2-radio">
-                <input type="radio" name="v2-type" value="full" checked>
-                <span>Полная обработка всей квартиры</span>
-              </label>
-              <label class="v2-radio">
-                <input type="radio" name="v2-type" value="partial">
-                <span>Частичная (только комнаты/МОП)</span>
-              </label>
-
-              <h4 class="v2-step-title">3. Количество комнат / Метраж:</h4>
-              <div class="v2-rooms">
-                <select class="v2-select" id="v2-rooms">
-                  <option value="1">1 комната / студия</option>
-                  <option value="2">2 комнаты</option>
-                  <option value="3">3 комнаты</option>
-                  <option value="4">4 комнаты</option>
-                  <option value="5">5+ комнат</option>
-                </select>
-                <span class="v2-or">или</span>
-                <input class="v2-area" id="v2-area" type="number" min="10" placeholder="__ м²" inputmode="numeric">
+              <div class="v2-seg">
+                <button type="button" class="v2-seg-btn active" data-pest="insects">Тараканы, клопы, блохи</button>
+                <button type="button" class="v2-seg-btn" data-pest="rodents">Мыши, крысы</button>
               </div>
 
-              <h4 class="v2-step-title">4. Дополнительные параметры:</h4>
-              <label class="v2-check">
-                <input type="checkbox" data-add="1000">
-                <span>Кухня / МОП более 10 м² (+1000 ₽)</span>
-              </label>
-              <label class="v2-check">
-                <input type="checkbox" data-add="500">
-                <span>Есть комнаты более 20 м² (+350/500 ₽)</span>
-              </label>
-              <label class="v2-check">
-                <input type="checkbox" data-gel="1">
-                <span>Обработка гелем без запаха (+20%)</span>
-              </label>
-              <label class="v2-check">
-                <input type="checkbox" data-add="1000">
-                <span>Доп. спальное место от клопов (+1000 ₽)</span>
-              </label>
-              <label class="v2-check">
-                <input type="checkbox" data-add="1500">
-                <span>Объект за пределами КАД</span>
-              </label>
+              <div class="v2-seg">
+                <button type="button" class="v2-seg-btn active" data-type="full">Полная (обработка квартиры)</button>
+                <button type="button" class="v2-seg-btn" data-type="partial">Частичная (комнаты/МОП)</button>
+              </div>
+
+              <div class="v2-seg v2-rooms-seg">
+                <button type="button" class="v2-seg-btn active" data-rooms="1">1</button>
+                <button type="button" class="v2-seg-btn" data-rooms="2">2</button>
+                <button type="button" class="v2-seg-btn" data-rooms="3">3</button>
+                <button type="button" class="v2-seg-btn" data-rooms="4">4</button>
+                <button type="button" class="v2-seg-btn" data-rooms="5">5 +</button>
+              </div>
+
+              <div class="v2-extra">
+                <label class="v2-check">
+                  <input type="checkbox" data-add="1000">
+                  <span>Кухня/МОП &gt;10 м² (+1000)</span>
+                </label>
+                <label class="v2-check">
+                  <input type="checkbox" data-add="500">
+                  <span>Комнаты &gt;20 м² (+500)</span>
+                </label>
+                <label class="v2-check">
+                  <input type="checkbox" data-gel="1">
+                  <span>Гель без запаха (+20%)</span>
+                </label>
+                <label class="v2-check">
+                  <input type="checkbox" data-add="1000">
+                  <span>Доп. спальное место (+1000)</span>
+                </label>
+                <label class="v2-check">
+                  <input type="checkbox" data-add="1500">
+                  <span>За КАД (+1500)</span>
+                </label>
+              </div>
 
               <div class="v2-total">
                 <div class="v2-total-line">
