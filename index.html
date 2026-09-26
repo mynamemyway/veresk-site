@@ -345,6 +345,207 @@
         </div>
     </section>
 
+    <!-- Альтернативный модуль расчёта (v2) — блок для сравнения -->
+    <section class="calc-section v2-section">
+      <div class="calc-container">
+
+        <!-- Заголовки блока -->
+        <div class="calc-header">
+          <h2 class="calc-title">Универсальный модуль расчёта</h2>
+          <p class="calc-subtitle">Сравнительный вариант — цены «от» рядом с точным калькулятором (Часть 1)</p>
+        </div>
+
+        <!-- Вкладки аудитории -->
+        <div class="calc-tabs-nav">
+          <button class="v2-tab-btn active" data-v2="phys">Физические лица</button>
+          <button class="v2-tab-btn" data-v2="biz">Юридические лица</button>
+        </div>
+
+        <!-- ВКЛАДКА: ФИЗИЧЕСКИЕ ЛИЦА -->
+        <div class="v2-grid active" id="v2-phys">
+          <div class="v2-layout">
+
+            <!-- ЛЕВАЯ СТОРОНА: ЦЕНЫ «ОТ» -->
+            <div class="price-card v2-prices">
+              <p class="v2-prices-title">Цены «от»</p>
+
+              <div class="v2-price-group">
+                <h4 class="v2-group-title">Комнаты и МОП</h4>
+                <p class="v2-group-note">Частичная обработка</p>
+                <ul class="price-list">
+                  <li><span>Насекомые</span><span class="dots"></span><strong>от 6 000 ₽</strong></li>
+                  <li><span>Грызуны</span><span class="dots"></span><strong>от 5 000 ₽</strong></li>
+                </ul>
+              </div>
+
+              <div class="v2-price-group">
+                <h4 class="v2-group-title">Квартиры целиком</h4>
+                <p class="v2-group-note">Полная обработка + Гарантия</p>
+                <ul class="price-list">
+                  <li><span>Насекомые</span><span class="dots"></span><strong>от 7 500 ₽</strong></li>
+                  <li><span>Грызуны</span><span class="dots"></span><strong>от 6 000 ₽</strong></li>
+                </ul>
+              </div>
+
+              <div class="v2-price-group">
+                <h4 class="v2-group-title">Организации и ТСЖ</h4>
+                <p class="v2-group-note">По договору и безналу</p>
+                <ul class="price-list">
+                  <li><span>Помещения</span><span class="dots"></span><strong>от 26 ₽ / м²</strong></li>
+                  <li><span>Электроприборы</span><span class="dots"></span><strong>50 ₽ / м²</strong></li>
+                </ul>
+              </div>
+
+              <div class="v2-price-group">
+                <h4 class="v2-group-title">Участки и территории</h4>
+                <p class="v2-group-note">Открытый воздух</p>
+                <ul class="price-list">
+                  <li><span>От вредителей</span><span class="dots"></span><strong>от 350 ₽ / сотка</strong></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- ПРАВАЯ СТОРОНА: ТОЧНЫЙ КАЛЬКУЛЯТОР -->
+            <div class="price-card v2-calc">
+              <h4 class="v2-step-title">1. Выберите вредителя:</h4>
+              <label class="v2-radio">
+                <input type="radio" name="v2-pest" value="insects" checked>
+                <span>Тараканы, клопы, насекомые</span>
+              </label>
+              <label class="v2-radio">
+                <input type="radio" name="v2-pest" value="rodents">
+                <span>Мыши, крысы, грызуны</span>
+              </label>
+              <label class="v2-radio">
+                <input type="radio" name="v2-pest" value="mold">
+                <span>Плесень, грибок</span>
+              </label>
+              <label class="v2-radio">
+                <input type="radio" name="v2-pest" value="smell">
+                <span>Неприятные запахи</span>
+              </label>
+
+              <h4 class="v2-step-title">2. Тип обработки:</h4>
+              <label class="v2-radio">
+                <input type="radio" name="v2-type" value="full" checked>
+                <span>Полная обработка всей квартиры</span>
+              </label>
+              <label class="v2-radio">
+                <input type="radio" name="v2-type" value="partial">
+                <span>Частичная (только комнаты/МОП)</span>
+              </label>
+
+              <h4 class="v2-step-title">3. Количество комнат / Метраж:</h4>
+              <div class="v2-rooms">
+                <select class="v2-select" id="v2-rooms">
+                  <option value="1">1 комната / студия</option>
+                  <option value="2">2 комнаты</option>
+                  <option value="3">3 комнаты</option>
+                  <option value="4">4 комнаты</option>
+                  <option value="5">5+ комнат</option>
+                </select>
+                <span class="v2-or">или</span>
+                <input class="v2-area" id="v2-area" type="number" min="10" placeholder="__ м²" inputmode="numeric">
+              </div>
+
+              <h4 class="v2-step-title">4. Дополнительные параметры:</h4>
+              <label class="v2-check">
+                <input type="checkbox" data-add="1000">
+                <span>Кухня / МОП более 10 м² (+1000 ₽)</span>
+              </label>
+              <label class="v2-check">
+                <input type="checkbox" data-add="500">
+                <span>Есть комнаты более 20 м² (+350/500 ₽)</span>
+              </label>
+              <label class="v2-check">
+                <input type="checkbox" data-gel="1">
+                <span>Обработка гелем без запаха (+20%)</span>
+              </label>
+              <label class="v2-check">
+                <input type="checkbox" data-add="1000">
+                <span>Доп. спальное место от клопов (+1000 ₽)</span>
+              </label>
+              <label class="v2-check">
+                <input type="checkbox" data-add="1500">
+                <span>Объект за пределами КАД</span>
+              </label>
+
+              <div class="v2-total">
+                <div class="v2-total-line">
+                  <span>ИТОГО:</span>
+                  <strong id="v2-total-price">7 500 ₽</strong>
+                </div>
+                <p class="v2-guarantee">Гарантия: 6 месяцев</p>
+              </div>
+              <button class="card-btn btn-mint">Зафиксировать цену <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ВКЛАДКА: ЮРИДИЧЕСКИЕ ЛИЦА -->
+        <div class="v2-grid" id="v2-biz">
+          <div class="v2-layout">
+
+            <!-- ЛЕВАЯ СТОРОНА: ЦЕНЫ «ОТ» -->
+            <div class="price-card v2-prices">
+              <p class="v2-prices-title">Цены «от»</p>
+
+              <div class="v2-price-group">
+                <h4 class="v2-group-title">Организации и ТСЖ</h4>
+                <p class="v2-group-note">По договору и безналу</p>
+                <ul class="price-list">
+                  <li><span>Помещения</span><span class="dots"></span><strong>от 26 ₽ / м²</strong></li>
+                  <li><span>Электроприборы</span><span class="dots"></span><strong>50 ₽ / м²</strong></li>
+                </ul>
+              </div>
+
+              <div class="v2-price-group">
+                <h4 class="v2-group-title">Участки и территории</h4>
+                <p class="v2-group-note">Открытый воздух</p>
+                <ul class="price-list">
+                  <li><span>От вредителей</span><span class="dots"></span><strong>от 350 ₽ / сотка</strong></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- ПРАВАЯ СТОРОНА: КАЛЬКУЛЯТОР ДЛЯ ОРГАНИЗАЦИЙ -->
+            <div class="price-card v2-calc">
+              <h4 class="v2-step-title">1. Площадь помещения:</h4>
+              <select class="v2-select" id="v2-biz-range">
+                <option value="37">101 – 200 м² — 37 ₽ / м²</option>
+                <option value="34">201 – 500 м² — 34 ₽ / м²</option>
+                <option value="30">501 – 1000 м² — 30 ₽ / м²</option>
+                <option value="26">1001 – 3000 м² — 26 ₽ / м²</option>
+                <option value="25">более 3000 м² — 25 ₽ / м²</option>
+              </select>
+
+              <h4 class="v2-step-title">2. Дополнительные параметры:</h4>
+              <label class="v2-check">
+                <input type="checkbox" data-gel="1">
+                <span>Обработка гелем без запаха (+20%)</span>
+              </label>
+              <label class="v2-check">
+                <input type="checkbox" data-add="1500">
+                <span>Объект за пределами КАД</span>
+              </label>
+
+              <div class="v2-total">
+                <div class="v2-total-line">
+                  <span>ИТОГО:</span>
+                  <strong id="v2-total-biz">от 37 ₽ / м²</strong>
+                </div>
+                <p class="v2-guarantee">мин. заказ 5 000 ₽ · Гарантия по договору</p>
+              </div>
+              <button class="card-btn btn-outline">Получить КП на email <i class="fa-solid fa-envelope"></i></button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
     <script src="assets/js/heather-animation.js"></script>
     <script src="assets/js/main.js"></script>
 </body>

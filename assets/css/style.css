@@ -927,3 +927,243 @@ a {
         align-items: stretch;
     }
 }
+
+/* ==========================================================================
+   10. АЛЬТЕРНАТИВНЫЙ МОДУЛЬ РАСЧЁТА (v2) — блок для сравнения
+   ========================================================================== */
+
+/* Вторая секция под калькулятором v1 */
+.v2-section {
+    padding-top: 0;
+}
+
+/* Вкладки аудитории — тот же вид, что у главных табов v1 */
+.v2-tab-btn {
+    background: var(--card-cta-bg);
+    border: 1px solid var(--border-glass);
+    padding: 0.85rem 1.75rem;
+    border-radius: 2rem;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-main);
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.v2-tab-btn:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
+.v2-tab-btn.active {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: var(--btn-text);
+    box-shadow: 0 8px 20px var(--accent-soft);
+}
+
+/* Под-гриды вкладок v2 */
+.v2-grid {
+    display: none;
+}
+
+.v2-grid.active {
+    display: block;
+}
+
+/* Расклад: левая карточка «Цены от» = 1 колонка, калькулятор справа = 2 колонки.
+   Обе панели используют .price-card — визуально как карточки прайса v1 */
+.v2-layout {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+    align-items: stretch;
+}
+
+.v2-prices {
+    grid-column: span 1;
+}
+
+.v2-calc {
+    grid-column: span 2;
+}
+
+.v2-prices-title {
+    font-size: 13px;
+    color: var(--accent-color);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1.5rem;
+}
+
+/* Группы «от»-цен слева */
+.v2-price-group {
+    margin-bottom: 1.75rem;
+}
+
+.v2-price-group:last-child {
+    margin-bottom: 0;
+}
+
+.v2-group-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 2px;
+}
+
+.v2-group-note {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+}
+
+/* Шаги калькулятора справа */
+.v2-step-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 10px;
+}
+
+.v2-step-title:not(:first-child) {
+    margin-top: 1.75rem;
+}
+
+/* Радио и чекбоксы */
+.v2-radio,
+.v2-check {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 6px 0;
+    font-size: 15px;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.v2-radio:hover,
+.v2-check:hover {
+    color: var(--text-main);
+}
+
+.v2-radio input,
+.v2-check input {
+    accent-color: var(--btn-fill);
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+/* Строка «Количество комнат / Метраж» */
+.v2-rooms {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.v2-select,
+.v2-area {
+    background: var(--card-cta-bg);
+    border: 1px solid var(--border-grid);
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    color: var(--text-main);
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.v2-select {
+    flex-grow: 1;
+    min-width: 180px;
+}
+
+.v2-area {
+    width: 110px;
+}
+
+.v2-select:focus,
+.v2-area:focus {
+    border-color: var(--accent-color);
+}
+
+.v2-or {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+/* Итоговый блок */
+.v2-total {
+    margin: 1.75rem 0 1rem;
+    padding: 1.25rem 1.5rem;
+    border-radius: 1rem;
+    background: var(--accent-soft);
+    border: 1px solid var(--border-glass);
+}
+
+.v2-total-line {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.v2-total-line span {
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+}
+
+.v2-total-line strong {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--text-main);
+    white-space: nowrap;
+}
+
+.v2-guarantee {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 8px;
+}
+
+/* Адаптивность v2 */
+@media (max-width: 1024px) {
+    .v2-layout {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .v2-calc {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 680px) {
+    .v2-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .v2-prices,
+    .v2-calc {
+        grid-column: span 1;
+    }
+
+    .v2-total-line {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+    }
+
+    .v2-total-line strong {
+        white-space: normal;
+    }
+}
