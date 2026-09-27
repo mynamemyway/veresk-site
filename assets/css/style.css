@@ -1184,7 +1184,20 @@ a {
 .v2-guarantee {
     font-size: 13px;
     color: var(--text-muted);
-    margin-top: 8px;
+    margin-top: 5px;
+}
+
+/* Отдельное поле гарантии под блоком ИТОГО — в цветовом стиле блока ИТОГО */
+.v2-guarantee-field {
+    margin: 0.5rem 0 0.75rem;
+    padding: 0.9rem 1.1rem;
+    border-radius: 1rem;
+    background: var(--accent-soft);
+    border: 1px solid var(--border-glass);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-align: center;
 }
 
 /* Адаптивность v2 */
