@@ -487,6 +487,7 @@
                   <li><span>501 – 1000 м²</span><span class="dots"></span><strong>от 30 ₽ / м²</strong></li>
                   <li><span>1001 – 3000 м²</span><span class="dots"></span><strong>от 26 ₽ / м²</strong></li>
                   <li><span>более 3000 м²</span><span class="dots"></span><strong>от 25 ₽ / м²</strong></li>
+                  <li><span>более 10000 м²</span><span class="dots"></span><strong>от 18 ₽ / м²</strong></li>
                   <li><span>Электроприборы</span><span class="dots"></span><strong>50 ₽ / м²</strong></li>
                 </ul>
               </div>
@@ -502,7 +503,7 @@
 
               <div class="v2-price-group">
                 <h4 class="v2-group-title">Участки и территории</h4>
-                <p class="v2-group-note">Открытый воздух</p>
+                <p class="v2-group-note">Открытый воздух / склады</p>
                 <ul class="price-list">
                   <li><span>От вредителей</span><span class="dots"></span><strong>от 350 ₽ / сотка</strong></li>
                 </ul>
@@ -512,13 +513,7 @@
             <!-- ПРАВАЯ СТОРОНА: КАЛЬКУЛЯТОР ДЛЯ ОРГАНИЗАЦИЙ -->
             <div class="price-card v2-calc">
               <h4 class="v2-step-title">1. Площадь помещения:</h4>
-              <select class="v2-select" id="v2-biz-range">
-                <option value="37">101 – 200 м² — 37 ₽ / м²</option>
-                <option value="34">201 – 500 м² — 34 ₽ / м²</option>
-                <option value="30">501 – 1000 м² — 30 ₽ / м²</option>
-                <option value="26">1001 – 3000 м² — 26 ₽ / м²</option>
-                <option value="25">более 3000 м² — 25 ₽ / м²</option>
-              </select>
+              <input class="v2-select" id="v2-biz-area" type="number" min="101" step="1" inputmode="numeric" placeholder="например, 150" value="150">
 
               <h4 class="v2-step-title">2. Дополнительные параметры:</h4>
               <label class="v2-check">

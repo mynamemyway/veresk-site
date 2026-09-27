@@ -109,22 +109,42 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('v2-guarantee').textContent = guarantee;
   };
 
+  const bizRates = [
+      [200, 37], [300, 36], [400, 35], [500, 34], [600, 33],
+      [700, 32], [800, 31], [900, 30], [1000, 29], [1500, 28],
+      [2000, 27], [3000, 26], [4000, 25], [5000, 24], [6000, 23],
+      [7000, 22], [8000, 21], [9000, 20], [10000, 19], [Infinity, 18],
+  ];
+
   const calcV2Biz = () => {
-      const rate = parseInt(document.getElementById('v2-biz-range').value, 10);
-      let finalRate = rate;
+      const area = parseFloat(document.getElementById('v2-biz-area').value);
+      const totalEl = document.getElementById('v2-total-biz');
+      if (!area || area < 100) {
+          totalEl.textContent = '—';
+          return;
+      }
+
+      let rate = bizRates.find(([max]) => area <= max)[1];
+      let flat = 0;
 
       document.querySelectorAll('#v2-biz input[type="checkbox"]').forEach(cb => {
-          if (cb.checked && cb.dataset.gel) finalRate = rate * 1.2;
+          if (!cb.checked) return;
+          if (cb.dataset.gel) rate = rate * 1.2;
+          if (cb.dataset.add) flat += parseInt(cb.dataset.add, 10);
       });
 
-      document.getElementById('v2-total-biz').textContent =
-          'от ' + (finalRate % 1 === 0 ? finalRate : finalRate.toFixed(1)) + ' ₽ / м²';
+      const total = Math.max(rate * area + flat, 5000);
+      const rateStr = rate % 1 === 0 ? rate : rate.toFixed(1);
+      totalEl.textContent = 'от ' + rateStr + ' ₽ / м² · ' + formatRub(total);
   };
 
   document.querySelectorAll('#v2-phys .v2-check input').forEach(el => el.addEventListener('change', calcV2Phys));
 
-  const v2BizEls = document.querySelectorAll('#v2-biz input, #v2-biz select');
-  v2BizEls.forEach(el => el.addEventListener('change', calcV2Biz));
+  const v2BizEls = document.querySelectorAll('#v2-biz input');
+  v2BizEls.forEach(el => {
+      el.addEventListener('change', calcV2Biz);
+      if (el.type === 'number') el.addEventListener('input', calcV2Biz);
+  });
   calcV2Phys();
 
 });
