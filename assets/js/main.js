@@ -101,6 +101,12 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       document.getElementById('v2-total-price').textContent = formatRub(total);
+
+      // Гарантия меняется в зависимости от типа обработки
+      const guarantee = type === 'full'
+          ? 'Гарантийное обслуживание: бесплатно в течении 6 мес'
+          : 'Гарантийное обслуживание: 50% в течении 6 мес';
+      document.getElementById('v2-guarantee').textContent = guarantee;
   };
 
   const calcV2Biz = () => {
