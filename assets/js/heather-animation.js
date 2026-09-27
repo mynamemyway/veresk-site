@@ -20,7 +20,7 @@ window.addEventListener('mouseleave', () => {
 
 // Отслеживаем скролл (усиливаем ветер при прокрутке)
 window.addEventListener('scroll', () => {
-  scrollWind = 15; // Сила наклона при скролле
+  scrollWind = 2; // Сила наклона при скролле
   clearTimeout(scrollTimeout);
   scrollTimeout = setTimeout(() => {
     scrollWind = 0;
