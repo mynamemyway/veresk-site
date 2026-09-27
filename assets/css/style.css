@@ -956,6 +956,8 @@ a {
     border-radius: 2rem;
     font-size: 15px;
     font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
     color: var(--text-main);
     font-family: 'Montserrat', sans-serif;
     cursor: pointer;
@@ -1098,6 +1100,14 @@ a {
     max-width: none;
 }
 
+/* Тонкая подпись над рядом кнопок */
+.v2-seg-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin: 0.5rem 0 0.3rem;
+}
+
 /* Доп. параметры — компактные чипы */
 .v2-extra {
     display: flex;
@@ -1196,10 +1206,8 @@ a {
     border-radius: 1rem;
     background: var(--accent-soft);
     border: 1px solid var(--border-glass);
-    font-size: 13px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    font-size: 14px;
+    font-weight: 600;
     color: var(--text-muted);
     text-align: left;
 }
