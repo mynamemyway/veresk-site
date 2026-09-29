@@ -144,7 +144,7 @@ const guarantee = once
           label.style.display = insectOnly ? '' : 'none';
       });
 
-      if (Number.isNaN(area)) {
+      if (Number.isNaN(area) || area < 0) {
           totalEl.textContent = '—';
           guaranteeEl.textContent = orderText;
           return;
@@ -165,10 +165,13 @@ const guarantee = once
           ? Math.max(2 * baseRate * area, bizPest === 'rodents' ? 10000 : 12000)
           : Math.max(baseRate * area, minOrder);
       const total = base * Math.pow(1.2, surcharges) + flat;
-      const perM2 = total / area;
-      const perM2Str = perM2 % 1 === 0 ? perM2 : perM2.toFixed(1);
+      let rateText = '₽ / м²';
+      if (area > 0) {
+          const perM2 = total / area;
+          rateText = (perM2 % 1 === 0 ? perM2 : perM2.toFixed(1)) + ' ₽ / м²';
+      }
       totalEl.textContent = formatRub(total);
-      document.getElementById('v2-biz-rate').textContent = perM2Str + ' ₽ / м²';
+      document.getElementById('v2-biz-rate').textContent = rateText;
       guaranteeEl.textContent = orderText;
   };
 
