@@ -109,9 +109,11 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('v2-total-price').textContent = formatRub(total);
 
       // Гарантия меняется в зависимости от типа обработки
-      const guarantee = type === 'full'
-          ? 'Гарантийное обслуживание: бесплатно в течение 6 мес.'
-          : 'Повторный вызов - 50% от стоимости обработки';
+      const guarantee = once
+          ? 'Без гарантийного обслуживания'
+          : type === 'full'
+              ? 'Гарантийное обслуживание: бесплатно в течение 6 мес.'
+              : 'Повторный вызов - 50% от стоимости обработки';
       document.getElementById('v2-guarantee').textContent = guarantee;
   };
 
