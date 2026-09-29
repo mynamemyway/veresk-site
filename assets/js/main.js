@@ -133,6 +133,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const minOrder = bizPest === 'rodents' ? 5000 : 6000;
       const orderText = 'мин. заказ ' + minOrder.toLocaleString('ru-RU') + ' ₽ · Гарантия по договору';
 
+      // Опции надбавок: только для насекомых
+      const insectOnly = bizPest === 'insects';
+      document.querySelectorAll('#v2-biz .v2-insect-only').forEach(label => {
+          const cb = label.querySelector('input');
+          if (!insectOnly) cb.checked = false;
+          label.style.display = insectOnly ? '' : 'none';
+      });
+
       if (Number.isNaN(area)) {
           totalEl.textContent = '—';
           guaranteeEl.textContent = orderText;
@@ -145,6 +153,8 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('#v2-biz input[type="checkbox"]').forEach(cb => {
           if (!cb.checked) return;
           if (cb.dataset.gel) rate = rate * 1.2;
+          if (cb.dataset.ceil) rate = rate * 1.2;
+          if (cb.dataset.complex) rate = rate * 1.2;
           if (cb.dataset.add) flat += parseInt(cb.dataset.add, 10);
       });
 
