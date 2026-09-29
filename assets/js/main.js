@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const minOrder = bizPest === 'rodents' ? 5000 : 6000;
       const orderText = 'мин. заказ ' + minOrder.toLocaleString('ru-RU') + ' ₽ · Гарантия по договору';
 
-      if (!area) {
+      if (Number.isNaN(area)) {
           totalEl.textContent = '—';
           guaranteeEl.textContent = orderText;
           return;
