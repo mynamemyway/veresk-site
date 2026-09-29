@@ -1072,6 +1072,11 @@ a {
     margin-top: 1.75rem;
 }
 
+/* Подпись поля площади в коммерции — точечно уменьшена */
+.v2-area-title {
+    font-size: 16.5px;
+}
+
 /* Сегментные кнопки выбора (вредитель / тип / комнаты) */
 .v2-seg {
     display: flex;
@@ -1180,7 +1185,7 @@ a {
 
 /* Итоговый блок */
 .v2-total {
-    margin: 0.75rem 0 1rem;
+    margin: auto 0 1rem;
     padding: 1rem 1.25rem;
     border-radius: 1rem;
     background: var(--accent-soft);
