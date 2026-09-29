@@ -111,9 +111,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Гарантия меняется в зависимости от типа обработки
       const guarantee = once
-          ? 'Без гарантийного обслуживания'
+          ? 'Гарантийное обслуживание: -'
           : type === 'full'
-              ? 'Гарантийное обслуживание: бесплатно в течение 6 мес.'
+              ? 'Гарантийное обслуживание: 6 месяцев'
               : 'Повторный вызов - 50% от стоимости обработки';
       document.getElementById('v2-guarantee').textContent = guarantee;
   };
@@ -133,8 +133,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const minOrder = bizPest === 'rodents' ? 5000 : 6000;
       const annual = document.querySelector('#v2-biz input[data-annual="1"]').checked;
       const orderText = annual
-          ? 'Договор на обслуживание 1 год · Гарантия по договору'
-          : 'мин. заказ ' + minOrder.toLocaleString('ru-RU') + ' ₽ · Гарантия по договору';
+          ? 'Гарантийное обслуживание: 12 месяцев'
+          : 'мин. заказ ' + minOrder.toLocaleString('ru-RU') + ' ₽';
 
       // Опции надбавок: только для насекомых
       const insectOnly = bizPest === 'insects';
@@ -181,5 +181,33 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   calcV2Phys();
   calcV2Biz();
+
+  // Выравнивание высот вкладок v2: обе панели получают общий min-height,
+  // чтобы переключение не двигало блок ни на пиксель.
+  const equalizeV2Panels = () => {
+      const panels = Array.from(document.querySelectorAll('.v2-grid'));
+      if (panels.length < 2) return;
+
+      const activeBtn = document.querySelector('.v2-tab-btn.active');
+      const activePanel = activeBtn ? document.getElementById('v2-' + activeBtn.getAttribute('data-v2')) : null;
+
+      panels.forEach(p => p.classList.add('active'));
+      const height = Math.max(...panels.map(p => p.offsetHeight));
+      panels.forEach(p => {
+          p.style.minHeight = height + 'px';
+          p.classList.remove('active');
+      });
+
+      if (activePanel) activePanel.classList.add('active');
+  };
+
+  equalizeV2Panels();
+  window.addEventListener('load', equalizeV2Panels);
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(equalizeV2Panels, 100);
+  });
 
 });
