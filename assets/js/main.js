@@ -165,8 +165,10 @@ document.addEventListener('DOMContentLoaded', () => {
           ? Math.max(2 * baseRate * area, bizPest === 'rodents' ? 10000 : 12000)
           : Math.max(baseRate * area, minOrder);
       const total = base * Math.pow(1.2, surcharges) + flat;
+      const perM2 = total / area;
+      const perM2Str = perM2 % 1 === 0 ? perM2 : perM2.toFixed(1);
       totalEl.textContent = formatRub(total);
-      document.getElementById('v2-biz-rate').textContent = baseRate + ' ₽ / м²';
+      document.getElementById('v2-biz-rate').textContent = perM2Str + ' ₽ / м²';
       guaranteeEl.textContent = orderText;
   };
 
