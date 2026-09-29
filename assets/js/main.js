@@ -150,23 +150,23 @@ document.addEventListener('DOMContentLoaded', () => {
           return;
       }
 
-      let rate = bizRates.find(([max]) => area <= max)[1];
+      let baseRate = bizRates.find(([max]) => area <= max)[1];
       let flat = 0;
+      let surcharges = 0;
 
       document.querySelectorAll('#v2-biz input[type="checkbox"]').forEach(cb => {
           if (!cb.checked) return;
-          if (cb.dataset.gel) rate = rate * 1.2;
-          if (cb.dataset.ceil) rate = rate * 1.2;
-          if (cb.dataset.complex) rate = rate * 1.2;
+          if (cb.dataset.gel || cb.dataset.ceil || cb.dataset.complex) surcharges += 1;
           if (cb.dataset.add) flat += parseInt(cb.dataset.add, 10);
       });
 
-      const total = annual
-          ? Math.max(2 * rate * area, bizPest === 'rodents' ? 10000 : 12000)
-          : Math.max(rate * area + flat, minOrder);
-      const rateStr = rate % 1 === 0 ? rate : rate.toFixed(1);
+      // Сначала базовая стоимость с полом, затем наценки опций всегда поверх
+      const base = annual
+          ? Math.max(2 * baseRate * area, bizPest === 'rodents' ? 10000 : 12000)
+          : Math.max(baseRate * area, minOrder);
+      const total = base * Math.pow(1.2, surcharges) + flat;
       totalEl.textContent = formatRub(total);
-      document.getElementById('v2-biz-rate').textContent = rateStr + ' ₽ / м²';
+      document.getElementById('v2-biz-rate').textContent = baseRate + ' ₽ / м²';
       guaranteeEl.textContent = orderText;
   };
 
