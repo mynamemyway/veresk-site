@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('v2-total-price').textContent = formatRub(total);
 
       // Гарантия меняется в зависимости от типа обработки
-      const guarantee = once
+const guarantee = once
           ? 'Гарантийное обслуживание: -'
           : type === 'full'
               ? 'Гарантийное обслуживание: 6 месяцев'

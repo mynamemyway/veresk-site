@@ -1005,6 +1005,12 @@ a {
     grid-column: span 2;
 }
 
+/* Карточки v2 контент якорим сверху — растяжение высоты не двигает блок ИТОГО */
+.v2-prices,
+.v2-calc {
+    justify-content: flex-start;
+}
+
 .v2-prices-title {
     font-size: 13px;
     color: var(--accent-color);
