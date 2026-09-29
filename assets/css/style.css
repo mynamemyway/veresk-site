@@ -1162,6 +1162,13 @@ a {
     border-color: var(--accent-color);
 }
 
+/* Поле ввода площади в коммерческом калькуляторе */
+#v2-biz-area {
+    padding: 16px 14px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
 /* Итоговый блок */
 .v2-total {
     margin: 0.75rem 0 1rem;

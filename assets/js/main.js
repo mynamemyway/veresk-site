@@ -80,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.addEventListener('click', () => {
           activateSeg(btn);
           calcV2Phys();
+          calcV2Biz();
       });
   });
 
@@ -127,8 +128,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const calcV2Biz = () => {
       const area = parseFloat(document.getElementById('v2-biz-area').value);
       const totalEl = document.getElementById('v2-total-biz');
-      if (!area || area < 100) {
+      const guaranteeEl = document.getElementById('v2-biz-guarantee');
+      const bizPest = document.querySelector('#v2-biz .v2-seg-btn[data-pest].active').getAttribute('data-pest');
+      const minOrder = bizPest === 'rodents' ? 5000 : 6000;
+      const orderText = 'мин. заказ ' + minOrder.toLocaleString('ru-RU') + ' ₽ · Гарантия по договору';
+
+      if (!area) {
           totalEl.textContent = '—';
+          guaranteeEl.textContent = orderText;
           return;
       }
 
@@ -141,9 +148,10 @@ document.addEventListener('DOMContentLoaded', () => {
           if (cb.dataset.add) flat += parseInt(cb.dataset.add, 10);
       });
 
-      const total = Math.max(rate * area + flat, 5000);
+      const total = Math.max(rate * area + flat, minOrder);
       const rateStr = rate % 1 === 0 ? rate : rate.toFixed(1);
       totalEl.textContent = 'от ' + rateStr + ' ₽ / м² · ' + formatRub(total);
+      guaranteeEl.textContent = orderText;
   };
 
   document.querySelectorAll('#v2-phys .v2-check input').forEach(el => el.addEventListener('change', calcV2Phys));
@@ -154,5 +162,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (el.type === 'number') el.addEventListener('input', calcV2Biz);
   });
   calcV2Phys();
+  calcV2Biz();
 
 });

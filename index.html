@@ -486,12 +486,12 @@
                 <h4 class="v2-group-title">Организации и ТСЖ</h4>
                 <p class="v2-group-note">По договору и безналу</p>
                 <ul class="price-list">
-                  <li><span>101 – 200 м²</span><span class="dots"></span><strong>37 ₽ / м²</strong></li>
-                  <li><span>201 – 500 м²</span><span class="dots"></span><strong>34 ₽ / м²</strong></li>
-                  <li><span>501 – 1000 м²</span><span class="dots"></span><strong>30 ₽ / м²</strong></li>
-                  <li><span>1001 – 3000 м²</span><span class="dots"></span><strong>26 ₽ / м²</strong></li>
-                  <li><span>3001 – 5000 м²</span><span class="dots"></span><strong>24 ₽ / м²</strong></li>
-                  <li><span>5001 и более м²</span><span class="dots"></span><strong>18 ₽ / м²</strong></li>
+                  <li><span>101 – 200 м²</span><span class="dots"></span><strong>от 37 ₽ / м²</strong></li>
+                  <li><span>201 – 500 м²</span><span class="dots"></span><strong>от 34 ₽ / м²</strong></li>
+                  <li><span>501 – 1000 м²</span><span class="dots"></span><strong>от 30 ₽ / м²</strong></li>
+                  <li><span>1001 – 3000 м²</span><span class="dots"></span><strong>от 26 ₽ / м²</strong></li>
+                  <li><span>3001 – 5000 м²</span><span class="dots"></span><strong>от 24 ₽ / м²</strong></li>
+                  <li><span>5001 и более м²</span><span class="dots"></span><strong>от 18 ₽ / м²</strong></li>
                   <li><span>Электроприборы</span><span class="dots"></span><strong>50 ₽ / м²</strong></li>
                 </ul>
               </div>
@@ -516,6 +516,10 @@
 
             <!-- ПРАВАЯ СТОРОНА: КАЛЬКУЛЯТОР ДЛЯ ОРГАНИЗАЦИЙ -->
             <div class="price-card v2-calc">
+              <div class="v2-seg">
+                <button type="button" class="v2-seg-btn active" data-pest="insects">Тараканы · клопы · блохи</button>
+                <button type="button" class="v2-seg-btn" data-pest="rodents">Мыши · крысы</button>
+              </div>
               <h4 class="v2-step-title">Площадь помещения / территории, м²:</h4>
               <input class="v2-select" id="v2-biz-area" type="number" min="101" step="1" inputmode="numeric" placeholder="например, 150" value="150">
 
@@ -534,7 +538,7 @@
                   <span>ИТОГО:</span>
                   <strong id="v2-total-biz">от 37 ₽ / м²</strong>
                 </div>
-                <p class="v2-guarantee">мин. заказ 5 000 ₽ · Гарантия по договору</p>
+                <p class="v2-guarantee" id="v2-biz-guarantee">мин. заказ 6 000 ₽ · Гарантия по договору</p>
               </div>
               <button class="card-btn btn-outline">Получить КП на email <i class="fa-solid fa-envelope"></i></button>
             </div>
