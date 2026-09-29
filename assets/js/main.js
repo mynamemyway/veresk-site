@@ -131,7 +131,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const guaranteeEl = document.getElementById('v2-biz-guarantee');
       const bizPest = document.querySelector('#v2-biz .v2-seg-btn[data-pest].active').getAttribute('data-pest');
       const minOrder = bizPest === 'rodents' ? 5000 : 6000;
-      const orderText = 'мин. заказ ' + minOrder.toLocaleString('ru-RU') + ' ₽ · Гарантия по договору';
+      const annual = document.querySelector('#v2-biz input[data-annual="1"]').checked;
+      const orderText = annual
+          ? 'Договор на обслуживание 1 год · Гарантия по договору'
+          : 'мин. заказ ' + minOrder.toLocaleString('ru-RU') + ' ₽ · Гарантия по договору';
 
       // Опции надбавок: только для насекомых
       const insectOnly = bizPest === 'insects';
@@ -158,7 +161,9 @@ document.addEventListener('DOMContentLoaded', () => {
           if (cb.dataset.add) flat += parseInt(cb.dataset.add, 10);
       });
 
-      const total = Math.max(rate * area + flat, minOrder);
+      const total = annual
+          ? Math.max(2 * rate * area, bizPest === 'rodents' ? 10000 : 12000)
+          : Math.max(rate * area + flat, minOrder);
       const rateStr = rate % 1 === 0 ? rate : rate.toFixed(1);
       totalEl.textContent = formatRub(total);
       document.getElementById('v2-biz-rate').textContent = rateStr + ' ₽ / м²';
