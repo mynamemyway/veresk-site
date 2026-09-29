@@ -521,24 +521,29 @@
                 <button type="button" class="v2-seg-btn" data-pest="rodents">Мыши · крысы</button>
               </div>
               <h4 class="v2-step-title">Площадь помещения / территории, м²:</h4>
-              <input class="v2-select" id="v2-biz-area" type="number" min="101" step="1" inputmode="numeric" placeholder="например, 150" value="150">
+              <input class="v2-select" id="v2-biz-area" type="number" min="101" step="1" inputmode="numeric" placeholder="100" value="0">
 
               <h4 class="v2-step-title">Дополнительные параметры:</h4>
-              <label class="v2-check">
-                <input type="checkbox" data-gel="1">
-                <span>Обработка гелем без запаха (+20%)</span>
-              </label>
-              <label class="v2-check">
-                <input type="checkbox" data-add="1500">
-                <span>Объект за пределами КАД</span>
-              </label>
+              <div class="v2-extra">
+                <label class="v2-check">
+                  <input type="checkbox" data-gel="1">
+                  <span>Обработка гелем без запаха (+20%)</span>
+                </label>
+                <label class="v2-check">
+                  <input type="checkbox" data-add="1500">
+                  <span>Объект за пределами КАД</span>
+                </label>
+              </div>
 
               <div class="v2-total">
                 <div class="v2-total-line">
                   <span>ИТОГО:</span>
-                  <strong id="v2-total-biz">от 37 ₽ / м²</strong>
+                  <strong id="v2-total-biz">6 000 ₽</strong>
                 </div>
-                <p class="v2-guarantee" id="v2-biz-guarantee">мин. заказ 6 000 ₽ · Гарантия по договору</p>
+                <div class="v2-total-sub">
+                  <p class="v2-guarantee" id="v2-biz-guarantee">мин. заказ 6 000 ₽ · Гарантия по договору</p>
+                  <span class="v2-total-rate" id="v2-biz-rate">37 ₽ / м²</span>
+                </div>
               </div>
               <button class="card-btn btn-outline">Получить КП на email <i class="fa-solid fa-envelope"></i></button>
             </div>

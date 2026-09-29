@@ -150,7 +150,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const total = Math.max(rate * area + flat, minOrder);
       const rateStr = rate % 1 === 0 ? rate : rate.toFixed(1);
-      totalEl.textContent = 'от ' + rateStr + ' ₽ / м² · ' + formatRub(total);
+      totalEl.textContent = formatRub(total);
+      document.getElementById('v2-biz-rate').textContent = rateStr + ' ₽ / м²';
       guaranteeEl.textContent = orderText;
   };
 

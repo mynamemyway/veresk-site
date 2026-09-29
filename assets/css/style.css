@@ -1206,6 +1206,25 @@ a {
     margin-top: 5px;
 }
 
+/* Строка под ИТОГО: гарантия слева, тариф справа под ценой */
+.v2-total-sub {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 5px;
+}
+
+.v2-total-sub .v2-guarantee {
+    margin-top: 0;
+}
+
+.v2-total-rate {
+    font-size: 13px;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
 /* Отдельное поле гарантии под блоком ИТОГО — в цветовом стиле блока ИТОГО */
 .v2-guarantee-field {
     margin: 0.5rem 0 0.75rem;
