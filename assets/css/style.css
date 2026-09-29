@@ -1185,6 +1185,10 @@ a {
     border-radius: 1rem;
     background: var(--accent-soft);
     border: 1px solid var(--border-glass);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 98px;
 }
 
 .v2-total-line {
