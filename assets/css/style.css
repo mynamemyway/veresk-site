@@ -18,7 +18,9 @@
 :root {
     /* Базовые цвета */
     --site-bg: radial-gradient(circle at 80% 20%, #E7E9EC 0%, #f1f5f9 100%);
-    --site-bg-glass: radial-gradient(circle at 80% 20%, rgba(231, 233, 236, 1) 0%, rgba(241, 245, 249, 0.8) 100%);
+    /* Прозрачность шапки: та же копия градиента фона, с альфой в точках цвета (0.8 = 20% просвета).
+       Настраивается ЗДЕСЬ и в --site-bg-glass внутри body.dark-theme — значения в обеих темах должны быть одинаковыми. */
+    --site-bg-glass: radial-gradient(circle at 80% 20%, rgba(231, 233, 236, 0.8) 0%, rgba(241, 245, 249, 0.8) 100%);
     --text-main: #0f172a;
     --text-muted: #475569;
     --text-light: #f8fafc;
@@ -60,7 +62,8 @@
 body.dark-theme {
     /* Базовые цвета */
     --site-bg: radial-gradient(circle at 80% 20%, #1a1c1e 0%, #0f1011 100%);
-    --site-bg-glass: radial-gradient(circle at 80% 20%, rgba(26, 28, 30, 1) 0%, rgba(15, 16, 17, 0.5) 100%);
+    /* Прозрачность шапки (тёмная тема): значения альфы держать равными светлой теме */
+    --site-bg-glass: radial-gradient(circle at 80% 20%, rgba(26, 28, 30, 0.8) 0%, rgba(15, 16, 17, 0.8) 100%);
     --text-main: #f1f5f9;
     --text-muted: #64738B;
     --text-light: #f1f5f9;
