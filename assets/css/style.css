@@ -42,6 +42,7 @@
     --border-glass: rgba(15, 23, 42, 0.08);
     --card-bg: #E4F5F5; /* #9B6FD144 #E4F5F5 */
     --card-cta-bg: #f8fafc;
+    --card-extra: #9B6FD144;
     --header-bg: transparent;
     --header-glass: rgba(241, 245, 249, 0.8);
     --line-color: #cbd5e1;
@@ -85,6 +86,7 @@ body.dark-theme {
     --border-glass: rgba(255, 255, 255, 0.08);
     --card-bg: #0F1011; /* #11908687 */
     --card-cta-bg: #141617;
+    --card-extra: #9B6FD144;
     --header-bg: transparent;
     --header-glass: rgba(15, 16, 17, 0.8);
     --line-color: rgba(255, 255, 255, 0.05);
