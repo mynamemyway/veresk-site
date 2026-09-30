@@ -264,7 +264,7 @@ a {
     position: relative;
     margin: 0 auto;
     overflow: hidden;
-    padding: 4rem 2rem;
+    padding: 5rem 2rem;
 }
 
 .global-vertical-line {
@@ -676,7 +676,7 @@ a {
     position: relative;
     margin: 0 auto;
     overflow: hidden;
-    padding: 12rem 2rem;
+    padding: 5rem 2rem;
     font-family: inherit;
 }
 
@@ -955,10 +955,7 @@ a {
    10. АЛЬТЕРНАТИВНЫЙ МОДУЛЬ РАСЧЁТА (v2) — блок для сравнения
    ========================================================================== */
 
-/* Вторая секция под калькулятором v1 */
-.v2-section {
-    padding-top: 0;
-}
+/* Вторая секция под калькулятором v1 — наследует симметричный padding calc-section (5rem) */
 
 /* Вкладки аудитории — тот же вид, что у главных табов v1 */
 .v2-tab-btn {
