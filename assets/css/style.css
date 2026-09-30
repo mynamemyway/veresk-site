@@ -1351,8 +1351,7 @@ a {
     font-family: 'Montserrat', sans-serif;
     font-size: 17px;
     font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.02em;
     color: var(--text-muted);
 }
 
