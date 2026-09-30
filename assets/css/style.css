@@ -1325,7 +1325,7 @@ a {
 }
 
 .pest-card:hover {
-    border-color: var(--accent-color);
+    border-color: var(--btn-fill);
     transform: translateY(-4px);
 }
 
