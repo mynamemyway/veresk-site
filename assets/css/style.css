@@ -1326,6 +1326,7 @@ a {
 
 .pest-card:hover {
     border-color: var(--accent-color);
+    transform: translateY(-4px);
 }
 
 .pest-icon {
@@ -1352,10 +1353,10 @@ a {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: var(--text-main);
+    color: var(--text-muted);
 }
 
-/* цвет текста на hover не меняем — остаётся --text-main */
+/* цвет текста на hover не меняем — остаётся --text-muted */
 
 /* Адаптивность каталога: планшеты 3×2, мобильные 2 колонки */
 @media (max-width: 1024px) {
