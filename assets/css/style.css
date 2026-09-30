@@ -1468,14 +1468,18 @@ a {
     color: var(--btn-fill);
 }
 
-/* Плитка как триггеры в hero: рамки на ячейках + gap */
+/* Плитка как триггеры в hero.
+   Рамку несёт каждая карточка (все 4 стороны), gap: 0 — линии образуются
+   стыком рамок соседей. Без overflow карточка свободно выходит за контур
+   на hover и раздвигает границы плитки вместо обрезки.
+   Внешнее скругление задано только на внешних углах угловых карточек,
+   поэтому внутренние разделители остаются прямыми. */
 .why-cards {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-rows: repeat(2, minmax(0, 1fr));
-    gap: 1px;
+    gap: 0;
     background-color: var(--border-grid);
-    border: 1px solid var(--border-grid);
     border-radius: var(--radius-main);
     box-shadow: var(--shadow-cta);
     /* растягиваем плитку по высоте левого блока */
@@ -1483,50 +1487,38 @@ a {
     align-self: stretch;
 }
 
-/* Скругление углов плитки переносим на ячейки, чтобы карточки свободно разъезжались наружу */
-.why-card:nth-child(1) {
-    border-radius: var(--radius-main) 0 0 0;
-}
-
-.why-card:nth-child(2) {
-    border-radius: 0 var(--radius-main) 0 0;
-}
-
-.why-card:nth-child(3) {
-    border-radius: 0 0 0 var(--radius-main);
-}
-
-.why-card:nth-child(4) {
-    border-radius: 0 0 var(--radius-main) 0;
-}
-
 .why-right {
     display: flex;
     flex-direction: column;
 }
 
+/* Рамка на самой карточке — едет вместе с ней при hover */
 .why-card {
     position: relative;
     padding: 1.75rem 1.5rem;
     background-color: var(--card-bg);
+    border: 1px solid var(--border-grid);
     display: flex;
     flex-direction: column;
     justify-content: center;
     transition: background 0.4s ease, transform 0.3s ease;
 }
 
-/* Разделители как у триггеров hero: рамка на ячейке поверх gap */
+/* Внешние углы плитки скругляем на угловых карточках */
 .why-card:nth-child(1) {
-    border-right: 1px solid var(--border-grid);
-    border-bottom: 1px solid var(--border-grid);
+    border-top-left-radius: var(--radius-main);
 }
 
 .why-card:nth-child(2) {
-    border-bottom: 1px solid var(--border-grid);
+    border-top-right-radius: var(--radius-main);
 }
 
 .why-card:nth-child(3) {
-    border-right: 1px solid var(--border-grid);
+    border-bottom-left-radius: var(--radius-main);
+}
+
+.why-card:nth-child(4) {
+    border-bottom-right-radius: var(--radius-main);
 }
 
 /* Разъезд от центра к своему углу: сдвиг 2px + минимальное увеличение */
@@ -1548,7 +1540,6 @@ a {
 
 .why-card:hover {
     background-color: var(--card-cta-bg);
-    z-index: 1;
 }
 
 .why-card-icon {
