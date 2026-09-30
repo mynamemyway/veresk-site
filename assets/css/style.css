@@ -1413,9 +1413,10 @@ a {
 }
 
 /* 12. БЛОК 4: ПОЧЕМУ МЫ */
+/* Соотношение колонок 5:7 — левая часть уже правой */
 .why-layout {
     display: grid;
-    grid-template-columns: 0.95fr 1.05fr;
+    grid-template-columns: 5fr 7fr;
     gap: 1.5rem;
     align-items: start;
 }
