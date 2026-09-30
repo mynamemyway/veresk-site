@@ -131,7 +131,8 @@ a {
     align-items: center;
     justify-content: space-between;
     padding: 0 2rem;
-    background: var(--header-bg);
+    background: var(--site-bg);
+    background-attachment: fixed;
     position: sticky;
     top: 0;
     z-index: 50;
