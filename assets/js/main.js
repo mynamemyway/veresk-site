@@ -101,10 +101,10 @@ document.addEventListener('DOMContentLoaded', () => {
           }
       });
 
-      // Разовая обработка: −50%, но не менее 3500 (насекомые) / 3000 (грызуны)
+      // Разовая обработка: −50%, но не менее 3500 (насекомые) / 2500 (грызуны)
       const once = document.querySelector('#v2-phys .v2-check input[data-once="1"]').checked;
       if (once) {
-          total = Math.max(Math.round(total * 0.5), pest === 'rodents' ? 3000 : 3500);
+          total = Math.max(Math.round(total * 0.5), pest === 'rodents' ? 2500 : 3500);
       }
 
       document.getElementById('v2-total-price').textContent = formatRub(total);
