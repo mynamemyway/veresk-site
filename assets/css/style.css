@@ -449,6 +449,10 @@ a {
     transition: background 0.4s;
 }
 
+.trigger-box:hover {
+    background-color: var(--card-cta-bg);
+}
+
 .trigger-num {
     font-size: 16px;
     font-weight: 700;
@@ -1464,59 +1468,89 @@ a {
     color: var(--btn-fill);
 }
 
+/* Плитка как триггеры в hero: разделители 1px цветом --border-grid */
 .why-cards {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
+    gap: 3px;
+    background-color: var(--border-grid);
+    border: 1px solid var(--border-grid);
+    border-radius: var(--radius-main);
+    box-shadow: var(--shadow-cta);
+}
+
+/* Скругление углов плитки переносим на ячейки, чтобы карточки свободно разъезжались наружу */
+.why-card:nth-child(1) {
+    border-radius: var(--radius-main) 0 0 0;
+}
+
+.why-card:nth-child(2) {
+    border-radius: 0 var(--radius-main) 0 0;
+}
+
+.why-card:nth-child(3) {
+    border-radius: 0 0 0 var(--radius-main);
+}
+
+.why-card:nth-child(4) {
+    border-radius: 0 0 var(--radius-main) 0;
 }
 
 .why-card {
-    padding: 1.75rem 1.5rem;
-    background: var(--card-cta-bg);
-    border: 1px solid var(--border-glass);
-    border-radius: var(--radius-main);
-    box-shadow: var(--shadow-cta);
-    transition: border-color 0.3s ease, transform 0.3s ease;
+    position: relative;
+    padding: 1.5rem;
+    background-color: var(--card-bg);
+    transition: background 0.4s ease, transform 0.3s ease;
+}
+
+/* Разъезд от центра к своему углу: сдвиг 2px + минимальное увеличение */
+.why-card:nth-child(1):hover {
+    transform: translate(-2px, -2px) scale(1.01);
+}
+
+.why-card:nth-child(2):hover {
+    transform: translate(2px, -2px) scale(1.01);
+}
+
+.why-card:nth-child(3):hover {
+    transform: translate(-2px, 2px) scale(1.01);
+}
+
+.why-card:nth-child(4):hover {
+    transform: translate(2px, 2px) scale(1.01);
 }
 
 .why-card:hover {
-    border-color: var(--btn-fill);
-    transform: translateY(-4px);
+    background-color: var(--card-cta-bg);
+    z-index: 1;
 }
 
 .why-card-icon {
     display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 46px;
-    height: 46px;
-    margin-bottom: 1rem;
-    background: var(--accent-soft);
-    border-radius: 12px;
-    color: var(--accent-color);
-    font-size: 20px;
-    transition: background 0.3s ease, color 0.3s ease;
+    margin-right: 0.4rem;
+    color: var(--accent-hover);
+    transition: color 0.4s ease;
 }
 
 .why-card:hover .why-card-icon {
-    background: var(--btn-fill);
-    color: #fff;
+    color: var(--btn-fill);
 }
 
 .why-card-title {
     margin: 0 0 0.5rem;
     font-size: 16px;
-    font-weight: 800;
+    font-weight: 700;
     color: var(--text-main);
     text-transform: uppercase;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.1em;
 }
 
 .why-card-text {
     margin: 0;
-    font-size: 14px;
-    line-height: 1.5;
+    font-size: 13px;
+    font-weight: 500;
     color: var(--text-muted);
+    line-height: 1.4;
 }
 
 .why-note {
