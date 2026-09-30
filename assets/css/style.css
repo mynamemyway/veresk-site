@@ -142,6 +142,8 @@ a {
     background-attachment: fixed;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    /*Легкая тень под шапку дает тонкую серую линию, гармонирует с вертикальной*/
+    box-shadow: 0 1px 0 rgba(15, 23, 42, 0.06), 0 6px 20px rgba(15, 23, 42, 0.06);
     position: sticky;
     top: 0;
     z-index: 50;
