@@ -764,7 +764,8 @@ a.logo-wrap:hover .logo-icon {
     background: var(--card-cta-bg);
     border: 1px solid var(--border-glass);
     padding: 0.85rem 1.75rem;
-    border-radius: 2rem;
+    /* Радиус как у главных зелёных кнопок .premium-btn — не пилюля */
+    border-radius: 0.75rem;
     font-size: 15px;
     font-weight: 600;
     text-transform: uppercase;
@@ -1002,7 +1003,8 @@ a.logo-wrap:hover .logo-icon {
     background: var(--card-cta-bg);
     border: 1px solid var(--border-glass);
     padding: 0.85rem 1.75rem;
-    border-radius: 2rem;
+    /* Радиус как у главных зелёных кнопок .premium-btn — не пилюля */
+    border-radius: 0.75rem;
     font-size: 15px;
     font-weight: 600;
     text-transform: uppercase;
