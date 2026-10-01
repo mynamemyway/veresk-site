@@ -45,6 +45,7 @@
     --border-glass: rgba(15, 23, 42, 0.08);
     --card-bg: #E4F5F5; /* #9B6FD144 #E4F5F5 */
     --card-cta-bg: #f8fafc;
+    --card-flat-bg: #e7eaee; /* плоские серые плашки (блок 5) */
     --card-extra: #9B6FD144;
     --header-bg: transparent;
     --header-glass: rgba(241, 245, 249, 0.8);
@@ -92,6 +93,7 @@ body.dark-theme {
     --border-glass: rgba(255, 255, 255, 0.08);
     --card-bg: #0F1011; /* #11908687 */
     --card-cta-bg: #141617;
+    --card-flat-bg: #212325; /* плоские серые плашки (блок 5) */
     --card-extra: #9B6FD144;
     --header-bg: transparent;
     --header-glass: rgba(15, 16, 17, 0.8);
@@ -1783,7 +1785,7 @@ a.logo-wrap:hover .logo-icon {
    -------------------------------------------------------------------------- */
 .b2b-layout {
     display: grid;
-    grid-template-columns: 5fr 7fr;
+    grid-template-columns: 6fr 6fr;
     gap: 1.5rem;
     align-items: start;
 }
@@ -1828,16 +1830,22 @@ a.logo-wrap:hover .logo-icon {
     color: var(--text-main);
 }
 
-.b2b-item::before {
-    content: '';
+/* Зелёная заливка во всю высоту с белой галочкой — тот же приём, что
+   пункты блока 4, только в фирменной зелёной гамме вместо лиловой */
+.b2b-mark {
     flex: 0 0 auto;
     width: var(--why-mark-size);
     align-self: stretch;
-    background: var(--accent-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--btn-fill);
+    color: var(--btn-text);
+    font-size: 15px;
     border-bottom-right-radius: 12px;
 }
 
-.b2b-item > span {
+.b2b-item > span:last-child {
     display: flex;
     align-items: center;
     padding: 0.75rem 1rem;
@@ -1855,38 +1863,58 @@ a.logo-wrap:hover .logo-icon {
 }
 
 .b2b-tags {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.75rem;
 }
 
+/* Плоские серые карточки, на hover белеют.
+   Углы как у плитки hero и карточек блока 4: скруглены только внешние,
+   внутренние прямые — карточки читаются как единый блок */
 .b2b-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 0.85rem 1.25rem;
-    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1.35rem 1.35rem;
+    background: var(--card-flat-bg);
     border: 1px solid var(--border-glass);
-    border-radius: 2rem;
+    border-radius: 0;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 700;
+    line-height: 1.35;
     color: var(--text-main);
-    transition: border-color 0.3s ease, color 0.3s ease;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* Внешние углы плитки. Карточек 6 в 2 колонки — это 3 ряда:
+   1 2 — верхний, 3 4 — средний, 5 6 — нижний.
+   Скруглены только 4 внешних угла, средний ряд прямой */
+.b2b-tag:nth-child(1) {
+    border-top-left-radius: var(--radius-main);
+}
+
+.b2b-tag:nth-child(2) {
+    border-top-right-radius: var(--radius-main);
+}
+
+.b2b-tag:nth-child(5) {
+    border-bottom-left-radius: var(--radius-main);
+}
+
+.b2b-tag:nth-child(6) {
+    border-bottom-right-radius: var(--radius-main);
 }
 
 .b2b-tag i {
-    color: var(--accent-color);
+    color: var(--btn-fill);
+    font-size: 18px;
     transition: color 0.3s ease;
 }
 
 .b2b-tag:hover {
+    background: var(--card-cta-bg);
     border-color: var(--btn-fill);
-    color: var(--btn-fill);
-}
-
-.b2b-tag:hover i {
-    color: var(--btn-fill);
 }
 
 /* --------------------------------------------------------------------------
@@ -1991,10 +2019,6 @@ a.logo-wrap:hover .logo-icon {
         text-align: left;
     }
 
-    .b2b-tags {
-        justify-content: flex-start;
-    }
-
     /* Лента ниже 1024px фиксированной высоты: карточки блока 3 в 3 колонки
        стали бы слишком высокими, а лента должна оставаться лентой */
     .b2b-marquee {
@@ -2026,9 +2050,38 @@ a.logo-wrap:hover .logo-icon {
         font-size: 13px;
     }
 
+    /* Карточки объектов в одну колонку — на узком экране две нечитаемы.
+       В колонке внешними становятся верхний и нижний углы */
+    .b2b-tags {
+        grid-template-columns: 1fr;
+    }
+
+    .b2b-tag {
+        border-radius: 0;
+    }
+
+    /* угловые правила сетки 2×3 в колонке не нужны */
+    .b2b-tag:nth-child(1),
+    .b2b-tag:nth-child(2),
+    .b2b-tag:nth-child(5),
+    .b2b-tag:nth-child(6) {
+        border-radius: 0;
+    }
+
+    .b2b-tag:first-child {
+        border-top-left-radius: var(--radius-main);
+        border-top-right-radius: var(--radius-main);
+    }
+
+    .b2b-tag:last-child {
+        border-bottom-left-radius: var(--radius-main);
+        border-bottom-right-radius: var(--radius-main);
+    }
+
     .b2b-tag {
         font-size: 13px;
-        padding: 0.7rem 1rem;
+        padding: 1rem 1.1rem;
+        gap: 0.6rem;
     }
 }
 
