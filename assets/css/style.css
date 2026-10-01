@@ -1672,7 +1672,9 @@ a.logo-wrap:hover .logo-icon {
     color: var(--text-main);
 }
 
-/* Продолжение поля: без своих скруглений и тени, режет контейнер */
+/* Продолжение поля: без своих скруглений и тени, режет контейнер.
+   Геометрия и высота — от .premium-btn, типографика — от зелёных
+   кнопок .card-btn (13px / 700 / uppercase / 0.05em). */
 .why-we-note-btn {
     flex: 0 0 auto;
     width: calc((((100% - 1.5rem) * 7 / 12) - var(--why-note-gap)) / 2) !important;
@@ -1680,6 +1682,11 @@ a.logo-wrap:hover .logo-icon {
     border-radius: 0 !important;
     box-shadow: none !important;
     text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 @media (max-width: 1024px) {
@@ -1687,9 +1694,21 @@ a.logo-wrap:hover .logo-icon {
         grid-template-columns: 1fr;
     }
 
-    /* Ниже 1024px колонка одна — кнопка занимает всю ширину поля */
+    /* Ниже 1024px текст и кнопка перестают делить одну строку:
+       раскладываются друг под друга, но остаются единым полем —
+       общий фон, радиус и overflow: hidden у контейнера. */
+    .why-we-note {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .why-we-note-text {
+        padding: 0.85rem 1.25rem;
+    }
+
     .why-we-note-btn {
         width: 100% !important;
+        height: 3.5rem !important;
     }
 }
 
@@ -1705,11 +1724,6 @@ a.logo-wrap:hover .logo-icon {
     /* На мобильном колонки складываются — заголовок снова влево */
     .why-we-right .why-we-title {
         text-align: left;
-    }
-
-    /* На мобильном кнопка во всю ширину, текст короче */
-    .why-we-note-btn {
-        width: 100% !important;
     }
 
     .why-we-note-text {
