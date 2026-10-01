@@ -46,9 +46,11 @@
     --card-bg: #E4F5F5; /* #9B6FD144 #E4F5F5 */
     --card-cta-bg: #f8fafc;
     --card-flat-bg: #e7eaee; /* плоские серые плашки (блок 5) */
-    /* Бледный мятный фон раскрытого/наведённого FAQ.
-       На светлой теме ровно как у карточек-триггеров в hero */
-    --faq-open-bg: #E4F5F5;
+    /* Раскрытый вопрос: белая плашка, приподнятая тенью над остальными.
+       Текст вопроса уходит в чистый чёрный — единственный цвет вне палитры */
+    --faq-open-bg: #FFFFFF;
+    --faq-open-text: #000000;
+    --faq-open-shadow: 0 14px 30px rgba(15, 23, 42, 0.20);
     --card-extra: #9B6FD144;
     --header-bg: transparent;
     --header-glass: rgba(241, 245, 249, 0.8);
@@ -97,8 +99,11 @@ body.dark-theme {
     --card-bg: #0F1011; /* #11908687 */
     --card-cta-bg: #141617;
     --card-flat-bg: #212325; /* плоские серые плашки (блок 5) */
-    /* На тёмной теме бледный мятный в hex нечитаем, поэтому тонкий мятный тинт */
-    --faq-open-bg: rgba(38, 170, 153, 0.14);
+    /* На тёмной теме плашка остаётся светлой: чёрная тень ложится на тёмный фон,
+       поэтому подъём читается так же */
+    --faq-open-bg: #F1F5F9;
+    --faq-open-text: #000000;
+    --faq-open-shadow: 0 14px 30px rgba(0, 0, 0, 0.65);
     --card-extra: #9B6FD144;
     --header-bg: transparent;
     --header-glass: rgba(15, 16, 17, 0.8);
@@ -2257,15 +2262,25 @@ a.logo-wrap:hover .logo-icon {
 }
 
 .faq-item {
+    position: relative;
     background: var(--card-flat-bg);
-    transition: background 0.35s ease;
+    box-shadow: none;
+    transition: background 0.35s ease, box-shadow 0.35s ease;
 }
 
 /* Обычное состояние — стандартный фон.
    Наведение и раскрытие — бледный мятный, как карточки-триггеры в hero */
+/* Наведение — белая плашка, раскрытие — белая плашка + тень:
+   открытый вопрос приподнимается над закрытыми */
 .faq-item:hover,
 .faq-item.is-open {
     background: var(--faq-open-bg);
+}
+
+.faq-item.is-open {
+    /* z-index нужен, чтобы тень не подрезалась соседними плашками */
+    z-index: 1;
+    box-shadow: var(--faq-open-shadow);
 }
 
 .faq-item:first-child {
@@ -2309,11 +2324,13 @@ a.logo-wrap:hover .logo-icon {
 }
 
 .faq-btn:hover {
-    color: var(--accent-color);
+    color: var(--faq-open-text);
 }
 
+/* Раскрытый вопрос играет на объёме: чёрный текст и жирнее начертание */
 .faq-item.is-open .faq-btn {
-    color: var(--accent-color);
+    color: var(--faq-open-text);
+    font-weight: 800;
 }
 
 .faq-question {
@@ -2358,7 +2375,7 @@ a.logo-wrap:hover .logo-icon {
 .faq-item.is-open .faq-plus {
     /* 135° — плюс уезжает в крестик */
     transform: rotate(135deg);
-    color: var(--accent-color);
+    color: var(--faq-open-text);
 }
 
 /* --------------------------------------------------------------------------
@@ -2384,7 +2401,8 @@ a.logo-wrap:hover .logo-icon {
     padding: 0 1.75rem 1.35rem;
     max-width: 820px;
     font-family: 'Montserrat', sans-serif;
-    font-size: 15px;
+    /* На 1px больше базовых 15px — на белом ответ не должен читаться блёклой простынёй */
+    font-size: 16px;
     font-weight: 400;
     line-height: 1.6;
     color: var(--text-muted);
@@ -2416,7 +2434,7 @@ a.logo-wrap:hover .logo-icon {
     }
 
     .faq-answer-text {
-        font-size: 14px;
+        font-size: 15px;
         padding: 0 1.25rem 1.1rem;
     }
 
