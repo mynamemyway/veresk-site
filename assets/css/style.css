@@ -1523,7 +1523,7 @@ a.logo-wrap:hover .logo-icon {
     border-radius: 12px;
     font-size: 15px;
     font-weight: 600;
-    color: var(--text-main);
+    color: var(--text-muted);
 }
 
 .why-we-mark {
