@@ -1947,8 +1947,9 @@ a.logo-wrap:hover .logo-icon {
 .b2b-marquee {
     --b2b-marquee-h: 9rem;
     margin-top: 1.5rem;
+    /* Только height: любая min-height здесь перебила бы значение из JS
+       и лента стала бы выше карточек */
     height: var(--b2b-marquee-h);
-    min-height: 9rem;
     overflow: hidden;
     background: var(--card-cta-bg);
     border: 1px solid var(--border-glass);
@@ -2050,12 +2051,6 @@ a.logo-wrap:hover .logo-icon {
     .b2b-title,
     .b2b-tags-title {
         font-size: 20px;
-    }
-
-    /* Высоту по-прежнему задаёт JS, но карточки в одну колонку
-       ниже — ленте хватает меньшей высоты */
-    .b2b-marquee {
-        min-height: 6rem;
     }
 
     /* Лента не должна создавать горизонтальную прокрутку сайта */
