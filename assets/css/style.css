@@ -1479,9 +1479,8 @@ a.logo-wrap:hover .logo-icon {
 }
 
 .why-we-step {
-    display: flex;
-    align-items: center;
-    padding: 0.75rem 1rem;
+    position: relative;
+    padding: 0.75rem 1rem 0.75rem 2.75rem;
     background: var(--card-cta-bg);
     border: 1px solid var(--border-glass);
     border-left: 3px solid var(--accent-color);
@@ -1491,11 +1490,21 @@ a.logo-wrap:hover .logo-icon {
     color: var(--text-main);
 }
 
+/* Крестик лиловым цветом — часть поля пункта, подчёркивает «плохой» пункт */
+.why-we-x {
+    position: absolute;
+    left: 0.9rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--accent-color);
+    font-size: 15px;
+}
+
 .why-we-arrow {
     display: flex;
     justify-content: center;
     padding: 0.35rem 0;
-    font-size: 12px;
+    font-size: 13px;
     color: var(--btn-fill);
 }
 
