@@ -1050,6 +1050,7 @@ a.logo-wrap:hover .logo-icon {
 
 .v2-prices {
     grid-column: span 1;
+    padding: 1.5rem;
 }
 
 .v2-calc {
@@ -1068,7 +1069,7 @@ a.logo-wrap:hover .logo-icon {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 /* --------------------------------------------------------------------------
@@ -1097,10 +1098,6 @@ a.logo-wrap:hover .logo-icon {
 }
 
 /* Компактный левый блок — плотнее стандартного .price-list */
-.v2-prices {
-    padding: 1.5rem;
-}
-
 .v2-prices .price-list {
     margin-bottom: 0.75rem;
 }
@@ -1108,10 +1105,6 @@ a.logo-wrap:hover .logo-icon {
 .v2-prices .price-list li {
     margin-bottom: 9px;
     font-size: 14px;
-}
-
-.v2-prices-title {
-    margin-bottom: 1rem;
 }
 
 /* --------------------------------------------------------------------------
@@ -1376,6 +1369,8 @@ a.logo-wrap:hover .logo-icon {
     text-decoration: none;
     transition: background 0.3s ease, border-color 0.3s ease,
                 transform 0.3s ease, box-shadow 0.3s ease;
+    /* Прижимаем содержимое к центру, чтобы карточки были ровно квадратными */
+    aspect-ratio: 1 / 1;
 }
 
 .pest-card:hover {
@@ -1390,11 +1385,6 @@ a.logo-wrap:hover .logo-icon {
 /* Калькулятор: при переходе по карточке вредителя заголовок не уезжает под липкий header */
 .v2-section {
     scroll-margin-top: 90px;
-}
-
-/* Прижимаем содержимое к центру, чтобы карточки были ровно квадратными */
-.pest-card {
-    aspect-ratio: 1 / 1;
 }
 
 .pest-icon {
@@ -1515,17 +1505,10 @@ a.logo-wrap:hover .logo-icon {
     margin: 0;
     padding: 0;
     list-style: none;
-}
-
-/* --------------------------------------------------------------------------
-   Левая часть: цепочка проблем
-   -------------------------------------------------------------------------- */
-
-/* Лиловая заливка слева по всей высоте поля пункта, ширина = высота.
-   Размер задан явно: при align-items: stretch высота строки неопределима,
-   поэтому aspect-ratio считал квадрат по контенту иконки.
-   --why-mark-size вынесен на цепочку, чтобы стрелки целились в центр заливки. */
-.why-we-chain {
+    /* Лиловая заливка слева по всей высоте поля пункта, ширина = высота.
+       Размер задан явно: при align-items: stretch высота строки неопределима,
+       поэтому aspect-ratio считал квадрат по контенту иконки.
+       Переменная живёт на цепочке, чтобы стрелки целились в центр заливки. */
     --why-mark-size: 3.25rem;
 }
 
