@@ -46,6 +46,9 @@
     --card-bg: #E4F5F5; /* #9B6FD144 #E4F5F5 */
     --card-cta-bg: #f8fafc;
     --card-flat-bg: #e7eaee; /* плоские серые плашки (блок 5) */
+    /* Бледный мятный фон раскрытого/наведённого FAQ.
+       На светлой теме ровно как у карточек-триггеров в hero */
+    --faq-open-bg: #E4F5F5;
     --card-extra: #9B6FD144;
     --header-bg: transparent;
     --header-glass: rgba(241, 245, 249, 0.8);
@@ -94,6 +97,8 @@ body.dark-theme {
     --card-bg: #0F1011; /* #11908687 */
     --card-cta-bg: #141617;
     --card-flat-bg: #212325; /* плоские серые плашки (блок 5) */
+    /* На тёмной теме бледный мятный в hex нечитаем, поэтому тонкий мятный тинт */
+    --faq-open-bg: rgba(38, 170, 153, 0.14);
     --card-extra: #9B6FD144;
     --header-bg: transparent;
     --header-glass: rgba(15, 16, 17, 0.8);
@@ -2223,5 +2228,218 @@ a.logo-wrap:hover .logo-icon {
 @media (prefers-reduced-motion: reduce) {
     .b2b-marquee-track {
         animation: none;
+    }
+}
+
+/* ==========================================================================
+   14. БЛОК 6: FAQ
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Секция
+   -------------------------------------------------------------------------- */
+
+/* при переходе по ссылке «Вопросы» заголовок не уезжает под липкий header */
+.faq-section {
+    scroll-margin-top: 90px;
+}
+
+/* --------------------------------------------------------------------------
+   Монолитный стек: 4 вопроса в один блок, между ними тонкий шов.
+   Скруглены только внешние углы — верхние у первого, нижние у последнего.
+   Стек всегда в одну колонку, поэтому правила углов не пересчитываются
+   -------------------------------------------------------------------------- */
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    /* Тонкий внутренний зазор — как у плиток .why-we-cards и .b2b-tags */
+    gap: 3px;
+}
+
+.faq-item {
+    background: var(--card-flat-bg);
+    transition: background 0.35s ease;
+}
+
+/* Обычное состояние — стандартный фон.
+   Наведение и раскрытие — бледный мятный, как карточки-триггеры в hero */
+.faq-item:hover,
+.faq-item.is-open {
+    background: var(--faq-open-bg);
+}
+
+.faq-item:first-child {
+    border-top-left-radius: var(--radius-main);
+    border-top-right-radius: var(--radius-main);
+}
+
+.faq-item:last-child {
+    border-bottom-left-radius: var(--radius-main);
+    border-bottom-right-radius: var(--radius-main);
+}
+
+/* --------------------------------------------------------------------------
+   Заголовок-вопрос: кнопка на всю ширину, плюс справа
+   -------------------------------------------------------------------------- */
+
+.faq-heading {
+    margin: 0;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+.faq-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    width: 100%;
+    padding: 1.25rem 1.75rem;
+    background: transparent;
+    border: 0;
+    /* Текст вопроса строчными — без text-transform uppercase */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.4;
+    text-align: left;
+    color: var(--text-main);
+    cursor: pointer;
+    transition: color 0.25s ease;
+}
+
+.faq-btn:hover {
+    color: var(--accent-color);
+}
+
+.faq-item.is-open .faq-btn {
+    color: var(--accent-color);
+}
+
+.faq-question {
+    min-width: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Иконка «+» из двух тонких линий. Поворотом превращается в «✕»
+   -------------------------------------------------------------------------- */
+.faq-plus {
+    position: relative;
+    flex: 0 0 auto;
+    width: 18px;
+    height: 18px;
+    color: var(--text-muted);
+    transition: transform 0.35s ease, color 0.25s ease;
+}
+
+.faq-plus::before,
+.faq-plus::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: currentColor;
+    /* Тонкая контурная линия, а не заливка */
+    border-radius: 1px;
+}
+
+.faq-plus::before {
+    width: 14px;
+    height: 1.5px;
+    transform: translate(-50%, -50%);
+}
+
+.faq-plus::after {
+    width: 1.5px;
+    height: 14px;
+    transform: translate(-50%, -50%);
+}
+
+.faq-item.is-open .faq-plus {
+    /* 135° — плюс уезжает в крестик */
+    transform: rotate(135deg);
+    color: var(--accent-color);
+}
+
+/* --------------------------------------------------------------------------
+   Ответ. Раскрытие на grid-template-rows: 0fr → 1fr,
+   поэтому высота анимируется плавно на любом объёме текста
+   -------------------------------------------------------------------------- */
+.faq-answer {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s ease;
+}
+
+.faq-item.is-open .faq-answer {
+    grid-template-rows: 1fr;
+}
+
+.faq-answer-inner {
+    overflow: hidden;
+}
+
+.faq-answer-text {
+    margin: 0;
+    padding: 0 1.75rem 1.35rem;
+    max-width: 820px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Адаптивность
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1024px) {
+    .faq-btn {
+        font-size: 16px;
+        padding: 1.15rem 1.5rem;
+    }
+
+    .faq-answer-text {
+        padding: 0 1.5rem 1.25rem;
+    }
+}
+
+@media (max-width: 600px) {
+    /* Размер заголовка секции (.calc-title) общий для всех блоков —
+       его уже сбивает правило на 680px, здесь не трогаем */
+
+    .faq-btn {
+        font-size: 15px;
+        padding: 1rem 1.25rem;
+        gap: 1rem;
+    }
+
+    .faq-answer-text {
+        font-size: 14px;
+        padding: 0 1.25rem 1.1rem;
+    }
+
+    .faq-plus {
+        width: 16px;
+        height: 16px;
+    }
+
+    .faq-plus::before {
+        width: 12px;
+    }
+
+    .faq-plus::after {
+        height: 12px;
+    }
+}
+
+/* Уважаем системную настройку «уменьшить движение» */
+@media (prefers-reduced-motion: reduce) {
+    .faq-item,
+    .faq-btn,
+    .faq-plus,
+    .faq-answer {
+        transition: none;
     }
 }

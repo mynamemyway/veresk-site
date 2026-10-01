@@ -269,4 +269,27 @@ const guarantee = once
       });
   });
 
+  // Блок 6: FAQ-аккордеон.
+  // Класс .is-open и aria-expanded ставит JS, а раскрытие и поворот
+  // плюса в крестик анимируются на CSS (grid-template-rows, transform).
+  document.querySelectorAll('.faq-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+          const item = btn.closest('.faq-item');
+          if (!item) return;
+
+          const willOpen = !item.classList.contains('is-open');
+
+          // Аккордеон: одновременно открыт только один вопрос
+          item.parentElement.querySelectorAll('.faq-item.is-open').forEach(other => {
+              if (other === item) return;
+              other.classList.remove('is-open');
+              const otherBtn = other.querySelector('.faq-btn');
+              if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+          });
+
+          item.classList.toggle('is-open', willOpen);
+          btn.setAttribute('aria-expanded', String(willOpen));
+      });
+  });
+
 });
