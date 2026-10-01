@@ -1809,9 +1809,10 @@ a.logo-wrap:hover .logo-icon {
     letter-spacing: -0.02em;
 }
 
+/* Строка во всю ширину контейнера перед бегущей лентой: */
 .b2b-lead {
-    margin: 0 0 1.75rem;
-    font-size: 16px;
+    margin: 1.75rem 0 1rem;
+    font-size: 14px;
     line-height: 1.5;
     color: var(--text-muted);
 }
