@@ -1475,7 +1475,6 @@ a {
     grid-template-rows: repeat(2, minmax(0, 1fr));
     gap: 3px;
     border-radius: var(--radius-main);
-    box-shadow: var(--shadow-cta);
     /* растягиваем плитку по высоте левого блока */
     flex: 1;
     align-self: stretch;
@@ -1490,10 +1489,12 @@ a {
     position: relative;
     padding: 1.75rem 1.5rem;
     background-color: var(--card-bg);
+    box-shadow: var(--shadow-cta);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    transition: background 0.4s ease, transform 0.3s ease;
+    transition: background 0.4s ease, transform 0.3s ease,
+                box-shadow 0.3s ease;
 }
 
 /* Внешние углы плитки скругляем на угловых карточках */
@@ -1516,18 +1517,22 @@ a {
 /* Разъезд от центра к своему углу: сдвиг 2px + минимальное увеличение */
 .why-card:nth-child(1):hover {
     transform: translate(-2px, -2px) scale(1.01);
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.12);
 }
 
 .why-card:nth-child(2):hover {
     transform: translate(2px, -2px) scale(1.01);
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.12);
 }
 
 .why-card:nth-child(3):hover {
     transform: translate(-2px, 2px) scale(1.01);
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.12);
 }
 
 .why-card:nth-child(4):hover {
     transform: translate(2px, 2px) scale(1.01);
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.12);
 }
 
 .why-card:hover {
