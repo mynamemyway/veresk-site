@@ -1382,6 +1382,7 @@ a.logo-wrap:hover .logo-icon {
     transform: translateY(-4px);
 }
 
+
 /* --------------------------------------------------------------------------
    Карточка: квадрат, иконка, подпись
    -------------------------------------------------------------------------- */
@@ -1598,7 +1599,11 @@ a.logo-wrap:hover .logo-icon {
                 box-shadow 0.3s ease;
 }
 
-/* Внешние углы плитки скругляем на угловых карточках */
+/* Внешние углы плитки скругляем на угловых карточках.
+   Сетка 2×2: 1 — левый верхний, 2 — правый верхний,
+   3 — левый нижний, 4 — правый нижний.
+   Ниже 600px сетка становится 1×4, и углы пересчитываются
+   в соответствующем медиазапросе. */
 .why-we-card:nth-child(1) {
     border-top-left-radius: var(--radius-main);
 }
@@ -1753,6 +1758,28 @@ a.logo-wrap:hover .logo-icon {
 @media (max-width: 600px) {
     .why-we-cards {
         grid-template-columns: 1fr;
+    }
+
+    /* Сетка перекомповалась в 1×4, поэтому правила углов для 2×2
+       больше не подходят: карточка 2 получила бы скругление справа
+       посередине, а третья — снизу вхолостую. Обнуляем и заново
+       скругляем только верх первой и низ последней карточки */
+    .why-we-card,
+    .why-we-card:nth-child(1),
+    .why-we-card:nth-child(2),
+    .why-we-card:nth-child(3),
+    .why-we-card:nth-child(4) {
+        border-radius: 0;
+    }
+
+    .why-we-card:nth-child(1) {
+        border-top-left-radius: var(--radius-main);
+        border-top-right-radius: var(--radius-main);
+    }
+
+    .why-we-card:nth-child(4) {
+        border-bottom-left-radius: var(--radius-main);
+        border-bottom-right-radius: var(--radius-main);
     }
 
     .why-we-title {
