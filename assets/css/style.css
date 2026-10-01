@@ -156,6 +156,22 @@ a {
     position: relative;
     display: flex;
     flex-direction: column;
+    text-decoration: none;
+}
+
+/* Логотип кликабельный — убираем подчёркивание и добавляем курсор */
+a.logo-wrap:hover .logo-main,
+a.logo-wrap:focus-visible .logo-main {
+    color: var(--btn-fill);
+}
+
+a.logo-wrap .logo-icon {
+    transition: transform 0.35s ease, color 0.35s ease;
+}
+
+a.logo-wrap:hover .logo-icon {
+    transform: rotate(-12deg) scale(1.1);
+    color: var(--btn-fill);
 }
 
 .logo-main {
@@ -167,11 +183,13 @@ a {
     display: inline-flex;
     align-items: center;
     gap: 0.55rem;
+    transition: color 0.3s ease;
 }
 
 .logo-icon {
     display: inline-flex;
     color: var(--accent-color);
+    transition: transform 0.35s ease, color 0.35s ease;
 }
 
 .logo-sub {
@@ -267,6 +285,8 @@ a {
     margin: 0 auto;
     overflow: hidden;
     padding: 5rem 2rem;
+    /* при переходе по логотипу hero не уезжает под липкий header */
+    scroll-margin-top: 90px;
 }
 
 .global-vertical-line {
