@@ -2361,6 +2361,11 @@ a.logo-wrap:hover .logo-icon {
     border-radius: 1px;
 }
 
+/* Наведение на вопрос — плюс становится фирменным зелёным */
+.faq-btn:hover .faq-plus {
+    color: var(--btn-fill);
+}
+
 .faq-plus::before {
     width: 14px;
     height: 1.5px;
