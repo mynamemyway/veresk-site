@@ -49,7 +49,6 @@
     /* Раскрытый вопрос: белая плашка, приподнятая тенью над остальными.
        Текст вопроса уходит в чистый чёрный — единственный цвет вне палитры */
     --faq-open-bg: #FFFFFF;
-    --faq-open-text: #000000;
     --faq-open-shadow: 0 14px 30px rgba(15, 23, 42, 0.20);
     --card-extra: #9B6FD144;
     --header-bg: transparent;
@@ -102,7 +101,6 @@ body.dark-theme {
     /* На тёмной теме плашка остаётся светлой: чёрная тень ложится на тёмный фон,
        поэтому подъём читается так же */
     --faq-open-bg: #F1F5F9;
-    --faq-open-text: #000000;
     --faq-open-shadow: 0 14px 30px rgba(0, 0, 0, 0.65);
     --card-extra: #9B6FD144;
     --header-bg: transparent;
@@ -2318,18 +2316,21 @@ a.logo-wrap:hover .logo-icon {
     font-weight: 700;
     line-height: 1.4;
     text-align: left;
-    color: var(--text-main);
+    /* Закрытый вопрос приглушён фирменным muted — как подписи на сайте */
+    color: var(--text-muted);
     cursor: pointer;
     transition: color 0.25s ease;
 }
 
 .faq-btn:hover {
-    color: var(--faq-open-text);
+    color: var(--text-main);
 }
 
-/* Раскрытый вопрос играет на объёме: чёрный текст и жирнее начертание */
+/* Раскрытый вопрос: светлеет текст и плашка целиком, плюс жирнее.
+   Цвет тот же тёмный, что у заголовков секций (--text-main),
+   оттенков кроме фирменных muted/main в палитре нет */
 .faq-item.is-open .faq-btn {
-    color: var(--faq-open-text);
+    color: var(--text-main);
     font-weight: 800;
 }
 
@@ -2375,7 +2376,6 @@ a.logo-wrap:hover .logo-icon {
 .faq-item.is-open .faq-plus {
     /* 135° — плюс уезжает в крестик */
     transform: rotate(135deg);
-    color: var(--faq-open-text);
 }
 
 /* --------------------------------------------------------------------------
