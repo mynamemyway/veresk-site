@@ -1365,7 +1365,7 @@ a.logo-wrap:hover .logo-icon {
     gap: 0.55rem;
     padding: 1.5rem 0.85rem;
     background: var(--card-cta-bg);
-    border: 1px solid var(--border-glass);
+    border: 0px solid var(--border-glass);
     border-radius: var(--radius-main);
     box-shadow: var(--shadow-cta);
     text-decoration: none;
@@ -1933,7 +1933,7 @@ a.logo-wrap:hover .logo-icon {
 
 .b2b-tag:hover {
     background: var(--card-cta-bg);
-    border-color: var(--btn-fill);
+    border-color: var(--border-glass);
 }
 
 /* --------------------------------------------------------------------------
@@ -2019,6 +2019,17 @@ a.logo-wrap:hover .logo-icon {
 .b2b-brand-icon svg {
     width: 100%;
     height: 100%;
+}
+
+/* Монограмма вместо иконки — например NF у NEVSKY FILTER.
+   Та же рамка 28×28, что и у svg, чтобы знаки не прыгали по высоте */
+.b2b-brand-monogram {
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
 }
 
 .b2b-brand-name {
