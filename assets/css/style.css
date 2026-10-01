@@ -1764,3 +1764,277 @@ a.logo-wrap:hover .logo-icon {
         font-size: 14px;
     }
 }
+
+/* ==========================================================================
+   13. БЛОК 5: ДЛЯ БИЗНЕСА И ЮРИДИЧЕСКИХ ЛИЦ
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Секция
+   -------------------------------------------------------------------------- */
+
+/* при переходе по ссылке «Для бизнеса» заголовок не уезжает под липкий header */
+.b2b-section {
+    scroll-margin-top: 90px;
+}
+
+/* --------------------------------------------------------------------------
+   Верхний ярус: условия работы слева, типы объектов справа
+   -------------------------------------------------------------------------- */
+.b2b-layout {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.b2b-title {
+    margin: 0 0 1rem;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--text-main);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+}
+
+.b2b-lead {
+    margin: 0 0 1.75rem;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--text-muted);
+}
+
+/* Список условий — те же высокие поля с лиловой заливкой, что и пункты блока 4 */
+.b2b-list {
+    --why-mark-size: 3.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.b2b-item {
+    display: flex;
+    align-items: stretch;
+    min-height: var(--why-mark-size);
+    overflow: hidden;
+    background: var(--card-cta-bg);
+    border: 1px solid var(--border-glass);
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.b2b-item::before {
+    content: '';
+    flex: 0 0 auto;
+    width: var(--why-mark-size);
+    align-self: stretch;
+    background: var(--accent-color);
+    border-bottom-right-radius: 12px;
+}
+
+.b2b-item > span {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+}
+
+/* Контурные плашки-теги с типами объектов */
+.b2b-tags-title {
+    margin: 0 0 1rem;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--text-main);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    text-align: right;
+}
+
+.b2b-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.75rem;
+}
+
+.b2b-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.85rem 1.25rem;
+    background: transparent;
+    border: 1px solid var(--border-glass);
+    border-radius: 2rem;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-main);
+    transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.b2b-tag i {
+    color: var(--accent-color);
+    transition: color 0.3s ease;
+}
+
+.b2b-tag:hover {
+    border-color: var(--btn-fill);
+    color: var(--btn-fill);
+}
+
+.b2b-tag:hover i {
+    color: var(--btn-fill);
+}
+
+/* --------------------------------------------------------------------------
+   Нижний ярус: бесконечная бегущая строка с клиентами
+   -------------------------------------------------------------------------- */
+
+/* Высота = ширина карточки вредителя в блоке 3 (та же формула сетки 6 колонок) */
+.b2b-marquee {
+    margin-top: 1.5rem;
+    height: calc((min(1200px, 100vw - 4rem) - 5rem) / 6);
+    min-height: 9rem;
+    overflow: hidden;
+    background: var(--card-cta-bg);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-main);
+    display: flex;
+    align-items: center;
+}
+
+/* Два одинаковых набора подряд + сдвиг ровно на 50% = бесшовный цикл */
+.b2b-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: b2b-scroll 55s linear infinite;
+}
+
+.b2b-marquee:hover .b2b-marquee-track {
+    animation-play-state: paused;
+}
+
+@keyframes b2b-scroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.b2b-marquee-group {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    margin: 0;
+    padding: 0 1.5rem;
+    list-style: none;
+}
+
+/* Логотипы строго монохромные: цвет приглушённого текста, без заливки */
+.b2b-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--text-muted);
+    opacity: 0.75;
+    transition: opacity 0.4s ease;
+    white-space: nowrap;
+}
+
+.b2b-brand:hover {
+    opacity: 1;
+}
+
+.b2b-brand-wordmark {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.b2b-brand-icon {
+    display: inline-flex;
+    width: 28px;
+    height: 28px;
+}
+
+.b2b-brand-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.b2b-brand-name {
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+/* --------------------------------------------------------------------------
+   Адаптивность блока
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+    /* Колонки складываются в стек */
+    .b2b-layout {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    /* Заголовок и теги встают влево — как в блоке 4 на мобильном */
+    .b2b-tags-title {
+        text-align: left;
+    }
+
+    .b2b-tags {
+        justify-content: flex-start;
+    }
+
+    /* Лента ниже 1024px фиксированной высоты: карточки блока 3 в 3 колонки
+       стали бы слишком высокими, а лента должна оставаться лентой */
+    .b2b-marquee {
+        height: 12rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .b2b-title,
+    .b2b-tags-title {
+        font-size: 20px;
+    }
+
+    .b2b-marquee {
+        height: 9rem;
+    }
+
+    /* Лента не должна создавать горизонтальную прокрутку сайта */
+    .b2b-marquee-group {
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+
+    .b2b-brand-wordmark {
+        font-size: 18px;
+    }
+
+    .b2b-brand-name {
+        font-size: 13px;
+    }
+
+    .b2b-tag {
+        font-size: 13px;
+        padding: 0.7rem 1rem;
+    }
+}
+
+/* Уважаем системную настройку «уменьшить движение» */
+@media (prefers-reduced-motion: reduce) {
+    .b2b-marquee-track {
+        animation: none;
+    }
+}
