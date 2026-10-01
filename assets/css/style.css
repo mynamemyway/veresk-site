@@ -1505,6 +1505,8 @@ a.logo-wrap:hover .logo-icon {
     background: var(--accent-color);
     color: var(--btn-text);
     font-size: 15px;
+    /* нижний правый угол заливки зеркалит нижний левый (его даёт clip пункта) */
+    border-bottom-right-radius: 12px;
 }
 
 .why-we-text {
