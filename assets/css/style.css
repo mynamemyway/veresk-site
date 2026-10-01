@@ -1368,7 +1368,8 @@ a.logo-wrap:hover .logo-icon {
     padding: 1.5rem 0.85rem;
     background: var(--card-cta-bg);
     border: 0px solid var(--border-glass);
-    border-radius: var(--radius-main);
+    /* Плитка: по умолчанию углы прямые, скругления ставятся точечно ниже */
+    border-radius: 0;
     box-shadow: var(--shadow-cta);
     text-decoration: none;
     transition: background 0.3s ease, border-color 0.3s ease,
@@ -1380,6 +1381,26 @@ a.logo-wrap:hover .logo-icon {
 .pest-card:hover {
     border-color: var(--btn-fill);
     transform: translateY(-4px);
+}
+
+/* --------------------------------------------------------------------------
+   Плитка: скруглены только внешние углы сетки, внутренние стыки прямые.
+   Сетка перекомпонуется, поэтому правила пересчитаны для каждой раскладки:
+   десктоп 6×1, планшет 3×2, мобильные 2×3. В каждом медиазапросе углы
+   сначала обнуляются — иначе правила прошлого брейкпоинта наследуются
+   дальше по каскаду.
+   -------------------------------------------------------------------------- */
+
+/* Десктоп 6×1: один ряд, скруглены только левый край первой
+   и правый край последней карточки */
+.pest-card:nth-child(1) {
+    border-top-left-radius: var(--radius-main);
+    border-bottom-left-radius: var(--radius-main);
+}
+
+.pest-card:nth-child(6) {
+    border-top-right-radius: var(--radius-main);
+    border-bottom-right-radius: var(--radius-main);
 }
 
 
@@ -1461,6 +1482,37 @@ a.logo-wrap:hover .logo-icon {
     .pest-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
+
+    /* 3 колонки × 2 ряда, ряд идёт построчно: 1–3 верхний, 4–6 нижний */
+    .pest-card,
+    .pest-card:nth-child(1),
+    .pest-card:nth-child(2),
+    .pest-card:nth-child(3),
+    .pest-card:nth-child(4),
+    .pest-card:nth-child(5),
+    .pest-card:nth-child(6) {
+        border-radius: 0;
+    }
+
+    /* Верхний ряд */
+    .pest-card:nth-child(1) {
+        border-top-left-radius: var(--radius-main);
+    }
+
+    .pest-card:nth-child(2),
+    .pest-card:nth-child(3) {
+        border-top-right-radius: var(--radius-main);
+    }
+
+    /* Нижний ряд: 4 — левый внешний, 5 — внутренний стык (прямой),
+       6 — правый внешний */
+    .pest-card:nth-child(4) {
+        border-bottom-left-radius: var(--radius-main);
+    }
+
+    .pest-card:nth-child(6) {
+        border-bottom-right-radius: var(--radius-main);
+    }
 }
 
 @media (max-width: 600px) {
@@ -1470,6 +1522,34 @@ a.logo-wrap:hover .logo-icon {
 
     .pest-card {
         padding: 1.4rem 0.75rem;
+    }
+
+    /* 2 колонки × 3 ряда: 1–2 верхний ряд, 5–6 нижний.
+       Карточки 3 и 4 — внутренние стыки, углы прямые */
+    .pest-card,
+    .pest-card:nth-child(1),
+    .pest-card:nth-child(2),
+    .pest-card:nth-child(3),
+    .pest-card:nth-child(4),
+    .pest-card:nth-child(5),
+    .pest-card:nth-child(6) {
+        border-radius: 0;
+    }
+
+    .pest-card:nth-child(1) {
+        border-top-left-radius: var(--radius-main);
+    }
+
+    .pest-card:nth-child(2) {
+        border-top-right-radius: var(--radius-main);
+    }
+
+    .pest-card:nth-child(5) {
+        border-bottom-left-radius: var(--radius-main);
+    }
+
+    .pest-card:nth-child(6) {
+        border-bottom-right-radius: var(--radius-main);
     }
 }
 
