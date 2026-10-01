@@ -1494,12 +1494,12 @@ a.logo-wrap:hover .logo-icon {
         border-radius: 0;
     }
 
-    /* Верхний ряд */
+    /* Верхний ряд: 1 — левый внешний угол, 2 — внутренний стык
+       (острый), 3 — правый внешний */
     .pest-card:nth-child(1) {
         border-top-left-radius: var(--radius-main);
     }
 
-    .pest-card:nth-child(2),
     .pest-card:nth-child(3) {
         border-top-right-radius: var(--radius-main);
     }
@@ -1516,40 +1516,34 @@ a.logo-wrap:hover .logo-icon {
 }
 
 @media (max-width: 600px) {
+    /* Три колонки и на телефоне — карточки были слишком крупными.
+       Раскладка совпадает с планшетной, поэтому правила углов из
+       медиазапроса на 1024px продолжают работать и здесь. */
     .pest-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.75rem;
     }
 
+    /* Квадрат 1:1 на такой ширине невозможен: иконка с подписью не
+       помещаются в 93px. Отпускаем высоту под содержимое — внутри
+       ряда карточки всё равно выравниваются по самой высокой */
     .pest-card {
-        padding: 1.4rem 0.75rem;
+        padding: 0.75rem 0.5rem;
+        gap: 0.4rem;
+        aspect-ratio: auto;
     }
 
-    /* 2 колонки × 3 ряда: 1–2 верхний ряд, 5–6 нижний.
-       Карточки 3 и 4 — внутренние стыки, углы прямые */
-    .pest-card,
-    .pest-card:nth-child(1),
-    .pest-card:nth-child(2),
-    .pest-card:nth-child(3),
-    .pest-card:nth-child(4),
-    .pest-card:nth-child(5),
-    .pest-card:nth-child(6) {
-        border-radius: 0;
+    .pest-icon {
+        width: 32px;
+        height: 32px;
     }
 
-    .pest-card:nth-child(1) {
-        border-top-left-radius: var(--radius-main);
+    .pest-name {
+        font-size: 14px;
     }
 
-    .pest-card:nth-child(2) {
-        border-top-right-radius: var(--radius-main);
-    }
-
-    .pest-card:nth-child(5) {
-        border-bottom-left-radius: var(--radius-main);
-    }
-
-    .pest-card:nth-child(6) {
-        border-bottom-right-radius: var(--radius-main);
+    .pest-sub {
+        font-size: 11px;
     }
 }
 
