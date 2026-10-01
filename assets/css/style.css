@@ -1478,26 +1478,39 @@ a.logo-wrap:hover .logo-icon {
     list-style: none;
 }
 
+/* Лиловая заливка слева по всей высоте поля пункта, ширина = высота.
+   Размер задан явно: при align-items: stretch высота строки неопределима,
+   поэтому aspect-ratio считал квадрат по контенту иконки */
 .why-we-step {
-    position: relative;
-    padding: 0.75rem 1rem 0.75rem 2.75rem;
+    --why-mark-size: 3.25rem;
+    display: flex;
+    align-items: stretch;
+    min-height: var(--why-mark-size);
+    overflow: hidden;
     background: var(--card-cta-bg);
     border: 1px solid var(--border-glass);
-    border-left: 3px solid var(--accent-color);
     border-radius: 12px;
     font-size: 15px;
     font-weight: 600;
     color: var(--text-main);
 }
 
-/* Крестик лиловым цветом — часть поля пункта, подчёркивает «плохой» пункт */
-.why-we-x {
-    position: absolute;
-    left: 0.9rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--accent-color);
+.why-we-mark {
+    flex: 0 0 auto;
+    width: var(--why-mark-size);
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-color);
+    color: var(--btn-text);
     font-size: 15px;
+}
+
+.why-we-text {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
 }
 
 .why-we-arrow {
@@ -1505,7 +1518,7 @@ a.logo-wrap:hover .logo-icon {
     justify-content: center;
     padding: 0.35rem 0;
     font-size: 13px;
-    color: var(--btn-fill);
+    color: var(--accent-color);
 }
 
 /* Серая окантовка плитки убрана: между карточками и по краям — просто фон */
