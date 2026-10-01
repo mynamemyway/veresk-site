@@ -1418,14 +1418,14 @@ a {
 
 /* 12. БЛОК 4: ПОЧЕМУ МЫ */
 /* Соотношение колонок 5:7 — левая часть уже правой */
-.why-layout {
+.why-we-layout {
     display: grid;
     grid-template-columns: 5fr 7fr;
     gap: 1.5rem;
     align-items: stretch;
 }
 
-.why-title {
+.why-we-title {
     margin: 0 0 1rem;
     font-size: 32px;
     font-weight: 800;
@@ -1434,20 +1434,20 @@ a {
     letter-spacing: -0.02em;
 }
 
-.why-lead {
+.why-we-lead {
     margin: 0 0 1.75rem;
     font-size: 16px;
     line-height: 1.5;
     color: var(--text-muted);
 }
 
-.why-chain {
+.why-we-chain {
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-.why-step {
+.why-we-step {
     display: flex;
     align-items: center;
     padding: 0.75rem 1rem;
@@ -1460,7 +1460,7 @@ a {
     color: var(--text-main);
 }
 
-.why-arrow {
+.why-we-arrow {
     display: flex;
     justify-content: center;
     padding: 0.35rem 0;
@@ -1469,7 +1469,7 @@ a {
 }
 
 /* Серая окантовка плитки убрана: между карточками и по краям — просто фон */
-.why-cards {
+.why-we-cards {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-rows: repeat(2, minmax(0, 1fr));
@@ -1480,12 +1480,12 @@ a {
     align-self: stretch;
 }
 
-.why-right {
+.why-we-right {
     display: flex;
     flex-direction: column;
 }
 
-.why-card {
+.why-we-card {
     position: relative;
     padding: 1.75rem 1.5rem;
     background-color: var(--card-bg);
@@ -1498,59 +1498,59 @@ a {
 }
 
 /* Внешние углы плитки скругляем на угловых карточках */
-.why-card:nth-child(1) {
+.why-we-card:nth-child(1) {
     border-top-left-radius: var(--radius-main);
 }
 
-.why-card:nth-child(2) {
+.why-we-card:nth-child(2) {
     border-top-right-radius: var(--radius-main);
 }
 
-.why-card:nth-child(3) {
+.why-we-card:nth-child(3) {
     border-bottom-left-radius: var(--radius-main);
 }
 
-.why-card:nth-child(4) {
+.why-we-card:nth-child(4) {
     border-bottom-right-radius: var(--radius-main);
 }
 
 /* Разъезд от центра к своему углу: сдвиг 2px + минимальное увеличение */
-.why-card:nth-child(1):hover {
+.why-we-card:nth-child(1):hover {
     transform: translate(-2px, -2px) scale(1.01);
     box-shadow: 0 10px 28px rgba(15, 23, 42, 0.12);
 }
 
-.why-card:nth-child(2):hover {
+.why-we-card:nth-child(2):hover {
     transform: translate(2px, -2px) scale(1.01);
     box-shadow: 0 10px 28px rgba(15, 23, 42, 0.12);
 }
 
-.why-card:nth-child(3):hover {
+.why-we-card:nth-child(3):hover {
     transform: translate(-2px, 2px) scale(1.01);
     box-shadow: 0 10px 28px rgba(15, 23, 42, 0.12);
 }
 
-.why-card:nth-child(4):hover {
+.why-we-card:nth-child(4):hover {
     transform: translate(2px, 2px) scale(1.01);
     box-shadow: 0 10px 28px rgba(15, 23, 42, 0.12);
 }
 
-.why-card:hover {
+.why-we-card:hover {
     background-color: var(--card-cta-bg);
 }
 
-.why-card-icon {
+.why-we-card-icon {
     display: inline-flex;
     margin-right: 0.4rem;
     color: var(--accent-color);
     transition: color 0.4s ease;
 }
 
-.why-card:hover .why-card-icon {
+.why-we-card:hover .why-we-card-icon {
     color: var(--btn-fill);
 }
 
-.why-card-title {
+.why-we-card-title {
     margin: 0 0 0.5rem;
     font-size: 16px;
     font-weight: 700;
@@ -1559,7 +1559,7 @@ a {
     letter-spacing: 0.1em;
 }
 
-.why-card-text {
+.why-we-card-text {
     margin: 0;
     font-size: 13px;
     font-weight: 500;
@@ -1567,7 +1567,7 @@ a {
     line-height: 1.4;
 }
 
-.why-note {
+.why-we-note {
     margin: 1.5rem 0 0;
     padding: 1.1rem 1.4rem;
     background: var(--accent-soft);
@@ -1580,17 +1580,17 @@ a {
 }
 
 @media (max-width: 1024px) {
-    .why-layout {
+    .why-we-layout {
         grid-template-columns: 1fr;
     }
 }
 
 @media (max-width: 600px) {
-    .why-cards {
+    .why-we-cards {
         grid-template-columns: 1fr;
     }
 
-    .why-title {
+    .why-we-title {
         font-size: 26px;
     }
 }
