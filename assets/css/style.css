@@ -1787,7 +1787,7 @@ a.logo-wrap:hover .logo-icon {
    содержимое каждой распределяется поровну (см .b2b-left / .b2b-right) */
 .b2b-layout {
     display: grid;
-    grid-template-columns: 5fr 7fr;
+    grid-template-columns: 6fr 6fr;
     gap: 1.5rem;
     align-items: stretch;
 }
@@ -1841,7 +1841,7 @@ a.logo-wrap:hover .logo-icon {
     border-radius: 12px;
     font-size: 15px;
     font-weight: 600;
-    color: var(--text-main);
+    color: var(--text-muted);
 }
 
 /* Зелёная заливка во всю высоту с белой галочкой — тот же приём, что
@@ -1939,10 +1939,14 @@ a.logo-wrap:hover .logo-icon {
    Нижний ярус: бесконечная бегущая строка с клиентами
    -------------------------------------------------------------------------- */
 
-/* Высота = ширина карточки вредителя в блоке 3 (та же формула сетки 6 колонок) */
+/* Высота ленты = высота одной карточки объекта справа.
+   Точное значение подставляет JS (main.js) в --b2b-marquee-h,
+   потому что карточки тянутся флексом и в CSS не выводятся.
+   --b2b-marquee-h-fallback нужен, пока скрипт не отработал. */
 .b2b-marquee {
+    --b2b-marquee-h: 9rem;
     margin-top: 1.5rem;
-    height: calc((min(1200px, 100vw - 4rem) - 5rem) / 6);
+    height: var(--b2b-marquee-h);
     min-height: 9rem;
     overflow: hidden;
     background: var(--card-cta-bg);
@@ -2037,11 +2041,8 @@ a.logo-wrap:hover .logo-icon {
         text-align: left;
     }
 
-    /* Лента ниже 1024px фиксированной высоты: карточки блока 3 в 3 колонки
-       стали бы слишком высокими, а лента должна оставаться лентой */
-    .b2b-marquee {
-        height: 12rem;
-    }
+    /* Высоту ленты задаёт JS по карточке объекта — на планшете
+       колонки в стеке, и формула в rem тут не нужна */
 }
 
 @media (max-width: 600px) {
@@ -2050,8 +2051,10 @@ a.logo-wrap:hover .logo-icon {
         font-size: 20px;
     }
 
+    /* Высоту по-прежнему задаёт JS, но карточки в одну колонку
+       ниже — ленте хватает меньшей высоты */
     .b2b-marquee {
-        height: 9rem;
+        min-height: 6rem;
     }
 
     /* Лента не должна создавать горизонтальную прокрутку сайта */

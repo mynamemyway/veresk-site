@@ -213,6 +213,32 @@ const guarantee = once
       resizeTimer = setTimeout(equalizeV2Panels, 100);
   });
 
+  // Высота бегущей ленты = высота одной карточки объекта справа.
+  // Карточки тянутся флексом/гридом, их высота в CSS не выводится —
+  // поэтому меряем в JS и отдаём ленте через --b2b-marquee-h.
+  const b2bTag = document.querySelector('.b2b-tag');
+  const b2bMarquee = document.querySelector('.b2b-marquee');
+
+  if (b2bTag && b2bMarquee) {
+      const syncMarqueeHeight = () => {
+          const h = b2bTag.getBoundingClientRect().height;
+          if (h > 0) {
+              b2bMarquee.style.setProperty('--b2b-marquee-h', `${h}px`);
+          }
+      };
+
+      syncMarqueeHeight();
+      // Наблюдаем за сеткой карточек: её высота меняется при ресайзе,
+      // смене темы (шрифты/метрики) и переносах текста
+      if ('ResizeObserver' in window) {
+          const ro = new ResizeObserver(syncMarqueeHeight);
+          ro.observe(b2bTag);
+      } else {
+          window.addEventListener('resize', syncMarqueeHeight);
+          window.addEventListener('load', syncMarqueeHeight);
+      }
+  }
+
   // Переход по карточке вредителя: скролл к калькулятору и автовыбор
   // вкладки «Тараканы · клопы · блохи» или «Мыши · крысы».
   // Вкладку аудитории не трогаем — сохраняем последнее состояние клиента.
