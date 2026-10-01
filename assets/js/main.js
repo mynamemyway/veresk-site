@@ -213,4 +213,34 @@ const guarantee = once
       resizeTimer = setTimeout(equalizeV2Panels, 100);
   });
 
+  // Переход по карточке вредителя: скролл к калькулятору и автовыбор
+  // вкладки «Тараканы · клопы · блохи» или «Мыши · крысы».
+  // Вкладку аудитории не трогаем — сохраняем последнее состояние клиента.
+  // Переключаем вредителя в той панели, которая сейчас открыта у клиента.
+  document.querySelectorAll('.pest-card[data-pest-target]').forEach(card => {
+      card.addEventListener('click', (e) => {
+          e.preventDefault();
+
+          const pest = card.getAttribute('data-pest-target');
+
+          // Активная вкладка аудитории: phys или biz
+          const activeTab = document.querySelector('.v2-tab-btn.active');
+          const audience = activeTab ? activeTab.getAttribute('data-v2') : 'phys';
+          const panel = document.getElementById('v2-' + audience);
+
+          const btn = panel
+              ? panel.querySelector('.v2-seg-btn[data-pest="' + pest + '"]')
+              : null;
+          if (!btn) return;
+
+          activateSeg(btn);
+          calcV2Phys();
+          calcV2Biz();
+          equalizeV2Panels();
+
+          const calc = document.getElementById('calculator');
+          if (calc) calc.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+  });
+
 });

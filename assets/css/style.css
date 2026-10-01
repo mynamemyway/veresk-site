@@ -1359,6 +1359,11 @@ a.logo-wrap:hover .logo-icon {
     transform: translateY(-4px);
 }
 
+/* Калькулятор: при переходе по карточке вредителя заголовок не уезжает под липкий header */
+.v2-section {
+    scroll-margin-top: 90px;
+}
+
 /* Прижимаем содержимое к центру, чтобы карточки были ровно квадратными */
 .pest-card {
     aspect-ratio: 1 / 1;
