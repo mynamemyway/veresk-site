@@ -37,6 +37,9 @@
     --btn-fill: #24AA99;
     --btn-push: #0F766E;
 
+    /* Логотип в шапке: на светлой теме уходим в тёмно-зелёный как у кнопок */
+    --logo-hover: #0F766E;
+
     /* Конструкция сетки */
     --border-grid: #E3E7EA;
     --border-glass: rgba(15, 23, 42, 0.08);
@@ -80,6 +83,9 @@ body.dark-theme {
     --btn-text-push: #ffffff;
     --btn-fill: #26AA99;
     --btn-push: #0f766e;
+
+    /* На тёмной теме логотип светлеет — оставляем мятный */
+    --logo-hover: #26AA99;
 
     /* Конструкция сетки */
     --border-grid: rgba(255, 255, 255, 0.08);
@@ -162,7 +168,7 @@ a {
 /* Логотип кликабельный — убираем подчёркивание и добавляем курсор */
 a.logo-wrap:hover .logo-main,
 a.logo-wrap:focus-visible .logo-main {
-    color: var(--btn-fill);
+    color: var(--logo-hover);
 }
 
 a.logo-wrap .logo-icon {
@@ -171,7 +177,7 @@ a.logo-wrap .logo-icon {
 
 a.logo-wrap:hover .logo-icon {
     transform: rotate(-12deg) scale(1.1);
-    color: var(--btn-fill);
+    color: var(--logo-hover);
 }
 
 .logo-main {
