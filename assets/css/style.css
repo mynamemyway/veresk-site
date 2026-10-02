@@ -2659,7 +2659,9 @@ body.dark-theme .yandex-score {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--accent-hover);
+    /* Лиловый --accent-color, а не мятный --accent-hover: в тёмной теме
+       --accent-hover уходит в #0f766e и на тёмном фоне почти не читается */
+    color: var(--accent-color);
     margin-bottom: 0.6rem;
 }
 
