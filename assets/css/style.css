@@ -2266,7 +2266,10 @@ a.logo-wrap:hover .logo-icon {
 .faq-item {
     position: relative;
     background: var(--card-flat-bg);
-    border: 1px solid var(--border-glass);
+    /* Одна рамка на странице: --border-grid у триггеров в hero и карточек
+       «Наши решения». --border-glass отличается от него только альфой,
+       в тёмной теме значения совпадают */
+    border: 1px solid var(--border-grid);
     box-shadow: none;
     transition: background 0.35s ease, box-shadow 0.35s ease;
 }
