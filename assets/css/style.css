@@ -56,7 +56,7 @@
     /* Раскрытый вопрос: белая плашка, приподнятая тенью над остальными.
        Текст вопроса уходит в чистый чёрный — единственный цвет вне палитры */
     --faq-open-bg: #FFFFFF;
-    --faq-open-shadow: 0 14px 30px rgba(15, 23, 42, 0.20);
+    --shadow-active: 0 14px 30px rgba(15, 23, 42, 0.20);
     --card-extra: #9B6FD144;
     --header-bg: transparent;
     --header-glass: rgba(241, 245, 249, 0.8);
@@ -109,7 +109,7 @@ body.dark-theme {
        серая --card-flat-bg темнеет, а белый --text-main на ней читается.
        Светлая плашка тут не годится — белый текст на ней слипается */
     --faq-open-bg: var(--card-cta-bg);
-    --faq-open-shadow: 0 14px 30px rgba(0, 0, 0, 0.65);
+    --shadow-active: 0 14px 30px rgba(0, 0, 0, 0.65);
     --card-extra: #9B6FD144;
     --header-bg: transparent;
     --header-glass: rgba(15, 16, 17, 0.8);
@@ -1697,10 +1697,8 @@ a.logo-wrap:hover .logo-icon {
     position: relative;
     padding: 1.75rem 1.5rem;
     background-color: var(--card-bg);
-    /* Рамка на самой карточке, а не на плитке: карточки разъезжаются по
-       углам на ховере, и общая окантовка разрезалась бы движением */
-    border: 1px solid var(--border-glass);
-    /* Токен, а не зашитое значение: светлая и тёмная темы различаются альфой */
+    /* Рамка на самой карточке, Токен как у триггеров в hero */
+    border: 1px solid var(--border-grid);
     box-shadow: var(--shadow-cta);
     display: flex;
     flex-direction: column;
@@ -2285,7 +2283,7 @@ a.logo-wrap:hover .logo-icon {
 .faq-item.is-open {
     /* z-index нужен, чтобы тень не подрезалась соседними плашками */
     z-index: 1;
-    box-shadow: var(--faq-open-shadow);
+    box-shadow: var(--shadow-active);
 }
 
 .faq-item:first-child {
