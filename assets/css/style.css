@@ -1863,6 +1863,13 @@ a.logo-wrap:hover .logo-icon {
         grid-template-columns: 1fr;
     }
 
+    /* В одну колонку разъезда по углам нет: все карточки одинаково
+       сдвигаются влево на те же 2px. Селектор с двумя классами перебивает
+       базовые :nth-child(1..4):hover — специфичность та же, правило ниже */
+    .why-we-cards .why-we-card:hover {
+        transform: translate(-2px, 0) scale(1.01);
+    }
+
     /* Сетка 1×4, скругляем верх первой и низ последней */
     .why-we-card,
     .why-we-card:nth-child(1),
