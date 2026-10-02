@@ -874,10 +874,16 @@
       <div class="calc-container">
 
         <div class="calc-header reviews-header">
-          <div class="reviews-head">
 
-            <h2 class="calc-title">Отзывы наших клиентов</h2>
-            <p class="calc-subtitle">Помогли более <span class="reviews-num">20000</span> клиентам</p>
+          <h2 class="calc-title">Отзывы наших клиентов</h2>
+          <p class="calc-subtitle">Помогли более <span class="reviews-num">20 000</span> клиентам</p>
+
+          <!-- Плашка рейтинга по центру полосы, навигация у её правого края.
+               Три колонки 1fr auto 1fr: центральная auto держит плашку ровно
+               посередине, а пустая первая колонка уравновешивает навигацию
+               в третьей. align-items:center поднимает кнопки на уровень
+               середины плашки, а не её низа -->
+          <div class="reviews-meta">
 
             <div class="yandex-rating-badge reviews-rating">
               <div class="yandex-rating-top">
@@ -894,15 +900,15 @@
               <div class="yandex-rating-bottom">Рейтинг организации в Яндексе</div>
             </div>
 
-          </div>
+            <div class="reviews-nav">
+              <button class="reviews-nav-btn" type="button" data-reviews-prev aria-label="Предыдущий отзыв">
+                <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+              </button>
+              <button class="reviews-nav-btn" type="button" data-reviews-next aria-label="Следующий отзыв">
+                <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+              </button>
+            </div>
 
-          <div class="reviews-nav">
-            <button class="reviews-nav-btn" type="button" data-reviews-prev aria-label="Предыдущий отзыв">
-              <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
-            </button>
-            <button class="reviews-nav-btn" type="button" data-reviews-next aria-label="Следующий отзыв">
-              <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
-            </button>
           </div>
 
         </div>
