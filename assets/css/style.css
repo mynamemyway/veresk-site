@@ -2511,7 +2511,7 @@ a.logo-wrap:hover .logo-icon {
    filter на родителе применяется ко всему поддереву, включая сам iframe.
    Светлее и без серости делает .geo-map-tint — тонкая подложка поверх */
 .geo-map-frame {
-    filter: grayscale(0.4) brightness(1.0);
+    filter: grayscale(0.3) brightness(1.0);
 }
 
 /* В тёмной теме карта остаётся светлой, поэтому гасим её сильнее */
