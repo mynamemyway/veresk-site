@@ -117,7 +117,7 @@ body.dark-theme {
 
     /* Оригинальные глубокие, но мягкие тени с большим размытием */
     --shadow-img: 0 20px 40px rgba(0, 0, 0, 0.3);
-    --shadow-cta: 0 30px 60px rgba(0, 0, 0, 0.4);
+    --shadow-cta: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
 }
 
 /* ==========================================================================
@@ -1403,8 +1403,11 @@ a.logo-wrap:hover .logo-icon {
     border-radius: 0;
     box-shadow: var(--shadow-cta);
     text-decoration: none;
+    /* box-shadow из переходов убран намеренно: тень постоянная, а её
+       переход давал задержку при уходе курсора — пятно зависало на
+       прежней карточке, пока соседние тени перекрывали друг друга */
     transition: background 0.3s ease, border-color 0.3s ease,
-                transform 0.3s ease, box-shadow 0.3s ease;
+                transform 0.3s ease;
 }
 
 .pest-card:hover {
