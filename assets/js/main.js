@@ -330,9 +330,51 @@ const guarantee = once
       reviewsPrev.addEventListener('click', () => moveReviews(-1));
       reviewsNext.addEventListener('click', () => moveReviews(1));
 
-      reviewsTrack.addEventListener('scroll', syncReviewsNav, { passive: true });
-      window.addEventListener('resize', syncReviewsNav);
+      // Скругление по краям окна, а не по краям массива: находим первую
+      // карточку, чей правый край ещё внутри окна, и последнюю, чей левый
+      // край ещё внутри. На экране четыре карточки из пяти, так что у
+      // правого края стоит не последняя, и :last-child не подходит.
+      const markReviewEdges = () => {
+          const cards = Array.from(reviewsTrack.querySelectorAll('.review-card'));
+          if (!cards.length) return;
+
+          const box = reviewsTrack.getBoundingClientRect();
+          let start = -1;
+          let end = -1;
+
+          cards.forEach((card, i) => {
+              const rect = card.getBoundingClientRect();
+              // +1px терпимости: карточка ровно встык с краем окна
+              if (start === -1 && rect.right > box.left + 1) start = i;
+              if (rect.left < box.right - 1) end = i;
+          });
+
+          cards.forEach((card, i) => {
+              card.classList.toggle('is-edge-start', i === start);
+              card.classList.toggle('is-edge-end', i === end);
+          });
+      };
+
+      // Скролл приходит на каждый кадр, а разметка перечитывает геометрию
+      // всех карточек — сворачиваем в один пересчёт на кадр
+      let reviewFrameQueued = false;
+      const queueReviewSync = () => {
+          if (reviewFrameQueued) return;
+          reviewFrameQueued = true;
+          requestAnimationFrame(() => {
+              reviewFrameQueued = false;
+              syncReviewsNav();
+              markReviewEdges();
+          });
+      };
+
+      reviewsTrack.addEventListener('scroll', queueReviewSync, { passive: true });
+      window.addEventListener('resize', queueReviewSync);
+
+      // Класс снимает запасной вариант со :first-child и :last-child
+      reviewsTrack.classList.add('is-ready');
       syncReviewsNav();
+      markReviewEdges();
   }
 
 });

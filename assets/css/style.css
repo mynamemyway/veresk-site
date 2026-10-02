@@ -2617,13 +2617,34 @@ body.dark-theme .yandex-score {
     box-shadow: none;
 }
 
-/* Плитка: скруглены только внешние углы ленты, внутренние стыки прямые */
-.review-card:first-child {
+/* --------------------------------------------------------------------------
+   Плитка: скруглены только внешние углы, внутренние стыки прямые.
+   Скругление вешается на те карточки, что сейчас стоят у краёв окна ленты,
+   а не на первую и последнюю в массиве: на экране одновременно видны четыре
+   карточки из пяти, поэтому у правого края окна почти всегда стоит не
+   последняя карточка, и привязка к :last-child оставляла правый угол
+   прямым. Классы .is-edge-start / .is-edge-end ставит JS.
+
+   Пока JS не отработал (или отвалился), действует запасной вариант с
+   :first-child и :last-child — при scrollLeft = 0, то есть при загрузке,
+   это как раз и есть видимые края. Класс .is-ready на ленте гасит его.
+   -------------------------------------------------------------------------- */
+.reviews-track:not(.is-ready) .review-card:first-child {
     border-top-left-radius: var(--radius-main);
     border-bottom-left-radius: var(--radius-main);
 }
 
-.review-card:last-child {
+.reviews-track:not(.is-ready) .review-card:last-child {
+    border-top-right-radius: var(--radius-main);
+    border-bottom-right-radius: var(--radius-main);
+}
+
+.review-card.is-edge-start {
+    border-top-left-radius: var(--radius-main);
+    border-bottom-left-radius: var(--radius-main);
+}
+
+.review-card.is-edge-end {
     border-top-right-radius: var(--radius-main);
     border-bottom-right-radius: var(--radius-main);
 }
