@@ -1087,7 +1087,6 @@ a.logo-wrap:hover .logo-icon {
     grid-column: span 2;
 }
 
-/* Карточки v2 контент якорим сверху — растяжение высоты не двигает блок ИТОГО */
 .v2-prices,
 .v2-calc {
     justify-content: flex-start;
@@ -1268,6 +1267,8 @@ a.logo-wrap:hover .logo-icon {
    -------------------------------------------------------------------------- */
 
 .v2-total {
+    /* auto прижимает итог к низу карточки, чтобы он не прыгал
+       при смене вкладки с бо́льшим числом опций */
     margin: auto 0 1rem;
     padding: 1rem 1.25rem;
     border-radius: 1rem;
@@ -1292,6 +1293,7 @@ a.logo-wrap:hover .logo-icon {
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--text-muted);
+    white-space: nowrap;
 }
 
 .v2-total-line strong {
@@ -1362,15 +1364,14 @@ a.logo-wrap:hover .logo-icon {
     .v2-calc {
         grid-column: span 1;
     }
+}
 
-    .v2-total-line {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.25rem;
-    }
-
+/* Одна строка «ИТОГО» + суммы должна держаться на всех ширинах,
+   поэтому на узких экранах уменьшаем кегль, а не ломаем строку */
+@media (max-width: 520px) {
+    .v2-total-line span,
     .v2-total-line strong {
-        white-space: normal;
+        font-size: 18px;
     }
 }
 

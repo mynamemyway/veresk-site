@@ -194,7 +194,13 @@ const guarantee = once
       const activeBtn = document.querySelector('.v2-tab-btn.active');
       const activePanel = activeBtn ? document.getElementById('v2-' + activeBtn.getAttribute('data-v2')) : null;
 
-      panels.forEach(p => p.classList.add('active'));
+      // Без сброса меряем прошлую зафиксированную высоту, и на ресайзе
+      // min-height растёт по нарастающей
+      panels.forEach(p => {
+          p.style.minHeight = '';
+          p.classList.add('active');
+      });
+
       const height = Math.max(...panels.map(p => p.offsetHeight));
       panels.forEach(p => {
           p.style.minHeight = height + 'px';
