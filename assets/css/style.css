@@ -474,7 +474,7 @@ a.logo-wrap:hover .logo-icon {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-rows: repeat(2, minmax(0, 1fr));
-    gap: 1px;
+    gap: 2px;
     background-color: var(--border-grid);
     border: 1px solid var(--border-grid);
     border-radius: var(--radius-main);
@@ -1681,6 +1681,7 @@ a.logo-wrap:hover .logo-icon {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-rows: repeat(2, minmax(0, 1fr));
     gap: 3px;
+    /*border: 1px solid var(--border-glass);*/
     border-radius: var(--radius-main);
     /* растягиваем плитку по высоте левого блока */
     flex: 1;
@@ -1711,18 +1712,22 @@ a.logo-wrap:hover .logo-icon {
    в соответствующем медиазапросе. */
 .why-we-card:nth-child(1) {
     border-top-left-radius: var(--radius-main);
+    border: 1px solid var(--border-glass);
 }
 
 .why-we-card:nth-child(2) {
     border-top-right-radius: var(--radius-main);
+    border: 1px solid var(--border-glass);
 }
 
 .why-we-card:nth-child(3) {
     border-bottom-left-radius: var(--radius-main);
+    border: 1px solid var(--border-glass);
 }
 
 .why-we-card:nth-child(4) {
     border-bottom-right-radius: var(--radius-main);
+    border: 1px solid var(--border-glass);
 }
 
 /* Разъезд от центра к своему углу: сдвиг 2px + минимальное увеличение */
