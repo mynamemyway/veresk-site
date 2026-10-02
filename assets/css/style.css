@@ -1393,7 +1393,7 @@ a.logo-wrap:hover .logo-icon {
     gap: 0.55rem;
     padding: 1.5rem 0.85rem;
     background: var(--card-cta-bg);
-    border: 0px solid var(--border-glass);
+    border: 1px solid var(--border-glass);
     /* Плитка: по умолчанию углы прямые, скругления ставятся точечно ниже */
     border-radius: 0;
     box-shadow: var(--shadow-cta);
@@ -1405,7 +1405,7 @@ a.logo-wrap:hover .logo-icon {
 }
 
 .pest-card:hover {
-    border-color: var(--btn-fill);
+    border-color: var(--border-glass);
     transform: translateY(-4px);
 }
 
@@ -1669,7 +1669,7 @@ a.logo-wrap:hover .logo-icon {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-rows: repeat(2, minmax(0, 1fr));
-    gap: 3px;
+    gap: 2px;
     border-radius: var(--radius-main);
     /* растягиваем плитку по высоте левого блока */
     flex: 1;
@@ -1805,9 +1805,7 @@ a.logo-wrap:hover .logo-icon {
     color: var(--text-main);
 }
 
-/* Продолжение поля: без своих скруглений и тени, режет контейнер.
-   Геометрия и высота — от .premium-btn, типографика — от зелёных
-   кнопок .card-btn (13px / 700 / uppercase / 0.05em). */
+/* Продолжение поля: без своих скруглений и тени, режет контейнер */
 .why-we-note-btn {
     flex: 0 0 auto;
     width: calc((((100% - 1.5rem) * 7 / 12) - var(--why-note-gap)) / 2) !important;
@@ -1854,10 +1852,7 @@ a.logo-wrap:hover .logo-icon {
         grid-template-columns: 1fr;
     }
 
-    /* Сетка перекомповалась в 1×4, поэтому правила углов для 2×2
-       больше не подходят: карточка 2 получила бы скругление справа
-       посередине, а третья — снизу вхолостую. Обнуляем и заново
-       скругляем только верх первой и низ последней карточки */
+    /* Сетка 1×4, скругляем верх первой и низ последней */
     .why-we-card,
     .why-we-card:nth-child(1),
     .why-we-card:nth-child(2),
@@ -1897,8 +1892,7 @@ a.logo-wrap:hover .logo-icon {
 /* --------------------------------------------------------------------------
    Верхний ярус: условия работы слева, типы объектов справа
    -------------------------------------------------------------------------- */
-/* align-items: stretch — колонки выравниваются по общей высоте,
-   содержимое каждой распределяется поровну (см .b2b-left / .b2b-right) */
+/* align-items: stretch — колонки выравниваются по общей высоте */
 .b2b-layout {
     display: grid;
     grid-template-columns: 6fr 6fr;
@@ -1931,9 +1925,7 @@ a.logo-wrap:hover .logo-icon {
     color: var(--text-muted);
 }
 
-/* Список условий — те же высокие поля с лиловой заливкой, что и пункты блока 4 */
-/* Список растягивается на остаток высоты колонки, поля делят её поровну —
-   на два левых поля приходится один ряд карточек справа */
+/* Список условий */
 .b2b-list {
     --why-mark-size: 3.5rem;
     margin: 0;
@@ -1959,8 +1951,7 @@ a.logo-wrap:hover .logo-icon {
     color: var(--text-muted);
 }
 
-/* Зелёная заливка во всю высоту с белой галочкой — тот же приём, что
-   пункты блока 4, только в фирменной зелёной гамме вместо лиловой */
+/* Зелёная заливка во всю высоту с белой галочкой */
 .b2b-mark {
     flex: 0 0 auto;
     width: var(--why-mark-size);
@@ -1997,13 +1988,11 @@ a.logo-wrap:hover .logo-icon {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-rows: repeat(3, minmax(0, 1fr));
     flex: 1 1 auto;
-    /* Зазор как у плитки .why-we-cards — карточки читаются единым блоком */
-    gap: 3px;
+    gap: 2px;
 }
 
 /* Плоские серые карточки, на hover белеют.
-   Углы как у плитки hero и карточек блока 4: скруглены только внешние,
-   внутренние прямые — карточки читаются как единый блок */
+   Углы скруглены только внешние, внутренние прямые — читаются как единый блок */
 .b2b-tag {
     display: flex;
     flex-direction: column;
@@ -2256,6 +2245,7 @@ a.logo-wrap:hover .logo-icon {
 .faq-item {
     position: relative;
     background: var(--card-flat-bg);
+    border: 1px solid var(--border-glass);
     box-shadow: none;
     transition: background 0.35s ease, box-shadow 0.35s ease;
 }
