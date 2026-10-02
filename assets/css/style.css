@@ -2002,8 +2002,8 @@ a.logo-wrap:hover .logo-icon {
     background: var(--card-flat-bg);
     border: 1px solid var(--border-glass);
     border-radius: 0;
-    /* Тень как у карточек .why-we-card */
-    /*box-shadow: 0 10px 28px rgba(15, 23, 42, 0.12);*/
+    /* Тень как у карточек триггеров в hero */
+    /*box-shadow: var(--shadow-cta);*/
     font-size: 14px;
     font-weight: 700;
     line-height: 1.35;
