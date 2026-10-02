@@ -680,6 +680,15 @@ body.dark-theme .yandex-score {
    8. АДАПТИВНОСТЬ
    ========================================================================== */
 
+/* Шестой пункт в шапке расширил навигацию. .premium-nav центрирована
+   абсолютно, поэтому растёт в обе стороны и на средних ширинах пункты
+   начинают наезжать на логотип и правый блок управления — зазор сжимается */
+@media (max-width: 1400px) {
+    .premium-nav {
+        gap: 2rem;
+    }
+}
+
 /* Планшеты и нетбуки */
 @media (max-width: 1200px) {
     .premium-nav {
@@ -2527,8 +2536,12 @@ body.dark-theme .yandex-score {
     margin-bottom: 0;
 }
 
-/* Навигация слайдера — по форме фирменных кнопок: тот же радиус
-   0.75rem и мятная заливка, только квадратная и компактная */
+/* Навигация слайдера.
+   Размер — середина между двумя существующими: вкладка прайса .mini-tab-btn
+   это ~32px, главная кнопка .premium-btn 3.5rem = 56px. Ставим 2.75rem = 44px,
+   точная середина, и общий радиус 0.75rem как у фирменных кнопок.
+   Вид — контурный, как кнопка КП на email (.btn-outline): без заливки,
+   мятная обводка, заливка появляется на наведении */
 .reviews-nav {
     display: flex;
     gap: 0.5rem;
@@ -2537,22 +2550,25 @@ body.dark-theme .yandex-score {
 }
 
 .reviews-nav-btn {
-    width: 3rem;
-    height: 3rem;
+    width: 2.75rem;
+    height: 2.75rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--btn-fill);
-    color: var(--btn-text-push);
-    border: none;
+    background: transparent;
+    border: 2px solid var(--btn-fill);
+    color: var(--btn-fill);
     border-radius: 0.75rem;
     font-size: 14px;
     cursor: pointer;
-    transition: background 0.2s ease, opacity 0.2s ease;
+    transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease,
+                opacity 0.2s ease;
 }
 
 .reviews-nav-btn:hover:not(:disabled) {
-    background: var(--btn-push);
+    background: var(--btn-fill);
+    color: var(--btn-text-push);
+    box-shadow: 0 8px 16px var(--accent-soft);
 }
 
 .reviews-nav-btn:disabled {
@@ -2567,7 +2583,11 @@ body.dark-theme .yandex-score {
    -------------------------------------------------------------------------- */
 .reviews-track {
     display: flex;
-    gap: 8px;
+    /* Тонкий стык, а не зазор: при 8px между плитками просвечивал серый фон
+       страницы, и мягкая тень каждой карточки дополнительно размазывалась
+       в этих просветах и вокруг скруглённых углов. Монолитный стык в 3px —
+       как у .faq-list и .why-we-cards — читается одной плиткой */
+    gap: 3px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
@@ -2579,9 +2599,9 @@ body.dark-theme .yandex-score {
 }
 
 .review-card {
-    /* Четыре карточки в ряд и три зазора между ними.
+    /* Четыре карточки в ряд и три стыка между ними.
        Флекс по умолчанию тянет карточки до высоты самой высокой */
-    flex: 0 0 calc((100% - 3 * 8px) / 4);
+    flex: 0 0 calc((100% - 3 * 3px) / 4);
     scroll-snap-align: start;
     display: flex;
     flex-direction: column;
@@ -2591,7 +2611,10 @@ body.dark-theme .yandex-score {
     /* По умолчанию углы прямые, скругления ставятся точечно ниже —
        та же логика, что у .pest-card */
     border-radius: 0;
-    box-shadow: var(--shadow-cta);
+    /* Тени нет намеренно: у монолитной плитки своя мягкая тень даёт серый
+       ореол вокруг скруглённых внешних углов. Плитка отделяется стыком
+       и рамкой — так же, как у .faq-item */
+    box-shadow: none;
 }
 
 /* Плитка: скруглены только внешние углы ленты, внутренние стыки прямые */
@@ -2650,7 +2673,7 @@ body.dark-theme .yandex-score {
 /* Планшет: три карточки в ряд — лента всё ещё прокручивается */
 @media (max-width: 1024px) {
     .review-card {
-        flex: 0 0 calc((100% - 2 * 8px) / 3);
+        flex: 0 0 calc((100% - 2 * 3px) / 3);
     }
 }
 
@@ -2672,7 +2695,7 @@ body.dark-theme .yandex-score {
     }
 
     .review-card {
-        flex: 0 0 calc((100% - 8px) / 2);
+        flex: 0 0 calc((100% - 3px) / 2);
         padding: 1.25rem;
     }
 }
