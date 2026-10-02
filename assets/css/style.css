@@ -2483,3 +2483,233 @@ a.logo-wrap:hover .logo-icon {
         transition: none;
     }
 }
+
+/* ==========================================================================
+   15. БЛОК 7: ГЕОГРАФИЯ ВЫЕЗДА И ФУТЕР
+   ========================================================================== */
+
+/* Заголовок здесь — целая фраза, а не имя раздела, поэтому предложение
+   остаётся в обычном регистре: в капсе строка в четыре строки читается
+   как стена. Ширина ограничена, чтобы не растянуть строку на весь экран */
+.geo-title {
+    max-width: 22ch;
+    margin: 0 auto 1rem;
+    text-transform: none;
+    line-height: 1.2;
+}
+
+.geo-map-frame {
+    position: relative;
+    height: clamp(280px, 46vw, 520px);
+    border: 1px solid var(--border-grid);
+    border-radius: var(--radius-main);
+    overflow: hidden;
+    box-shadow: var(--shadow-cta);
+}
+
+.geo-map {
+    width: 100%;
+    height: 100%;
+    /* До загрузки виджета — не белая дыра, а плоская подложка сайта */
+    background: var(--card-flat-bg);
+}
+
+/* Приглушает подложку карты, чтобы маркер остался главным пятном.
+   Подложка снизу нужна на случай, если backdrop-filter не поддержан */
+.geo-map-tint {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: rgba(226, 232, 240, 0.18);
+    backdrop-filter: grayscale(0.45) brightness(1.03);
+    -webkit-backdrop-filter: grayscale(0.45) brightness(1.03);
+}
+
+/* В тёмной теме карту нужно приглушить сильнее — она остаётся светлой */
+body.dark-theme .geo-map-tint {
+    background: rgba(15, 16, 17, 0.5);
+    backdrop-filter: grayscale(0.3) brightness(0.68);
+    -webkit-backdrop-filter: grayscale(0.3) brightness(0.68);
+}
+
+/* Ярлык маркера рисует Яндекс внутри карты, то есть под обесцвечиванием */
+.geo-map-label {
+    font: 700 13px 'Montserrat', sans-serif;
+    color: #0f172a;
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 3px 9px;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.15);
+}
+
+/* API недоступен — заглушка вместо пустого блока */
+.geo-map--fallback {
+    display: grid;
+    place-items: center;
+    padding: 2rem;
+    text-align: center;
+}
+
+.geo-map-note {
+    max-width: 36ch;
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--text-muted);
+}
+
+/* Заглушка под виджет отзывов Яндекс.Бизнеса */
+.geo-reviews {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    padding: 1.15rem 1.5rem;
+    border: 1px solid var(--border-grid);
+    border-radius: var(--radius-main);
+    background: var(--card-cta-bg);
+}
+
+.geo-reviews-icon {
+    font-size: 18px;
+    color: var(--accent-color);
+}
+
+.geo-reviews-text {
+    margin: 0;
+    font-size: 15px;
+    color: var(--text-muted);
+}
+
+/* --- Футер --- */
+
+.site-footer {
+    border-top: 1px solid var(--border-grid);
+    background: var(--card-cta-bg);
+    padding: 4rem 2rem 2.5rem;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 2.5rem 3rem;
+}
+
+.footer-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.65rem;
+}
+
+.footer-name {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--text-main);
+}
+
+.footer-label {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.footer-muted {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
+/* Телефон крупнее, чем в шапке, но на том же шрифте и с зелёной точкой */
+.footer-phone {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--text-main);
+    text-decoration: none;
+    transition: color 0.25s ease;
+}
+
+.footer-phone:hover {
+    color: var(--accent-color);
+}
+
+.footer-link {
+    font-size: 15px;
+    color: var(--text-main);
+    text-decoration: none;
+    transition: color 0.25s ease;
+}
+
+.footer-link:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-grid);
+    font-size: 13px;
+}
+
+/* --- Адаптив футера --- */
+
+@media (max-width: 1024px) {
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    /* Брендинг во всю ширину: в две колонки он ужимается в узкую полосу */
+    .footer-brand {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 600px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    /* Колонки в стек и по центру */
+    .footer-col {
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 0.4rem;
+        text-align: center;
+    }
+
+    .geo-reviews {
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .footer-phone,
+    .footer-link {
+        transition: none;
+    }
+}

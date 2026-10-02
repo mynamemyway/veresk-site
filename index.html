@@ -863,7 +863,70 @@
       </div>
     </section>
 
+    <!-- БЛОК 7. ГЕОГРАФИЯ ВЫЕЗДА -->
+    <section class="calc-section geo-section" id="geo">
+      <div class="calc-container">
+
+        <div class="calc-header">
+          <h2 class="calc-title geo-title">Работаем по Санкт-Петербургу и ЛО, чтобы вы могли спать спокойно!</h2>
+          <p class="calc-subtitle">Выезд по всему городу и Ленинградской области</p>
+        </div>
+
+        <div class="geo-map-frame">
+          <!-- data-api-key: подставьте ключ Яндекс.Карт, если упрётесь в лимит
+               запросов без ключа. Виджет грузится лениво, по .geo-map.js -->
+          <div id="geo-map" class="geo-map"
+               data-api-key=""
+               data-center="59.9386,30.3141"
+               data-zoom="10"></div>
+          <div class="geo-map-tint" aria-hidden="true"></div>
+        </div>
+
+        <!-- Заглушка под виджет отзывов Яндекс.Бизнеса.
+             Заменяется на скрипт business.yandex.ru, когда он подключён -->
+        <div class="geo-reviews" id="geo-reviews">
+          <i class="fa-solid fa-star geo-reviews-icon" aria-hidden="true"></i>
+          <p class="geo-reviews-text">Здесь будет виджет отзывов Яндекс.Бизнеса</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- БЛОК 7. ФУТЕР -->
+    <footer class="site-footer" id="contacts">
+      <div class="calc-container">
+        <div class="footer-grid">
+
+          <div class="footer-col footer-brand">
+            <p class="footer-name">Служба дезинфекции «ВЕРЕСК»</p>
+            <p class="footer-muted">Дезинсекция, дератизация и дезинфекция в <br>Санкт-Петербурге и Ленинградской области</p>
+          </div>
+
+          <div class="footer-col">
+            <p class="footer-label">Контакты</p>
+            <a href="tel:+78129877606" class="footer-phone">
+              <span class="phone-dot" aria-hidden="true"></span> +7 (812) 987-76-06
+            </a>
+            <p class="footer-muted">Ежедневно с 9:00 до 22:00</p>
+          </div>
+
+          <div class="footer-col">
+            <p class="footer-label">Документы</p>
+            <a class="footer-link" href="#">Публичная оферта</a>
+            <a class="footer-link" href="#">Политика конфиденциальности</a>
+          </div>
+
+        </div>
+
+        <div class="footer-bottom">
+          <p class="footer-muted">© 1995–2026 Служба дезинфекции «ВЕРЕСК»</p>
+          <p class="footer-muted">ИНН 781600724906</p>
+        </div>
+      </div>
+    </footer>
+
     <script src="assets/js/heather-animation.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/geo-map.js"></script>
 </body>
 </html>
