@@ -863,7 +863,128 @@
       </div>
     </section>
 
-    <!-- БЛОК 7. ГЕОГРАФИЯ ВЫЕЗДА -->
+    <!-- ======================================================================
+         БЛОК 7: ОТЗЫВЫ — временный слайдер.
+         Имена, оценки и тексты — заглушки на время разработки.
+         При подключении Яндекс.Бизнеса блок заменяется виджетом,
+         вместе с ним уходят кнопки навигации и лента
+         ====================================================================== -->
+    <section class="calc-section reviews-section" id="reviews">
+      <div class="calc-container">
+
+        <div class="calc-header reviews-header">
+          <div class="reviews-head">
+
+            <h2 class="calc-title">Отзывы наших клиентов</h2>
+            <p class="calc-subtitle">Помогли более <span class="reviews-num">20000</span> клиентам Санкт-Петербурга и Ленобласти</p>
+
+            <div class="yandex-rating-badge reviews-rating">
+              <div class="yandex-rating-top">
+                <i class="fa-solid fa-location-dot yandex-marker"></i>
+                <span class="yandex-score">5,0</span>
+                <div class="yandex-stars">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                </div>
+              </div>
+              <div class="yandex-rating-bottom">Рейтинг организации в Яндексе</div>
+            </div>
+
+          </div>
+
+          <div class="reviews-nav">
+            <button class="reviews-nav-btn" type="button" data-reviews-prev aria-label="Предыдущий отзыв">
+              <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+            </button>
+            <button class="reviews-nav-btn" type="button" data-reviews-next aria-label="Следующий отзыв">
+              <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Лента прокручивается внутри себя: секция .calc-section обрезает
+             по overflow: hidden, иначе горизонтальная лента двигала бы страницу -->
+        <div class="reviews-track">
+          <article class="review-card">
+            <div class="review-top">
+              <span class="review-name">Анна Кузнецова</span>
+            <div class="review-stars">
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+            </div>
+            </div>
+            <span class="review-service">Дезинсекция: Клопы</span>
+            <p class="review-text">Клопы мучили полгода, до этого травили сами — без толку. Мастер приехал через два часа после звонка, показал, где гнездо, и обработал всё вместе с мебелью. Через неделю перестали появляться.</p>
+          </article>
+          <article class="review-card">
+            <div class="review-top">
+              <span class="review-name">Дмитрий Лосев</span>
+            <div class="review-stars">
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+            </div>
+            </div>
+            <span class="review-service">Дератизация: Мыши</span>
+            <p class="review-text">Живём в кирпичном доме, мыши шли с чердака. Ребята нашли путь, закрыли щели и сделали повторный визит по гарантии бесплатно. Третий месяц — ни одного следа.</p>
+          </article>
+          <article class="review-card">
+            <div class="review-top">
+              <span class="review-name">Марина Пантелеева</span>
+            <div class="review-stars">
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+            </div>
+            </div>
+            <span class="review-service">Дезинсекция: Тараканы</span>
+            <p class="review-text">Запах был ужасный, кот постоянно чесал ухо. После обработки выветрили за день и кот успокоился на следующие же сутки. Отдельное спасибо за честный разговор о том, что делать дальше.</p>
+          </article>
+          <article class="review-card">
+            <div class="review-top">
+              <span class="review-name">Сергей Величко</span>
+            <div class="review-stars">
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+            </div>
+            </div>
+            <span class="review-service">Барьерная защита</span>
+            <p class="review-text">Снимали перед переездом в новостройку, чтобы не притащить ничего из старой квартиры. Сделали обработку от насекомых и клещей одним выездом, оставили договор и памятку.</p>
+          </article>
+          <article class="review-card">
+            <div class="review-top">
+              <span class="review-name">Ольга Нестерова</span>
+            <div class="review-stars">
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+            </div>
+            </div>
+            <span class="review-service">Дезинсекция: Блохи</span>
+            <p class="review-text">Блохи пришли из подъезда, к сожалению. Обработали квартиру и подъезд, дали наклейку — повторно пришлось применить, но приехали без наценки.</p>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- БЛОК 8. ГЕОГРАФИЯ ВЫЕЗДА -->
     <section class="calc-section geo-section" id="geo">
       <div class="calc-container">
 
@@ -880,12 +1001,6 @@
           <div class="geo-map-tint" aria-hidden="true"></div>
         </div>
 
-        <!-- Заглушка под виджет отзывов Яндекс.Бизнеса.
-             Заменяется на скрипт business.yandex.ru, когда он подключён -->
-        <div class="geo-reviews" id="geo-reviews">
-          <i class="fa-solid fa-star geo-reviews-icon" aria-hidden="true"></i>
-          <p class="geo-reviews-text">Здесь будет виджет отзывов Яндекс.Бизнеса</p>
-        </div>
 
       </div>
     </section>

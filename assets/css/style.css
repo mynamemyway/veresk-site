@@ -63,6 +63,9 @@
     --line-color: #cbd5e1;
 
     /* Настройки графики и радиусов */
+    /* Золото звёзд: было зашито прямо в .yandex-stars, а на тёмной теме
+       белая цифра «5,0» на золоте сливалась — выносим в токен */
+    --gold: #ffc107;
     --radius-main: 1.5rem;
     --radius-asym: 2rem 0.5rem 2rem 2rem;
     --hero-image: url('../img/hero-violet.png');
@@ -433,8 +436,13 @@ a.logo-wrap:hover .logo-icon {
 .yandex-stars {
     display: flex;
     gap: 2px;
-    color: #ffc107;
+    color: var(--gold);
     font-size: 14px;
+}
+
+/* На тёмной теме белая цифра «5,0» на золотом фоне пропадала */
+body.dark-theme .yandex-score {
+    color: var(--gold);
 }
 
 .yandex-rating-bottom {
@@ -2485,7 +2493,192 @@ a.logo-wrap:hover .logo-icon {
 }
 
 /* ==========================================================================
-   15. БЛОК 7: ГЕОГРАФИЯ ВЫЕЗДА И ФУТЕР
+   15. БЛОК 7: ОТЗЫВЫ (слайдер)
+   ========================================================================== */
+
+.reviews-header {
+    /* .calc-header центрирует текст, здесь шапка разведена по краям:
+       заголовок с рейтингом слева, навигация слайдера справа */
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    text-align: left;
+}
+
+.reviews-head {
+    min-width: 0;
+}
+
+/* calc-subtitle по умолчанию центрируется auto-отступами — при разведённой
+   шапке его надо прижать влево */
+.reviews-header .calc-subtitle {
+    max-width: 46ch;
+    margin: 0 0 1.5rem;
+}
+
+.reviews-num {
+    color: var(--btn-fill);
+    font-weight: 700;
+}
+
+/* Отступ снизу шапки задан .calc-header, свой у плашки не нужен */
+.reviews-rating {
+    margin-bottom: 0;
+}
+
+/* Навигация слайдера — по форме фирменных кнопок: тот же радиус
+   0.75rem и мятная заливка, только квадратная и компактная */
+.reviews-nav {
+    display: flex;
+    gap: 0.5rem;
+    flex: 0 0 auto;
+    margin-top: 0.5rem;
+}
+
+.reviews-nav-btn {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--btn-fill);
+    color: var(--btn-text-push);
+    border: none;
+    border-radius: 0.75rem;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s ease, opacity 0.2s ease;
+}
+
+.reviews-nav-btn:hover:not(:disabled) {
+    background: var(--btn-push);
+}
+
+.reviews-nav-btn:disabled {
+    opacity: 0.35;
+    cursor: default;
+}
+
+/* --------------------------------------------------------------------------
+   Лента. Горизонтальная прокрутка внутри себя: секция .calc-section
+   обрезает по overflow: hidden, поэтому лента не может выйти за края.
+   Скроллбар спрятан — навигация кнопками в шапке, полосу мыши убираем.
+   -------------------------------------------------------------------------- */
+.reviews-track {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.reviews-track::-webkit-scrollbar {
+    display: none;
+}
+
+.review-card {
+    /* Четыре карточки в ряд и три зазора между ними.
+       Флекс по умолчанию тянет карточки до высоты самой высокой */
+    flex: 0 0 calc((100% - 3 * 8px) / 4);
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    background: var(--card-cta-bg);
+    border: 1px solid var(--border-glass);
+    /* По умолчанию углы прямые, скругления ставятся точечно ниже —
+       та же логика, что у .pest-card */
+    border-radius: 0;
+    box-shadow: var(--shadow-cta);
+}
+
+/* Плитка: скруглены только внешние углы ленты, внутренние стыки прямые */
+.review-card:first-child {
+    border-top-left-radius: var(--radius-main);
+    border-bottom-left-radius: var(--radius-main);
+}
+
+.review-card:last-child {
+    border-top-right-radius: var(--radius-main);
+    border-bottom-right-radius: var(--radius-main);
+}
+
+/* Имя клиента и звёзды в одну строку */
+.review-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.review-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-main);
+    min-width: 0;
+}
+
+.review-stars {
+    display: flex;
+    gap: 2px;
+    flex: 0 0 auto;
+    color: var(--gold);
+    font-size: 12px;
+}
+
+.review-service {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent-hover);
+    margin-bottom: 0.6rem;
+}
+
+.review-text {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--text-muted);
+}
+
+/* Планшет: три карточки в ряд — лента всё ещё прокручивается */
+@media (max-width: 1024px) {
+    .review-card {
+        flex: 0 0 calc((100% - 2 * 8px) / 3);
+    }
+}
+
+@media (max-width: 768px) {
+    /* Шапка в столбик: навигация уходит под заголовок и центрируется */
+    .reviews-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .reviews-header .calc-subtitle {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .reviews-nav {
+        margin-top: 0;
+    }
+
+    .review-card {
+        flex: 0 0 calc((100% - 8px) / 2);
+        padding: 1.25rem;
+    }
+}
+
+/* ==========================================================================
+   16. БЛОК 8: ГЕОГРАФИЯ ВЫЕЗДА И ФУТЕР
    ========================================================================== */
 
 /* Заголовок здесь — целая фраза, а не имя раздела, поэтому предложение
@@ -2541,29 +2734,6 @@ body.dark-theme .geo-map-frame {
 
 body.dark-theme .geo-map-tint {
     background: rgba(226, 232, 240, 0.22);
-}
-
-/* Заглушка под виджет отзывов Яндекс.Бизнеса */
-.geo-reviews {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-top: 1rem;
-    padding: 1.15rem 1.5rem;
-    border: 1px solid var(--border-grid);
-    border-radius: var(--radius-main);
-    background: var(--card-cta-bg);
-}
-
-.geo-reviews-icon {
-    font-size: 18px;
-    color: var(--accent-color);
-}
-
-.geo-reviews-text {
-    margin: 0;
-    font-size: 15px;
-    color: var(--text-muted);
 }
 
 /* --- Футер --- */
@@ -2682,11 +2852,6 @@ body.dark-theme .geo-map-tint {
     .footer-bottom {
         flex-direction: column;
         gap: 0.4rem;
-        text-align: center;
-    }
-
-    .geo-reviews {
-        justify-content: center;
         text-align: center;
     }
 }

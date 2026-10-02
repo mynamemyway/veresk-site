@@ -298,4 +298,41 @@ const guarantee = once
       });
   });
 
+  // Блок 7: слайдер отзывов.
+  // Прокручиваем нативным scrollBy, а не transform: лента остаётся
+  // доступной для тача и трекпада, и не нужно пересчитывать сдвиг
+  // при ресайзе — шаг всегда меряется по фактической карточке.
+  const reviewsTrack = document.querySelector('.reviews-track');
+  const reviewsPrev = document.querySelector('[data-reviews-prev]');
+  const reviewsNext = document.querySelector('[data-reviews-next]');
+
+  if (reviewsTrack && reviewsPrev && reviewsNext) {
+      // Шаг = ширина карточки + зазор. columnGap, а не gap: в горизонтальной
+      // оси gap отступ не ставит, и шаг вышел бы на 8px меньше нужного
+      const reviewStep = () => {
+          const card = reviewsTrack.querySelector('.review-card');
+          if (!card) return 0;
+          const gap = parseFloat(getComputedStyle(reviewsTrack).columnGap) || 0;
+          return card.getBoundingClientRect().width + gap;
+      };
+
+      // Кнопки гаснут на краях ленты, чтобы не кликать в пустоту
+      const syncReviewsNav = () => {
+          const edge = reviewsTrack.scrollWidth - reviewsTrack.clientWidth;
+          reviewsPrev.disabled = reviewsTrack.scrollLeft <= 1;
+          reviewsNext.disabled = reviewsTrack.scrollLeft >= edge - 1;
+      };
+
+      const moveReviews = (direction) => {
+          reviewsTrack.scrollBy({ left: direction * reviewStep(), behavior: 'smooth' });
+      };
+
+      reviewsPrev.addEventListener('click', () => moveReviews(-1));
+      reviewsNext.addEventListener('click', () => moveReviews(1));
+
+      reviewsTrack.addEventListener('scroll', syncReviewsNav, { passive: true });
+      window.addEventListener('resize', syncReviewsNav);
+      syncReviewsNav();
+  }
+
 });
