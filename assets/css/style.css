@@ -1385,7 +1385,9 @@ a.logo-wrap:hover .logo-icon {
     grid-template-columns: repeat(6, minmax(0, 1fr));
     /* Ряды равной высоты: карточки тянутся до самой высокой в ряду */
     grid-auto-rows: 1fr;
-    gap: 1rem;
+    /* У этой сетки свои 8px вместо 3px у монолитных блоков: карточки
+       разнесены тенями, 3px читается слишком тесно */
+    gap: 8px;
 }
 
 .pest-card {
@@ -1408,6 +1410,13 @@ a.logo-wrap:hover .logo-icon {
 .pest-card:hover {
     border-color: var(--border-glass);
     transform: translateY(-4px);
+}
+
+/* В два ряда нижний на ховере уходит вниз, иначе тянется к верхнему ряду */
+@media (max-width: 1024px) {
+    .pest-card:nth-child(n+4):hover {
+        transform: translateY(4px);
+    }
 }
 
 /* --------------------------------------------------------------------------
@@ -1542,7 +1551,6 @@ a.logo-wrap:hover .logo-icon {
        медиазапроса на 1024px продолжают работать и здесь. */
     .pest-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 0.75rem;
     }
 
     /* Квадрат 1:1 на такой ширине невозможен: иконка с подписью не
