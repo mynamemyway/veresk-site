@@ -873,12 +873,10 @@
         </div>
 
         <div class="geo-map-frame">
-          <!-- data-api-key: подставьте ключ Яндекс.Карт, если упрётесь в лимит
-               запросов без ключа. Виджет грузится лениво, по .geo-map.js -->
-          <div id="geo-map" class="geo-map"
-               data-api-key=""
-               data-center="59.9386,30.3141"
-               data-zoom="10"></div>
+          <!-- Карта собрана в конструкторе Яндекс.Карт, стили и маркер — там.
+               scroll=false отключает зум колесом: иначе карта съедает
+               прокрутку страницы, пока пользователь листает лендинг -->
+          <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Aef78f3f185882bab049e97f768ee23ce617577a67607b27f7854d8a578af3eaa&amp;width=100%25&amp;height=450&amp;lang=ru_RU&amp;scroll=false"></script>
           <div class="geo-map-tint" aria-hidden="true"></div>
         </div>
 
@@ -899,7 +897,7 @@
 
           <div class="footer-col footer-brand">
             <p class="footer-name">Служба дезинфекции «ВЕРЕСК»</p>
-            <p class="footer-muted">Дезинсекция, дератизация и дезинфекция<br>Санкт-Петербург и Ленинградская область</p>
+            <p class="footer-muted">Дезинсекция, дезинфекция, дератизация<br>Санкт-Петербург и Ленинградская область</p>
           </div>
 
           <div class="footer-col">
@@ -927,6 +925,5 @@
 
     <script src="assets/js/heather-animation.js"></script>
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/geo-map.js"></script>
 </body>
 </html>

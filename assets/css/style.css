@@ -2506,56 +2506,25 @@ a.logo-wrap:hover .logo-icon {
     box-shadow: var(--shadow-cta);
 }
 
-.geo-map {
-    width: 100%;
-    height: 100%;
-    /* До загрузки виджета — не белая дыра, а плоская подложка сайта */
-    background: var(--card-flat-bg);
+/* Конструктор отдаёт iframe с фиксированной высотой 450px и шириной 100%.
+   Переопределяем на размеры рамки, иначе в ней остаётся пустое поле */
+.geo-map-frame iframe {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    border: 0;
 }
 
 /* Приглушает подложку карты, чтобы маркер остался главным пятном.
-   Подложка снизу нужна на случай, если backdrop-filter не поддержан */
+   Раньше здесь был backdrop-filter, но поверх iframe он не применяется —
+   поэтому только полупрозрачная подложка. Если карта покажется слишком
+   тёмной, этот слой можно удалить вместе с div в разметке */
 .geo-map-tint {
     position: absolute;
     inset: 0;
     z-index: 1;
     pointer-events: none;
     background: rgba(226, 232, 240, 0.18);
-    backdrop-filter: grayscale(0.45) brightness(1.03);
-    -webkit-backdrop-filter: grayscale(0.45) brightness(1.03);
-}
-
-/* В тёмной теме карту нужно приглушить сильнее — она остаётся светлой */
-body.dark-theme .geo-map-tint {
-    background: rgba(15, 16, 17, 0.5);
-    backdrop-filter: grayscale(0.3) brightness(0.68);
-    -webkit-backdrop-filter: grayscale(0.3) brightness(0.68);
-}
-
-/* Ярлык маркера рисует Яндекс внутри карты, то есть под обесцвечиванием */
-.geo-map-label {
-    font: 700 13px 'Montserrat', sans-serif;
-    color: #0f172a;
-    background: #ffffff;
-    border-radius: 8px;
-    padding: 3px 9px;
-    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.15);
-}
-
-/* API недоступен — заглушка вместо пустого блока */
-.geo-map--fallback {
-    display: grid;
-    place-items: center;
-    padding: 2rem;
-    text-align: center;
-}
-
-.geo-map-note {
-    max-width: 36ch;
-    margin: 0;
-    font-size: 15px;
-    line-height: 1.5;
-    color: var(--text-muted);
 }
 
 /* Заглушка под виджет отзывов Яндекс.Бизнеса */
