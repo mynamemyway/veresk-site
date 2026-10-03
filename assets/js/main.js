@@ -31,6 +31,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Кнопки «Расчитать стоимость» в прайсе ведут в калькулятор.
+  // .prices-grid — обе вкладки прайса, .btn-mint — только расчёт, не «КП на email»
+  document.querySelectorAll('.prices-grid .card-btn.btn-mint').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const calc = document.getElementById('calculator');
+      if (calc) calc.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
   // Логика внутренних мини-табов (Базовый / Гель) — изолированно внутри своей карточки
   document.querySelectorAll('.mini-tab-btn').forEach(miniBtn => {
     miniBtn.addEventListener('click', () => {
