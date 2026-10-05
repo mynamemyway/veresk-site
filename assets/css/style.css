@@ -1104,6 +1104,18 @@ body.dark-theme .yandex-score {
     grid-column: span 2;
 }
 
+/* Пара карточек калькулятора: скруглены только внешние углы, стык прямой.
+   На 1024px и уже карточки складываются в стопку — там фирменная логика снимается */
+@media (min-width: 1025px) {
+    .v2-prices {
+        border-radius: var(--radius-main) 0 0 var(--radius-main);
+    }
+
+    .v2-calc {
+        border-radius: 0 var(--radius-main) var(--radius-main) 0;
+    }
+}
+
 .v2-prices,
 .v2-calc {
     justify-content: flex-start;
