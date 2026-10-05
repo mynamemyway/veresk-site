@@ -300,6 +300,38 @@ a.logo-wrap:hover .logo-icon {
     color: #ffffff;
 }
 
+/* Шапка на телефоне */
+@media (max-width: 680px) {
+    .premium-header {
+        padding: 0 1rem;
+    }
+
+    .logo-main {
+        font-size: 15px;
+        letter-spacing: 0.08em;
+        gap: 0.4rem;
+    }
+
+    .logo-sub {
+        font-size: 8px;
+        letter-spacing: 0.84em;
+    }
+
+    .right-controls {
+        gap: 0.75rem;
+    }
+
+    .header-phone {
+        font-size: 13px;
+    }
+
+    .theme-toggle-btn {
+        width: 34px;
+        height: 34px;
+        font-size: 14px;
+    }
+}
+
 /* ==========================================================================
    4. ГЛАВНЫЙ ЭКРАН (HERO-SECTION)
    ========================================================================== */
