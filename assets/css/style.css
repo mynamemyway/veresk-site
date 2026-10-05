@@ -399,6 +399,20 @@ a.logo-wrap:hover .logo-icon {
     margin-top: 2px;
 }
 
+/* Заголовок hero не умещался в телефон: 39px оставалось на всех ширинах.
+   Длинное слово «ПРОФЕССИОНАЛЬНОЕ» вылезало за вьюпорт и ломало вёрстку */
+@media (max-width: 680px) {
+    .hero-title {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 520px) {
+    .hero-title {
+        font-size: 28px;
+    }
+}
+
 /* Плашка рейтинга Яндекс */
 .yandex-rating-badge {
     background-color: var(--header-bg);
