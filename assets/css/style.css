@@ -853,6 +853,22 @@ body.dark-theme .yandex-score {
     display: grid;
 }
 
+/* Три карточки прайса в ряд: скруглены только внешние углы, стыки прямые.
+   На 1024px и уже сетка перестаёт быть одним рядом — логика снимается */
+@media (min-width: 1025px) {
+    .prices-grid .price-card:first-child {
+        border-radius: var(--radius-main) 0 0 var(--radius-main);
+    }
+
+    .prices-grid .price-card:last-child {
+        border-radius: 0 var(--radius-main) var(--radius-main) 0;
+    }
+
+    .prices-grid .price-card:not(:first-child):not(:last-child) {
+        border-radius: 0;
+    }
+}
+
 /* --------------------------------------------------------------------------
    Карточки услуг — визуально совпадают с CTA-карточкой hero
    -------------------------------------------------------------------------- */
