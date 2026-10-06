@@ -277,6 +277,11 @@ a.logo-wrap:hover .logo-icon {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    /* Плашка в тон кнопке телеграма: та же высота, радиус и зелёный цвет */
+    height: 40px;
+    padding: 0 1rem;
+    border: 1px solid var(--btn-fill);
+    border-radius: 0.75rem;
 }
 
 .phone-dot {
@@ -358,6 +363,8 @@ a.logo-wrap:hover .logo-icon {
 
     .header-phone {
         font-size: 13px;
+        height: 34px;
+        padding: 0 0.75rem;
     }
 
     .theme-toggle-btn,
