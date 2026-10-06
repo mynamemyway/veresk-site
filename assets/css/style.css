@@ -830,6 +830,8 @@ body.dark-theme .yandex-score {
 
     .triggers-grid {
         grid-template-columns: 1fr;
+        grid-template-rows: none;
+        grid-auto-rows: 1fr;
     }
 }
 
