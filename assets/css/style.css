@@ -167,16 +167,29 @@ a {
     align-items: center;
     justify-content: space-between;
     padding: 0 2rem;
+    /* Стекло вынесено на ::before: если держать backdrop-filter прямо на
+       шапке, она становится backdrop root, и раскрытому меню (потомку
+       шапки) браузер не даёт размывать страницу — за панелью виден
+       чёткий текст. Слой-псевдоэлемент стеклит и шапку, и оставляет
+       меню возможность со своим blur видеть контент под собой */
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    /*Легкая тень под шапку дает тонкую серую линию, гармонирует с вертикальной*/
+    /*box-shadow: 0 1px 0, 0 6px 20px rgba(15, 23, 42, 0.06);*/
+    transition: background 0.4s, border 0.4s;
+}
+
+.premium-header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
     background: var(--site-bg-glass);
     background-attachment: fixed;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    /*Легкая тень под шапку дает тонкую серую линию, гармонирует с вертикальной*/
-    /*box-shadow: 0 1px 0 rgba(15, 23, 42, 0.06), 0 6px 20px rgba(15, 23, 42, 0.06);*/
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    transition: background 0.4s, border 0.4s;
+    transition: background 0.4s;
 }
 
 .logo-wrap {
@@ -810,7 +823,10 @@ body.dark-theme .yandex-score {
         display: flex;
     }
 
-    /* Развернутое меню — панель под шапкой во всю ширину */
+    /* Развернутое меню — панель под шапкой во всю ширину.
+       Подложка один в одна повторяет шапку: тот же стеклянный градиент
+       --site-bg-glass, привязанный к экрану, и blur — панель выглядит
+       как продолжение шапки, а не как просвечивающая лужа */
     .premium-nav.is-open {
         display: flex;
         flex-direction: column;
@@ -822,6 +838,7 @@ body.dark-theme .yandex-score {
         transform: none;
         padding: 0.5rem 1rem;
         background: var(--site-bg-glass);
+        background-attachment: fixed;
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         border-bottom: 1px solid var(--border-glass);
