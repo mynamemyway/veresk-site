@@ -2095,12 +2095,13 @@ body.dark-theme .yandex-score {
     .why-we-note {
         flex-direction: column;
         height: auto;
-        /* Тот же зазор 3px, что и на десктопе, только вертикально */
         gap: var(--why-note-gap);
     }
 
     .why-we-note-text {
         padding: 0.85rem 1.25rem;
+        margin-right: 0;
+        border-radius: 12px 12px 0 0;
     }
 
     .why-we-note-btn {
@@ -2109,11 +2110,11 @@ body.dark-theme .yandex-score {
         height: 3.5rem !important;
     }
 
-    /* Монолит во всю ширину; левые углы скруглены под радиус полосы —
-       в колонке группа стоит у левого края контейнера */
+    /* Монолит во всю ширину — нижний блок стопки: скруглены два нижних
+       угла, верхние прямые (встык к зазору) */
     .why-we-note-actions {
         width: auto;
-        border-radius: 12px 0 0 12px;
+        border-radius: 0 0 12px 12px;
     }
 }
 
