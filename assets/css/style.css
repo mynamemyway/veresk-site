@@ -259,6 +259,15 @@ a.logo-wrap:hover .logo-icon {
     gap: 2rem;
 }
 
+/* Телеграм и телефон — одна группа: при нехватке места в шапке она
+   переносится целиком, и иконка всегда стоит сразу перед телефоном.
+   gap: inherit повторяет отступ родителя (2rem, на мобильных 0.5rem) */
+.header-contacts {
+    display: flex;
+    align-items: center;
+    gap: inherit;
+}
+
 .header-phone {
     font-size: 15px;
     font-weight: 700;
@@ -296,14 +305,17 @@ a.logo-wrap:hover .logo-icon {
     transition: all 0.3s ease;
 }
 
-/* Телеграм в шапке: та же квадратная плашка, но фирменный зелёный */
+/* Телеграм в шапке: та же квадратная плашка, но сразу залита
+   фирменным зелёным — выделяется среди остальных иконок */
 .header-telegram-btn {
-    color: var(--btn-fill);
+    background: var(--btn-fill);
+    border-color: transparent;
+    color: var(--btn-text);
 }
 
 .header-telegram-btn:hover {
     transform: scale(1.05);
-    background: var(--btn-fill);
+    background: var(--btn-push);
     color: var(--btn-text);
 }
 
@@ -359,7 +371,8 @@ a.logo-wrap:hover .logo-icon {
 
 /* Телефон ниже логотипа: строка не делится ни с текстом, ни с подписью.
    .right-controls растворяется — его дети становятся прямыми элементами
-   шапки, иначе ширина строки телефона ограничена местом после логотипа */
+   шапки. Телефон внутри .header-contacts: группа переносится на свою
+   строку целиком, и иконка телеграма всегда стоит сразу перед телефоном */
 @media (max-width: 520px) {
     .premium-header {
         flex-wrap: wrap;
@@ -374,10 +387,6 @@ a.logo-wrap:hover .logo-icon {
     /* Первую кнопку прижимаем вправо: лого слева, кнопки справа */
     .nav-toggle-btn {
         margin-left: auto;
-    }
-
-    .header-phone {
-        flex: 0 0 100%;
     }
 }
 
