@@ -2004,10 +2004,9 @@ body.dark-theme .yandex-score {
     align-items: stretch;
     height: 3.5rem;
     overflow: hidden;
-    background: var(--accent-soft);
+    background: transparent;
     border: none;
     border-radius: 0.75rem;
-    box-shadow: inset 0 0 0 1px var(--border-glass);
     margin: 1.5rem 0 0;
 }
 
@@ -2017,17 +2016,31 @@ body.dark-theme .yandex-score {
     display: flex;
     align-items: center;
     margin: 0;
+    border: 1px solid var(--border-glass);
+    border-radius: 12px 0 0 12px;
+    background: var(--card-bg);
+    margin-right: var(--why-note-gap);
     padding: 0 1.25rem;
     font-size: 15px;
     line-height: 1.4;
     color: var(--text-main);
 }
 
+/* Группа «кнопка + телеграм» */
+.why-we-note-actions {
+    display: contents;
+}
+
 /* Продолжение поля: без своих скруглений и тени, режет контейнер */
 .why-we-note-btn {
     flex: 0 0 auto;
-    width: calc((((100% - 1.5rem) * 7 / 12) - var(--why-note-gap)) / 2) !important;
+    width: calc(((((100% - 1.5rem) * 7 / 12) - var(--why-note-gap)) / 2) - 3.5rem) !important;
     height: 100% !important;
+    background: var(--card-cta-bg) !important;
+    border: 2px solid var(--btn-fill);
+    /* Правой границы нет: там встык стоит телеграм-квадрат */
+    border-right: none;
+    color: var(--btn-fill) !important;
     border-radius: 0 !important;
     box-shadow: none !important;
     text-decoration: none;
@@ -2036,6 +2049,30 @@ body.dark-theme .yandex-score {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+}
+
+.why-we-note-btn:hover {
+    background: var(--btn-fill) !important;
+    color: var(--btn-text) !important;
+}
+
+/* Телеграм-квадрат встык справа: залитый зелёный, как кнопки в шапке */
+.why-we-note-tg {
+    flex: 0 0 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--btn-fill);
+    color: var(--btn-text);
+    font-size: 18px;
+    text-decoration: none;
+    border-radius: 0 0.75rem 0.75rem 0;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.why-we-note-tg:hover {
+    background: var(--btn-push);
+    color: var(--btn-text);
 }
 
 /* --------------------------------------------------------------------------
@@ -2053,6 +2090,8 @@ body.dark-theme .yandex-score {
     .why-we-note {
         flex-direction: column;
         height: auto;
+        /* Тот же зазор 3px, что и на десктопе, только вертикально */
+        gap: var(--why-note-gap);
     }
 
     .why-we-note-text {
@@ -2060,8 +2099,20 @@ body.dark-theme .yandex-score {
     }
 
     .why-we-note-btn {
-        width: 100% !important;
+        /* Не 100% и не shrink-0: в строке с телеграм-квадратом кнопка
+           занимает остаток, иначе квадрат вылезает за край поля.
+           Левые углы скруглены под радиус контейнера — кнопка стоит
+           у его края, прямые углы срезал бы overflow */
+        flex: 1 1 auto;
+        width: auto !important;
         height: 3.5rem !important;
+        border-radius: 12px 0 0 12px !important;
+    }
+
+    /* Кнопка и телеграм остаются одной строкой: btn сжимается до остатка,
+       квадрат не сжимается (flex: 0 0 3.5rem) */
+    .why-we-note-actions {
+        display: flex;
     }
 }
 
