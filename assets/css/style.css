@@ -2018,7 +2018,7 @@ body.dark-theme .yandex-score {
     margin: 0;
     border: 1px solid var(--border-glass);
     border-radius: 12px 0 0 12px;
-    background: var(--card-bg);
+    background: var(--card-cta-bg);
     margin-right: var(--why-note-gap);
     padding: 0 1.25rem;
     font-size: 15px;
@@ -2028,18 +2028,22 @@ body.dark-theme .yandex-score {
 
 /* Группа «кнопка + телеграм» */
 .why-we-note-actions {
-    display: contents;
+    display: flex;
+    align-items: stretch;
+    width: calc((((100% - 1.5rem) * 7 / 12) - var(--why-note-gap)) / 2);
+    background: var(--card-cta-bg);
+    border: 1px solid var(--border-glass);
+    border-radius: 0 0.75rem 0.75rem 0;
+    overflow: hidden;
 }
 
-/* Продолжение поля: без своих скруглений и тени, режет контейнер */
+/* Текстовая часть монолита: собственная рамка не нужна */
 .why-we-note-btn {
-    flex: 0 0 auto;
-    width: calc(((((100% - 1.5rem) * 7 / 12) - var(--why-note-gap)) / 2) - 3.5rem) !important;
+    flex: 1 1 auto;
+    min-width: 0;
     height: 100% !important;
-    background: var(--card-cta-bg) !important;
-    border: 2px solid var(--btn-fill);
-    /* Правой границы нет: там встык стоит телеграм-квадрат */
-    border-right: none;
+    border: none !important;
+    background: transparent !important;
     color: var(--btn-fill) !important;
     border-radius: 0 !important;
     box-shadow: none !important;
@@ -2056,7 +2060,8 @@ body.dark-theme .yandex-score {
     color: var(--btn-text) !important;
 }
 
-/* Телеграм-квадрат встык справа: залитый зелёный, как кнопки в шапке */
+/* Телеграм-квадрат встык справа: залитый зелёный, как кнопки в шапке.
+   Радиус не задаём: правые углы скругляет общая рамка actions */
 .why-we-note-tg {
     flex: 0 0 3.5rem;
     display: flex;
@@ -2066,7 +2071,7 @@ body.dark-theme .yandex-score {
     color: var(--btn-text);
     font-size: 18px;
     text-decoration: none;
-    border-radius: 0 0.75rem 0.75rem 0;
+    border-radius: 0;
     transition: background 0.2s ease, color 0.2s ease;
 }
 
@@ -2099,20 +2104,16 @@ body.dark-theme .yandex-score {
     }
 
     .why-we-note-btn {
-        /* Не 100% и не shrink-0: в строке с телеграм-квадратом кнопка
-           занимает остаток, иначе квадрат вылезает за край поля.
-           Левые углы скруглены под радиус контейнера — кнопка стоит
-           у его края, прямые углы срезал бы overflow */
-        flex: 1 1 auto;
-        width: auto !important;
+        /* В колонке высота задаётся явно: у родителя (actions) нет
+           фиксированной высоты, 100% было бы неопределённым */
         height: 3.5rem !important;
-        border-radius: 12px 0 0 12px !important;
     }
 
-    /* Кнопка и телеграм остаются одной строкой: btn сжимается до остатка,
-       квадрат не сжимается (flex: 0 0 3.5rem) */
+    /* Монолит во всю ширину; левые углы скруглены под радиус полосы —
+       в колонке группа стоит у левого края контейнера */
     .why-we-note-actions {
-        display: flex;
+        width: auto;
+        border-radius: 12px 0 0 12px;
     }
 }
 
