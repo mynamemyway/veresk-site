@@ -280,7 +280,8 @@ a.logo-wrap:hover .logo-icon {
 }
 
 .theme-toggle-btn,
-.nav-toggle-btn {
+.nav-toggle-btn,
+.header-telegram-btn {
     background: var(--accent-soft);
     border: 1px solid var(--border-glass);
     color: var(--accent-color);
@@ -293,6 +294,17 @@ a.logo-wrap:hover .logo-icon {
     justify-content: center;
     font-size: 16px;
     transition: all 0.3s ease;
+}
+
+/* Телеграм в шапке: та же квадратная плашка, но фирменный зелёный */
+.header-telegram-btn {
+    color: var(--btn-fill);
+}
+
+.header-telegram-btn:hover {
+    transform: scale(1.05);
+    background: var(--btn-fill);
+    color: var(--btn-text);
 }
 
 /* Кнопка меню нужна только там, где навигация скрыта */
@@ -337,7 +349,8 @@ a.logo-wrap:hover .logo-icon {
     }
 
     .theme-toggle-btn,
-    .nav-toggle-btn {
+    .nav-toggle-btn,
+    .header-telegram-btn {
         width: 34px;
         height: 34px;
         font-size: 14px;
