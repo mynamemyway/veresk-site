@@ -344,20 +344,27 @@ a.logo-wrap:hover .logo-icon {
     }
 }
 
-/* Телефон переносится на вторую строку только там, где в одну уже не влезает.
-   Порог считаный: лого ~222px + кнопки ~76px + телефон ~166px ≈ 464px,
-   то есть на 520px строка ещё держится, ниже — нет */
+/* Телефон ниже логотипа: строка не делится ни с текстом, ни с подписью.
+   .right-controls растворяется — его дети становятся прямыми элементами
+   шапки, иначе ширина строки телефона ограничена местом после логотипа */
 @media (max-width: 520px) {
-    .right-controls {
+    .premium-header {
         flex-wrap: wrap;
-        justify-content: flex-end;
-        row-gap: 0.5rem;
+        justify-content: flex-start;
+        gap: 0.75rem 0.5rem;
     }
 
-    /* Первая строка — кнопки, вторая — телефон */
+    .right-controls {
+        display: contents;
+    }
+
+    /* Первую кнопку прижимаем вправо: лого слева, кнопки справа */
+    .nav-toggle-btn {
+        margin-left: auto;
+    }
+
     .header-phone {
-        flex-basis: 100%;
-        justify-content: flex-end;
+        flex: 0 0 100%;
     }
 }
 
