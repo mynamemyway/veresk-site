@@ -2061,10 +2061,8 @@ body.dark-theme .yandex-score {
 }
 
 /* Телеграм-квадрат встык справа: залитый зелёный, как кнопки в шапке.
-   Скруглённый нижний левый угол заливки сделан отдельным слоем
-   (::before, бьёт как у иконки «Некачественная обработка»), а не
-   радиусом самого квадрата: при наведении на кнопку перекрашивается
-   только уголок — плавно и без расширения всей заливки */
+   Нижний левый угол заливки скруглён обычным радиусом самого квадрата —
+   дуга с центром внутри кнопки (как border-radius). */
 .why-we-note-tg {
     position: relative;
     flex: 0 0 3.5rem;
@@ -2075,12 +2073,15 @@ body.dark-theme .yandex-score {
     color: var(--btn-text);
     font-size: 18px;
     text-decoration: none;
-    border-radius: 0;
+    border-radius: 0 0 0 0.75rem;
     transition: background 0.2s ease, color 0.2s ease;
 }
 
-/* Уголок под скруглённым нижним левым углом: светлый (как у mark),
-   при наведении на кнопку заливается зелёным вместе с ней */
+/* Уголок за дугой скруглённого угла. В покое — цвет фона монолита
+   (= невидим, сливается); при наведении на кнопку консультации —
+   зелёный. Маска повторяет саму дугу (круг с центром в центре
+   скругления), поэтому заливается только уголок, без роста кнопки
+   и без заливки рамки. Переход фона 0.2s — в такт с кнопкой */
 .why-we-note-tg::before {
     content: "";
     position: absolute;
@@ -2089,7 +2090,9 @@ body.dark-theme .yandex-score {
     width: 0.75rem;
     height: 0.75rem;
     background: var(--card-cta-bg);
-    border-radius: 0 0.75rem 0 0;
+    transform: rotate(-90deg);
+    mask-image: radial-gradient(circle 0.75rem at 100% 100%, transparent 100%, #000 100%);
+    -webkit-mask-image: radial-gradient(circle 0.75rem at 100% 100%, transparent 100%, #000 100%);
     pointer-events: none;
     transition: background 0.2s ease;
 }
@@ -2140,8 +2143,8 @@ body.dark-theme .yandex-score {
         border-radius: 0 0 12px 12px;
     }
 
-    /* В стопке скругление нижнего левого угла квадрата не нужно:
-       низ монолита единый, скругляется его общей рамкой */
+    /* В стопке скругление нижнего левого угла квадрата и его уголок
+       не нужны: низ монолита единый, скругляется его общей рамкой */
     .why-we-note-tg {
         border-radius: 0;
     }
