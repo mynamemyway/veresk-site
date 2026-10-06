@@ -256,12 +256,12 @@ a.logo-wrap:hover .logo-icon {
 .right-controls {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
 }
 
 /* Телеграм и телефон — одна группа: при нехватке места в шапке она
    переносится целиком, и иконка всегда стоит сразу перед телефоном.
-   gap: inherit повторяет отступ родителя (2rem, на мобильных 0.5rem) */
+   gap: inherit повторяет отступ родителя (1rem, на мобильных 0.5rem) */
 .header-contacts {
     display: flex;
     align-items: center;
