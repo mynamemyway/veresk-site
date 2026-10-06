@@ -279,7 +279,8 @@ a.logo-wrap:hover .logo-icon {
     box-shadow: 0 0 8px #10b981;
 }
 
-.theme-toggle-btn {
+.theme-toggle-btn,
+.nav-toggle-btn {
     background: var(--accent-soft);
     border: 1px solid var(--border-glass);
     color: var(--accent-color);
@@ -294,16 +295,26 @@ a.logo-wrap:hover .logo-icon {
     transition: all 0.3s ease;
 }
 
-.theme-toggle-btn:hover {
+/* Кнопка меню нужна только там, где навигация скрыта */
+.nav-toggle-btn {
+    display: none;
+}
+
+.theme-toggle-btn:hover,
+.nav-toggle-btn:hover {
     transform: scale(1.05);
     background: var(--accent-color);
     color: #ffffff;
 }
 
-/* Шапка на телефоне */
+/* Шапка на телефоне: лого и телефон не влезали в строку, и шапка
+   растягивала страницу по горизонтали. Самая широкая часть — .logo-sub
+   с разрядкой 1.08em, она была шире всего экрана */
 @media (max-width: 680px) {
     .premium-header {
-        padding: 0 1rem;
+        height: auto;
+        min-height: var(--header-h);
+        padding: 0.75rem 1rem;
     }
 
     .logo-main {
@@ -318,17 +329,35 @@ a.logo-wrap:hover .logo-icon {
     }
 
     .right-controls {
-        gap: 0.75rem;
+        gap: 0.5rem;
     }
 
     .header-phone {
         font-size: 13px;
     }
 
-    .theme-toggle-btn {
+    .theme-toggle-btn,
+    .nav-toggle-btn {
         width: 34px;
         height: 34px;
         font-size: 14px;
+    }
+}
+
+/* Телефон переносится на вторую строку только там, где в одну уже не влезает.
+   Порог считаный: лого ~222px + кнопки ~76px + телефон ~166px ≈ 464px,
+   то есть на 520px строка ещё держится, ниже — нет */
+@media (max-width: 520px) {
+    .right-controls {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        row-gap: 0.5rem;
+    }
+
+    /* Первая строка — кнопки, вторая — телефон */
+    .header-phone {
+        flex-basis: 100%;
+        justify-content: flex-end;
     }
 }
 
@@ -739,6 +768,37 @@ body.dark-theme .yandex-score {
 @media (max-width: 1200px) {
     .premium-nav {
         display: none;
+    }
+
+    .nav-toggle-btn {
+        display: flex;
+    }
+
+    /* Развернутое меню — панель под шапкой во всю ширину */
+    .premium-nav.is-open {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        transform: none;
+        padding: 0.5rem 1rem;
+        background: var(--site-bg-glass);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border-glass);
+    }
+
+    .premium-nav.is-open .nav-link {
+        font-size: 13px;
+        padding: 0.9rem 0;
+        border-bottom: 1px solid var(--border-glass);
+    }
+
+    .premium-nav.is-open .nav-link:last-child {
+        border-bottom: none;
     }
 
     .global-vertical-line {

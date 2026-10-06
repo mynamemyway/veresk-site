@@ -1,4 +1,36 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+  // Мобильное меню: на планшетах и телефонах навигация скрыта,
+  // её открывает кнопка-бургер рядом с переключателем темы
+  const navToggle = document.getElementById('navToggle');
+  const premiumNav = document.getElementById('premiumNav');
+
+  if (navToggle && premiumNav) {
+    const navIcon = document.getElementById('navToggleIcon');
+
+    const setNavOpen = (open) => {
+      premiumNav.classList.toggle('is-open', open);
+      navToggle.setAttribute('aria-expanded', String(open));
+      navToggle.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+      if (navIcon) navIcon.className = open ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+    };
+
+    navToggle.addEventListener('click', () => {
+      setNavOpen(!premiumNav.classList.contains('is-open'));
+    });
+
+    premiumNav.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => setNavOpen(false));
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setNavOpen(false);
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 1200) setNavOpen(false);
+    });
+  }
   
   // Логика главных табов (Насекомые / Грызуны)
   const tabButtons = document.querySelectorAll('.tab-nav-btn');
