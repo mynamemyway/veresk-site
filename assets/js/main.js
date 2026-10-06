@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const guarantee = once
           ? 'Гарантийное обслуживание: -'
           : type === 'full'
-              ? 'Гарантийное обслуживание: 6 месяцев'
+              ? 'Гарантийное обслуживание: 6 мес'
               : 'Повторный вызов - 50% от стоимости обработки';
       document.getElementById('v2-guarantee').textContent = guarantee;
   };
@@ -174,7 +174,7 @@ const guarantee = once
       const minOrder = bizPest === 'rodents' ? 5000 : 6000;
       const annual = document.querySelector('#v2-biz input[data-annual="1"]').checked;
       const orderText = annual
-          ? 'Гарантийное обслуживание: 12 месяцев'
+          ? 'Гарантийное обслуживание: 12 мес'
           : 'мин. заказ ' + minOrder.toLocaleString('ru-RU') + ' ₽';
 
       // Опции надбавок: только для насекомых
