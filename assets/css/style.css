@@ -2061,8 +2061,12 @@ body.dark-theme .yandex-score {
 }
 
 /* Телеграм-квадрат встык справа: залитый зелёный, как кнопки в шапке.
-   Радиус не задаём: правые углы скругляет общая рамка actions */
+   Скруглённый нижний левый угол заливки сделан отдельным слоем
+   (::before, бьёт как у иконки «Некачественная обработка»), а не
+   радиусом самого квадрата: при наведении на кнопку перекрашивается
+   только уголок — плавно и без расширения всей заливки */
 .why-we-note-tg {
+    position: relative;
     flex: 0 0 3.5rem;
     display: flex;
     align-items: center;
@@ -2073,6 +2077,25 @@ body.dark-theme .yandex-score {
     text-decoration: none;
     border-radius: 0;
     transition: background 0.2s ease, color 0.2s ease;
+}
+
+/* Уголок под скруглённым нижним левым углом: светлый (как у mark),
+   при наведении на кнопку заливается зелёным вместе с ней */
+.why-we-note-tg::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0.75rem;
+    height: 0.75rem;
+    background: var(--card-cta-bg);
+    border-radius: 0 0.75rem 0 0;
+    pointer-events: none;
+    transition: background 0.2s ease;
+}
+
+.why-we-note-btn:hover ~ .why-we-note-tg::before {
+    background: var(--btn-fill);
 }
 
 .why-we-note-tg:hover {
@@ -2115,6 +2138,16 @@ body.dark-theme .yandex-score {
     .why-we-note-actions {
         width: auto;
         border-radius: 0 0 12px 12px;
+    }
+
+    /* В стопке скругление нижнего левого угла квадрата не нужно:
+       низ монолита единый, скругляется его общей рамкой */
+    .why-we-note-tg {
+        border-radius: 0;
+    }
+
+    .why-we-note-tg::before {
+        display: none;
     }
 }
 
