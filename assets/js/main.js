@@ -319,6 +319,35 @@ const guarantee = once
   // Блок 6: FAQ-аккордеон.
   // Класс .is-open и aria-expanded ставит JS, а раскрытие и поворот
   // плюса в крестик анимируются на CSS (grid-template-rows, transform).
+
+  // Равные свёрнутые вопросы: выравниваем по самой высокой кнопке.
+  // Меряем .faq-btn, а не .faq-item — ответ у закрываемой карточки ещё
+  // анимируется, и его высота ушла бы в max. Кнопка от ответа не зависит.
+  const equalizeFaqCollapsed = () => {
+      const btns = Array.from(document.querySelectorAll('.faq-btn'));
+      if (!btns.length) return;
+
+      // Без сброса мерять нельзя: иначе min-height прошлого цикла
+      // участвует в расчёте и высота растёт по нарастающей
+      btns.forEach(btn => {
+          btn.style.minHeight = '';
+      });
+
+      const height = Math.max(...btns.map(btn => btn.offsetHeight));
+      btns.forEach(btn => {
+          btn.style.minHeight = height + 'px';
+      });
+  };
+
+  equalizeFaqCollapsed();
+  window.addEventListener('load', equalizeFaqCollapsed);
+
+  let faqResizeTimer;
+  window.addEventListener('resize', () => {
+      clearTimeout(faqResizeTimer);
+      faqResizeTimer = setTimeout(equalizeFaqCollapsed, 100);
+  });
+
   document.querySelectorAll('.faq-btn').forEach(btn => {
       btn.addEventListener('click', () => {
           const item = btn.closest('.faq-item');
@@ -336,6 +365,9 @@ const guarantee = once
 
           item.classList.toggle('is-open', willOpen);
           btn.setAttribute('aria-expanded', String(willOpen));
+
+          // Открытая карточка вышла из пула свернутых — пересчитать равные высоты
+          equalizeFaqCollapsed();
       });
   });
 

@@ -2427,7 +2427,7 @@ body.dark-theme .yandex-score {
     /* Рамка как у триггеров в hero и карточек «Наши решения» */
     border: 1px solid var(--border-grid);
     box-shadow: none;
-    transition: background 0.35s ease, box-shadow 0.35s ease;
+    transition: background 0.35s ease, box-shadow 0.35s ease, min-height 0.35s ease;
 }
 
 /* Наведение и раскрытие — белая плашка, открытый вопрос ещё и с тенью */
