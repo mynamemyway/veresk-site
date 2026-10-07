@@ -2963,10 +2963,15 @@ body.dark-theme .geo-map-tint {
 }
 
 .footer-col {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1.6rem auto auto;
+    align-content: start;
     gap: 0.65rem;
+}
+
+.footer-col > :first-child {
+    align-self: center;
 }
 
 .footer-name {
@@ -3000,7 +3005,7 @@ body.dark-theme .geo-map-tint {
     align-items: center;
     gap: 0.5rem;
     font-family: 'Montserrat', sans-serif;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
     letter-spacing: 0.04em;
     color: var(--text-main);
@@ -3014,6 +3019,7 @@ body.dark-theme .geo-map-tint {
 
 .footer-link {
     font-size: 15px;
+    line-height: 1.6;
     color: var(--text-main);
     text-decoration: none;
     transition: color 0.25s ease;
@@ -3058,6 +3064,7 @@ body.dark-theme .geo-map-tint {
     /* Колонки в стек и по центру */
     .footer-col {
         align-items: center;
+        justify-items: center;
         text-align: center;
     }
 
