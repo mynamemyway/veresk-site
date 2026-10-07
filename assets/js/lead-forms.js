@@ -228,16 +228,24 @@ document.addEventListener('DOMContentLoaded', () => {
      -------------------------------------------------------------------- */
   const heroForm = document.querySelector('.cta-form[data-lead]');
   if (heroForm) {
+    // Кнопка не должна менять размер при смене текста состояния.
+    // Исходная подпись «Зафиксировать цену» — самая широкая, фиксируем по ней;
+    // пересчёт после загрузки шрифтов, если вернём Google Fonts.
+    const heroBtn = heroForm.querySelector('button[type="submit"]');
+    const lockHeroBtnWidth = () => {
+      if (!heroBtn) return;
+      heroBtn.style.minWidth = '';
+      heroBtn.style.minWidth = Math.ceil(heroBtn.getBoundingClientRect().width) + 'px';
+    };
+    lockHeroBtnWidth();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(lockHeroBtnWidth);
+
     heroForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (!validPhone(heroForm.querySelector('.cta-phone-input'))) return;
 
       const sent = await runLead(heroForm.querySelector('button[type="submit"]'), buildHero(heroForm));
       if (!sent) return;
-
-      // После подтверждения уводим к калькулятору, как и раньше
-      const quiz = document.getElementById('quiz-section');
-      if (quiz) quiz.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   }
 
