@@ -118,10 +118,9 @@
                             <span class="cta-season">Сезонное предложение</span>
                         </div>
 
-                        <form class="cta-form"
-                              onsubmit="event.preventDefault(); document.getElementById('quiz-section').scrollIntoView({behavior: 'smooth'})">
+                        <form class="cta-form" data-lead="hero">
                             <input class="cta-phone-input" type="tel" name="phone" inputmode="tel" autocomplete="tel" placeholder="+7 (900) 000-00-00" required>
-                            <button class="premium-btn" type="submit">Зафиксировать цену<i class="fa-solid fa-caret-right"></i>
+                            <button class="premium-btn lead-submit" type="submit">Зафиксировать цену<i class="fa-solid fa-caret-right"></i>
                             </button>
                         </form>
 
@@ -285,7 +284,8 @@
               <button class="mini-tab-btn active" data-subtab="b2b-base" data-default>Базовый</button>
               <button class="mini-tab-btn" data-subtab="b2b-gel">Гель (+20%)</button>
             </div>
-            <button class="card-btn btn-outline">Получить КП на email <i class="fa-solid fa-envelope"></i></button>
+            <input class="lead-email-input" type="email" autocomplete="email" placeholder="Ваш email для КП" required>
+            <button type="button" class="card-btn btn-outline lead-submit" data-lead="b2b-price">Получить КП на email <i class="fa-solid fa-envelope"></i></button>
           </div>
     
         </div>
@@ -359,7 +359,8 @@
               <button class="mini-tab-btn active" data-subtab="rod-base" data-default>Базовый</button>
               <button class="mini-tab-btn" data-subtab="rod-hard">Сложный (+20%)</button>
             </div>
-            <button class="card-btn btn-outline">Получить КП на email <i class="fa-solid fa-envelope"></i></button>
+            <input class="lead-email-input" type="email" autocomplete="email" placeholder="Ваш email для КП" required>
+            <button type="button" class="card-btn btn-outline lead-submit" data-lead="b2b-price">Получить КП на email <i class="fa-solid fa-envelope"></i></button>
           </div>
     
         </div>
@@ -477,7 +478,8 @@
                   <p class="v2-guarantee" id="v2-guarantee">Гарантийное обслуживание: 6 мес</p>
                 </div>
               </div>
-              <button class="card-btn btn-mint">Отправить заявку <i class="fa-solid fa-caret-right"></i>
+              <input class="lead-phone-input" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (900) 000-00-00" required>
+              <button type="button" class="card-btn btn-mint lead-submit" data-lead="calc-phys">Отправить заявку <i class="fa-solid fa-caret-right"></i></button>
             </div>
 
           </div>
@@ -563,7 +565,8 @@
                   <span class="v2-total-rate" id="v2-biz-rate">37 ₽ / м²</span>
                 </div>
               </div>
-              <button class="card-btn btn-outline">Получить КП на email <i class="fa-solid fa-envelope"></i></button>
+              <input class="lead-email-input" type="email" autocomplete="email" placeholder="Ваш email для КП" required>
+              <button type="button" class="card-btn btn-outline lead-submit" data-lead="calc-biz">Получить КП на email <i class="fa-solid fa-envelope"></i></button>
             </div>
 
           </div>
@@ -1053,5 +1056,6 @@
 
     <script src="assets/js/heather-animation.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/lead-forms.js"></script>
 </body>
 </html>
