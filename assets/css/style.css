@@ -783,11 +783,17 @@ body.dark-theme .yandex-score {
    ЛИД-ФОРМЫ: КОНТАКТНЫЕ ПОЛЯ И СОСТОЯНИЯ КНОПОК ОТПРАВКИ
    ========================================================================== */
 
+/* Строка «поле + кнопка» в одну линию, как в hero-форме */
+.lead-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 0.5rem;
+}
+
 .lead-phone-input,
 .lead-email-input {
-    width: 100%;
-    padding: 0.9rem 1rem;
-    margin-bottom: 0.75rem;
+    padding: 0.9rem 0.85rem;
     background: var(--accent-soft);
     border: 1px solid var(--border-glass);
     border-radius: 0.75rem;
@@ -797,7 +803,22 @@ body.dark-theme .yandex-score {
     font-weight: 600;
     letter-spacing: 0.03em;
     outline: none;
+    min-width: 0;
     transition: border-color 0.3s ease;
+}
+
+/* Поля фиксированной ширины (под маску телефона / email), всё
+   освободившееся место в строке занимает кнопка */
+.lead-row .lead-phone-input,
+.lead-row .lead-email-input {
+    flex: 0 0 auto;
+    width: 12rem;
+    max-width: 100%;
+}
+
+.lead-row .lead-submit {
+    flex: 1 1 auto;
+    width: auto;
 }
 
 .lead-phone-input::placeholder,
@@ -818,6 +839,14 @@ body.dark-theme .yandex-score {
 
 .lead-submit.is-loading {
     cursor: progress;
+}
+
+@media (max-width: 600px) {
+    .lead-row .lead-phone-input,
+    .lead-row .lead-email-input {
+        flex: 1 1 100%;
+        width: auto;
+    }
 }
 
 /* ==========================================================================
@@ -848,7 +877,7 @@ body.dark-theme .yandex-score {
 }
 
 /* ==========================================================================
-   8. АДАПТИВНОСТЬ
+   АДАПТИВНОСТЬ
    ========================================================================== */
 
 /* Шестой пункт в шапке расширил навигацию. .premium-nav центрирован абсолютно */

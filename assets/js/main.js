@@ -64,9 +64,19 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Кнопки «Расчитать стоимость» в прайсе ведут в калькулятор.
-  // .prices-grid — обе вкладки прайса, .btn-mint — только расчёт, не «КП на email»
+  // .prices-grid — обе вкладки прайса, .btn-mint — только расчёт, не «КП на email».
+  // Карточка «Организации» (data-v2-tab) дополнительно переключает вкладку калькулятора.
   document.querySelectorAll('.prices-grid .card-btn.btn-mint').forEach(btn => {
     btn.addEventListener('click', () => {
+      const v2Target = btn.getAttribute('data-v2-tab');
+      if (v2Target) {
+        const v2Btn = document.querySelector(`.v2-tab-btn[data-v2="${v2Target}"]`);
+        if (v2Btn) {
+          v2Btn.click();
+          equalizeV2Panels();
+        }
+      }
+
       const calc = document.getElementById('calculator');
       if (calc) calc.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });

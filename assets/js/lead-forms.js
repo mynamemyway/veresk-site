@@ -148,31 +148,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  const buildB2bPrice = (card) => {
-    const tab = activeText(document, '.tab-nav-btn.active');
-    const subtab = activeText(card, '.mini-tab-btn.active');
-    const title = activeText(card, '.card-title');
-
-    // Показан прайс: активный под-таб, а если его нет — основной список
-    const list = card.querySelector('.subtab-content.active') || card.querySelector('.price-list');
-    const prices = list
-      ? Array.from(list.querySelectorAll('li strong')).map((el) => el.textContent.trim()).filter(Boolean)
-      : [];
-    const range = prices.length > 1
-      ? prices[0] + ' … ' + prices[prices.length - 1]
-      : (prices[0] || '');
-
-    const lines = ['Тариф: ' + [title, tab, subtab].filter(Boolean).join(' · ')];
-    if (range) lines.push('Цены: ' + range);
-
-    return payload({
-      type: 'КП из прайса',
-      email: card.querySelector('.lead-email-input').value.trim(),
-      details: lines.join('\n'),
-      price: range
-    });
-  };
-
   /* --------------------------------------------------------------------
      Отправка: text/plain вместо application/json — иначе браузер шлёт
      CORS-preflight OPTIONS, который Apps Script не обрабатывает
@@ -257,8 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const builders = {
     'calc-phys': (btn) => ({ root: btn.closest('.v2-calc'), build: buildCalcPhys, check: (root) => validPhone(root.querySelector('.lead-phone-input')) }),
-    'calc-biz': (btn) => ({ root: btn.closest('.v2-calc'), build: buildCalcBiz, check: (root) => validEmail(root.querySelector('.lead-email-input')) }),
-    'b2b-price': (btn) => ({ root: btn.closest('.price-card'), build: buildB2bPrice, check: (root) => validEmail(root.querySelector('.lead-email-input')) })
+    'calc-biz': (btn) => ({ root: btn.closest('.v2-calc'), build: buildCalcBiz, check: (root) => validEmail(root.querySelector('.lead-email-input')) })
   };
 
   document.querySelectorAll('button[data-lead]').forEach((btn) => {
