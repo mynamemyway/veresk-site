@@ -31,7 +31,26 @@ window.addEventListener('resize', () => {
   width = canvas.width = window.innerWidth;
   height = canvas.height = 60;
   initHeatherField();
+  syncFieldPosition();
 });
+
+const fieldContainer = document.querySelector('.heather-field-container');
+const heroBottomRow = document.querySelector('.hero-bottom-row');
+
+// Универсальная адаптация полосы: на полноразмерном десктопе поле висит
+// у нижней границы экрана (absolute к первому экрану). Как только контент
+// героя (перенос h1, рост триггеров/карточки захвата) дотягивается до
+// полосы — поле уходит в поток и встаёт под герой, перед следующей секцией.
+// Сравниваем в документных координатах, чтобы результат не зависел от скролла.
+function syncFieldPosition() {
+  if (!fieldContainer || !heroBottomRow) return;
+  const stripHeight = fieldContainer.offsetHeight || 60;
+  const rowBottom = heroBottomRow.getBoundingClientRect().bottom + window.scrollY;
+  const overlap = rowBottom > window.innerHeight - stripHeight;
+  fieldContainer.classList.toggle('is-inflow', overlap);
+}
+
+window.addEventListener('load', syncFieldPosition);
 
 class HeatherBush {
   constructor(x) {
@@ -122,5 +141,6 @@ function renderField() {
   requestAnimationFrame(renderField);
 }
 
+syncFieldPosition();
 initHeatherField();
 renderField();

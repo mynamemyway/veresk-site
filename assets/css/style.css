@@ -800,13 +800,17 @@ body.dark-theme .yandex-score {
     opacity: 0.7; /* Прозрачность */
 }
 
+/* JS переводит поле в поток (в конец героя, перед следующей секцией),
+   как только контент героя начинает дотягиваться до полосы */
+.heather-field-container.is-inflow {
+    position: static;
+}
+
 /* ==========================================================================
    8. АДАПТИВНОСТЬ
    ========================================================================== */
 
-/* Шестой пункт в шапке расширил навигацию. .premium-nav центрирована
-   абсолютно, поэтому растёт в обе стороны и на средних ширинах пункты
-   начинают наезжать на логотип и правый блок управления — зазор сжимается */
+/* Шестой пункт в шапке расширил навигацию. .premium-nav центрирован абсолютно */
 @media (max-width: 1400px) {
     .premium-nav {
         gap: 2rem;
@@ -823,10 +827,7 @@ body.dark-theme .yandex-score {
         display: flex;
     }
 
-    /* Развернутое меню — панель под шапкой во всю ширину.
-       Подложка один в одна повторяет шапку: тот же стеклянный градиент
-       --site-bg-glass, привязанный к экрану, и blur — панель выглядит
-       как продолжение шапки, а не как просвечивающая лужа */
+    /* Развернутое меню — панель под шапкой во всю ширину */
     .premium-nav.is-open {
         display: flex;
         flex-direction: column;
@@ -879,6 +880,11 @@ body.dark-theme .yandex-score {
         grid-template-rows: none;
         grid-auto-rows: 1fr;
     }
+
+    /* Вересковое поле становится обычным блоком и уходит в поток после героя */
+    .heather-field-container {
+        position: static;
+    }
 }
 
 /* Телефоны */
@@ -912,14 +918,10 @@ body.dark-theme .yandex-score {
     overflow: hidden;
     padding: 5rem 2rem;
     font-family: inherit;
-    /* Заголовок лежит на padding-top (5rem) внутрь секции, поэтому смещение
-       секции равно самому зазору: 5rem шапки компенсируются её же padding'ом */
     scroll-margin-top: var(--anchor-gap);
 }
 
-/* Пустой div-якорь перед калькулятором. Он нулевой высоты и стоит вплотную
-   к секции калькулятора (поле-газон абсолютно позиционировано и места не занимает),
-   поэтому получает то же смещение */
+/* Пустой div-якорь перед калькулятором */
 #quiz-section {
     scroll-margin-top: var(--anchor-gap);
 }
@@ -1599,10 +1601,7 @@ body.dark-theme .yandex-score {
 .pest-grid {
     display: grid;
     grid-template-columns: repeat(6, minmax(0, 1fr));
-    /* Ряды равной высоты: карточки тянутся до самой высокой в ряду */
     grid-auto-rows: 1fr;
-    /* У этой сетки свои 8px вместо 3px у монолитных блоков: карточки
-       разнесены тенями, 3px читается слишком тесно */
     gap: 8px;
 }
 
@@ -1619,9 +1618,7 @@ body.dark-theme .yandex-score {
     border-radius: 0;
     box-shadow: var(--shadow-cta);
     text-decoration: none;
-    /* box-shadow из переходов убран намеренно: тень постоянная, а её
-       переход давал задержку при уходе курсора — пятно зависало на
-       прежней карточке, пока соседние тени перекрывали друг друга */
+    /* box-shadow из переходов убран намеренно: тень постоянная */
     transition: background 0.3s ease, border-color 0.3s ease,
                 transform 0.3s ease;
 }
@@ -1671,7 +1668,7 @@ body.dark-theme .yandex-score {
 }
 
 /* Тонкая мятная линия под 45°: проходит ровно через центр иконки
-   (лежит точно по диагонали контейнера) и рисуется от нижнего левого угла к верхнему правому */
+и рисуется от нижнего левого угла к верхнему правому */
 .pest-icon::after {
     content: '';
     position: absolute;
@@ -1743,8 +1740,7 @@ body.dark-theme .yandex-score {
         border-radius: 0;
     }
 
-    /* Верхний ряд: 1 — левый внешний угол, 2 — внутренний стык
-       (острый), 3 — правый внешний */
+    /* Верхний ряд: 1 — левый внешний угол, 2 — внутренний стык (острый), 3 — правый внешний */
     .pest-card:nth-child(1) {
         border-top-left-radius: var(--radius-main);
     }
@@ -1753,8 +1749,7 @@ body.dark-theme .yandex-score {
         border-top-right-radius: var(--radius-main);
     }
 
-    /* Нижний ряд: 4 — левый внешний, 5 — внутренний стык (прямой),
-       6 — правый внешний */
+    /* Нижний ряд: 4 — левый внешний, 5 — внутренний стык (прямой), 6 — правый внешний */
     .pest-card:nth-child(4) {
         border-bottom-left-radius: var(--radius-main);
     }
@@ -1765,16 +1760,12 @@ body.dark-theme .yandex-score {
 }
 
 @media (max-width: 600px) {
-    /* Три колонки и на телефоне — карточки были слишком крупными.
-       Раскладка совпадает с планшетной, поэтому правила углов из
-       медиазапроса на 1024px продолжают работать и здесь. */
+    /* Три колонки и на телефоне — карточки были слишком крупными */
     .pest-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
-    /* Квадрат 1:1 на такой ширине невозможен: иконка с подписью не
-       помещаются в 93px. Отпускаем высоту под содержимое — внутри
-       ряда карточки всё равно выравниваются по самой высокой */
+    /* Отпускаем высоту под содержимое — карточки выравниваются по самой высокой */
     .pest-card {
         padding: 0.75rem 0.5rem;
         gap: 0.4rem;
@@ -1831,11 +1822,7 @@ body.dark-theme .yandex-score {
     margin: 0;
     padding: 0;
     list-style: none;
-    /* Лиловая заливка слева по всей высоте поля пункта, ширина = высота.
-       Размер задан явно: при align-items: stretch высота строки неопределима,
-       поэтому aspect-ratio считал квадрат по контенту иконки.
-       Переменная живёт на цепочке, чтобы стрелки целились в центр заливки.
-       3.5rem = высота стандартной кнопки (пункт и кнопка в один ритм). */
+    /* Лиловая заливка слева по всей высоте поля пункта, ширина = высота */
     --why-mark-size: 3.5rem;
 }
 
@@ -1897,9 +1884,7 @@ body.dark-theme .yandex-score {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-rows: repeat(2, minmax(0, 1fr));
     gap: 3px;
-    /*border: 1px solid var(--border-glass);*/
     border-radius: var(--radius-main);
-    /* растягиваем плитку по высоте левого блока */
     flex: 1;
     align-self: stretch;
 }
@@ -1913,13 +1898,11 @@ body.dark-theme .yandex-score {
     position: relative;
     padding: 1.75rem 1.5rem;
     background-color: var(--card-bg);
-    /* Рамка на самой карточке, Токен как у триггеров в hero */
     border: 1px solid var(--border-grid);
     box-shadow: var(--shadow-cta);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* box-shadow из переходов убран: тень постоянная, значение на ховере не меняется */
     transition: background 0.4s ease, transform 0.3s ease;
 }
 
@@ -2061,8 +2044,7 @@ body.dark-theme .yandex-score {
 }
 
 /* Телеграм-квадрат встык справа: залитый зелёный, как кнопки в шапке.
-   Нижний левый угол заливки скруглён обычным радиусом самого квадрата —
-   дуга с центром внутри кнопки (как border-radius). */
+   Нижний левый угол заливки скруглён обычным радиусом самого квадрата */
 .why-we-note-tg {
     position: relative;
     flex: 0 0 3.5rem;
@@ -2115,9 +2097,6 @@ body.dark-theme .yandex-score {
         grid-template-columns: 1fr;
     }
 
-    /* Ниже 1024px текст и кнопка перестают делить одну строку:
-       раскладываются друг под друга, но остаются единым полем —
-       общий фон, радиус и overflow: hidden у контейнера. */
     .why-we-note {
         flex-direction: column;
         height: auto;
@@ -2131,20 +2110,17 @@ body.dark-theme .yandex-score {
     }
 
     .why-we-note-btn {
-        /* В колонке высота задаётся явно: у родителя (actions) нет
-           фиксированной высоты, 100% было бы неопределённым */
+        /* В колонке высота задаётся явно: у родителя (actions) нет фиксированной высоты */
         height: 3.5rem !important;
     }
 
     /* Монолит во всю ширину — нижний блок стопки: скруглены два нижних
-       угла, верхние прямые (встык к зазору) */
+       угла, верхние прямые */
     .why-we-note-actions {
         width: auto;
         border-radius: 0 0 12px 12px;
     }
 
-    /* В стопке скругление нижнего левого угла квадрата и его уголок
-       не нужны: низ монолита единый, скругляется его общей рамкой */
     .why-we-note-tg {
         border-radius: 0;
     }
@@ -2157,17 +2133,9 @@ body.dark-theme .yandex-score {
 @media (max-width: 600px) {
     .why-we-cards {
         grid-template-columns: 1fr;
-        /* Базовые repeat(2, 1fr) описывают сетку 2×2: в стеке они покрывают
-           только две карточки из четырёх, а третья и четвёртая попадают в
-           неявные строки и садятся по своему контенту. Переопределяем на 4
-           явные равные строки — карточка с коротким текстом тянется до
-           высоты самой длинной */
         grid-template-rows: repeat(4, minmax(0, 1fr));
     }
 
-    /* В одну колонку разъезда по углам нет: все карточки одинаково
-       сдвигаются влево на 2px. Селектор с двумя классами перебивает
-       базовые :nth-child(1..4):hover — специфичность та же, правило ниже */
     .why-we-cards .why-we-card:hover {
         transform: translate(-2px, 0) scale(1.01);
     }
@@ -2195,7 +2163,6 @@ body.dark-theme .yandex-score {
         font-size: 20px;
     }
 
-    /* На мобильном колонки складываются — заголовок снова влево */
     .why-we-right .why-we-title {
         text-align: left;
     }
@@ -2348,7 +2315,6 @@ body.dark-theme .yandex-score {
     border-bottom-right-radius: var(--radius-main);
 }
 
-/* ТЕСТ: лиловая иконка. Вернуть зелёную — --btn-fill */
 .b2b-tag i {
     color: var(--accent-color);
     font-size: 18px;
@@ -2473,7 +2439,6 @@ body.dark-theme .yandex-score {
         gap: 2.5rem;
     }
 
-    /* Заголовок и теги встают влево — как в блоке 4 на мобильном */
     .b2b-tags-title {
         text-align: left;
     }
