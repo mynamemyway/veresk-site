@@ -98,9 +98,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const payload = (data) => Object.assign({ phone: '', email: '', details: '', price: '' }, meta(), data);
 
+  // Телефон в таблицу — только цифры, международный формат: 79119876543
+  const phoneDigits = (value) => {
+    let d = String(value || '').replace(/\D/g, '');
+    if (d.length === 10) d = '7' + d;
+    if (d.length === 11 && d.startsWith('8')) d = '7' + d.slice(1);
+    return d;
+  };
+
+  // Цена — при отправке: «7 500 ₽» -> «7500» (на экране остаётся как есть)
+  const priceNumber = (text) => String(text || '').replace(/[^\d.,]/g, '').replace(',', '.');
+
   const buildHero = (form) => payload({
     type: 'Захват лида (Hero)',
-    phone: form.querySelector('.cta-phone-input').value.trim(),
+    phone: phoneDigits(form.querySelector('.cta-phone-input').value),
     details: 'Акция «-20% заказ на завтра»'
   });
 
@@ -119,9 +130,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     return payload({
       type: 'Калькулятор · жилые помещения',
-      phone: root.querySelector('.lead-phone-input').value.trim(),
+      phone: phoneDigits(root.querySelector('.lead-phone-input').value),
       details: lines.join('\n'),
-      price: document.getElementById('v2-total-price').textContent.trim()
+      price: priceNumber(document.getElementById('v2-total-price').textContent)
     });
   };
 
@@ -144,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
       type: 'Калькулятор · коммерция',
       email: root.querySelector('.lead-email-input').value.trim(),
       details: lines.join('\n'),
-      price: document.getElementById('v2-total-biz').textContent.trim()
+      price: priceNumber(document.getElementById('v2-total-biz').textContent)
     });
   };
 
