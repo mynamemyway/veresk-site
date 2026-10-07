@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'Комнат: ' + activeText(panel, '.v2-seg-btn[data-rooms].active')
     ];
     const options = checkedOptions(panel);
-    if (options.length) lines.push('Опции: ' + options.join('; '));
+    if (options.length) lines.push(...options);
 
     const guarantee = document.getElementById('v2-guarantee');
     if (guarantee) lines.push(guarantee.textContent.trim());
@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'Площадь: ' + (area ? area.value.trim() : '') + ' м²'
     ];
     const options = checkedOptions(panel);
-    if (options.length) lines.push('Опции: ' + options.join('; '));
+    if (options.length) lines.push(...options);
 
     const rate = document.getElementById('v2-biz-rate');
     const guarantee = document.getElementById('v2-biz-guarantee');
