@@ -68,7 +68,7 @@
     --gold: #ffc107;
     --radius-main: 1.5rem;
     --radius-asym: 2rem 0.5rem 2rem 2rem;
-    --hero-image: url('../img/hero-violet.png');
+    --hero-image: url('../img/hero-violet.webp');
 
     /* Оригинальные мягкие воздушные тени */
     --shadow-img: 0 15px 30px rgba(15, 23, 42, 0.04);
