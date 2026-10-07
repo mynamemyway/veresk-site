@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // URL веб-приложения Apps Script:
   // Расширения -> Apps Script -> Развернуть -> Новое развертывание -> Веб-приложение.
   // Пока пусто — запрос не уходит, в консоли печатается ошибка конфигурации.
-  const GOOGLE_WEB_APP_URL = '';
+  const GOOGLE_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbz5GKXPTf9vZHka8svYu0FhNNFU2HqyyPngBRczAFgGtKqMq-htH86_nJK-9MxQEMH7/exec';
 
   const TXT = {
     loading: 'Отправка...',
