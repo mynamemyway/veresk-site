@@ -2475,17 +2475,6 @@ body.dark-theme .yandex-score {
     height: 100%;
 }
 
-/* Монограмма вместо иконки — например NF у NEVSKY FILTER.
-   Та же рамка 28×28, что и у svg, чтобы знаки не прыгали по высоте */
-.b2b-brand-monogram {
-    align-items: center;
-    justify-content: center;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: 0.02em;
-}
-
 .b2b-brand-name {
     font-size: 15px;
     font-weight: 700;
