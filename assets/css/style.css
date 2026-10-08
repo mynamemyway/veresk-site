@@ -2464,13 +2464,6 @@ body.dark-theme .yandex-score {
     opacity: 1;
 }
 
-.b2b-brand-wordmark {
-    font-size: 22px;
-    font-weight: 800;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-}
-
 .b2b-brand-icon {
     display: inline-flex;
     width: 28px;
@@ -2528,10 +2521,6 @@ body.dark-theme .yandex-score {
     .b2b-marquee-group {
         gap: 2rem;
         padding: 0 1rem;
-    }
-
-    .b2b-brand-wordmark {
-        font-size: 18px;
     }
 
     .b2b-brand-name {
