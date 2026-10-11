@@ -8,8 +8,45 @@ let height = canvas.height = 60;
 const HEATHER_DENSITY_STEP = 3;   // шаг между кустиками, px (меньше — плотнее)
 const BUSH_HEIGHT_MIN = 25;       // мин. высота кустика, px
 const BUSH_HEIGHT_SPREAD = 20;    // случайный разброс высоты, px
-const FLOWERS_PER_BUSH = 5;       // цветков на кустике
 const MOUSE_RADIUS = 80;          // радиус расступания травы от курсора, px
+
+// ==== ЦВЕТ ПОЛЯ ====
+// Цвета берём из CSS-переменных --heather-* (в style.css они ссылаются на
+// фирменные --btn-push / --btn-fill / --accent-color), т.е. источник один —
+// стили. Ниже в JS — только hex-fallback, если переменная недоступна.
+const STEM_FALLBACK = '#0F766E';         // стебли — фирменный тёмный зелёный
+const STEM_ALPHA = 0.55;
+const GREEN_FALLBACKS = ['#0F766E', '#24AA99', '#0D5C56']; // зелёные оттенки поля
+const VIOLET_FALLBACKS = ['#785B9D', '#9B6FD1'];           // фирменный фиолетовый (сам вереск)
+
+const GREENS_PER_BUSH = 5;   // зелёных «листиков» на кустик
+const VIOLETS_PER_BUSH = 2;  // фиолетовых цветков на кустик (было 6 — сделали реже)
+const FLOWER_ALPHA_MIN = 0.5;     // минимальная плотность цветка
+const FLOWER_ALPHA_SPREAD = 0.35; // случайная добавка плотности
+
+// Текущая палитра (заполняется из CSS при старте и при смене темы)
+let stemColor = STEM_FALLBACK;
+let greenColors = GREEN_FALLBACKS.slice();
+let violetColors = VIOLET_FALLBACKS.slice();
+
+function readBrandColors() {
+  const css = getComputedStyle(document.body);
+  const val = n => css.getPropertyValue(n).trim();
+
+  const stem = val('--heather-stem');
+  if (stem) stemColor = stem;
+
+  const greens = ['--heather-green-1', '--heather-green-2', '--heather-green-3'].map(val).filter(Boolean);
+  if (greens.length) greenColors = greens;
+
+  const violets = ['--heather-violet-1', '--heather-violet-2'].map(val).filter(Boolean);
+  if (violets.length) violetColors = violets;
+}
+
+readBrandColors();
+
+// Тема переключается классом на body — перечитываем палитру
+new MutationObserver(readBrandColors).observe(document.body, { attributes: true, attributeFilter: ['class'] });
 
 // Разделили мышь на реальную (target) и плавную (smoothed) для эффекта задержки
 let targetMouseX = -1000;
@@ -43,6 +80,7 @@ window.addEventListener('scroll', () => {
 window.addEventListener('resize', () => {
   width = canvas.width = window.innerWidth;
   height = canvas.height = 60;
+  readBrandColors();
   initHeatherField();
   syncFieldPosition();
 });
@@ -68,27 +106,31 @@ class HeatherBush {
     this.speed = 0.01 + Math.random() * 0.01; 
     this.offset = Math.random() * Math.PI * 2;
     
-    // Цвета из твоей оригинальной версии
-    const rand = Math.random();
-    if (rand < 0.5) {
-      this.flowerColor = `rgba(142, 110, 207, ${0.8 + Math.random() * 0.2})`; // Лиловый
-    } else if (rand < 0.8) {
-      this.flowerColor = `rgba(172, 134, 230, ${0.8 + Math.random() * 0.2})`; // Розово-лиловый
-    } else {
-      this.flowerColor = `rgba(46, 196, 182, ${0.7 + Math.random() * 0.3})`;  // Мятный
-    }
-    this.stemColor = 'rgba(120, 135, 130, 0.4)';
+    // Цвета берём из палитры выше (значения приходят из CSS-переменных)
+    this.stemColor = stemColor;
 
-    // Генерируем фиксированные смещения для цветочков ОДИН РАЗ, чтобы они не мерцали
+    // Цветки: зелёные «листики» по стеблю + редкие фиолетовые на самых кончиках.
+    // Цвет у каждого свой; прозрачность — отдельным числом (без склейки rgba)
+    const pick = list => list[Math.floor(Math.random() * list.length)];
+    const flowerPalette = [
+      ...Array.from({ length: GREENS_PER_BUSH }, () => pick(greenColors)),
+      ...Array.from({ length: VIOLETS_PER_BUSH }, () => pick(violetColors))
+    ];
+
     this.flowers = [];
-    for (let i = 0; i < FLOWERS_PER_BUSH; i++) {
+    flowerPalette.forEach((color, i) => {
+      const isViolet = i >= GREENS_PER_BUSH;
+      const greenIndex = GREENS_PER_BUSH > 1 ? i / (GREENS_PER_BUSH - 1) : 0.5;
       this.flowers.push({
-        t: 0.3 + (i / (FLOWERS_PER_BUSH + 2)), // Положение на стебле (шаг подстроен под число цветков)
+        // зелёные — вдоль стебля, фиолетовые — ближе к верхушке
+        t: isViolet ? 0.78 + (i - GREENS_PER_BUSH) * 0.12 : 0.3 + greenIndex * 0.42,
         offsetX: (Math.random() - 0.5) * 3,
         offsetY: (Math.random() - 0.5) * 2,
-        size: 1.5 + Math.random() * 1.5
+        size: isViolet ? 2 + Math.random() * 1.2 : 1.3 + Math.random() * 1.3,
+        color,
+        alpha: FLOWER_ALPHA_MIN + Math.random() * FLOWER_ALPHA_SPREAD
       });
-    }
+    });
   }
 
   draw(time) {
@@ -115,6 +157,7 @@ class HeatherBush {
     const endY = height - this.height;
     
     ctx.quadraticCurveTo(cpX, cpY, endX, endY);
+    ctx.globalAlpha = STEM_ALPHA;
     ctx.strokeStyle = this.stemColor;
     ctx.lineWidth = 1.5;
     ctx.stroke();
@@ -124,11 +167,13 @@ class HeatherBush {
       const fx = (1 - f.t) * (1 - f.t) * this.x + 2 * (1 - f.t) * f.t * cpX + f.t * f.t * endX + f.offsetX;
       const fy = (1 - f.t) * (1 - f.t) * height + 2 * (1 - f.t) * f.t * cpY + f.t * f.t * endY + f.offsetY;
       
+      ctx.globalAlpha = f.alpha;
       ctx.beginPath();
       ctx.arc(fx, fy, f.size, 0, Math.PI * 2);
-      ctx.fillStyle = this.flowerColor;
+      ctx.fillStyle = f.color;
       ctx.fill();
     });
+    ctx.globalAlpha = 1;
   }
 }
 
