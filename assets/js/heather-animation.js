@@ -19,10 +19,14 @@ const STEM_ALPHA = 0.55;
 const GREEN_FALLBACKS = ['#0F766E', '#24AA99', '#0D5C56']; // зелёные оттенки поля
 const VIOLET_FALLBACKS = ['#785B9D', '#9B6FD1'];           // фирменный фиолетовый (сам вереск)
 
-const GREENS_PER_BUSH = 5;   // зелёных «листиков» на кустик
-const VIOLETS_PER_BUSH = 2;  // фиолетовых цветков на кустик (было 6 — сделали реже)
-const FLOWER_ALPHA_MIN = 0.5;     // минимальная плотность цветка
-const FLOWER_ALPHA_SPREAD = 0.35; // случайная добавка плотности
+const GREENS_PER_BUSH = 6;          // зелёных «листиков» на кустик
+const VIOLETS_PER_BUSH = 2;         // фиолетовых цветков на кустик (было 6 — сделали реже)
+const GREEN_SIZE_MIN = 1.3;         // размер зелёного листика, px
+const GREEN_SIZE_SPREAD = 1.3;      // случайный разброс размера листика, px
+const VIOLET_SIZE_MIN = 1.3;        // размер фиолетового цветка, px
+const VIOLET_SIZE_SPREAD = 1.0;     // случайный разброс размера цветка, px
+const FLOWER_ALPHA_MIN = 0.5;       // минимальная плотность цветка
+const FLOWER_ALPHA_SPREAD = 0.35;   // случайная добавка плотности
 
 // Текущая палитра (заполняется из CSS при старте и при смене темы)
 let stemColor = STEM_FALLBACK;
@@ -126,7 +130,8 @@ class HeatherBush {
         t: isViolet ? 0.78 + (i - GREENS_PER_BUSH) * 0.12 : 0.3 + greenIndex * 0.42,
         offsetX: (Math.random() - 0.5) * 3,
         offsetY: (Math.random() - 0.5) * 2,
-        size: isViolet ? 2 + Math.random() * 1.2 : 1.3 + Math.random() * 1.3,
+        size: isViolet ? VIOLET_SIZE_MIN + Math.random() * VIOLET_SIZE_SPREAD
+                       : GREEN_SIZE_MIN + Math.random() * GREEN_SIZE_SPREAD,
         color,
         alpha: FLOWER_ALPHA_MIN + Math.random() * FLOWER_ALPHA_SPREAD
       });
