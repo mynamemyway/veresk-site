@@ -4,18 +4,24 @@ const ctx = canvas.getContext('2d');
 let width = canvas.width = window.innerWidth;
 let height = canvas.height = 60;
 
-let mouseX = -1000;
+// Разделили мышь на реальную (target) и плавную (smoothed) для эффекта задержки
+let targetMouseX = -1000;
+let smoothedMouseX = -1000;
+
 let scrollWind = 0;
 let scrollTimeout;
 
 // Отслеживаем мышку
 window.addEventListener('mousemove', (e) => {
   const rect = canvas.getBoundingClientRect();
-  mouseX = e.clientX - rect.left;
+  targetMouseX = e.clientX - rect.left;
+  
+  // Убираем резкий скачок при первом входе мыши на канвас
+  if (smoothedMouseX === -1000) smoothedMouseX = targetMouseX;
 });
 
 window.addEventListener('mouseleave', () => {
-  mouseX = -1000;
+  targetMouseX = -1000;
 });
 
 // Отслеживаем скролл (усиливаем ветер при прокрутке)
@@ -37,11 +43,7 @@ window.addEventListener('resize', () => {
 const fieldContainer = document.querySelector('.heather-field-container');
 const heroBottomRow = document.querySelector('.hero-bottom-row');
 
-// Универсальная адаптация полосы: на полноразмерном десктопе поле висит
-// у нижней границы экрана (absolute к первому экрану). Как только контент
-// героя (перенос h1, рост триггеров/карточки захвата) дотягивается до
-// полосы — поле уходит в поток и встаёт под герой, перед следующей секцией.
-// Сравниваем в документных координатах, чтобы результат не зависел от скролла.
+// Универсальная адаптация полосы
 function syncFieldPosition() {
   if (!fieldContainer || !heroBottomRow) return;
   const stripHeight = fieldContainer.offsetHeight || 60;
@@ -59,7 +61,7 @@ class HeatherBush {
     this.speed = 0.01 + Math.random() * 0.01; 
     this.offset = Math.random() * Math.PI * 2;
     
-    // Сделал цвета НАМНОГО ярче (opacity 0.8 - 1.0 вместо 0.5)
+    // Цвета из твоей оригинальной версии
     const rand = Math.random();
     if (rand < 0.5) {
       this.flowerColor = `rgba(142, 110, 207, ${0.8 + Math.random() * 0.2})`; // Лиловый
@@ -89,11 +91,11 @@ class HeatherBush {
     // Эффект от скролла (наклоняет всё поле)
     wind += scrollWind * Math.sin(time * 0.05 + this.offset * 0.1);
 
-    // Эффект от мышки (трава отгибается от курсора в радиусе 80px)
-    const distToMouse = Math.abs(this.x - mouseX);
+    // Эффект от мышки теперь рассчитывается от СГЛАЖЕННОЙ координаты (smoothedMouseX)
+    const distToMouse = Math.abs(this.x - smoothedMouseX);
     if (distToMouse < 80) {
       const force = (80 - distToMouse) / 80;
-      const direction = this.x > mouseX ? 1 : -1;
+      const direction = this.x > smoothedMouseX ? 1 : -1;
       wind += direction * force * 10; // Сила отталкивания от мыши
     }
     
@@ -136,6 +138,14 @@ let animTime = 0;
 function renderField() {
   ctx.clearRect(0, 0, width, height);
   animTime++;
+  
+  // Математика задержки (Линейная интерполяция / LERP)
+  // smoothedMouseX плавно догоняет targetMouseX на 7% расстояния за кадр
+  if (targetMouseX === -1000) {
+    smoothedMouseX += (-1000 - smoothedMouseX) * 0.07;
+  } else {
+    smoothedMouseX += (targetMouseX - smoothedMouseX) * 0.07;
+  }
   
   bushes.forEach(bush => bush.draw(animTime * 0.5));
   requestAnimationFrame(renderField);
