@@ -710,11 +710,14 @@ body.dark-theme .yandex-score {
     align-items: center;
     justify-content: center;
     margin-right: 0.45em;
-    padding: 4px 8px;
+    /* Высота один в один с плашкой «Сезонное предложение» справа (она 20px:
+       9px шрифт + 4px паддинг + 1px бордер) */
+    height: 20px;
+    padding: 0 8px;
     vertical-align: middle;
     background: #ff3347;
     color: #fff;
-    font-size: inherit;
+    font-size: 12px; /* подогнано, чтобы «-20%» влезало по высоте */
     font-weight: 800;
     letter-spacing: 0.02em;
     line-height: 1;
