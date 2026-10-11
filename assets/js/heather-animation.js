@@ -94,7 +94,7 @@ class HeatherBush {
     if (distToMouse < 80) {
       const force = (80 - distToMouse) / 80;
       const direction = this.x > mouseX ? 1 : -1;
-      wind += direction * force * 12; // Сила отталкивания от мыши
+      wind += direction * force * 10; // Сила отталкивания от мыши
     }
     
     // Отрисовка стебля

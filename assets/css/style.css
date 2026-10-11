@@ -947,9 +947,18 @@ body.dark-theme .yandex-score {
     scroll-margin-top: var(--anchor-gap);
 }
 
+/* Только стык «hero → Стоимость обработки»: заголовок отступает от верхнего
+   блока hero на высоту полосы анимации вереска (60px).
+   Когда полоса уходит в поток (.is-inflow), лишний отступ не нужен. */
+.heather-field-container:not(.is-inflow) + .calc-section {
+    padding-top: calc(5rem + 60px);
+}
+
 /* Пустой div-якорь перед калькулятором */
 #quiz-section {
-    scroll-margin-top: var(--anchor-gap);
+    /* −60px компенсирует доп. отступ полосы вереска у следующей секции,
+       чтобы переход по «Цены» показывал тот же кадр, что и до правки */
+    scroll-margin-top: calc(var(--anchor-gap) - 60px);
 }
 
 .calc-container {
