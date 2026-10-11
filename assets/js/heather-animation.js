@@ -49,8 +49,12 @@ function readBrandColors() {
 
 readBrandColors();
 
-// Тема переключается классом на body — перечитываем палитру
-new MutationObserver(readBrandColors).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+// Тема переключается классом на body — перечитываем палитру и пересаживаем поле,
+// иначе уже созданные кустики остаются в цветах прежней темы
+new MutationObserver(() => {
+  readBrandColors();
+  initHeatherField();
+}).observe(document.body, { attributes: true, attributeFilter: ['class'] });
 
 // Разделили мышь на реальную (target) и плавную (smoothed) для эффекта задержки
 let targetMouseX = -1000;
