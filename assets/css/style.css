@@ -75,12 +75,12 @@
     --line-color: #cbd5e1;
 
     /* Настройки графики и радиусов */
-    /* Золото звёзд: было зашито прямо в .yandex-stars, а на тёмной теме
-       белая цифра «5,0» на золоте сливалась — выносим в токен */
-    --gold: #ffc107;
+    /* Золото звёзд yandex-stars */
+    --yandex-gold: #ffc107;
     --radius-main: 1.5rem;
     --radius-asym: 2rem 0.5rem 2rem 2rem;
     --hero-image: url('../img/hero-violet.webp');
+    --yandex-red: #ff3347;
 
     /* Оригинальные мягкие воздушные тени */
     --shadow-img: 0 15px 30px rgba(15, 23, 42, 0.04);
@@ -569,7 +569,7 @@ a.logo-wrap:hover .logo-icon {
 }
 
 .yandex-marker {
-    color: #ff3347;
+    color: var(--yandex-red);
     font-size: 18px;
 }
 
@@ -583,13 +583,13 @@ a.logo-wrap:hover .logo-icon {
 .yandex-stars {
     display: flex;
     gap: 2px;
-    color: var(--gold);
+    color: var(--yandex-gold);
     font-size: 14px;
 }
 
 /* На тёмной теме белая цифра «5,0» на золотом фоне пропадала */
 body.dark-theme .yandex-score {
-    color: var(--gold);
+    color: var(--yandex-gold);
 }
 
 .yandex-rating-bottom {
@@ -715,7 +715,7 @@ body.dark-theme .yandex-score {
     height: 20px;
     padding: 0 8px;
     vertical-align: middle;
-    background: #ff3347;
+    background: var(--yandex-red);
     color: #fff;
     font-size: 12px; /* подогнано, чтобы «-20%» влезало по высоте */
     font-weight: 800;
@@ -2959,7 +2959,7 @@ body.dark-theme .yandex-score {
     display: flex;
     gap: 2px;
     flex: 0 0 auto;
-    color: var(--gold);
+    color: var(--yandex-gold);
     font-size: 12px;
 }
 
