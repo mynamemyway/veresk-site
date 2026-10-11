@@ -684,6 +684,24 @@ body.dark-theme .yandex-score {
     line-height: 1.4;
 }
 
+/* Плашка скидки в заголовке акции: компактный прямоугольник со скруглением.
+   Цвет как у иконки Яндекс.Карт в блоке отзывов (#ff3347) */
+.cta-discount {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.45em;
+    padding: 3px 6px;
+    vertical-align: middle;
+    background: #ff3347;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    border-radius: 6px;
+}
+
 .cta-season {
     font-size: 9px;
     font-weight: 700;
