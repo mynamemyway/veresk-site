@@ -691,15 +691,15 @@ body.dark-theme .yandex-score {
     align-items: center;
     justify-content: center;
     margin-right: 0.45em;
-    padding: 3px 6px;
+    padding: 4px 8px;
     vertical-align: middle;
     background: #ff3347;
     color: #fff;
-    font-size: 11px;
+    font-size: inherit;
     font-weight: 800;
     letter-spacing: 0.02em;
     line-height: 1;
-    border-radius: 6px;
+    border-radius: 7px;
 }
 
 .cta-season {
