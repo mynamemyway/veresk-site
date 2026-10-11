@@ -50,8 +50,8 @@
     --heather-stem: var(--btn-push);          /* стебли — тёмный фирменный зелёный */
     --heather-green-1: var(--btn-push);
     --heather-green-2: var(--btn-fill);
-    --heather-green-3: #0D5C56;             /* глубокий зелёный (в палитре его нет) */
-    --heather-violet-1: var(--accent-color); /* цветки вереска — фирменный фиолетовый */
+    --heather-green-3: var(--btn-push);       /* глубокий зелёный (в палитре его нет) */
+    --heather-violet-1: var(--accent-color);  /* цветки вереска — фирменный фиолетовый */
     --heather-violet-2: #9B6FD1;
 
     /* Конструкция сетки */
