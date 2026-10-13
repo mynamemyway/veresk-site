@@ -238,6 +238,7 @@ a.logo-wrap:hover .logo-icon {
     display: inline-flex;
     align-items: center;
     gap: 0.55rem;
+    white-space: nowrap;
     transition: color 0.3s ease;
 }
 
@@ -253,6 +254,7 @@ a.logo-wrap:hover .logo-icon {
     font-weight: 600;
     letter-spacing: 1.08em;
     text-transform: uppercase;
+    white-space: nowrap;
     margin-top: 4px;
 }
 
@@ -310,6 +312,7 @@ a.logo-wrap:hover .logo-icon {
     padding: 0 1rem;
     border: 1px solid var(--btn-fill);
     border-radius: 0.75rem;
+    white-space: nowrap;
 }
 
 .phone-dot {
@@ -422,6 +425,20 @@ a.logo-wrap:hover .logo-icon {
     /* Первую кнопку прижимаем вправо: лого слева, кнопки справа */
     .nav-toggle-btn {
         margin-left: auto;
+    }
+}
+
+/* Узкие полосы: поджимаем только промежутки между иконками/кнопками,
+   чтобы телефон и «Работаем с 1995 года» не переносились */
+@media (min-width: 681px) and (max-width: 740px) {
+    .right-controls {
+        gap: 0.35rem;
+    }
+}
+
+@media (min-width: 521px) and (max-width: 580px) {
+    .right-controls {
+        gap: 0.25rem;
     }
 }
 
