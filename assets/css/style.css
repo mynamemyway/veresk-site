@@ -708,46 +708,41 @@ body.dark-theme .yandex-score {
     margin-bottom: 1.5rem;
 }
 
-.cta-title {
-    font-size: 14px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-main);
-    line-height: 1.4;
+/* Объединённое поле акции: красная плашка «-20%» встык с полем
+   «Сезонное предложение». Контур один — по образцу .why-we-step */
+.cta-deal {
+    display: inline-flex;
+    align-items: stretch;
+    overflow: hidden;
+    border: 1px solid var(--border-glass);
+    border-radius: 7px;
+    min-height: 20px;
 }
 
-/* Плашка скидки в заголовке акции: компактный прямоугольник со скруглением.
-   Цвет как у иконки Яндекс.Карт в блоке отзывов (#ff3347) */
+/* Красная плашка скидки. Цвет как у иконки Яндекс.Карт в блоке отзывов (#ff3347) */
 .cta-discount {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin-right: 0.45em;
-    /* Высота один в один с плашкой «Сезонное предложение» справа (она 20px:
-       9px шрифт + 4px паддинг + 1px бордер) */
-    height: 20px;
     padding: 0 8px;
-    vertical-align: middle;
     background: var(--yandex-red);
     color: #fff;
-    font-size: 12px; /* подогнано, чтобы «-20%» влезало по высоте */
+    font-size: 12px;
     font-weight: 800;
     letter-spacing: 0.02em;
     line-height: 1;
-    border-radius: 7px;
 }
 
 .cta-season {
+    display: inline-flex;
+    align-items: center;
     font-size: 9px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.15em;
     color: var(--accent-color);
     background: var(--accent-soft);
-    border: 1px solid var(--border-glass);
     padding: 4px 8px;
-    border-radius: 4px;
     transition: color 0.4s, background 0.4s;
 }
 
