@@ -556,6 +556,14 @@ a.logo-wrap:hover .logo-icon {
     }
 }
 
+/* Узкий десктоп (напр. 1080×720): заголовок hero чуть меньше.
+   Базовый clamp не трогаем — правило действует только в полосе 1025–1100px */
+@media (min-width: 1025px) and (max-width: 1300px) {
+    .hero-title {
+        font-size: 30px;
+    }
+}
+
 /* Плашка рейтинга Яндекс */
 .yandex-rating-badge {
     background-color: var(--header-bg);
