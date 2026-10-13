@@ -526,7 +526,8 @@ a.logo-wrap:hover .logo-icon {
 }
 
 .hero-title {
-    font-size: 39px;
+    /* Плавно поджимается на планшетных ширинах, на десктопе остаётся 39px */
+    font-size: clamp(28px, 3vw, 39px);
     font-weight: 300;
     color: var(--text-main);
     line-height: 1.5;
@@ -915,6 +916,21 @@ body.dark-theme .yandex-score {
         border-bottom: none;
     }
 
+    /* Hero остаётся двухколоночным (фото рядом с заголовком, триггеры рядом
+       с акцией) — только поджимаем боковые отступы колонок */
+    .hero-headline-block,
+    .triggers-grid-container {
+        padding-right: 2rem !important;
+    }
+
+    .hero-image-block,
+    .premium-cta-box-container {
+        padding-left: 2.5rem !important;
+    }
+}
+
+/* Единая колонка — только когда места действительно мало */
+@media (max-width: 768px) {
     .global-vertical-line {
         display: none !important;
     }
