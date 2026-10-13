@@ -3078,7 +3078,8 @@ body.dark-theme .geo-map-tint {
 .footer-name {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
-    font-size: 18px;
+    /* На узких экранах шрифт поджимается (clamp), чтобы строка не переносилась */
+    font-size: clamp(14.4px, 1.92vw, 18px);
     font-weight: 800;
     letter-spacing: -0.01em;
     color: var(--text-main);
@@ -3086,7 +3087,7 @@ body.dark-theme .geo-map-tint {
 
 .footer-label {
     margin: 0;
-    font-size: 12px;
+    font-size: clamp(11px, 1.28vw, 12px);
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -3095,7 +3096,7 @@ body.dark-theme .geo-map-tint {
 
 .footer-muted {
     margin: 0;
-    font-size: 15px;
+    font-size: clamp(12px, 1.6vw, 15px);
     line-height: 1.6;
     color: var(--text-muted);
 }
@@ -3106,7 +3107,7 @@ body.dark-theme .geo-map-tint {
     align-items: center;
     gap: 0.5rem;
     font-family: 'Montserrat', sans-serif;
-    font-size: 18px;
+    font-size: clamp(14.4px, 1.92vw, 18px);
     font-weight: 700;
     letter-spacing: 0.04em;
     color: var(--text-main);
@@ -3119,7 +3120,7 @@ body.dark-theme .geo-map-tint {
 }
 
 .footer-link {
-    font-size: 15px;
+    font-size: clamp(12px, 1.6vw, 15px);
     line-height: 1.6;
     color: var(--text-main);
     text-decoration: none;
@@ -3176,18 +3177,23 @@ body.dark-theme .geo-map-tint {
 
 /* --- Адаптив футера --- */
 
-@media (max-width: 1024px) {
-    .footer-grid {
-        grid-template-columns: 1fr 1fr;
-    }
+/* Строки внутри колонок не переносятся по словам */
+.footer-name,
+.footer-muted,
+.footer-link,
+.footer-phone {
+    white-space: nowrap;
+}
 
-    /* Брендинг во всю ширину: в две колонки он ужимается в узкую полосу */
-    .footer-brand {
-        grid-column: 1 / -1;
+@media (max-width: 1024px) {
+    /* Три колонки держим в один ряд, ужимаем колонки зазорами, текст без переноса */
+    .footer-grid {
+        gap: 2rem 0.75rem;
     }
 }
 
-@media (max-width: 600px) {
+/* Переводим футер в один столбик */
+@media (max-width: 720px) {
     .footer-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -3200,6 +3206,23 @@ body.dark-theme .geo-map-tint {
         text-align: center;
     }
 
+    /* В стопке на всю ширину футера шрифт к базовому размеру */
+    .footer-name,
+    .footer-phone {
+        font-size: min(18px, calc((100vw - 64px) * 0.053));
+    }
+
+    .footer-muted,
+    .footer-link {
+        font-size: min(15px, calc((100vw - 64px) * 0.044));
+    }
+
+    .footer-label {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 600px) {
     .footer-bottom {
         grid-template-columns: 1fr;
         gap: 0.4rem;
