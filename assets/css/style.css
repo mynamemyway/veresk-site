@@ -3148,6 +3148,11 @@ body.dark-theme .geo-map-tint {
     justify-self: end;
 }
 
+/* Подписи не переносятся: либо все в одну линию, либо (на мобиле) в столбик */
+.footer-bottom > * {
+    white-space: nowrap;
+}
+
 /* Авторство сайта: мельче и приглушённее остальных подписей */
 .footer-credit {
     margin: 0;
@@ -3203,6 +3208,11 @@ body.dark-theme .geo-map-tint {
 
     .footer-bottom > :last-child {
         justify-self: center;
+    }
+
+    /* Авторство уходит в самый низ — под ИНН */
+    .footer-credit {
+        order: 3;
     }
 }
 
