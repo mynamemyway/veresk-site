@@ -705,7 +705,7 @@ body.dark-theme .yandex-score {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
 }
 
 /* Объединённое поле акции: красная плашка скидки и описание. Контур один по образцу .why-we-step */
