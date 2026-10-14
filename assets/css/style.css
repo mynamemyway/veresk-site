@@ -84,7 +84,7 @@
 
     /* Обычные экраны (до 1500px, включая 1440): ширина контента и размер текста 1280px.
        Значения для больших мониторов (1920) заданы отдельно в «крупном тире» ниже. */
-    --container-max: 1280px;
+    --container-max: 1200px;
     --gutter: 2rem;
     --type-scale: 1;
 
@@ -569,7 +569,7 @@ a.logo-wrap:hover .logo-icon {
 }
 
 .hero-title tracking-bold {
-    font-weight: 800;
+    font-weight: 700;
     display: block;
     letter-spacing: 0.05em;
     color: var(--text-main);
@@ -803,7 +803,7 @@ body.dark-theme .yandex-score {
     background: var(--yandex-red);
     color: #fff;
     font-size: calc(12px * var(--type-scale));
-    font-weight: 800;
+    font-weight: 700;
     letter-spacing: 0.02em;
     line-height: 1;
     border: 1px solid var(--yandex-red);
@@ -1173,7 +1173,7 @@ body.dark-theme .yandex-score {
 
 .section-title {
     font-size: calc(32px * var(--type-scale));
-    font-weight: 800;
+    font-weight: 700;
     color: var(--text-main);
     text-transform: uppercase;
     letter-spacing: -0.02em;
@@ -1819,7 +1819,7 @@ body.dark-theme .yandex-score {
 
 .v2-total-line strong {
     font-size: calc(26px * var(--type-scale));
-    font-weight: 800;
+    font-weight: 700;
     color: var(--text-main);
     white-space: nowrap;
 }
@@ -2113,7 +2113,7 @@ body.dark-theme .yandex-score {
 .section-subtitle {
     margin: 0 0 1rem;
     font-size: calc(24px * var(--type-scale));
-    font-weight: 800;
+    font-weight: 700;
     color: var(--text-main);
     text-transform: uppercase;
     letter-spacing: -0.02em;
@@ -2487,11 +2487,11 @@ body.dark-theme .yandex-score {
 }
 
 /* Смартфоны (вертикальные, ≤480): h3 «Ваши боли / Наши решения» должен быть
-   меньше h2 «Почему мы». Приглушаем цветом, вес оставляем базовый (800) */
+   меньше h2 «Почему мы». Приглушаем цветом, вес оставляем базовый (700) */
 @media (max-width: 480px) {
     .section-subtitle {
         font-size: calc(18px * var(--type-scale));
-        font-weight: 800;
+        font-weight: 700;
         color: var(--text-muted);
     }
 }
@@ -2522,7 +2522,7 @@ body.dark-theme .yandex-score {
 .b2b-title {
     margin: 0 0 1rem;
     font-size: calc(24px * var(--type-scale));
-    font-weight: 800;
+    font-weight: 700;
     color: var(--text-main);
     text-transform: uppercase;
     letter-spacing: -0.02em;
@@ -2586,7 +2586,7 @@ body.dark-theme .yandex-score {
 .b2b-tags-title {
     margin: 0 0 1rem;
     font-size: calc(24px * var(--type-scale));
-    font-weight: 800;
+    font-weight: 700;
     color: var(--text-main);
     text-transform: uppercase;
     letter-spacing: -0.02em;
@@ -2890,7 +2890,7 @@ body.dark-theme .yandex-score {
 /* Раскрытый вопрос: жирнее и светлее */
 .faq-item.is-open .faq-btn {
     color: var(--text-main);
-    font-weight: 800;
+    font-weight: 700;
 }
 
 .faq-question {
@@ -3278,7 +3278,7 @@ body.dark-theme .geo-map-tint {
     font-family: var(--font-head);
     /* На узких экранах шрифт поджимается (clamp), чтобы строка не переносилась */
     font-size: clamp(calc(14.4px * var(--type-scale)), 1.92vw, calc(18px * var(--type-scale)));
-    font-weight: 800;
+    font-weight: 700;
     letter-spacing: -0.01em;
     color: var(--text-main);
 }
