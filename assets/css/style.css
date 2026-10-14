@@ -384,7 +384,7 @@ a.logo-wrap:hover .logo-icon {
 /* Шапка на телефоне: лого и телефон не влезали в строку, и шапка
    растягивала страницу по горизонтали. Самая широкая часть — .logo-sub
    с разрядкой 1.08em, она была шире всего экрана */
-@media (max-width: 680px) {
+@media (max-width: 768px) {
     .premium-header {
         height: auto;
         min-height: var(--header-h);
@@ -425,7 +425,7 @@ a.logo-wrap:hover .logo-icon {
    .right-controls растворяется — его дети становятся прямыми элементами
    шапки. Телефон внутри .header-contacts: группа переносится на свою
    строку целиком, и иконка телеграма всегда стоит сразу перед телефоном */
-@media (max-width: 520px) {
+@media (max-width: 480px) {
     .premium-header {
         flex-wrap: wrap;
         justify-content: flex-start;
@@ -444,13 +444,13 @@ a.logo-wrap:hover .logo-icon {
 
 /* Узкие полосы: поджимаем только промежутки между иконками/кнопками,
    чтобы телефон и «Работаем с 1995 года» не переносились */
-@media (min-width: 681px) and (max-width: 740px) {
+@media (min-width: 681px) and (max-width: 768px) {
     .right-controls {
         gap: 0.35rem;
     }
 }
 
-@media (min-width: 521px) and (max-width: 580px) {
+@media (min-width: 481px) and (max-width: 600px) {
     .right-controls {
         gap: 0.25rem;
     }
@@ -578,13 +578,13 @@ a.logo-wrap:hover .logo-icon {
 
 /* Заголовок hero не умещался в телефон: 39px оставалось на всех ширинах.
    Длинное слово «ПРОФЕССИОНАЛЬНОЕ» вылезало за вьюпорт и ломало вёрстку */
-@media (max-width: 680px) {
+@media (max-width: 768px) {
     .hero-title {
         font-size: calc(30px * var(--type-scale));
     }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 480px) {
     .hero-title {
         font-size: calc(28px * var(--type-scale));
     }
@@ -1087,7 +1087,7 @@ body.dark-theme .yandex-score {
 }
 
 /* Телефоны */
-@media (max-width: 520px) {
+@media (max-width: 480px) {
     .cta-form {
         flex-direction: column;
         height: auto;
@@ -1407,7 +1407,7 @@ body.dark-theme .yandex-score {
     }
 }
 
-@media (max-width: 680px) {
+@media (max-width: 768px) {
     .prices-grid {
         grid-template-columns: 1fr;
     }
@@ -1422,7 +1422,7 @@ body.dark-theme .yandex-score {
     }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 480px) {
     .calc-title {
         font-size: calc(24px * var(--type-scale));
     }
@@ -1842,7 +1842,7 @@ body.dark-theme .yandex-score {
     }
 }
 
-@media (max-width: 680px) {
+@media (max-width: 768px) {
     .v2-layout {
         grid-template-columns: 1fr;
     }
@@ -1864,7 +1864,7 @@ body.dark-theme .yandex-score {
 
 /* Одна строка «ИТОГО» + суммы должна держаться на всех ширинах,
    поэтому на узких экранах уменьшаем кегль, а не ломаем строку */
-@media (max-width: 520px) {
+@media (max-width: 480px) {
     .v2-total-line span,
     .v2-total-line strong {
         font-size: calc(18px * var(--type-scale));
@@ -3346,7 +3346,7 @@ body.dark-theme .geo-map-tint {
 }
 
 /* Переводим футер в один столбик */
-@media (max-width: 720px) {
+@media (max-width: 768px) {
     .footer-grid {
         grid-template-columns: 1fr;
         gap: 2rem;

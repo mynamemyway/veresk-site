@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 1200) setNavOpen(false);
+      if (window.innerWidth > 1024) setNavOpen(false);
     });
   }
   
