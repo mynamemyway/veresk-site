@@ -456,7 +456,7 @@ a.logo-wrap:hover .logo-icon {
     }
 }
 
-@media (min-width: 1400px) {
+@media (min-width: 1280px) {
     .premium-header {
         padding-left: max(var(--gutter), calc((100% - var(--container-max)) / 2));
         padding-right: max(var(--gutter), calc((100% - var(--container-max)) / 2));
@@ -593,7 +593,7 @@ a.logo-wrap:hover .logo-icon {
 /* Узкий десктоп: заголовок hero мельче,
    иначе длинное слово «ПРОФЕССИОНАЛЬНОЕ» не влезает в колонку и текст
    переносится по одному слову. Базовый clamp не трогаем — только полоса 1025–1440px */
-@media (min-width: 1025px) and (max-width: 1440px) {
+@media (min-width: 1025px) and (max-width: 1499px) {
     .hero-title {
         font-size: calc(32px * var(--type-scale));
     }
@@ -982,14 +982,14 @@ body.dark-theme .yandex-score {
 }
 
 /* Шестой пункт в шапке расширил навигацию. .premium-nav центрирован абсолютно */
-@media (max-width: 1400px) {
+@media (max-width: 1280px) {
     .premium-nav {
         gap: 1.25rem;
     }
 }
 
 /* Планшеты и нетбуки */
-@media (max-width: 1200px) {
+@media (max-width: 1280px) {
     .premium-nav {
         display: none;
     }
