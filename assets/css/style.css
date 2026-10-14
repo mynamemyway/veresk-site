@@ -1171,7 +1171,7 @@ body.dark-theme .yandex-score {
     margin-bottom: 3rem;
 }
 
-.calc-title {
+.section-title {
     font-size: calc(32px * var(--type-scale));
     font-weight: 800;
     color: var(--text-main);
@@ -1443,10 +1443,10 @@ body.dark-theme .yandex-score {
     }
 }
 
-/* Мобильная типографика калькулятора: смартфоны и мобильные.
-   На планшетах h2 (calc-title) остаётся базовым (32px) и крупнее h3 (card-title 22px) */
+/* Мобильная типографика секций и карточек: смартфоны и мобильные.
+   На планшетах h2 (.section-title) остаётся базовым (32px) и крупнее h4 (.card-title 22px) */
 @media (max-width: 600px) {
-    .calc-title {
+    .section-title {
         font-size: calc(24px * var(--type-scale));
     }
 
@@ -1455,9 +1455,9 @@ body.dark-theme .yandex-score {
     }
 }
 
-/* Смартфоны (вертикальные, ≤480): h2 и h3 компактнее, но h2 > h3 сохраняется */
+/* Смартфоны (вертикальные, ≤480): h2 и h4 компактнее, но h2 > h4 сохраняется */
 @media (max-width: 480px) {
-    .calc-title {
+    .section-title {
         font-size: calc(20px * var(--type-scale));
     }
 
@@ -2110,7 +2110,7 @@ body.dark-theme .yandex-score {
     align-items: stretch;
 }
 
-.why-we-title {
+.section-subtitle {
     margin: 0 0 1rem;
     font-size: calc(24px * var(--type-scale));
     font-weight: 800;
@@ -2120,7 +2120,7 @@ body.dark-theme .yandex-score {
 }
 
 /* Заголовок правой части прижат вправо */
-.why-we-right .why-we-title {
+.why-we-right .section-subtitle {
     text-align: right;
 }
 
@@ -2272,11 +2272,11 @@ body.dark-theme .yandex-score {
     color: var(--btn-fill);
 }
 
-.why-we-card-title {
+/* Заголовки карточек преимуществ/решений — компактные капс-лейблы (как триггеры в hero) */
+.why-we-card .card-title {
     margin: 0 0 0.5rem;
     font-size: calc(16px * var(--type-scale));
     font-weight: 700;
-    color: var(--text-main);
     text-transform: uppercase;
     letter-spacing: 0.1em;
 }
@@ -2472,12 +2472,12 @@ body.dark-theme .yandex-score {
         border-bottom-right-radius: var(--radius-main);
     }
 
-    .why-we-title {
+    .section-subtitle {
         font-size: calc(20px * var(--type-scale));
     }
 
     /* Позиционирование как на 601–768: «НАШИ РЕШЕНИЯ» по правому краю */
-    .why-we-right .why-we-title {
+    .why-we-right .section-subtitle {
         text-align: right;
     }
 
@@ -2489,7 +2489,7 @@ body.dark-theme .yandex-score {
 /* Смартфоны (вертикальные, ≤480): h3 «Ваши боли / Наши решения» должен быть
    меньше h2 «Почему мы». Приглушаем цветом, вес оставляем базовый (800) */
 @media (max-width: 480px) {
-    .why-we-title {
+    .section-subtitle {
         font-size: calc(18px * var(--type-scale));
         font-weight: 800;
         color: var(--text-muted);
