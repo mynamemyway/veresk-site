@@ -576,17 +576,43 @@ a.logo-wrap:hover .logo-icon {
     margin-top: 2px;
 }
 
+/* Мобильная перекомпоновка H1: переносы строк и скрытие гео-хвоста —
+   только на телефонах (≤600px). На планшетах (601–768) и выше текст полный,
+   без принудительных переносов. */
+.hero-br {
+    display: none;
+}
+
 /* Заголовок hero не умещался в телефон: 39px оставалось на всех ширинах.
-   Длинное слово «ПРОФЕССИОНАЛЬНОЕ» вылезало за вьюпорт и ломало вёрстку */
-@media (max-width: 768px) {
+   Длинное слово «ПРОФЕССИОНАЛЬНОЕ» вылезало за вьюпорт и ломало вёрстку.
+   Мобильные (горизонтальные, ≤600) — крупнее; смартфоны (≤480) — компактнее */
+@media (max-width: 600px) {
     .hero-title {
         font-size: calc(26px * var(--type-scale));
+        font-weight: 700;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+    }
+
+    .hero-title tracking-bold {
+        display: inline;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+    }
+
+    .hero-br {
+        display: inline;
+    }
+
+    .hero-geo {
+        display: none;
     }
 }
 
+/* Смартфоны (вертикальные, ≤480): h1 мельче, но остаётся крупнее h2 */
 @media (max-width: 480px) {
     .hero-title {
-        font-size: calc(24px * var(--type-scale));
+        font-size: calc(22px * var(--type-scale));
     }
 }
 
@@ -949,14 +975,13 @@ body.dark-theme .yandex-score {
 
    КОНТРАКТ АДАПТИВНОСТИ (СИСТЕМНЫЕ БРЕЙКПОИНТЫ)
    ---
-   @media (max-width: 1280px) -> Ноутбуки / Мелкий десктоп
-   @media (max-width: 1024px) -> Планшеты (горизонтальные)
-   @media (max-width: 768px)  -> Планшеты (вертикальные) / Крупные мобильные
-   @media (max-width: 600px)  -> Мобильные (горизонтальные)
-   @media (max-width: 480px)  -> Смартфоны (вертикальные)
-
-   @media (min-width: 1500px) -> Большие мониторы (2K)
-   @media (min-width: 1850px) -> Крупный тир (Full HD и выше)
+   @media (max-width: 000 - 480px)  -> Смартфоны (вертикальные)
+   @media (max-width: 481 - 600px)  -> Мобильные (горизонтальные)
+   @media (max-width: 601 - 768px)  -> Планшеты (вертикальные) / Крупные мобильные
+   @media (max-width: 769 - 1024px) -> Планшеты (горизонтальные) (!ПОЧЕМУ МЫ! нужен подгон)
+   @media (max-width: 1025 - 1280px) -> Ноутбуки / Мелкий десктоп
+   @media (min-width: 1281 - 1500px) -> Большие мониторы (2K)
+   @media (min-width: 1501 - 1850px) -> Крупный тир (Full HD и выше)
    ========================================================================== */
 
 @media (min-width: 1500px) {
@@ -1412,23 +1437,32 @@ body.dark-theme .yandex-score {
         grid-template-columns: 1fr;
     }
 
-    .calc-title {
-        font-size: calc(22px * var(--type-scale));
-    }
-
     .calc-tabs-nav {
         flex-direction: column;
         align-items: stretch;
     }
 }
 
+/* Мобильная типографика калькулятора: смартфоны и мобильные.
+   На планшетах h2 (calc-title) остаётся базовым (32px) и крупнее h3 (card-title 22px) */
+@media (max-width: 600px) {
+    .calc-title {
+        font-size: calc(24px * var(--type-scale));
+    }
+
+    .card-title {
+        font-size: calc(18px * var(--type-scale));
+    }
+}
+
+/* Смартфоны (вертикальные, ≤480): h2 и h3 компактнее, но h2 > h3 сохраняется */
 @media (max-width: 480px) {
     .calc-title {
         font-size: calc(20px * var(--type-scale));
     }
 
     .card-title {
-        font-size: calc(18px * var(--type-scale));
+        font-size: calc(16px * var(--type-scale));
     }
 }
 
@@ -2442,12 +2476,23 @@ body.dark-theme .yandex-score {
         font-size: calc(20px * var(--type-scale));
     }
 
+    /* Позиционирование как на 601–768: «НАШИ РЕШЕНИЯ» по правому краю */
     .why-we-right .why-we-title {
-        text-align: left;
+        text-align: right;
     }
 
     .why-we-note-text {
         font-size: calc(14px * var(--type-scale));
+    }
+}
+
+/* Смартфоны (вертикальные, ≤480): h3 «Ваши боли / Наши решения» должен быть
+   меньше h2 «Почему мы». Приглушаем цветом, вес оставляем базовый (800) */
+@media (max-width: 480px) {
+    .why-we-title {
+        font-size: calc(18px * var(--type-scale));
+        font-weight: 800;
+        color: var(--text-muted);
     }
 }
 
