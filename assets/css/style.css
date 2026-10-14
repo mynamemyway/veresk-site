@@ -981,15 +981,34 @@ body.dark-theme .yandex-score {
 
 }
 
-/* Шестой пункт в шапке расширил навигацию. .premium-nav центрирован абсолютно */
+/* Hero на ноутбуках: поджимаем боковые отступы колонок */
 @media (max-width: 1280px) {
-    .premium-nav {
-        gap: 1.25rem;
+    .hero-headline-block,
+    .triggers-grid-container {
+        padding-right: 2rem !important;
+    }
+
+    .hero-image-block,
+    .premium-cta-box-container {
+        padding-left: 2.5rem !important;
     }
 }
 
-/* Планшеты и нетбуки */
-@media (max-width: 1280px) {
+/* Ноутбуки 1025–1280px: меню развёрнуто, но ссылки компактнее,
+   чтобы умещались в одну строку */
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .premium-nav {
+        gap: 1rem;
+    }
+
+    .nav-link {
+        font-size: calc(10px * var(--type-scale));
+        letter-spacing: 0.05em;
+    }
+}
+
+/* Планшеты и нетбуки: меню сворачивается в гамбургер */
+@media (max-width: 1024px) {
     .premium-nav {
         display: none;
     }
@@ -1024,18 +1043,6 @@ body.dark-theme .yandex-score {
 
     .premium-nav.is-open .nav-link:last-child {
         border-bottom: none;
-    }
-
-    /* Hero остаётся двухколоночным (фото рядом с заголовком, триггеры рядом
-       с акцией) — только поджимаем боковые отступы колонок */
-    .hero-headline-block,
-    .triggers-grid-container {
-        padding-right: 2rem !important;
-    }
-
-    .hero-image-block,
-    .premium-cta-box-container {
-        padding-left: 2.5rem !important;
     }
 }
 
