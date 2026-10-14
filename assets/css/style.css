@@ -444,7 +444,7 @@ a.logo-wrap:hover .logo-icon {
 
 /* Узкие полосы: поджимаем только промежутки между иконками/кнопками,
    чтобы телефон и «Работаем с 1995 года» не переносились */
-@media (min-width: 681px) and (max-width: 768px) {
+@media (min-width: 601px) and (max-width: 768px) {
     .right-controls {
         gap: 0.35rem;
     }
@@ -580,13 +580,13 @@ a.logo-wrap:hover .logo-icon {
    Длинное слово «ПРОФЕССИОНАЛЬНОЕ» вылезало за вьюпорт и ломало вёрстку */
 @media (max-width: 768px) {
     .hero-title {
-        font-size: calc(30px * var(--type-scale));
+        font-size: calc(26px * var(--type-scale));
     }
 }
 
 @media (max-width: 480px) {
     .hero-title {
-        font-size: calc(28px * var(--type-scale));
+        font-size: calc(24px * var(--type-scale));
     }
 }
 
@@ -1413,7 +1413,7 @@ body.dark-theme .yandex-score {
     }
 
     .calc-title {
-        font-size: calc(26px * var(--type-scale));
+        font-size: calc(22px * var(--type-scale));
     }
 
     .calc-tabs-nav {
@@ -1424,7 +1424,7 @@ body.dark-theme .yandex-score {
 
 @media (max-width: 480px) {
     .calc-title {
-        font-size: calc(24px * var(--type-scale));
+        font-size: calc(20px * var(--type-scale));
     }
 
     .card-title {
