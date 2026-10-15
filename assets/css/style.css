@@ -623,12 +623,16 @@ a.logo-wrap:hover .logo-icon {
     color: var(--text-main);
     line-height: 1.5;
     text-transform: uppercase;
+    /* Пробелы шире — как у tracking-bold (там letter-spacing идёт и после пробела).
+       Межбуквенное не трогаем. */
+    word-spacing: 0.05em;
 }
 
 .hero-title tracking-bold {
     font-weight: 700;
     display: block;
     letter-spacing: 0.05em;
+    word-spacing: normal; /* разрядка пробелов уже через letter-spacing выше */
     color: var(--text-main);
     margin-top: 0.125rem;
 }
