@@ -631,7 +631,7 @@ a.logo-wrap:hover .logo-icon {
 
 /* Узкий десктоп: заголовок hero мельче,
    иначе длинное слово «ПРОФЕССИОНАЛЬНОЕ» не влезает в колонку и текст
-   переносится по одному слову. Базовый clamp не трогаем — только полоса 1025–1440px */
+   переносится по одному слову. Базовый clamp не трогаем — только полоса 1025–1499px */
 @media (min-width: 1025px) and (max-width: 1499px) {
     .hero-title {
         font-size: var(--fs-h1);
@@ -1458,7 +1458,7 @@ body.dark-theme .yandex-score {
 }
 
 /* Мобильная типографика секций и карточек: смартфоны и мобильные.
-   На планшетах h2 (.section-title) остаётся базовым (32px) и крупнее h4 (.card-title 22px) */
+   На планшетах h2 (.section-title) остаётся базовым (32px) и крупнее h3 (.card-title 22px) */
 @media (max-width: 600px) {
     .section-title {
         font-size: 1.5rem;
@@ -1469,7 +1469,7 @@ body.dark-theme .yandex-score {
     }
 }
 
-/* Смартфоны (вертикальные, ≤480): h2 и h4 компактнее, но h2 > h4 сохраняется */
+/* Смартфоны (вертикальные, ≤480): h2 и h3 компактнее, но h2 > h3 сохраняется */
 @media (max-width: 480px) {
     .section-title {
         font-size: 1.25rem;
@@ -1588,6 +1588,7 @@ body.dark-theme .yandex-score {
 }
 
 .v2-group-title {
+    font-family: var(--font-body);
     font-size: 0.9375rem;
     font-weight: 700;
     color: var(--text-main);
@@ -1615,6 +1616,7 @@ body.dark-theme .yandex-score {
    -------------------------------------------------------------------------- */
 
 .v2-step-title {
+    font-family: var(--font-body);
     font-size: 1rem;
     font-weight: 700;
     color: var(--text-main);
