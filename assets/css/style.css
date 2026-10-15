@@ -617,6 +617,11 @@ a.logo-wrap:hover .logo-icon {
         display: inline;
     }
 
+    /* Сокращённый H1 на телефоне: убираем «всех видов», как и гео-хвост */
+    .hero-kind {
+        display: none;
+    }
+
     .hero-geo {
         display: none;
     }
