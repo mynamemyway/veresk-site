@@ -96,7 +96,7 @@
 
     /* Типографические роли (rem): единый источник правды.
        Значения = отлаженной базе (корень 1×). На крупных тирах растут с корнем (zoom). */
-    --fs-h1: 2rem;       /* H1 — только полоса 1025–1499 (база — clamp, см. .hero-title) */
+    --fs-h1: 2.1rem;        /* H1 — предохранитель полосы 1024–1499 (кегль = 4.5% текстовой колонки, см. .hero-title) */
     --fs-h2: 2rem;          /* H2 — .section-title */
     --fs-h3: 1.5rem;        /* подзаголовки секций, заголовки тарифов */
     --fs-h4: 1.375rem;      /* роль заголовков карточек */
@@ -608,7 +608,7 @@ a.logo-wrap:hover .logo-icon {
 
 .hero-title {
     /* Плавно поджимается на планшетных ширинах, на десктопе остаётся 34px */
-    font-size: clamp(1.75rem, 3vw, 2.125rem);
+    font-size: clamp(rem 1.75, 3vw, 2.125rem);
     font-weight: 300;
     color: var(--text-main);
     line-height: 1.5;
@@ -628,6 +628,16 @@ a.logo-wrap:hover .logo-icon {
    без принудительных переносов. */
 .hero-br {
     display: none;
+}
+
+/* «в Санкт-Петербурге» на планшетах — отдельной последней строкой, одной
+   строкой (иначе приклеивалось к «ГРЫЗУНОВ» / рвалось по дефису).
+   ≤600 .hero-geo скрыт, ≥1025 — обычный перенос. */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .hero-geo {
+        display: block;
+        white-space: nowrap;
+    }
 }
 
 /* Заголовок hero не умещался в телефон: 39px оставалось на всех ширинах.
@@ -668,12 +678,17 @@ a.logo-wrap:hover .logo-icon {
     }
 }
 
-/* Узкий десктоп: заголовок hero мельче,
-   иначе длинное слово «ПРОФЕССИОНАЛЬНОЕ» не влезает в колонку и текст
-   переносится по одному слову. Базовый clamp не трогаем — только полоса 1025–1499px */
-@media (min-width: 1025px) and (max-width: 1499px) {
+/* H1 = 4.5% текстовой колонки (контейнер — .hero-headline-block, content-box
+   без padding-right; спека: cq-единицы берутся от предка-контейнера).
+   Потолок 4.57% = предел трёх строк (замер); --fs-h1 — предохранитель.
+   Ниже 1024 — базовый clamp .hero-title. */
+@media (min-width: 1024px) and (max-width: 1499px) {
+    .hero-headline-block {
+        container-type: inline-size;
+    }
+
     .hero-title {
-        font-size: var(--fs-h1);
+        font-size: clamp(1.4rem, 4.5cqw, var(--fs-h1));
     }
 }
 
