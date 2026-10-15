@@ -47,7 +47,7 @@
     --logo-hover: #0F766E;
 
     /* Высота липкой шапки. От неё пляшут все смещения при переходе по меню */
-    --header-h: 80px;
+    --header-h: 5rem;
     /* Отступ от нижней границы шапки до заголовка блока после перехода по меню */
     --anchor-gap: 3rem;
 
@@ -82,11 +82,20 @@
     --hero-image: url('../img/hero-violet.webp');
     --yandex-red: #ff3347;
 
-    /* Обычные экраны (до 1500px, включая 1440): ширина контента и размер текста 1280px.
-       Значения для больших мониторов (1920) заданы отдельно в «крупном тире» ниже. */
-    --container-max: 1200px;
+    /* Единый rem-контейнер: растёт вместе с корнем (zoom), не отдельным px.
+       75rem = 1200px при корне 16px (база 1281–1499 — 1440 пиксель-в-пиксель). */
+    --container-max: 75rem;
     --gutter: 2rem;
-    --type-scale: 1;
+
+    /* Типографические роли (rem): единый источник правды.
+       Значения = отлаженной базе (корень 1×). На крупных тирах растут с корнем (zoom). */
+    --fs-h1: 2rem;          /* H1 — только полоса 1025–1499 (база — clamp, см. .hero-title) */
+    --fs-h2: 2rem;          /* H2 — .section-title */
+    --fs-h3: 1.5rem;        /* H3 — .section-subtitle */
+    --fs-h4: 1.375rem;      /* H4 — .card-title */
+    --fs-body: 1rem;        /* основной текст */
+    --fs-small: 0.8125rem;  /* мелкий текст */
+    --fs-label: 1rem;       /* капс-лейблы (напр. триггеры hero) */
 
     /* Оригинальные мягкие воздушные тени */
     --shadow-img: 0 15px 30px rgba(15, 23, 42, 0.04);
@@ -164,10 +173,14 @@ body.dark-theme {
 
 html {
     scroll-behavior: smooth;
+    /* Единый рычаг масштаба (a11y: от пользовательского дефолта, не фикс. px).
+       Крупные тиры усиливают множитель — см. @media 1500/1850 ниже. */
+    font-size: 100%;
 }
 
 body {
     font-family: var(--font-body);
+    font-size: var(--fs-body);
     background: var(--site-bg);
     color: var(--text-main);
     -webkit-font-smoothing: antialiased;
@@ -242,7 +255,7 @@ a.logo-wrap:hover .logo-icon {
 
 .logo-main {
     font-family: var(--font-head);
-    font-size: calc(18px * var(--type-scale));
+    font-size: 1.125rem;
     font-weight: 700;
     color: var(--accent-hover);
     letter-spacing: 0.08em;
@@ -262,18 +275,18 @@ a.logo-wrap:hover .logo-icon {
 
 .logo-sub {
     font-family: var(--font-head);
-    font-size: calc(9px * var(--type-scale));
+    font-size: 0.5625rem;
     color: var(--sub-color);
     font-weight: 600;
     letter-spacing: 1em;
     text-transform: uppercase;
     white-space: nowrap;
-    margin-top: 4px;
+    margin-top: 0.25rem;
 }
 
 /* Вариант подписи с позиционированием под строкой (для авто-выравнивания лого):
-   .logo-sub { font-size: calc(9px * var(--type-scale)); color: var(--sub-color); font-weight: 600; letter-spacing: 0.98em;
-       text-transform: uppercase; position: absolute; top: 100%; left: 0; margin-top: 4px; white-space: nowrap; } */
+   .logo-sub { font-size: 0.5625rem; color: var(--sub-color); font-weight: 600; letter-spacing: 0.98em;
+       text-transform: uppercase; position: absolute; top: 100%; left: 0; margin-top: 0.25rem; white-space: nowrap; } */
 
 .premium-nav {
     display: flex;
@@ -285,7 +298,7 @@ a.logo-wrap:hover .logo-icon {
 
 .nav-link {
     font-family: var(--font-head);
-    font-size: calc(11px * var(--type-scale));
+    font-size: 0.6875rem;
     font-weight: 500;
     color: var(--text-muted);
     text-transform: uppercase;
@@ -313,7 +326,7 @@ a.logo-wrap:hover .logo-icon {
 }
 
 .header-phone {
-    font-size: calc(15px * var(--type-scale));
+    font-size: 0.9375rem;
     font-weight: 700;
     color: var(--text-main);
     font-family: var(--font-head);
@@ -322,7 +335,7 @@ a.logo-wrap:hover .logo-icon {
     align-items: center;
     gap: 0.5rem;
     /* Плашка в тон кнопке телеграма: та же высота, радиус и зелёный цвет */
-    height: 40px;
+    height: 2.5rem;
     padding: 0 1rem;
     border: 1px solid var(--btn-fill);
     border-radius: 0.75rem;
@@ -330,8 +343,8 @@ a.logo-wrap:hover .logo-icon {
 }
 
 .phone-dot {
-    height: 6px;
-    width: 6px;
+    height: 0.375rem;
+    width: 0.375rem;
     background-color: #10b981;
     border-radius: 50%;
     display: inline-block;
@@ -344,14 +357,14 @@ a.logo-wrap:hover .logo-icon {
     background: var(--accent-soft);
     border: 1px solid var(--border-glass);
     color: var(--accent-color);
-    width: 40px;
-    height: 40px;
+    width: 2.5rem;
+    height: 2.5rem;
     border-radius: 0.75rem;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: calc(20px * var(--type-scale));
+    font-size: 1.25rem;
     transition: all 0.3s ease;
 }
 
@@ -392,13 +405,13 @@ a.logo-wrap:hover .logo-icon {
     }
 
     .logo-main {
-        font-size: calc(15px * var(--type-scale));
+        font-size: 0.9375rem;
         letter-spacing: 0.08em;
         gap: 0.4rem;
     }
 
     .logo-sub {
-        font-size: calc(8px * var(--type-scale));
+        font-size: 0.5rem;
         letter-spacing: 0.84em;
     }
 
@@ -407,17 +420,17 @@ a.logo-wrap:hover .logo-icon {
     }
 
     .header-phone {
-        font-size: calc(13px * var(--type-scale));
-        height: 34px;
+        font-size: 0.8125rem;
+        height: 2.125rem;
         padding: 0 0.75rem;
     }
 
     .theme-toggle-btn,
     .nav-toggle-btn,
     .header-telegram-btn {
-        width: 34px;
-        height: 34px;
-        font-size: calc(16px * var(--type-scale));
+        width: 2.125rem;
+        height: 2.125rem;
+        font-size: 1rem;
     }
 }
 
@@ -485,7 +498,7 @@ a.logo-wrap:hover .logo-icon {
     overflow-y: visible;
     padding: 5rem var(--gutter);
     /* при переходе по логотипу hero не уезжает под липкий header */
-    scroll-margin-top: 90px;
+    scroll-margin-top: calc(var(--header-h) + 0.625rem);
 }
 
 .global-vertical-line {
@@ -547,7 +560,7 @@ a.logo-wrap:hover .logo-icon {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: calc(10px * var(--type-scale));
+    font-size: 0.625rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.15em;
@@ -556,12 +569,12 @@ a.logo-wrap:hover .logo-icon {
 }
 
 .social-badge i {
-    font-size: calc(8px * var(--type-scale));
+    font-size: 0.5rem;
 }
 
 .hero-title {
     /* Плавно поджимается на планшетных ширинах, на десктопе остаётся 34px */
-    font-size: clamp(calc(28px * var(--type-scale)), 3vw, calc(34px * var(--type-scale)));
+    font-size: clamp(1.75rem, 3vw, 2.125rem);
     font-weight: 300;
     color: var(--text-main);
     line-height: 1.5;
@@ -573,7 +586,7 @@ a.logo-wrap:hover .logo-icon {
     display: block;
     letter-spacing: 0.05em;
     color: var(--text-main);
-    margin-top: 2px;
+    margin-top: 0.125rem;
 }
 
 /* Мобильная перекомпоновка H1: переносы строк и скрытие гео-хвоста —
@@ -588,7 +601,7 @@ a.logo-wrap:hover .logo-icon {
    Мобильные (горизонтальные, ≤600) — крупнее; смартфоны (≤480) — компактнее */
 @media (max-width: 600px) {
     .hero-title {
-        font-size: calc(26px * var(--type-scale));
+        font-size: 1.625rem;
         font-weight: 700;
         line-height: 1.1;
         letter-spacing: -0.02em;
@@ -612,7 +625,7 @@ a.logo-wrap:hover .logo-icon {
 /* Смартфоны (вертикальные, ≤480): h1 мельче, но остаётся крупнее h2 */
 @media (max-width: 480px) {
     .hero-title {
-        font-size: calc(22px * var(--type-scale));
+        font-size: 1.375rem;
     }
 }
 
@@ -621,7 +634,7 @@ a.logo-wrap:hover .logo-icon {
    переносится по одному слову. Базовый clamp не трогаем — только полоса 1025–1440px */
 @media (min-width: 1025px) and (max-width: 1499px) {
     .hero-title {
-        font-size: calc(32px * var(--type-scale));
+        font-size: var(--fs-h1);
     }
 }
 
@@ -631,8 +644,8 @@ a.logo-wrap:hover .logo-icon {
     border: 0px solid var(--border-glass);
     display: inline-flex;
     flex-direction: column;
-    padding: 12px 2px;
-    border-radius: 12px;
+    padding: 0.75rem 0.125rem;
+    border-radius: 0.75rem;
     box-shadow: var(--header-bg);
     font-family: var(--font-body);
     text-transform: none;
@@ -646,17 +659,17 @@ a.logo-wrap:hover .logo-icon {
     /*Временно вместо плашки яндекс с отзывами*/
     /*flex-direction: column;
     align-items: flex-start;*/
-    gap: 8px;
-    margin-bottom: 4px;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
 }
 
 .yandex-marker {
     color: var(--yandex-red);
-    font-size: calc(18px * var(--type-scale));
+    font-size: 1.125rem;
 }
 
 .yandex-score {
-    font-size: calc(20px * var(--type-scale));
+    font-size: 1.25rem;
     font-weight: 700;
     color: var(--text-main);
     line-height: 1;
@@ -664,9 +677,9 @@ a.logo-wrap:hover .logo-icon {
 
 .yandex-stars {
     display: flex;
-    gap: 2px;
+    gap: 0.125rem;
     color: var(--yandex-gold);
-    font-size: calc(14px * var(--type-scale));
+    font-size: 0.875rem;
 }
 
 /* На тёмной теме белая цифра «5,0» на золотом фоне пропадала */
@@ -675,7 +688,7 @@ body.dark-theme .yandex-score {
 }
 
 .yandex-rating-bottom {
-    font-size: calc(12px * var(--type-scale));
+    font-size: 0.75rem;
     color: var(--text-muted);
     font-weight: 400;
 }
@@ -713,7 +726,7 @@ body.dark-theme .yandex-score {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-rows: repeat(2, minmax(0, 1fr));
-    gap: 2px;
+    gap: 0.125rem;
     background-color: var(--border-grid);
     border: 1px solid var(--border-grid);
     border-radius: var(--radius-main);
@@ -737,7 +750,7 @@ body.dark-theme .yandex-score {
 }
 
 .trigger-num {
-    font-size: calc(16px * var(--type-scale));
+    font-size: var(--fs-label);
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -745,7 +758,7 @@ body.dark-theme .yandex-score {
 }
 
 .trigger-text {
-    font-size: calc(13px * var(--type-scale));
+    font-size: var(--fs-small);
     font-weight: 500;
     color: var(--text-muted);
     line-height: 1.4;
@@ -765,7 +778,7 @@ body.dark-theme .yandex-score {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 180px;
+    min-height: 11.25rem;
     width: 100%;
     transition: background 0.4s, border 0.4s;
     height: 100% !important;
@@ -786,8 +799,8 @@ body.dark-theme .yandex-score {
     width: 100%;
     background: var(--accent-soft);
     border: 1px solid var(--border-glass);
-    border-radius: 7px;
-    min-height: 24px;
+    border-radius: 0.4375rem;
+    min-height: 1.5rem;
 }
 
 /* Красная плашка скидки. Цвет как у иконки Яндекс.Карт в блоке отзывов (#ff3347) */
@@ -799,17 +812,17 @@ body.dark-theme .yandex-score {
     justify-content: center;
     /* плашка перекрывает рамку контейнера по своим сторонам */
     margin: -1px 0 -1px -1px;
-    padding: 0 10px;
+    padding: 0 0.625rem;
     background: var(--yandex-red);
     color: #fff;
-    font-size: calc(12px * var(--type-scale));
+    font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.02em;
     line-height: 1;
     border: 1px solid var(--yandex-red);
-    border-radius: 7px 0 0 7px;
+    border-radius: 0.4375rem 0 0 0.4375rem;
     /* верхний стык острый, нижний зеркалит нижний левый угол контейнера */
-    border-bottom-right-radius: 7px;
+    border-bottom-right-radius: 0.4375rem;
 }
 
 .cta-season {
@@ -817,13 +830,13 @@ body.dark-theme .yandex-score {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: calc(12px * var(--type-scale));
+    font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--text-main);
     line-height: 1.4;
-    padding: 4px 8px;
+    padding: 0.25rem 0.5rem;
     transition: color 0.4s;
 }
 
@@ -837,7 +850,7 @@ body.dark-theme .yandex-score {
     background: var(--btn-fill) !important;
     color: var(--btn-text-push) !important;
     font-weight: 700;
-    font-size: calc(11px * var(--type-scale));
+    font-size: 0.6875rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     border-radius: 0.75rem;
@@ -877,7 +890,7 @@ body.dark-theme .yandex-score {
     border-radius: 0.75rem;
     color: var(--text-main);
     font-family: var(--font-head);
-    font-size: calc(13px * var(--type-scale));
+    font-size: 0.8125rem;
     font-weight: 600;
     letter-spacing: 0.03em;
     outline: none;
@@ -931,7 +944,7 @@ body.dark-theme .yandex-score {
 }
 
 .privacy-snoska {
-    font-size: calc(12px * var(--type-scale)) !important;
+    font-size: 0.75rem !important;
     color: var(--text-muted);
     text-align: center;
     margin-top: 0.5rem;
@@ -959,8 +972,8 @@ body.dark-theme .yandex-score {
     opacity: 0.7; /* Прозрачность */
     /* Низ травы плавно растворяется: последние ~14px уходят в 100% прозрачность,
        чтобы не было видно земли и резкой обрезки полосы */
-    -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 5px), transparent 100%);
-    mask-image: linear-gradient(to bottom, #000 calc(100% - 5px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 0.3125rem), transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 calc(100% - 0.3125rem), transparent 100%);
 }
 
 /* JS переводит поле в поток (в конец героя, перед следующей секцией),
@@ -985,23 +998,23 @@ body.dark-theme .yandex-score {
    ========================================================================== */
 
 @media (min-width: 1500px) {
-    :root {
-        --container-max: 1360px;
-        --type-scale: 1.08;
+    /* Zoom тир-1: корень ×1.08 — весь макет растёт (текст + блоки) одним множителем */
+    html {
+        font-size: calc(100% * 1.08);
     }
 }
 
 @media (min-width: 1850px) {
-    :root {
-        --container-max: 1536px;
-        --type-scale: 1.3;
+    /* Zoom тир-2: корень ×1.3 */
+    html {
+        font-size: calc(100% * 1.3);
     }
 
-    /* H1 не тянем на весь ×1.4 (иначе фраза рассыпается на 5 строк).
+    /* H1 не тянем на весь ×1.3 (иначе фраза рассыпается на 5 строк).
        Отдельный, более спокойный размер заголовка героя для 1920. */
     .hero-title {
-      /* Минимально 32px, на средних экранах плавно растет как 2.5% от ширины экрана, но на 1920+ никогда не станет больше 38px */
-      font-size: clamp(32px, 2.5vw, 38px); 
+      /* Минимально 2rem, на средних экранах плавно растет как 2.5% от ширины экрана, но на 1920+ никогда не станет больше 2.375rem */
+      font-size: clamp(2rem, 2.5vw, 2.375rem); 
     }
 
 }
@@ -1027,7 +1040,7 @@ body.dark-theme .yandex-score {
     }
 
     .nav-link {
-        font-size: calc(10px * var(--type-scale));
+        font-size: 0.625rem;
         letter-spacing: 0.05em;
     }
 }
@@ -1061,7 +1074,7 @@ body.dark-theme .yandex-score {
     }
 
     .premium-nav.is-open .nav-link {
-        font-size: calc(13px * var(--type-scale));
+        font-size: 0.8125rem;
         padding: 0.9rem 0;
         border-bottom: 1px solid var(--border-glass);
     }
@@ -1096,7 +1109,7 @@ body.dark-theme .yandex-score {
     /* В один столбец фото не под что растягивать (height:100% от auto = 0) —
        задаём фиксированную высоту */
     .image-container-block {
-        height: 260px;
+        height: 16.25rem;
     }
 
     .triggers-grid {
@@ -1172,7 +1185,7 @@ body.dark-theme .yandex-score {
 }
 
 .section-title {
-    font-size: calc(32px * var(--type-scale));
+    font-size: var(--fs-h2);
     font-weight: 700;
     color: var(--text-main);
     text-transform: uppercase;
@@ -1181,9 +1194,9 @@ body.dark-theme .yandex-score {
 }
 
 .calc-subtitle {
-    font-size: calc(16px * var(--type-scale));
+    font-size: 1rem;
     color: var(--text-muted);
-    max-width: 600px;
+    max-width: 37.5rem;
     margin: 0 auto;
     line-height: 1.5;
 }
@@ -1205,7 +1218,7 @@ body.dark-theme .yandex-score {
     padding: 0.85rem 1.75rem;
     /* Радиус как у главных зелёных кнопок .premium-btn — не пилюля */
     border-radius: 0.75rem;
-    font-size: calc(15px * var(--type-scale));
+    font-size: 0.9375rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -1283,7 +1296,7 @@ body.dark-theme .yandex-score {
 }
 
 .price-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-0.25rem);
     box-shadow: var(--shadow-cta);
 }
 
@@ -1292,14 +1305,14 @@ body.dark-theme .yandex-score {
 }
 
 .card-title {
-    font-size: calc(22px * var(--type-scale));
+    font-size: var(--fs-h4);
     font-weight: 700;
     color: var(--text-main);
-    margin-bottom: 6px;
+    margin-bottom: 0.375rem;
 }
 
 .card-tag {
-    font-size: calc(13px * var(--type-scale));
+    font-size: 0.8125rem;
     color: var(--accent-color);
     font-weight: 600;
     text-transform: uppercase;
@@ -1310,21 +1323,21 @@ body.dark-theme .yandex-score {
 .mini-tabs {
     display: flex;
     background: var(--accent-soft);
-    padding: 4px;
-    border-radius: 10px;
-    margin-bottom: 12px;
+    padding: 0.25rem;
+    border-radius: 0.625rem;
+    margin-bottom: 0.75rem;
 }
 
 .mini-tab-btn {
     flex: 1;
     background: transparent;
     border: none;
-    padding: 8px 12px;
-    font-size: calc(13px * var(--type-scale));
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8125rem;
     font-weight: 600;
     color: var(--text-muted);
     cursor: pointer;
-    border-radius: 8px;
+    border-radius: 0.5rem;
     transition: all 0.2s ease;
 }
 
@@ -1347,8 +1360,8 @@ body.dark-theme .yandex-score {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    margin-bottom: 14px;
-    font-size: calc(15px * var(--type-scale));
+    margin-bottom: 0.875rem;
+    font-size: 0.9375rem;
     color: var(--text-muted);
 }
 
@@ -1359,9 +1372,9 @@ body.dark-theme .yandex-score {
 .price-list .dots {
     flex-grow: 1;
     border-bottom: 1px dashed var(--border-grid);
-    margin: 0 8px;
+    margin: 0 0.5rem;
     position: relative;
-    top: -4px;
+    top: -0.25rem;
 }
 
 .price-list strong {
@@ -1385,7 +1398,7 @@ body.dark-theme .yandex-score {
     width: 100%;
     height: 3.5rem;
     border-radius: 0.75rem;
-    font-size: calc(13px * var(--type-scale));
+    font-size: 0.8125rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -1447,22 +1460,22 @@ body.dark-theme .yandex-score {
    На планшетах h2 (.section-title) остаётся базовым (32px) и крупнее h4 (.card-title 22px) */
 @media (max-width: 600px) {
     .section-title {
-        font-size: calc(24px * var(--type-scale));
+        font-size: 1.5rem;
     }
 
     .card-title {
-        font-size: calc(18px * var(--type-scale));
+        font-size: 1.125rem;
     }
 }
 
 /* Смартфоны (вертикальные, ≤480): h2 и h4 компактнее, но h2 > h4 сохраняется */
 @media (max-width: 480px) {
     .section-title {
-        font-size: calc(20px * var(--type-scale));
+        font-size: 1.25rem;
     }
 
     .card-title {
-        font-size: calc(16px * var(--type-scale));
+        font-size: 1rem;
     }
 }
 
@@ -1479,7 +1492,7 @@ body.dark-theme .yandex-score {
     padding: 0.85rem 1.75rem;
     /* Радиус как у главных зелёных кнопок .premium-btn — не пилюля */
     border-radius: 0.75rem;
-    font-size: calc(15px * var(--type-scale));
+    font-size: 0.9375rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -1553,7 +1566,7 @@ body.dark-theme .yandex-score {
 }
 
 .v2-prices-title {
-    font-size: calc(13px * var(--type-scale));
+    font-size: 0.8125rem;
     color: var(--accent-color);
     font-weight: 700;
     text-transform: uppercase;
@@ -1574,16 +1587,16 @@ body.dark-theme .yandex-score {
 }
 
 .v2-group-title {
-    font-size: calc(15px * var(--type-scale));
+    font-size: 0.9375rem;
     font-weight: 700;
     color: var(--text-main);
-    margin-bottom: 2px;
+    margin-bottom: 0.125rem;
 }
 
 .v2-group-note {
-    font-size: calc(13px * var(--type-scale));
+    font-size: 0.8125rem;
     color: var(--text-muted);
-    margin-bottom: 6px;
+    margin-bottom: 0.375rem;
 }
 
 /* Компактный левый блок — плотнее стандартного .price-list */
@@ -1592,8 +1605,8 @@ body.dark-theme .yandex-score {
 }
 
 .v2-prices .price-list li {
-    margin-bottom: 9px;
-    font-size: calc(14px * var(--type-scale));
+    margin-bottom: 0.5625rem;
+    font-size: 0.875rem;
 }
 
 /* --------------------------------------------------------------------------
@@ -1601,10 +1614,10 @@ body.dark-theme .yandex-score {
    -------------------------------------------------------------------------- */
 
 .v2-step-title {
-    font-size: calc(16px * var(--type-scale));
+    font-size: 1rem;
     font-weight: 700;
     color: var(--text-main);
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem;
 }
 
 .v2-step-title:not(:first-child) {
@@ -1613,7 +1626,7 @@ body.dark-theme .yandex-score {
 
 /* Подпись поля площади в коммерции — точечно уменьшена */
 .v2-area-title {
-    font-size: calc(16.5px * var(--type-scale));
+    font-size: 1.03125rem;
 }
 
 /* Сегментные кнопки выбора (вредитель / тип / комнаты) */
@@ -1627,9 +1640,9 @@ body.dark-theme .yandex-score {
     flex: 1;
     background: var(--card-cta-bg);
     border: 1px solid var(--border-grid);
-    border-radius: 10px;
-    padding: 10px 12px;
-    font-size: calc(14px * var(--type-scale));
+    border-radius: 0.625rem;
+    padding: 0.625rem 0.75rem;
+    font-size: 0.875rem;
     font-weight: 600;
     font-family: var(--font-head);
     color: var(--text-muted);
@@ -1655,7 +1668,7 @@ body.dark-theme .yandex-score {
 
 /* Тонкая подпись над рядом кнопок */
 .v2-seg-label {
-    font-size: calc(12px * var(--type-scale));
+    font-size: 0.75rem;
     font-weight: 600;
     color: var(--text-muted);
     margin: 0.5rem 0 0.3rem;
@@ -1673,12 +1686,12 @@ body.dark-theme .yandex-score {
     display: flex;
     align-items: center;
     gap: 0.45rem;
-    padding: 6px 10px;
-    font-size: calc(13px * var(--type-scale));
+    padding: 0.375rem 0.625rem;
+    font-size: 0.8125rem;
     color: var(--text-muted);
     background: var(--accent-soft);
     border: 1px solid transparent;
-    border-radius: 10px;
+    border-radius: 0.625rem;
     cursor: pointer;
     transition: all 0.2s ease;
 }
@@ -1690,8 +1703,8 @@ body.dark-theme .yandex-score {
 
 .v2-check input {
     accent-color: var(--btn-fill);
-    width: 15px;
-    height: 15px;
+    width: 0.9375rem;
+    height: 0.9375rem;
     flex-shrink: 0;
     cursor: pointer;
 }
@@ -1700,9 +1713,9 @@ body.dark-theme .yandex-score {
 .v2-area-input {
     background: var(--card-cta-bg);
     border: 1px solid var(--border-grid);
-    border-radius: 10px;
-    padding: 10px 12px;
-    font-size: calc(15px * var(--type-scale));
+    border-radius: 0.625rem;
+    padding: 0.625rem 0.75rem;
+    font-size: 0.9375rem;
     font-family: var(--font-body);
     color: var(--text-main);
     outline: none;
@@ -1717,8 +1730,8 @@ body.dark-theme .yandex-score {
 
 /* Поле ввода площади в коммерческом калькуляторе */
 #v2-biz-area {
-    padding: 16px 14px;
-    font-size: calc(20px * var(--type-scale));
+    padding: 1rem 0.875rem;
+    font-size: 1.25rem;
     font-weight: 700;
 }
 
@@ -1741,7 +1754,7 @@ body.dark-theme .yandex-score {
     border-radius: 0.75rem;
     color: var(--text-main);
     font-family: var(--font-head);
-    font-size: calc(14px * var(--type-scale));
+    font-size: 0.875rem;
     font-weight: 600;
     letter-spacing: 0.03em;
     outline: none;
@@ -1798,7 +1811,7 @@ body.dark-theme .yandex-score {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 98px;
+    min-height: 6.125rem;
 }
 
 .v2-total-line {
@@ -1809,7 +1822,7 @@ body.dark-theme .yandex-score {
 }
 
 .v2-total-line span {
-    font-size: calc(26px * var(--type-scale));
+    font-size: 1.625rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -1818,16 +1831,16 @@ body.dark-theme .yandex-score {
 }
 
 .v2-total-line strong {
-    font-size: calc(26px * var(--type-scale));
+    font-size: 1.625rem;
     font-weight: 700;
     color: var(--text-main);
     white-space: nowrap;
 }
 
 .v2-guarantee {
-    font-size: calc(13px * var(--type-scale));
+    font-size: 0.8125rem;
     color: var(--text-muted);
-    margin-top: 5px;
+    margin-top: 0.3125rem;
 }
 
 /* Строка под ИТОГО: гарантия слева, тариф справа под ценой */
@@ -1836,7 +1849,7 @@ body.dark-theme .yandex-score {
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    margin-top: 5px;
+    margin-top: 0.3125rem;
 }
 
 .v2-total-sub .v2-guarantee {
@@ -1844,7 +1857,7 @@ body.dark-theme .yandex-score {
 }
 
 .v2-total-rate {
-    font-size: calc(13px * var(--type-scale));
+    font-size: 0.8125rem;
     color: var(--text-muted);
     white-space: nowrap;
 }
@@ -1856,7 +1869,7 @@ body.dark-theme .yandex-score {
     border-radius: 1rem;
     background: var(--accent-soft);
     border: 1px solid var(--border-glass);
-    font-size: calc(14px * var(--type-scale));
+    font-size: 0.875rem;
     font-weight: 600;
     color: var(--text-muted);
     text-align: left;
@@ -1901,7 +1914,7 @@ body.dark-theme .yandex-score {
 @media (max-width: 480px) {
     .v2-total-line span,
     .v2-total-line strong {
-        font-size: calc(18px * var(--type-scale));
+        font-size: 1.125rem;
     }
 }
 
@@ -1914,7 +1927,7 @@ body.dark-theme .yandex-score {
     display: grid;
     grid-template-columns: repeat(6, minmax(0, 1fr));
     grid-auto-rows: 1fr;
-    gap: 8px;
+    gap: 0.5rem;
 }
 
 .pest-card {
@@ -1937,13 +1950,13 @@ body.dark-theme .yandex-score {
 
 .pest-card:hover {
     border-color: var(--border-glass);
-    transform: translateY(-4px);
+    transform: translateY(-0.25rem);
 }
 
 /* В два ряда нижний на ховере уходит вниз, иначе тянется к верхнему ряду */
 @media (max-width: 1024px) {
     .pest-card:nth-child(n+4):hover {
-        transform: translateY(4px);
+        transform: translateY(0.25rem);
     }
 }
 
@@ -1973,8 +1986,8 @@ body.dark-theme .yandex-score {
    -------------------------------------------------------------------------- */
 .pest-icon {
     position: relative;
-    width: 48px;
-    height: 48px;
+    width: 3rem;
+    height: 3rem;
     color: var(--text-muted);
     transition: color 0.3s ease, transform 0.35s ease;
 }
@@ -2013,7 +2026,7 @@ body.dark-theme .yandex-score {
 
 .pest-name {
     font-family: var(--font-head);
-    font-size: calc(17px * var(--type-scale));
+    font-size: 1.0625rem;
     font-weight: 700;
     letter-spacing: 0.02em;
     color: var(--text-muted);
@@ -2024,7 +2037,7 @@ body.dark-theme .yandex-score {
 /* Подпись под названием — тот же мелкий шрифт, что у опций калькулятора */
 .pest-sub {
     font-family: var(--font-head);
-    font-size: calc(13px * var(--type-scale));
+    font-size: 0.8125rem;
     font-weight: 400;
     line-height: 1.4;
     text-align: center;
@@ -2075,7 +2088,7 @@ body.dark-theme .yandex-score {
     /* Три колонки и на телефоне — карточки были слишком крупными */
     .pest-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 3px;
+        gap: 0.1875rem;
     }
 
     /* Отпускаем высоту под содержимое — карточки выравниваются по самой высокой */
@@ -2085,16 +2098,16 @@ body.dark-theme .yandex-score {
     }
 
     .pest-icon {
-        width: 32px;
-        height: 32px;
+        width: 2rem;
+        height: 2rem;
     }
 
     .pest-name {
-        font-size: calc(14px * var(--type-scale));
+        font-size: 0.875rem;
     }
 
     .pest-sub {
-        font-size: calc(11px * var(--type-scale));
+        font-size: 0.6875rem;
     }
 }
 
@@ -2112,7 +2125,7 @@ body.dark-theme .yandex-score {
 
 .section-subtitle {
     margin: 0 0 1rem;
-    font-size: calc(24px * var(--type-scale));
+    font-size: var(--fs-h3);
     font-weight: 700;
     color: var(--text-main);
     text-transform: uppercase;
@@ -2126,7 +2139,7 @@ body.dark-theme .yandex-score {
 
 .why-we-lead {
     margin: 0 0 1.75rem;
-    font-size: calc(16px * var(--type-scale));
+    font-size: 1rem;
     line-height: 1.5;
     color: var(--text-muted);
 }
@@ -2146,8 +2159,8 @@ body.dark-theme .yandex-score {
     overflow: hidden;
     background: var(--card-cta-bg);
     border: 1px solid var(--border-glass);
-    border-radius: 12px;
-    font-size: calc(15px * var(--type-scale));
+    border-radius: 0.75rem;
+    font-size: 0.9375rem;
     font-weight: 600;
     color: var(--text-muted);
 }
@@ -2161,9 +2174,9 @@ body.dark-theme .yandex-score {
     justify-content: center;
     background: var(--accent-color);
     color: var(--btn-text);
-    font-size: calc(15px * var(--type-scale));
+    font-size: 0.9375rem;
     /* нижний правый угол заливки зеркалит нижний левый (его даёт clip пункта) */
-    border-bottom-right-radius: 12px;
+    border-bottom-right-radius: 0.75rem;
 }
 
 .why-we-text {
@@ -2178,7 +2191,7 @@ body.dark-theme .yandex-score {
     position: relative;
     height: 0.9rem;
     color: var(--accent-color);
-    font-size: calc(13px * var(--type-scale));
+    font-size: 0.8125rem;
 }
 
 .why-we-arrow i {
@@ -2196,7 +2209,7 @@ body.dark-theme .yandex-score {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-rows: repeat(2, minmax(0, 1fr));
-    gap: 3px;
+    gap: 0.1875rem;
     border-radius: var(--radius-main);
     flex: 1;
     align-self: stretch;
@@ -2242,19 +2255,19 @@ body.dark-theme .yandex-score {
 
 /* Разъезд от центра к своему углу: сдвиг 2px + минимальное увеличение */
 .why-we-card:nth-child(1):hover {
-    transform: translate(-2px, -2px) scale(1.01);
+    transform: translate(-0.125rem, -0.125rem) scale(1.01);
 }
 
 .why-we-card:nth-child(2):hover {
-    transform: translate(2px, -2px) scale(1.01);
+    transform: translate(0.125rem, -0.125rem) scale(1.01);
 }
 
 .why-we-card:nth-child(3):hover {
-    transform: translate(-2px, 2px) scale(1.01);
+    transform: translate(-0.125rem, 0.125rem) scale(1.01);
 }
 
 .why-we-card:nth-child(4):hover {
-    transform: translate(2px, 2px) scale(1.01);
+    transform: translate(0.125rem, 0.125rem) scale(1.01);
 }
 
 .why-we-card:hover {
@@ -2275,7 +2288,7 @@ body.dark-theme .yandex-score {
 /* Заголовки карточек преимуществ/решений — компактные капс-лейблы (как триггеры в hero) */
 .why-we-card .card-title {
     margin: 0 0 0.5rem;
-    font-size: calc(16px * var(--type-scale));
+    font-size: 1rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -2283,7 +2296,7 @@ body.dark-theme .yandex-score {
 
 .why-we-card-text {
     margin: 0;
-    font-size: calc(13px * var(--type-scale));
+    font-size: 0.8125rem;
     font-weight: 500;
     color: var(--text-muted);
     line-height: 1.4;
@@ -2295,7 +2308,7 @@ body.dark-theme .yandex-score {
 
 /* Полоса-призыв под блоком */
 .why-we-note {
-    --why-note-gap: 3px;
+    --why-note-gap: 0.1875rem;
     display: flex;
     align-items: stretch;
     height: 3.5rem;
@@ -2313,11 +2326,11 @@ body.dark-theme .yandex-score {
     align-items: center;
     margin: 0;
     border: 1px solid var(--border-glass);
-    border-radius: 12px 0 0 12px;
+    border-radius: 0.75rem 0 0 0.75rem;
     background: var(--card-cta-bg);
     margin-right: var(--why-note-gap);
     padding: 0 1.25rem;
-    font-size: calc(15px * var(--type-scale));
+    font-size: 0.9375rem;
     line-height: 1.4;
     color: var(--text-main);
 }
@@ -2345,7 +2358,7 @@ body.dark-theme .yandex-score {
     box-shadow: none !important;
     text-decoration: none;
     font-family: var(--font-head);
-    font-size: calc(13px * var(--type-scale));
+    font-size: 0.8125rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -2366,7 +2379,7 @@ body.dark-theme .yandex-score {
     justify-content: center;
     background: var(--btn-fill);
     color: var(--btn-text);
-    font-size: calc(18px * var(--type-scale));
+    font-size: 1.125rem;
     text-decoration: none;
     border-radius: 0 0 0 0.75rem;
     transition: background 0.2s ease, color 0.2s ease;
@@ -2419,7 +2432,7 @@ body.dark-theme .yandex-score {
     .why-we-note-text {
         padding: 0.85rem 1.25rem;
         margin-right: 0;
-        border-radius: 12px 12px 0 0;
+        border-radius: 0.75rem 0.75rem 0 0;
     }
 
     .why-we-note-btn {
@@ -2431,7 +2444,7 @@ body.dark-theme .yandex-score {
        угла, верхние прямые */
     .why-we-note-actions {
         width: auto;
-        border-radius: 0 0 12px 12px;
+        border-radius: 0 0 0.75rem 0.75rem;
     }
 
     .why-we-note-tg {
@@ -2450,7 +2463,7 @@ body.dark-theme .yandex-score {
     }
 
     .why-we-cards .why-we-card:hover {
-        transform: translate(-2px, 0) scale(1.01);
+        transform: translate(-0.125rem, 0) scale(1.01);
     }
 
     /* Сетка 1×4, скругляем верх первой и низ последней */
@@ -2473,7 +2486,7 @@ body.dark-theme .yandex-score {
     }
 
     .section-subtitle {
-        font-size: calc(20px * var(--type-scale));
+        font-size: 1.25rem;
     }
 
     /* Позиционирование как на 601–768: «НАШИ РЕШЕНИЯ» по правому краю */
@@ -2482,7 +2495,7 @@ body.dark-theme .yandex-score {
     }
 
     .why-we-note-text {
-        font-size: calc(14px * var(--type-scale));
+        font-size: 0.875rem;
     }
 }
 
@@ -2490,7 +2503,7 @@ body.dark-theme .yandex-score {
    меньше h2 «Почему мы». Приглушаем цветом, вес оставляем базовый (700) */
 @media (max-width: 480px) {
     .section-subtitle {
-        font-size: calc(18px * var(--type-scale));
+        font-size: 1.125rem;
         font-weight: 700;
         color: var(--text-muted);
     }
@@ -2521,7 +2534,7 @@ body.dark-theme .yandex-score {
 
 .b2b-title {
     margin: 0 0 1rem;
-    font-size: calc(24px * var(--type-scale));
+    font-size: 1.5rem;
     font-weight: 700;
     color: var(--text-main);
     text-transform: uppercase;
@@ -2531,7 +2544,7 @@ body.dark-theme .yandex-score {
 /* Строка во всю ширину контейнера перед бегущей лентой: */
 .b2b-lead {
     margin: 1.75rem 0 1rem;
-    font-size: calc(14px * var(--type-scale));
+    font-size: 0.875rem;
     line-height: 1.5;
     color: var(--text-muted);
 }
@@ -2556,8 +2569,8 @@ body.dark-theme .yandex-score {
     overflow: hidden;
     background: var(--card-cta-bg);
     border: 1px solid var(--border-glass);
-    border-radius: 12px;
-    font-size: calc(15px * var(--type-scale));
+    border-radius: 0.75rem;
+    font-size: 0.9375rem;
     font-weight: 600;
     color: var(--text-muted);
 }
@@ -2572,8 +2585,8 @@ body.dark-theme .yandex-score {
     justify-content: center;
     background: var(--btn-fill);
     color: var(--btn-text);
-    font-size: calc(15px * var(--type-scale));
-    border-bottom-right-radius: 12px;
+    font-size: 0.9375rem;
+    border-bottom-right-radius: 0.75rem;
 }
 
 .b2b-item > span:last-child {
@@ -2585,7 +2598,7 @@ body.dark-theme .yandex-score {
 /* Контурные плашки-теги с типами объектов */
 .b2b-tags-title {
     margin: 0 0 1rem;
-    font-size: calc(24px * var(--type-scale));
+    font-size: 1.5rem;
     font-weight: 700;
     color: var(--text-main);
     text-transform: uppercase;
@@ -2599,7 +2612,7 @@ body.dark-theme .yandex-score {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-rows: repeat(3, minmax(0, 1fr));
     flex: 1 1 auto;
-    gap: 3px;
+    gap: 0.1875rem;
 }
 
 /* Плоские серые карточки, на hover белеют.
@@ -2613,7 +2626,7 @@ body.dark-theme .yandex-score {
     background: var(--card-flat-bg);
     border: 1px solid var(--border-glass);
     border-radius: 0;
-    font-size: calc(14px * var(--type-scale));
+    font-size: 0.875rem;
     font-weight: 700;
     line-height: 1.35;
     color: var(--text-main);
@@ -2641,7 +2654,7 @@ body.dark-theme .yandex-score {
 
 .b2b-tag i {
     color: var(--accent-color);
-    font-size: calc(18px * var(--type-scale));
+    font-size: 1.125rem;
     transition: color 0.3s ease;
 }
 
@@ -2719,8 +2732,8 @@ body.dark-theme .yandex-score {
 
 .b2b-brand-icon {
     display: inline-flex;
-    width: 28px;
-    height: 28px;
+    width: 1.75rem;
+    height: 1.75rem;
 }
 
 .b2b-brand-icon svg {
@@ -2729,7 +2742,7 @@ body.dark-theme .yandex-score {
 }
 
 .b2b-brand-name {
-    font-size: calc(15px * var(--type-scale));
+    font-size: 0.9375rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.03em;
@@ -2756,7 +2769,7 @@ body.dark-theme .yandex-score {
 @media (max-width: 600px) {
     .b2b-title,
     .b2b-tags-title {
-        font-size: calc(20px * var(--type-scale));
+        font-size: 1.25rem;
     }
 
     /* Лента не должна создавать горизонтальную прокрутку сайта */
@@ -2766,7 +2779,7 @@ body.dark-theme .yandex-score {
     }
 
     .b2b-brand-name {
-        font-size: calc(13px * var(--type-scale));
+        font-size: 0.8125rem;
     }
 
     /* Карточки объектов в одну колонку — на узком экране две нечитаемы.
@@ -2798,7 +2811,7 @@ body.dark-theme .yandex-score {
     }
 
     .b2b-tag {
-        font-size: calc(13px * var(--type-scale));
+        font-size: 0.8125rem;
         padding: 1rem 1.1rem;
         gap: 0.6rem;
     }
@@ -2820,7 +2833,7 @@ body.dark-theme .yandex-score {
     display: flex;
     flex-direction: column;
     /* Тонкий стык как у .why-we-cards и .b2b-tags */
-    gap: 3px;
+    gap: 0.1875rem;
 }
 
 .faq-item {
@@ -2873,7 +2886,7 @@ body.dark-theme .yandex-score {
     border: 0;
     /* Текст вопроса строчными */
     font-family: var(--font-head);
-    font-size: calc(17px * var(--type-scale));
+    font-size: 1.0625rem;
     font-weight: 700;
     line-height: 1.4;
     text-align: left;
@@ -2901,8 +2914,8 @@ body.dark-theme .yandex-score {
 .faq-plus {
     position: relative;
     flex: 0 0 auto;
-    width: 18px;
-    height: 18px;
+    width: 1.125rem;
+    height: 1.125rem;
     color: var(--text-muted);
     transition: transform 0.35s ease, color 0.25s ease;
 }
@@ -2924,14 +2937,14 @@ body.dark-theme .yandex-score {
 }
 
 .faq-plus::before {
-    width: 14px;
+    width: 0.875rem;
     height: 1.5px;
     transform: translate(-50%, -50%);
 }
 
 .faq-plus::after {
     width: 1.5px;
-    height: 14px;
+    height: 0.875rem;
     transform: translate(-50%, -50%);
 }
 
@@ -2961,9 +2974,9 @@ body.dark-theme .yandex-score {
     border-left: 2px solid var(--btn-fill);
     margin: 0 0 1.35rem 1.75rem;
     padding: 0 1.75rem 0 0.75rem;
-    max-width: 820px;
+    max-width: 51.25rem;
     font-family: var(--font-head);
-    font-size: calc(16px * var(--type-scale));
+    font-size: 1rem;
     font-weight: 400;
     line-height: 1.6;
     color: var(--text-muted);
@@ -2973,7 +2986,7 @@ body.dark-theme .yandex-score {
 
 @media (max-width: 1024px) {
     .faq-btn {
-        font-size: calc(16px * var(--type-scale));
+        font-size: 1rem;
         padding: 1.15rem 1.5rem;
     }
 
@@ -2988,28 +3001,28 @@ body.dark-theme .yandex-score {
     /* Размер заголовка общий для всех блоков — сбивается на 680px */
 
     .faq-btn {
-        font-size: calc(15px * var(--type-scale));
+        font-size: 0.9375rem;
         padding: 1rem 1.25rem;
         gap: 1rem;
     }
 
     .faq-answer-text {
-        font-size: calc(15px * var(--type-scale));
+        font-size: 0.9375rem;
         margin: 0 0 1.1rem 1.25rem;
         padding: 0 1.25rem 0 0.625rem;
     }
 
     .faq-plus {
-        width: 16px;
-        height: 16px;
+        width: 1rem;
+        height: 1rem;
     }
 
     .faq-plus::before {
-        width: 12px;
+        width: 0.75rem;
     }
 
     .faq-plus::after {
-        height: 12px;
+        height: 0.75rem;
     }
 }
 
@@ -3066,7 +3079,7 @@ body.dark-theme .yandex-score {
     border: 2px solid var(--btn-fill);
     color: var(--btn-fill);
     border-radius: 0.75rem;
-    font-size: calc(14px * var(--type-scale));
+    font-size: 0.875rem;
     cursor: pointer;
     transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease,
                 opacity 0.2s ease;
@@ -3087,7 +3100,7 @@ body.dark-theme .yandex-score {
 .reviews-track {
     display: flex;
     /* Тонкий стык как у .faq-list и .why-we-cards */
-    gap: 3px;
+    gap: 0.1875rem;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
@@ -3100,7 +3113,7 @@ body.dark-theme .yandex-score {
 
 .review-card {
     /* Четыре карточки в ряд */
-    flex: 0 0 calc((100% - 3 * 3px) / 4);
+    flex: 0 0 calc((100% - 3 * 0.1875rem) / 4);
     scroll-snap-align: start;
     display: flex;
     flex-direction: column;
@@ -3145,7 +3158,7 @@ body.dark-theme .yandex-score {
 
 .review-name {
     font-family: var(--font-head);
-    font-size: calc(15px * var(--type-scale));
+    font-size: 0.9375rem;
     font-weight: 700;
     color: var(--text-main);
     min-width: 0;
@@ -3153,15 +3166,15 @@ body.dark-theme .yandex-score {
 
 .review-stars {
     display: flex;
-    gap: 2px;
+    gap: 0.125rem;
     flex: 0 0 auto;
     color: var(--yandex-gold);
-    font-size: calc(12px * var(--type-scale));
+    font-size: 0.75rem;
 }
 
 .review-service {
     font-family: var(--font-head);
-    font-size: calc(11px * var(--type-scale));
+    font-size: 0.6875rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -3171,7 +3184,7 @@ body.dark-theme .yandex-score {
 
 .review-text {
     margin: 0;
-    font-size: calc(13px * var(--type-scale));
+    font-size: 0.8125rem;
     line-height: 1.55;
     color: var(--text-muted);
 }
@@ -3179,7 +3192,7 @@ body.dark-theme .yandex-score {
 /* Планшет: три карточки в ряд */
 @media (max-width: 1024px) {
     .review-card {
-        flex: 0 0 calc((100% - 2 * 3px) / 3);
+        flex: 0 0 calc((100% - 2 * 0.1875rem) / 3);
     }
 }
 
@@ -3192,7 +3205,7 @@ body.dark-theme .yandex-score {
     }
 
     .review-card {
-        flex: 0 0 calc((100% - 3px) / 2);
+        flex: 0 0 calc((100% - 0.1875rem) / 2);
         padding: 1.25rem;
     }
 }
@@ -3209,7 +3222,7 @@ body.dark-theme .yandex-score {
 
 .geo-map-frame {
     position: relative;
-    height: clamp(280px, 46vw, 520px);
+    height: clamp(17.5rem, 46vw, 32.5rem);
     border: 1px solid var(--border-grid);
     border-radius: var(--radius-main);
     overflow: hidden;
@@ -3277,7 +3290,7 @@ body.dark-theme .geo-map-tint {
     margin: 0;
     font-family: var(--font-head);
     /* На узких экранах шрифт поджимается (clamp), чтобы строка не переносилась */
-    font-size: clamp(calc(14.4px * var(--type-scale)), 1.92vw, calc(18px * var(--type-scale)));
+    font-size: clamp(0.9rem, 1.92vw, 1.125rem);
     font-weight: 700;
     letter-spacing: -0.01em;
     color: var(--text-main);
@@ -3285,7 +3298,7 @@ body.dark-theme .geo-map-tint {
 
 .footer-label {
     margin: 0;
-    font-size: clamp(calc(11px * var(--type-scale)), 1.28vw, calc(12px * var(--type-scale)));
+    font-size: clamp(0.6875rem, 1.28vw, 0.75rem);
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -3294,7 +3307,7 @@ body.dark-theme .geo-map-tint {
 
 .footer-muted {
     margin: 0;
-    font-size: clamp(calc(12px * var(--type-scale)), 1.6vw, calc(15px * var(--type-scale)));
+    font-size: clamp(0.75rem, 1.6vw, 0.9375rem);
     line-height: 1.6;
     color: var(--text-muted);
 }
@@ -3305,7 +3318,7 @@ body.dark-theme .geo-map-tint {
     align-items: center;
     gap: 0.5rem;
     font-family: var(--font-head);
-    font-size: clamp(calc(14.4px * var(--type-scale)), 1.92vw, calc(18px * var(--type-scale)));
+    font-size: clamp(0.9rem, 1.92vw, 1.125rem);
     font-weight: 700;
     letter-spacing: 0.04em;
     color: var(--text-main);
@@ -3318,7 +3331,7 @@ body.dark-theme .geo-map-tint {
 }
 
 .footer-link {
-    font-size: clamp(calc(12px * var(--type-scale)), 1.6vw, calc(15px * var(--type-scale)));
+    font-size: clamp(0.75rem, 1.6vw, 0.9375rem);
     line-height: 1.6;
     color: var(--text-main);
     text-decoration: none;
@@ -3328,7 +3341,7 @@ body.dark-theme .geo-map-tint {
 .footer-link:hover {
     color: var(--accent-color);
     text-decoration: underline;
-    text-underline-offset: 3px;
+    text-underline-offset: 0.1875rem;
 }
 
 .footer-bottom {
@@ -3340,7 +3353,7 @@ body.dark-theme .geo-map-tint {
     margin-top: 3rem;
     padding-top: 1.5rem;
     border-top: 1px solid var(--border-grid);
-    font-size: calc(13px * var(--type-scale));
+    font-size: 0.8125rem;
 }
 
 .footer-bottom > :last-child {
@@ -3355,7 +3368,7 @@ body.dark-theme .geo-map-tint {
 /* Авторство сайта: мельче и приглушённее остальных подписей */
 .footer-credit {
     margin: 0;
-    font-size: calc(11px * var(--type-scale));
+    font-size: 0.6875rem;
     line-height: 1.6;
     color: var(--text-muted);
     text-align: center;
@@ -3407,16 +3420,16 @@ body.dark-theme .geo-map-tint {
     /* В стопке на всю ширину футера шрифт к базовому размеру */
     .footer-name,
     .footer-phone {
-        font-size: min(calc(18px * var(--type-scale)), calc((100vw - 64px) * 0.053));
+        font-size: min(1.125rem, calc((100vw - 4rem) * 0.053));
     }
 
     .footer-muted,
     .footer-link {
-        font-size: min(calc(15px * var(--type-scale)), calc((100vw - 64px) * 0.044));
+        font-size: min(0.9375rem, calc((100vw - 4rem) * 0.044));
     }
 
     .footer-label {
-        font-size: calc(12px * var(--type-scale));
+        font-size: 0.75rem;
     }
 }
 
