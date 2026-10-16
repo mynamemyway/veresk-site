@@ -3543,3 +3543,63 @@ body.dark-theme .geo-map-tint {
         transition: none;
     }
 }
+
+/* --------------------------------------------------------------------------
+   Кнопка «наверх» (floating). Вид — как у кнопок прокрутки отзывов:
+   прозрачная заливка цвета фона, фирменная рамка. Появляется в правом
+   нижнем углу после прокрутки первого экрана (логика — в main.js)
+   -------------------------------------------------------------------------- */
+.to-top-btn {
+    position: fixed;
+    /* Правый край совпадает с краем контейнеров контента (.calc-container):
+       на средних разрешениях — гуттер, на широком десктопе — граница
+       max-width. Та же формула, что у центрирования контейнера; привязано
+       к токенам, поэтому едет за контейнером при смене --container-max */
+    right: max(var(--gutter), calc((100% - var(--container-max)) / 2));
+    bottom: 1.5rem;
+    z-index: 40; /* ниже липкой шапки (50) */
+    width: 2.75rem;
+    height: 2.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--btn-fill);
+    border-radius: 0.75rem;
+    background: var(--header-glass);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    color: var(--btn-fill);
+    font-size: 0.875rem;
+    cursor: pointer;
+    /* Скрыта, пока не прокручен первый экран */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(0.75rem);
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease,
+                background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.to-top-btn.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.to-top-btn:hover {
+    background: var(--btn-fill);
+    color: var(--btn-text-push);
+    box-shadow: 0 8px 16px var(--accent-soft);
+}
+
+.to-top-btn:focus-visible {
+    outline: 2px solid var(--btn-fill);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .to-top-btn {
+        transition: none;
+    }
+}

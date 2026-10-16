@@ -460,4 +460,53 @@ const guarantee = once
       markReviewEdges();
   }
 
+  // Кнопка «наверх»: появляется, когда первый экран (hero) прокручен
+  const toTopBtn = document.getElementById('toTopBtn');
+  const heroSection = document.getElementById('hero');
+
+  if (toTopBtn && heroSection) {
+    let toTopQueued = false;
+    // Базовый отступ снизу из CSS (1.5rem) — к нему возвращаемся вне подвала
+    const toTopBaseBottom = parseFloat(getComputedStyle(toTopBtn).bottom) || 24;
+    // Разделитель перед ИНН: в самом низу кнопка упирается в него, не наезжая
+    const footerDivider = document.querySelector('.footer-bottom');
+    let toTopLastBottom = null;
+
+    const syncToTop = () => {
+      toTopQueued = false;
+      // Показываем, когда от hero на экране остаётся не более 15% высоты окна
+      const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+      const heroRemaining = heroBottom - window.scrollY;
+      toTopBtn.classList.toggle('is-visible', heroRemaining <= window.innerHeight * 0.15);
+
+      // Поднимаем кнопку так, чтобы её низ встал над разделителем перед ИНН
+      let bottom = toTopBaseBottom;
+      if (footerDivider) {
+        const dividerTop = footerDivider.getBoundingClientRect().top;
+        const rest = window.innerHeight - dividerTop + 8; // 0.5rem зазор
+        if (rest > bottom) bottom = rest;
+      }
+      if (bottom !== toTopLastBottom) {
+        toTopLastBottom = bottom;
+        toTopBtn.style.bottom = bottom + 'px';
+      }
+    };
+
+    const queueToTopSync = () => {
+      if (toTopQueued) return;
+      toTopQueued = true;
+      requestAnimationFrame(syncToTop);
+    };
+
+    window.addEventListener('scroll', queueToTopSync, { passive: true });
+    window.addEventListener('resize', queueToTopSync);
+
+    toTopBtn.addEventListener('click', () => {
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    });
+
+    syncToTop();
+  }
+
 });
