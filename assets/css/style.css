@@ -953,8 +953,12 @@ body.dark-theme .yandex-score {
     height: 3.5rem;
 }
 
+/* Поле фиксированной ширины (под маску телефона), всё освободившееся
+   место в строке занимает кнопка — как в формах калькулятора (.lead-row) */
 .cta-phone-input {
-    flex: 1 1 auto;
+    flex: 0 1 11rem;
+    width: 11rem;
+    max-width: 100%;
     min-width: 0;
     height: 100%;
     padding: 0 1rem;
@@ -986,15 +990,17 @@ body.dark-theme .yandex-score {
 
 .cta-form .premium-btn {
     width: auto;
-    flex: 0 0 auto;
+    flex: 1 1 auto;
     white-space: nowrap;
     padding: 0 1.15rem;
 }
 
 /* Как только заголовку акции («-20% заказ на завтра» + «Сезонное предложение»)
    перестаёт хватать места в одну строку, все элементы карточки собираются
-   в один столбик: заголовок, плашка сезона, поле телефона и кнопка */
-@container (max-width: 375px) {
+   в один столбик: заголовок, плашка сезона, поле телефона и кнопка.
+   Порог 370, а не 375: на стыке 1280 ширина карточки прыгает с 371 до 396,
+   и порог внутри этого интервала давал бы лишнюю перекомпоновку при сжатии */
+@container (max-width: 370px) {
     .cta-header {
         flex-direction: column;
         align-items: flex-start;
@@ -1007,6 +1013,7 @@ body.dark-theme .yandex-score {
     }
 
     .cta-phone-input {
+        flex: 0 0 auto;
         height: 3.5rem;
         width: 100%;
     }
@@ -1197,22 +1204,6 @@ body.dark-theme .yandex-score {
     }
 }
 
-/* Телефоны */
-@media (max-width: 480px) {
-    .cta-form {
-        flex-direction: column;
-        height: auto;
-    }
-
-    .cta-phone-input {
-        height: 3.5rem;
-        width: 100%;
-    }
-
-    .cta-form .premium-btn {
-        width: 100%;
-    }
-}
 
 
 /* ==========================================================================
@@ -1245,7 +1236,12 @@ body.dark-theme .yandex-score {
     scroll-margin-top: calc(var(--anchor-gap) - 60px);
 }
 
+/* §5.4: единый контейнер для @container-перекомпоновок — раскладки компонентов
+   решаются по ширине этого блока (min(75rem, ширина секции)), а не вьюпорта.
+   Ширина блока = вьюпорт − 2×gutter (при 1×), поэтому пороги ниже совпадают
+   со старыми @media 1:1, а на крупных тирах блок шире любого из них */
 .calc-container {
+    container-type: inline-size;
     max-width: var(--container-max);
     margin: 0 auto;
     padding: 0;
@@ -1336,8 +1332,9 @@ body.dark-theme .yandex-score {
 }
 
 /* Три карточки прайса в ряд: скруглены только внешние углы, стыки прямые.
-   На 1024px и уже сетка перестаёт быть одним рядом — логика снимается */
-@media (min-width: 1025px) {
+   На ширине блока ≤960px (вьюпорт ≤1024) сетка перестаёт быть одним рядом —
+   логика снимается */
+@container (min-width: 961px) {
     .prices-grid .price-card:first-child {
         border-radius: var(--radius-main) 0 0 var(--radius-main);
     }
@@ -1513,17 +1510,19 @@ body.dark-theme .yandex-score {
 /* --------------------------------------------------------------------------
    Адаптивность калькулятора
    -------------------------------------------------------------------------- */
-@media (max-width: 1024px) {
+@container (max-width: 960px) {
     .prices-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
-@media (max-width: 768px) {
+@container (max-width: 704px) {
     .prices-grid {
         grid-template-columns: 1fr;
     }
+}
 
+@media (max-width: 768px) {
     .calc-tabs-nav {
         flex-direction: column;
         align-items: stretch;
@@ -2486,7 +2485,7 @@ body.dark-theme .yandex-score {
    Адаптивность блока
    -------------------------------------------------------------------------- */
 
-@media (max-width: 1024px) {
+@container (max-width: 960px) {
     .why-we-layout {
         grid-template-columns: 1fr;
     }
@@ -2524,7 +2523,21 @@ body.dark-theme .yandex-score {
     }
 }
 
+/* Типографика блока остаётся на вьюпорте (§0.3): кегли §3 меряются экраном */
 @media (max-width: 600px) {
+    /* H3 той же схемой, что H1/H2/H4: min 18px до 420, рост до 20px к 480,
+       плоско 20px до 600. На 601 токен отдаёт те же 20px — ступени нет. */
+    .section-subtitle {
+        font-size: clamp(1.125rem, calc(3.33vw + 0.25rem), 1.25rem);
+    }
+
+    .why-we-note-text {
+        font-size: 0.875rem;
+    }
+}
+
+/* Сетка 1×4 и углы — состояние перекомпоновки. 536 = 600 − 2×gutter */
+@container (max-width: 536px) {
     .why-we-cards {
         grid-template-columns: 1fr;
         grid-template-rows: repeat(4, minmax(0, 1fr));
@@ -2553,19 +2566,9 @@ body.dark-theme .yandex-score {
         border-bottom-right-radius: var(--radius-main);
     }
 
-    /* H3 той же схемой, что H1/H2/H4: min 18px до 420, рост до 20px к 480,
-       плоско 20px до 600. На 601 токен отдаёт те же 20px — ступени нет. */
-    .section-subtitle {
-        font-size: clamp(1.125rem, calc(3.33vw + 0.25rem), 1.25rem);
-    }
-
     /* Позиционирование как на 601–768: «НАШИ РЕШЕНИЯ» по правому краю */
     .why-we-right .section-subtitle {
         text-align: right;
-    }
-
-    .why-we-note-text {
-        font-size: 0.875rem;
     }
 }
 
@@ -2820,7 +2823,7 @@ body.dark-theme .yandex-score {
 /* --------------------------------------------------------------------------
    Адаптивность блока
    -------------------------------------------------------------------------- */
-@media (max-width: 1024px) {
+@container (max-width: 960px) {
     /* Колонки складываются в стек */
     .b2b-layout {
         grid-template-columns: 1fr;
@@ -2835,6 +2838,7 @@ body.dark-theme .yandex-score {
        колонки в стеке, и формула в rem тут не нужна */
 }
 
+/* Типографика и внутренние отступы ленты — на вьюпорте (§0.3) */
 @media (max-width: 600px) {
     .b2b-title,
     .b2b-tags-title {
@@ -2851,6 +2855,15 @@ body.dark-theme .yandex-score {
         font-size: 0.8125rem;
     }
 
+    .b2b-tag {
+        font-size: 0.8125rem;
+        padding: 1rem 1.1rem;
+        gap: 0.6rem;
+    }
+}
+
+/* Карточки объектов в одну колонку — состояние перекомпоновки: 536 = 600 − 2×gutter */
+@container (max-width: 536px) {
     /* Карточки объектов в одну колонку — на узком экране две нечитаемы.
        В колонке внешними становятся верхний и нижний углы */
     .b2b-tags {
@@ -2877,12 +2890,6 @@ body.dark-theme .yandex-score {
     .b2b-tag:last-child {
         border-bottom-left-radius: var(--radius-main);
         border-bottom-right-radius: var(--radius-main);
-    }
-
-    .b2b-tag {
-        font-size: 0.8125rem;
-        padding: 1rem 1.1rem;
-        gap: 0.6rem;
     }
 }
 
@@ -3259,13 +3266,13 @@ body.dark-theme .yandex-score {
 }
 
 /* Планшет: три карточки в ряд */
-@media (max-width: 1024px) {
+@container (max-width: 960px) {
     .review-card {
         flex: 0 0 calc((100% - 2 * 0.1875rem) / 3);
     }
 }
 
-@media (max-width: 768px) {
+@container (max-width: 704px) {
     /* Плашка рейтинга и навигация прижаты к краям, как на десктопе;
        переносятся в столбик только если реально не помещаются */
     .reviews-meta {
