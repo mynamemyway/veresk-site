@@ -51,6 +51,11 @@
     /* Отступ от нижней границы шапки до заголовка блока после перехода по меню */
     --anchor-gap: 3rem;
 
+    /* Вертикальный паддинг секций (§3.8): 3rem (48px) на телефонах, линейно
+       растёт до 5rem (80px) к 1280px и выше упирается в потолок — 1440 и
+       крупные тиры не меняются. */
+    --section-pad-y: clamp(3rem, 2rem + 3.75vw, 5rem);
+
     /* Палитра поля вереска */
     --heather-stem: var(--btn-push);          /* стебли — тёмный фирменный зелёный */
     --heather-green-1: var(--btn-push);
@@ -540,7 +545,7 @@ a.logo-wrap:hover .logo-icon {
        осям обрезал бы линию по низу секции. */
     overflow-x: clip;
     overflow-y: visible;
-    padding: 5rem var(--gutter);
+    padding: var(--section-pad-y) var(--gutter);
     /* при переходе по логотипу hero не уезжает под липкий header */
     scroll-margin-top: calc(var(--header-h) + 0.625rem);
 }
@@ -1222,7 +1227,7 @@ body.dark-theme .yandex-score {
     position: relative;
     margin: 0 auto;
     overflow: hidden;
-    padding: 5rem var(--gutter);
+    padding: var(--section-pad-y) var(--gutter);
     font-family: var(--font-body);
     scroll-margin-top: var(--anchor-gap);
 }
@@ -1231,7 +1236,7 @@ body.dark-theme .yandex-score {
    блока hero на высоту полосы анимации вереска (60px).
    Когда полоса уходит в поток (.is-inflow), лишний отступ не нужен. */
 .heather-field-container:not(.is-inflow) + .calc-section {
-    padding-top: calc(5rem + 60px);
+    padding-top: calc(var(--section-pad-y) + 60px);
 }
 
 /* Пустой div-якорь перед калькулятором */
@@ -1553,7 +1558,7 @@ body.dark-theme .yandex-score {
    10. АЛЬТЕРНАТИВНЫЙ МОДУЛЬ РАСЧЁТА v2 (для сравнения)
    ========================================================================== */
 
-/* Вторая секция под калькулятором v1 — наследует симметричный padding calc-section (5rem) */
+/* Вторая секция под калькулятором v1 — наследует вертикальный паддинг calc-section (--section-pad-y) */
 
 /* Вкладки аудитории — тот же вид, что у главных табов v1 */
 .v2-tab-btn {
