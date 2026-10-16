@@ -467,7 +467,7 @@ const guarantee = once
   if (toTopBtn && heroSection) {
     let toTopQueued = false;
     // Базовый отступ снизу из CSS (1.5rem) — к нему возвращаемся вне подвала
-    const toTopBaseBottom = parseFloat(getComputedStyle(toTopBtn).bottom) || 24;
+    const toTopInset = parseFloat(getComputedStyle(toTopBtn).bottom) || 24;
     // Разделитель перед ИНН: в самом низу кнопка упирается в него, не наезжая
     const footerDivider = document.querySelector('.footer-bottom');
     let toTopLastBottom = null;
@@ -479,12 +479,17 @@ const guarantee = once
       const heroRemaining = heroBottom - window.scrollY;
       toTopBtn.classList.toggle('is-visible', heroRemaining <= window.innerHeight * 0.15);
 
-      // Поднимаем кнопку так, чтобы её низ встал над разделителем перед ИНН
-      let bottom = toTopBaseBottom;
+      // Поднимаем кнопку так, чтобы её низ встал над разделителем перед ИНН.
+      // Только если кнопка над ним по горизонтали: вынесенная вправо (в поле)
+      // кнопка ИНН и так не перекрывает
+      let bottom = toTopInset;
       if (footerDivider) {
-        const dividerTop = footerDivider.getBoundingClientRect().top;
-        const rest = window.innerHeight - dividerTop + 8; // 0.5rem зазор
-        if (rest > bottom) bottom = rest;
+        const dividerRect = footerDivider.getBoundingClientRect();
+        const btnRect = toTopBtn.getBoundingClientRect();
+        if (btnRect.right > dividerRect.left && btnRect.left < dividerRect.right) {
+          const rest = window.innerHeight - dividerRect.top + 8; // 0.5rem зазор
+          if (rest > bottom) bottom = rest;
+        }
       }
       if (bottom !== toTopLastBottom) {
         toTopLastBottom = bottom;
@@ -506,6 +511,7 @@ const guarantee = once
       window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
     });
 
+    placeToTop();
     syncToTop();
   }
 

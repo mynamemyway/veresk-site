@@ -3551,11 +3551,11 @@ body.dark-theme .geo-map-tint {
    -------------------------------------------------------------------------- */
 .to-top-btn {
     position: fixed;
-    /* Правый край совпадает с краем контейнеров контента (.calc-container):
-       на средних разрешениях — гуттер, на широком десктопе — граница
-       max-width. Та же формула, что у центрирования контейнера; привязано
-       к токенам, поэтому едет за контейнером при смене --container-max */
-    right: max(var(--gutter), calc((100% - var(--container-max)) / 2));
+    /* Правый край = правый край контента шапки, где стоит рамка телефона.
+       Та же формула, что у .premium-header на ≥1280 (по токену --header-max),
+       поэтому на десктопе кнопка совпадает с телефоном, а на средних и мобиле
+       эта же формула даёт край контейнера. Без привязки к контенту шапки */
+    right: max(var(--gutter), calc((100% - var(--header-max)) / 2));
     bottom: 1.5rem;
     z-index: 40; /* ниже липкой шапки (50) */
     width: 2.75rem;
@@ -3565,9 +3565,8 @@ body.dark-theme .geo-map-tint {
     justify-content: center;
     border: 2px solid var(--btn-fill);
     border-radius: 0.75rem;
-    background: var(--header-glass);
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
+    /* Прозрачная заливка: внутри контейнера не перекрывает контент */
+    background: transparent;
     color: var(--btn-fill);
     font-size: 0.875rem;
     cursor: pointer;
