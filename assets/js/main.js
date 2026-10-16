@@ -468,8 +468,11 @@ const guarantee = once
     let toTopQueued = false;
     // Базовый отступ снизу из CSS (1.5rem) — к нему возвращаемся вне подвала
     const toTopInset = parseFloat(getComputedStyle(toTopBtn).bottom) || 24;
-    // Разделитель перед ИНН: в самом низу кнопка упирается в него, не наезжая
-    const footerDivider = document.querySelector('.footer-bottom');
+    // Блок контента футера — для проверки, что кнопка стоит над контентом
+    const footerBlock = document.querySelector('.footer-grid');
+    // Во что упирается кнопка нижним краем в самом низу: низ «Политика
+    // конфиденциальности» (последняя ссылка последней колонки футера)
+    const footerRestEdge = document.querySelector('.footer-grid .footer-col:last-child .footer-link:last-child');
     let toTopLastBottom = null;
 
     const syncToTop = () => {
@@ -479,15 +482,15 @@ const guarantee = once
       const heroRemaining = heroBottom - window.scrollY;
       toTopBtn.classList.toggle('is-visible', heroRemaining <= window.innerHeight * 0.15);
 
-      // Поднимаем кнопку так, чтобы её низ встал над разделителем перед ИНН.
-      // Только если кнопка над ним по горизонтали: вынесенная вправо (в поле)
-      // кнопка ИНН и так не перекрывает
+      // Поднимаем кнопку так, чтобы её низ встал вровень с низом «Политика
+      // конфиденциальности». Только если кнопка над контентом по горизонтали:
+      // вынесенная вправо (в поле) она контент и так не перекрывает
       let bottom = toTopInset;
-      if (footerDivider) {
-        const dividerRect = footerDivider.getBoundingClientRect();
+      if (footerBlock && footerRestEdge) {
+        const blockRect = footerBlock.getBoundingClientRect();
         const btnRect = toTopBtn.getBoundingClientRect();
-        if (btnRect.right > dividerRect.left && btnRect.left < dividerRect.right) {
-          const rest = window.innerHeight - dividerRect.top + 8; // 0.5rem зазор
+        if (btnRect.right > blockRect.left && btnRect.left < blockRect.right) {
+          const rest = window.innerHeight - footerRestEdge.getBoundingClientRect().bottom;
           if (rest > bottom) bottom = rest;
         }
       }
