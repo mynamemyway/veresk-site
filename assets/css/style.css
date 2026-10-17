@@ -3561,6 +3561,11 @@ body.dark-theme .geo-map-tint {
     .footer-credit {
         order: 3;
     }
+
+    /* ИНН встаёт вплотную к ©, как перенос строки: гасим row-gap 2rem */
+    .footer-inn {
+        margin-top: -2rem;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
