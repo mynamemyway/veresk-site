@@ -3391,6 +3391,11 @@ body.dark-theme .geo-map-tint {
     justify-self: end;
 }
 
+/* ИНН — той же ширины, что колонка «Документы», чтобы встать под её левым краем */
+.footer-inn {
+    width: min(15.45em, 100%);
+}
+
 .footer-name {
     margin: 0;
     font-family: var(--font-head);
