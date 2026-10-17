@@ -471,8 +471,8 @@ const guarantee = once
     // Блок контента футера — для проверки, что кнопка стоит над контентом
     const footerBlock = document.querySelector('.footer-grid');
     // Во что упирается кнопка нижним краем в самом низу: низ «Политика
-    // конфиденциальности» (последняя ссылка последней колонки футера)
-    const footerRestEdge = document.querySelector('.footer-grid .footer-col:last-child .footer-link:last-child');
+    // конфиденциальности» (последняя ссылка колонки документов футера)
+    const footerRestEdge = document.querySelector('.footer-docs .footer-link:last-child');
     let toTopLastBottom = null;
 
     const syncToTop = () => {
@@ -514,7 +514,6 @@ const guarantee = once
       window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
     });
 
-    placeToTop();
     syncToTop();
   }
 

@@ -3356,9 +3356,22 @@ body.dark-theme .geo-map-tint {
 }
 
 .footer-grid {
+    /* Колонки по длине своего контента, распределены по ширине контейнера:
+       бренд — у левого края, документы упираются в правый край.
+       Верхние колонки и нижняя строка — одна сетка, поэтому треки общие
+       и подписи снизу встают ровно под колонками сверху */
     display: grid;
-    grid-template-columns: 1.4fr 1fr 1fr;
-    gap: 2.5rem 3rem;
+    grid-template-columns: auto auto auto;
+    justify-content: space-between;
+    column-gap: 3rem;
+}
+
+/* Линия-разделитель на всю ширину между верхними колонками и нижней строкой */
+.footer-divider {
+    grid-column: 1 / -1;
+    height: 1.5rem;
+    margin-top: 3rem;
+    border-top: 1px solid var(--border-grid);
 }
 
 .footer-col {
@@ -3431,31 +3444,13 @@ body.dark-theme .geo-map-tint {
     text-underline-offset: 0.1875rem;
 }
 
-.footer-bottom {
-    /* Та же колоночная сетка, что у .footer-grid: подписи нижней строки
-       встают ровно под колонками верхней (© под брендом, авторство — под
-       контактами, ИНН — под документами) */
-    display: grid;
-    grid-template-columns: 1.4fr 1fr 1fr;
-    align-items: center;
-    gap: 1rem 3rem;
-    margin-top: 3rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--border-grid);
-    font-size: 0.8125rem;
-}
-
-/* Подписи не переносятся: либо все в одну линию, либо (на мобиле) в столбик */
-.footer-bottom > * {
-    white-space: nowrap;
-}
-
 /* Авторство сайта: мельче и приглушённее остальных подписей */
 .footer-credit {
     margin: 0;
     font-size: 0.6875rem;
     line-height: 1.6;
     color: var(--text-muted);
+    white-space: nowrap;
     opacity: 0.75;
 }
 
@@ -3481,25 +3476,37 @@ body.dark-theme .geo-map-tint {
 }
 
 @media (max-width: 1024px) {
-    /* Три колонки держим в один ряд, ужимаем колонки зазорами, текст без переноса */
-    .footer-grid,
-    .footer-bottom {
-        gap: 2rem 0.75rem;
+    /* Три колонки держим в один ряд, ужимаем зазоры, текст без переноса */
+    .footer-grid {
+        column-gap: 0.75rem;
     }
 }
 
 /* Переводим футер в один столбик */
 @media (max-width: 768px) {
     .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+        /* Нижняя строка — три равные колонки, верхние колонки идут во всю ширину */
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 1rem;
+        row-gap: 2rem;
     }
 
     /* Колонки в стек и по центру */
+    .footer-col,
+    .footer-divider {
+        grid-column: 1 / -1;
+    }
+
     .footer-col {
         align-items: center;
         justify-items: center;
         text-align: center;
+    }
+
+    /* В стопке линия-разделитель тонкая, отступы задаёт row-gap */
+    .footer-divider {
+        height: 0;
+        margin-top: 0;
     }
 
     /* В стопке на всю ширину футера шрифт к базовому размеру */
@@ -3516,17 +3523,17 @@ body.dark-theme .geo-map-tint {
     .footer-label {
         font-size: 0.75rem;
     }
+
+    /* Нижние подписи центрируем в своих колонках */
+    .footer-grid > .footer-muted,
+    .footer-credit {
+        text-align: center;
+    }
 }
 
 @media (max-width: 600px) {
-    .footer-bottom {
+    .footer-grid {
         grid-template-columns: 1fr;
-        gap: 0.4rem;
-        text-align: center;
-    }
-
-    .footer-bottom > :last-child {
-        justify-self: center;
     }
 
     /* Авторство уходит в самый низ — под ИНН */
