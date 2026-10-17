@@ -3356,12 +3356,11 @@ body.dark-theme .geo-map-tint {
 }
 
 .footer-grid {
-    /* Колонки по длине своего контента, распределены по ширине контейнера:
-       бренд — у левого края, документы упираются в правый край.
-       Верхние колонки и нижняя строка — одна сетка, поэтому треки общие
-       и подписи снизу встают ровно под колонками сверху */
+    /* Крайние колонки — одинаковой гибкой ширины (в диапазоне 250–350px),
+       средняя — по своему контенту. Так центральная колонка держится по центру,
+       а верхние и нижние треки остаются общими для одной сетки */
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: minmax(250px, 350px) auto minmax(250px, 350px);
     justify-content: space-between;
     column-gap: 3rem;
 }
@@ -3384,6 +3383,12 @@ body.dark-theme .geo-map-tint {
 
 .footer-col > :first-child {
     align-self: center;
+}
+
+/* Третью колонку (документы и ИНН) прижимаем к правому краю своего трека */
+.footer-docs,
+.footer-inn {
+    justify-self: end;
 }
 
 .footer-name {
@@ -3501,6 +3506,12 @@ body.dark-theme .geo-map-tint {
         align-items: center;
         justify-items: center;
         text-align: center;
+    }
+
+    /* В стопке прижим к правому краю снимаем — колонки во всю ширину */
+    .footer-docs,
+    .footer-inn {
+        justify-self: stretch;
     }
 
     /* В стопке линия-разделитель тонкая, отступы задаёт row-gap */
