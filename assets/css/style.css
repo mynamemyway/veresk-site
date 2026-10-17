@@ -3519,6 +3519,11 @@ body.dark-theme .geo-map-tint {
         justify-self: stretch;
     }
 
+    /* Десктопную ширину ИНН сбрасываем: тянется на всю колонку и центрируется */
+    .footer-inn {
+        width: auto;
+    }
+
     /* В стопке линия-разделитель тонкая, отступы задаёт row-gap */
     .footer-divider {
         height: 0;
